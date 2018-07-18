@@ -448,3 +448,34 @@ class AmsTests(ScenarioTest):
 
         list = self.cmd('az ams streaming endpoint list -a {amsname} -g {rg}').get_output_in_json()
         assert len(list) > 0
+
+    @ResourceGroupPreparer()
+    @StorageAccountPreparer(parameter_name='storage_account_for_create')
+    def test_ams_check_name(self, resource_group, storage_account_for_create):
+        amsname = self.create_random_name(prefix='ams', length=12)
+        amsname2 = 'unnombrequenoexiste'
+        amsname3 = 'dgoifdgoisdfapodsgmpfdofmdspfoamdsfpodsamfpds%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+
+        self.kwargs.update({
+            'amsname': amsname,
+            'storageAccount': storage_account_for_create,
+            'location': 'westus2',
+            'amsname2': amsname2,
+            'amsname3': amsname3
+        })
+
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
+
+        self.cmd('az ams account check-name --location {location} -n {amsname}', checks=[
+            self.check('@', 'Already in use by another Media Service account. Please try again with a name that is not likely to be in use.')
+        ])
+
+        self.cmd('az ams account check-name --location {location} -n {amsname2}', checks=[
+            self.check('@', 'Name available.')
+        ])
+
+        self.cmd('az ams account check-name --location {location} -n {amsname3}', checks=[
+            self.check('@', 'The Media Services account name should be between 3 and 24 characters and may contain only lowercase letters and numbers.')
+        ])
+
+        self.cmd('az ams account delete -n {amsname} -g {rg}')
