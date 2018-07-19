@@ -33,7 +33,7 @@ CLASSIFIERS = [
 
 DEPENDENCIES = [
     'azure-cli-core',
-    'azure-mgmt-media==1.0.0rc1'
+    'azure-mgmt-media==1.0.0rc2'
 ]
 
 with open('README.rst', 'r', encoding='utf-8') as f:
