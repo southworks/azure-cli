@@ -23,3 +23,15 @@ def create(client, resource_group_name, account_name, live_event_name, streaming
                          live_event_name=live_event_name, parameters=live_event, auto_start=auto_start,
                          description=description, tags=tags, key_frame_interval_duration=key_frame_interval_duration,
                          access_token=access_token)
+
+def start(client, resource_group_name, account_name, live_event_name):
+    
+    client.start(resource_group_name, account_name, live_event_name)
+
+    return client.get(resource_group_name, account_name, live_event_name)
+
+def stop(client, resource_group_name, account_name, live_event_name, remove_outputs_on_stop=False):
+    
+    client.stop(resource_group_name, account_name, live_event_name, remove_outputs_on_stop)
+
+    return client.get(resource_group_name, account_name, live_event_name)

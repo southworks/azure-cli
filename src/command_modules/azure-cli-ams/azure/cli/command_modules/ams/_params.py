@@ -177,7 +177,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams live event create') as c:
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
                    help='The streaming protocol for the live event.')
-        c.argument('auto_start', action='store_true', help='The flag indicates if auto start the live event.')
+        c.argument('auto_start', action='store_true', help='Auto start the live event.')
         c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
                    help='The encoding type for Live Event.')
         c.argument('preset_name', help='The encoding preset name.')
@@ -185,3 +185,6 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
         c.argument('access_token', help='The access token.')
         c.argument('description', help='The live event description.')
+
+    with self.argument_context('ams live event stop') as c:
+        c.argument('remove_outputs_on_stop', action='store_true', help='Remove live outputs on stop.')
