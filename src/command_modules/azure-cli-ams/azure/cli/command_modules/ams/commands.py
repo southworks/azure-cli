@@ -118,7 +118,8 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
 
     with self.command_group('ams live event', get_sdk('LiveEvents', get_live_events_client)) as g:
         g.custom_command('create', 'create',
-                         custom_command_type=get_custom_sdk('live_event', get_live_events_client))
+                         custom_command_type=get_custom_sdk('live_event', get_live_events_client),
+                         supports_no_wait=True)
         g.custom_command('start', 'start',
                          custom_command_type=get_custom_sdk('live_event', get_live_events_client),
                          supports_no_wait=True)
