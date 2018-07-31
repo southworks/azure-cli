@@ -67,8 +67,7 @@ class AmsLiveEventTests(ScenarioTest):
         self.cmd('az ams live event start -a {amsname} --name {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
-            self.check('input.streamingProtocol', 'FragmentedMP4'),
-            self.check('resourceState', 'Starting')
+            self.check('input.streamingProtocol', 'FragmentedMP4')
         ])
 
     @ResourceGroupPreparer()
@@ -100,6 +99,5 @@ class AmsLiveEventTests(ScenarioTest):
         ])
 
         self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg}', checks=[
-            self.check('name', '{liveEventName}'),
-            self.check('resourceState', 'Stopping')
+            self.check('name', '{liveEventName}')
         ])
