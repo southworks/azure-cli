@@ -28,18 +28,20 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol} --auto-start --encoding-type {encodingType} --preset-name Default720p --tags key=value', checks=[
+        live_event = self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol} --auto-start --encoding-type {encodingType} --preset-name Default720p --tags key=value', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4'),
             self.check('encoding.encodingType', 'Basic'),
-            self.check('resourceState', 'Running'),
             self.check('presetName', 'Default720p')
-        ])
+        ]).get_output_in_json()
+
+        self.assertNotEquals('Stopping', live_event['resourceState'])
+        self.assertNotEquals('Stopped', live_event['resourceState'])
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
-    def test_live_event_start_show(self, storage_account_for_create):
+    def test_live_event_start(self, storage_account_for_create):
         amsname = self.create_random_name(prefix='ams', length=12)
         live_event_name = self.create_random_name(prefix='le', length=12)
 
@@ -47,7 +49,7 @@ class AmsLiveEventTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streaming_protocol': 'FragmentedMP4',
+            'streamingProtocol': 'FragmentedMP4',
             'liveEventName': live_event_name,
             'encodingType': 'Basic'
         })
@@ -57,18 +59,21 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value', checks=[
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4'),
             self.check('encoding.encodingType', 'Basic')
         ])
 
-        self.cmd('az ams live event start -a {amsname} --name {liveEventName} -g {rg}', checks=[
+        live_event = self.cmd('az ams live event start -a {amsname} --name {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4')
-        ])
+        ]).get_output_in_json()
+
+        self.assertNotEquals('Stopping', live_event['resourceState'])
+        self.assertNotEquals('Stopped', live_event['resourceState'])
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -80,7 +85,7 @@ class AmsLiveEventTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streaming_protocol': 'FragmentedMP4',
+            'streamingProtocol': 'FragmentedMP4',
             'liveEventName': live_event_name,
             'encodingType': 'Basic'
         })
@@ -90,7 +95,7 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value --auto-start', checks=[
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value --auto-start', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4'),
@@ -98,6 +103,9 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('resourceState', 'Running')
         ])
 
-        self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg}', checks=[
+        live_event = self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}')
-        ])
+        ]).get_output_in_json()
+
+        self.assertNotEquals('Starting', live_event['resourceState'])
+        self.assertNotEquals('Running', live_event['resourceState'])

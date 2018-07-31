@@ -4,6 +4,8 @@
 # --------------------------------------------------------------------------------------------
 
 from azure.cli.core.util import sdk_no_wait
+from azure.cli.core.commands import LongRunningOperation
+
 
 def create(client, resource_group_name, account_name, live_event_name, streaming_protocol, location,
            auto_start=False, encoding_type=None, preset_name=None, tags=None, description=None,
@@ -25,12 +27,24 @@ def create(client, resource_group_name, account_name, live_event_name, streaming
                        description=description, tags=tags, key_frame_interval_duration=key_frame_interval_duration,
                        access_token=access_token)
 
-def start(client, resource_group_name, account_name, live_event_name, no_wait=False):
+def start(cmd, client, resource_group_name, account_name,
+          live_event_name, no_wait=False):
     
-    return sdk_no_wait(no_wait, client.start, resource_group_name, account_name, live_event_name)
+    if no_wait:
+        return sdk_no_wait(no_wait, client.start, resource_group_name, account_name, live_event_name)
 
-def stop(client, resource_group_name, account_name, live_event_name, remove_outputs_on_stop=False,
-         no_wait=False):
-    
-    return sdk_no_wait(no_wait, client.stop, resource_group_name, account_name, live_event_name,
-                remove_outputs_on_stop)
+    LongRunningOperation(cmd.cli_ctx)(client.start(resource_group_name, account_name, live_event_name))
+
+    return client.get(resource_group_name, account_name, live_event_name)
+
+def stop(cmd, client, resource_group_name, account_name, live_event_name,
+         remove_outputs_on_stop=False, no_wait=False):
+
+    if no_wait:
+        return sdk_no_wait(no_wait, client.stop, resource_group_name, account_name, live_event_name,
+                           remove_outputs_on_stop)
+
+    LongRunningOperation(cmd.cli_ctx)(client.stop(resource_group_name, account_name, live_event_name,
+                                                  remove_outputs_on_stop))
+
+    return client.get(resource_group_name, account_name, live_event_name)
