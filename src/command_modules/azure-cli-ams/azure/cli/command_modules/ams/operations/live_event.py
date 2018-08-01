@@ -27,15 +27,15 @@ def create(client, resource_group_name, account_name, live_event_name, streaming
                        description=description, tags=tags, key_frame_interval_duration=key_frame_interval_duration,
                        access_token=access_token)
 
-def start(cmd, client, resource_group_name, account_name,
-          live_event_name, no_wait=False):
-    
+
+def start(cmd, client, resource_group_name, account_name, live_event_name, no_wait=False):
     if no_wait:
         return sdk_no_wait(no_wait, client.start, resource_group_name, account_name, live_event_name)
 
     LongRunningOperation(cmd.cli_ctx)(client.start(resource_group_name, account_name, live_event_name))
 
     return client.get(resource_group_name, account_name, live_event_name)
+
 
 def stop(cmd, client, resource_group_name, account_name, live_event_name,
          remove_outputs_on_stop=False, no_wait=False):

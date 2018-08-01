@@ -109,3 +109,77 @@ class AmsLiveEventTests(ScenarioTest):
 
         self.assertNotEquals('Starting', live_event['resourceState'])
         self.assertNotEquals('Running', live_event['resourceState'])
+
+    @ResourceGroupPreparer()
+    @StorageAccountPreparer(parameter_name='storage_account_for_create')
+    def test_live_event_list(self, storage_account_for_create):
+        amsname = self.create_random_name(prefix='ams', length=12)
+        live_event_name = self.create_random_name(prefix='le', length=12)
+        live_event_name2 = self.create_random_name(prefix='le', length=12)
+
+        self.kwargs.update({
+            'amsname': amsname,
+            'storageAccount': storage_account_for_create,
+            'location': 'westus2',
+            'streamingProtocol': 'FragmentedMP4',
+            'liveEventName': live_event_name,
+            'liveEventName2': live_event_name2,
+            'encodingType': 'Basic'
+        })
+
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}', checks=[
+            self.check('name', '{amsname}'),
+            self.check('location', 'West US 2')
+        ])
+
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+
+        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+            self.check('length(@)', 1)
+        ])
+
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+
+        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+            self.check('length(@)', 2)
+        ])
+
+    @ResourceGroupPreparer()
+    @StorageAccountPreparer(parameter_name='storage_account_for_create')
+    def test_live_event_delete(self, storage_account_for_create):
+        amsname = self.create_random_name(prefix='ams', length=12)
+        live_event_name = self.create_random_name(prefix='le', length=12)
+        live_event_name2 = self.create_random_name(prefix='le', length=12)
+
+        self.kwargs.update({
+            'amsname': amsname,
+            'storageAccount': storage_account_for_create,
+            'location': 'westus2',
+            'streamingProtocol': 'FragmentedMP4',
+            'liveEventName': live_event_name,
+            'liveEventName2': live_event_name2,
+            'encodingType': 'Basic'
+        })
+
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}', checks=[
+            self.check('name', '{amsname}'),
+            self.check('location', 'West US 2')
+        ])
+
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+
+        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+            self.check('length(@)', 1)
+        ])
+
+        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+
+        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+            self.check('length(@)', 2)
+        ])
+
+        self.cmd('az ams live event delete -a {amsname} -g {rg} -n {liveEventName2}')
+
+        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+            self.check('length(@)', 1)
+        ])
