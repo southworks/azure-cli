@@ -62,10 +62,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', name_arg_type, id_part='child_name_1',
                    help='The name of the transform.')
-        c.argument('preset_names',
-                   arg_type=get_enum_type(get_presets_definition_name_completion_list()),
+        c.argument('presets',
                    nargs='+',
-                   help='Space-separated list of built-in preset names.')
+                   help='Space-separated list of preset names. Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
+                   .format(", ".join(get_presets_definition_name_completion_list())))
         c.argument('description', help='The description of the transform.')
 
     with self.argument_context('ams transform list') as c:
@@ -83,6 +83,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('alternate_id', help='The alternate id of the asset.')
         c.argument('description', help='The asset description.')
         c.argument('asset_name', name_arg_type, help='The name of the asset.')
+        c.argument('storage_account', help='The name of the storage account.')
 
     with self.argument_context('ams asset update') as c:
         c.argument('alternate_id', help='The alternate id of the asset.')
@@ -174,11 +175,14 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams live event create') as c:
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
                    help='The streaming protocol for the live event.')
-        c.argument('auto_start', action='store_true', help='The flag indicates if auto start the live event.')
+        c.argument('auto_start', action='store_true', help='Start the live event automatically after creating it.')
         c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
-                   help='The encoding type for Live Event.')
+                   help='The encoding type for live event.')
         c.argument('preset_name', help='The encoding preset name.')
         c.argument('tags', arg_type=tags_type)
         c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
         c.argument('access_token', help='The access token.')
         c.argument('description', help='The live event description.')
+
+    with self.argument_context('ams live event stop') as c:
+        c.argument('remove_outputs_on_stop', action='store_true', help='Remove live outputs on stop.')

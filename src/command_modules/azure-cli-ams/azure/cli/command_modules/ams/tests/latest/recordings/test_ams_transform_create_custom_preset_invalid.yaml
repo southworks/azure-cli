@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-08-01T00:01:53Z"}}'
+      "date": "2018-08-01T00:02:30Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -16,17 +16,17 @@ interactions:
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-08-01T00:01:53Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-08-01T00:02:30Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Wed, 01 Aug 2018 00:01:56 GMT']
+      date: ['Wed, 01 Aug 2018 00:02:33 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1196']
+      x-ms-ratelimit-remaining-subscription-writes: ['1197']
     status: {code: 201, message: Created}
 - request:
     body: '{"sku": {"name": "Standard_LRS"}, "kind": "Storage", "location": "westus",
@@ -49,15 +49,15 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Wed, 01 Aug 2018 00:01:59 GMT']
+      date: ['Wed, 01 Aug 2018 00:02:36 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/c854ebdb-f313-4903-94e0-a1c781298502?monitor=true&api-version=2017-10-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/b5fa96f7-ad44-403a-92c6-63d8834e2f24?monitor=true&api-version=2017-10-01']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1197']
+      x-ms-ratelimit-remaining-subscription-writes: ['1194']
     status: {code: 202, message: Accepted}
 - request:
     body: null
@@ -71,14 +71,14 @@ interactions:
           msrest_azure/0.4.34 azure-mgmt-storage/1.5.0 Azure-SDK-For-Python AZURECLI/2.0.43]
       accept-language: [en-US]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/c854ebdb-f313-4903-94e0-a1c781298502?monitor=true&api-version=2017-10-01
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/b5fa96f7-ad44-403a-92c6-63d8834e2f24?monitor=true&api-version=2017-10-01
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-08-01T00:01:59.9671228Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-08-01T00:01:59.9671228Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-08-01T00:01:59.8577059Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-08-01T00:02:36.8273952Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-08-01T00:02:36.8273952Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-08-01T00:02:36.7022980Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['1231']
       content-type: [application/json]
-      date: ['Wed, 01 Aug 2018 00:02:17 GMT']
+      date: ['Wed, 01 Aug 2018 00:02:54 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -103,12 +103,12 @@ interactions:
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2017-10-01
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"tWm/EAzJwVokm7CWZD826aDJU6vLwLE+2+N/++0oMkRJMbCeTOrOLPrqwo1ycPnPHP6+LzCpw488t/mqgZwbKA==","permissions":"FULL"},{"keyName":"key2","value":"3TwNdi0f71zBJ9agxbE5X19Pkcfd5EIcy6jcxAeDD78JWW/dQZP+/jHph61bWcOr/mtF6FtK61STfOWEvQMqcQ==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"D8u7PlKgqt6rVR86oEXJOp8+Axkg4Jmc1fb97mNwbjd0oGcjT+A6ZP0BllULLfABbn7JM++f88mZz7FghaxNEw==","permissions":"FULL"},{"keyName":"key2","value":"pkqmOIp7D8XCtEEEmJV/Pbb8AdNcgF2dX2IwVyfx8lQUfIOJg513sS0U+MrtzIiZNVryz2Tmp3/k8PeLxh524A==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Wed, 01 Aug 2018 00:02:20 GMT']
+      date: ['Wed, 01 Aug 2018 00:02:56 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -137,72 +137,21 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"2cbd4bbb-a7d0-4ca6-aad8-5f2cbc246723\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"95bcac6d-472a-443f-85ae-f20c5e875785\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 01 Aug 2018 00:02:26 GMT']
+      date: ['Wed, 01 Aug 2018 00:03:02 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/8.5]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1199']
-      x-powered-by: [ASP.NET]
-    status: {code: 201, message: Created}
-- request:
-    body: '{"properties": {"outputs": [{"preset": {"@odata.type": "#Microsoft.Media.StandardEncoderPreset",
-      "filters": {"overlays": [{"inputLabel": "Image001.png", "fadeInDuration": "PT1S",
-      "fadeOutDuration": "PT4S", "audioGainLevel": 0.0, "@odata.type": "#Microsoft.Media.VideoOverlay",
-      "position": {"left": "100", "top": "100", "width": "100", "height": "50"}}]},
-      "codecs": [{"@odata.type": "#Microsoft.Media.H264Video", "keyFrameInterval":
-      "PT2S", "layers": [{"width": "640", "height": "360", "@odata.type": "#Microsoft.Media.H264Layer",
-      "bitrate": 1045, "maxBitrate": 1045, "frameRate": "0/1", "profile": "Auto",
-      "level": "auto", "bufferWindow": "PT5S", "referenceFrames": 3, "entropyMode":
-      "Cavlc"}]}, {"@odata.type": "#Microsoft.Media.CopyAudio"}], "formats": [{"filenamePattern":
-      "{Basename}{Extension}", "@odata.type": "#Microsoft.Media.Mp4Format"}]}}]}}'
-    headers:
-      Accept: [application/json]
-      Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams transform create]
-      Connection: [keep-alive]
-      Content-Length: ['851']
-      Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.6.4 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.43]
-      accept-language: [en-US]
-    method: PUT
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/transforms/tra000004?api-version=2018-06-01-preview
-  response:
-    body: {string: "{\r\n  \"name\":\"tra000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/transforms/tra000004\",\"type\":\"Microsoft.Media/mediaservices/transforms\",\"properties\":{\r\n
-        \   \"created\":\"2018-08-01T00:02:27.1221101Z\",\"lastModified\":\"2018-08-01T00:02:27.1221101Z\",\"outputs\":[\r\n
-        \     {\r\n        \"onError\":\"StopProcessingJob\",\"relativePriority\":\"Normal\",\"preset\":{\r\n
-        \         \"@odata.type\":\"#Microsoft.Media.StandardEncoderPreset\",\"filters\":{\r\n
-        \           \"rotation\":\"Auto\",\"overlays\":[\r\n              {\r\n                \"@odata.type\":\"#Microsoft.Media.VideoOverlay\",\"inputLabel\":\"Image001.png\",\"fadeInDuration\":\"PT1S\",\"fadeOutDuration\":\"PT4S\",\"audioGainLevel\":0.0,\"position\":{\r\n
-        \                 \"left\":\"100\",\"top\":\"100\",\"width\":\"100\",\"height\":\"50\"\r\n
-        \               },\"opacity\":1.0\r\n              }\r\n            ]\r\n
-        \         },\"codecs\":[\r\n            {\r\n              \"@odata.type\":\"#Microsoft.Media.H264Video\",\"keyFrameInterval\":\"PT2S\",\"stretchMode\":\"AutoSize\",\"sceneChangeDetection\":false,\"complexity\":\"Balanced\",\"layers\":[\r\n
-        \               {\r\n                  \"width\":\"640\",\"height\":\"360\",\"bitrate\":1045,\"maxBitrate\":1045,\"bFrames\":3,\"frameRate\":\"0\",\"slices\":0,\"adaptiveBFrame\":true,\"profile\":\"Auto\",\"level\":\"auto\",\"bufferWindow\":\"PT5S\",\"referenceFrames\":3,\"entropyMode\":\"Cavlc\"\r\n
-        \               }\r\n              ]\r\n            },{\r\n              \"@odata.type\":\"#Microsoft.Media.CopyAudio\"\r\n
-        \           }\r\n          ],\"formats\":[\r\n            {\r\n              \"@odata.type\":\"#Microsoft.Media.Mp4Format\",\"filenamePattern\":\"{Basename}{Extension}\",\"outputFiles\":[\r\n
-        \               \r\n              ]\r\n            }\r\n          ]\r\n        }\r\n
-        \     }\r\n    ]\r\n  }\r\n}"}
-    headers:
-      cache-control: [no-cache]
-      content-length: ['1804']
-      content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 01 Aug 2018 00:02:27 GMT']
-      expires: ['-1']
-      odata-version: ['4.0']
-      pragma: [no-cache]
-      server: [Microsoft-IIS/8.5]
-      strict-transport-security: [max-age=31536000; includeSubDomains]
-      x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1197']
+      x-ms-ratelimit-remaining-subscription-writes: ['1195']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
@@ -225,9 +174,9 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Wed, 01 Aug 2018 00:02:30 GMT']
+      date: ['Wed, 01 Aug 2018 00:03:07 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdDMkVVRkZQUlhLWUpKRUhEREdaN1c2RkJDSjRMRlNHWVRGSnw1M0RFMUNBMEU3NDZEMTAxLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdXSllVTUhNVlhEQUlTVlVTVEJCRFBKRkdXN1I1SlQ0RkJNVnw0QjhCN0RBRTM0RkQyNEUxLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]

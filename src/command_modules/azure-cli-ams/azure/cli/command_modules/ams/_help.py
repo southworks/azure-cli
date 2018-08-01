@@ -101,7 +101,11 @@ helps['ams transform show'] = """
 helps['ams transform create'] = """
     type: command
     short-summary: Create a transform.
-"""
+    examples:
+        - name: Create a transform with a built-in preset and a custom preset from a local JSON file.
+          text: >
+            az ams transform create -a {myAmsAccount} -n {transformName} -g {myResourceGroup} --presets {builtInPreset} {localPathToCustomPresetJsonFile}
+    """
 
 helps['ams transform delete'] = """
     type: command
@@ -286,4 +290,19 @@ helps['ams live event start'] = """
 helps['ams live event show'] = """
     type: command
     short-summary: Show the details of a live event.
+"""
+
+helps['ams live event list'] = """
+    type: command
+    short-summary: List all the live events of an Azure Media Services account.
+"""
+
+helps['ams live event delete'] = """
+    type: command
+    short-summary: Delete a live event.
+"""
+
+helps['ams live event stop'] = """
+    type: command
+    short-summary: Stop a live event.
 """
