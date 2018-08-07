@@ -307,7 +307,7 @@ helps['ams live event stop'] = """
     short-summary: Stop a live event.
 """
 
-helps['ams transform live event'] = """
+helps['ams live event update'] = """
     type: command
     short-summary: Update the details of a live event.
 """
