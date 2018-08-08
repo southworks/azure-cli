@@ -6,6 +6,7 @@
 from azure.cli.core.util import sdk_no_wait
 from azure.cli.core.commands import LongRunningOperation
 from azure.mgmt.media.models import IPRange
+from azure.cli.core.util import CLIError
 
 
 def create(client, resource_group_name, account_name, live_event_name, streaming_protocol, location,  # pylint: disable=too-many-locals
@@ -23,7 +24,7 @@ def create(client, resource_group_name, account_name, live_event_name, streaming
                                       key_frame_interval_duration=key_frame_interval_duration)
 
     live_event_preview = create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id,
-                                                ips, live_event_name)
+                                                   ips, live_event_name)
 
     policies = create_cross_site_access_policies(client_access_policy, cross_domain_policy)
 
@@ -94,12 +95,13 @@ def stop(cmd, client, resource_group_name, account_name, live_event_name,
 
 def update_live_event_setter(client, resource_group_name, account_name, live_event_name,
                              parameters):
-    parameters.preview.access_control.ip.allow = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
-                                                          parameters.preview.access_control.ip.allow))
+    ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
+                   parameters.preview.access_control.ip.allow))
+    parameters.preview.access_control.ip.allow = ips
     return client.update(resource_group_name, account_name, live_event_name, parameters)
 
 
-def update_live_event(instance, tags=None, description=None, key_frame_interval_duration=None, 
+def update_live_event(instance, tags=None, description=None, key_frame_interval_duration=None,
                       ips=None, client_access_policy=None, cross_domain_policy=None):
     if not instance:
         raise CLIError('The live event resource was not found.')
