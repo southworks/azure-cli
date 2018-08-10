@@ -5,7 +5,7 @@
 
 
 def create_streaming_endpoint(client, resource_group_name, account_name, streaming_endpoint_name, auto_start=None, tags=None,
-                              location=None, description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
+                              location, description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
                               cdn_enabled=None, cdn_provider=None, cdn_profile=None, custom_host_names=None,
                               client_access_policy=None, cross_domain_policy=None):
     from azure.mgmt.media.models import (StreamingEndpoint)
