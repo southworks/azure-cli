@@ -267,6 +267,11 @@ helps['ams streaming endpoint list'] = """
     short-summary: List all the streaming endpoints within an Azure Media Services account.
 """
 
+helps['ams streaming endpoint create'] = """
+    type: command
+    short-summary: Create a streaming endpoint.
+"""
+
 helps['ams live'] = """
     type: group
     short-summary: Manage live streaming operations for an Azure Media Service account.
