@@ -6,25 +6,47 @@
 
 def create_streaming_endpoint(client, resource_group_name, account_name, streaming_endpoint_name, location, auto_start=None, tags=None,
                               description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
-                              cdn_enabled=None, cdn_provider=None, cdn_profile=None, custom_host_names=None,
-                              client_access_policy=None, cross_domain_policy=None):
-    from azure.mgmt.media.models import (StreamingEndpoint)
+                              cdn_provider=None, cdn_profile=None, custom_host_names=None, client_access_policy=None,
+                              cross_domain_policy=None, ips=None):
+    from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl)
+
+    allow_list = []
+    if ips is not None:
+        for ip in ips:
+            allow_list.append(create_ip_range(streaming_endpoint_name, ip))
+
+    streaming_endpoint_access_control = None
+    if (ips is not None):
+        streaming_endpoint_access_control = StreamingEndpointAccessControl(ip=IPAccessControl(allow=allow_list))
 
     policies = create_cross_site_access_policies(client_access_policy, cross_domain_policy)
+
+    cdn_enabled = cdn_profile is not None or cdn_provider is not None
 
     streaming_endpoint = StreamingEndpoint(max_cache_age=max_cache_age, tags=tags, location=location, description=description, 
                                            scale_units=scale_units, cdn_profile=cdn_profile, custom_host_names=custom_host_names,
                                            availability_set_name=availability_set_name, cdn_enabled=cdn_enabled,
-                                           cdn_provider=cdn_provider, cross_site_access_policies=policies)
+                                           cdn_provider=cdn_provider, cross_site_access_policies=policies,
+                                           access_control=streaming_endpoint_access_control)
     
     return client.create(resource_group_name=resource_group_name, account_name=account_name, auto_start=auto_start,
                          streaming_endpoint_name=streaming_endpoint_name, parameters=streaming_endpoint)
 
 
-def sdk_no_wait(no_wait, func, *args, **kwargs):
-    if no_wait:
-        kwargs.update({'raw': True, 'polling': False})
-    return func(*args, **kwargs)
+def add_akamai_access_control(client, account_name, resource_group_name, streaming_endpoint_name, identifier=None, base64_key=None, expiration=None):
+    from azure.mgmt.media.models import (StreamingEndpointAccessControl, AkamaiAccessControl, AkamaiSignatureHeaderAuthenticationKey)
+
+    streaming_endpoint = client.get(resource_group_name, account_name, streaming_endpoint_name)
+
+    authentication_key = AkamaiSignatureHeaderAuthenticationKey(identifier, base64_key, expiration)
+
+    if streaming_endpoint.accessControl is not None:
+        if streaming_endpoint.accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList is None:
+            streaming_endpoint.accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList = []
+
+        streaming_endpoint.accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList.append(authentication_key)
+
+    return client.update(resource_group_name, account_name, streaming_endpoint_name, streaming_endpoint)
 
 
 def create_cross_site_access_policies(client_access_policy, cross_domain_policy):
@@ -44,3 +66,7 @@ def create_cross_site_access_policies(client_access_policy, cross_domain_policy)
 def read_xml_policy(xml_policy_path):
     with open(xml_policy_path, 'r') as file:
         return file.read()
+
+def create_ip_range(streaming_endpoint_name, ip):
+    from azure.mgmt.media.models import (IPRange)
+    return IPRange(name=("{}_{}".format(streaming_endpoint_name, ip)), address=ip, subnet_prefix_length=0)
