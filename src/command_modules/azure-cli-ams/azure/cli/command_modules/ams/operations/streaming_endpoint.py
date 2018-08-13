@@ -4,15 +4,15 @@
 # --------------------------------------------------------------------------------------------
 
 
-def create_streaming_endpoint(client, resource_group_name, account_name, streaming_endpoint_name, auto_start=None, tags=None,
-                              location, description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
+def create_streaming_endpoint(client, resource_group_name, account_name, streaming_endpoint_name, location, auto_start=None, tags=None,
+                              description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
                               cdn_enabled=None, cdn_provider=None, cdn_profile=None, custom_host_names=None,
                               client_access_policy=None, cross_domain_policy=None):
     from azure.mgmt.media.models import (StreamingEndpoint)
 
     policies = create_cross_site_access_policies(client_access_policy, cross_domain_policy)
 
-    streaming_endpoint = StreamingEndpoint(max_cache_age=None, tags=tags, location=location, description=description, 
+    streaming_endpoint = StreamingEndpoint(max_cache_age=max_cache_age, tags=tags, location=location, description=description, 
                                            scale_units=scale_units, cdn_profile=cdn_profile, custom_host_names=custom_host_names,
                                            availability_set_name=availability_set_name, cdn_enabled=cdn_enabled,
                                            cdn_provider=cdn_provider, cross_site_access_policies=policies)
