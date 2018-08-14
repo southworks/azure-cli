@@ -277,6 +277,11 @@ helps['ams streaming endpoint akamai add'] = """
     short-summary: Add an AkamaiAccessControl to an existing streaming endpoint.
 """
 
+helps['ams streaming endpoint show'] = """
+    type: command
+    short-summary: Show the details of a streaming endpoint.
+"""
+
 helps['ams live'] = """
     type: group
     short-summary: Manage live streaming operations for an Azure Media Service account.
