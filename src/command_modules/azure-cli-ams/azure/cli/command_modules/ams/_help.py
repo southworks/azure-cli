@@ -282,6 +282,11 @@ helps['ams streaming endpoint show'] = """
     short-summary: Show the details of a streaming endpoint.
 """
 
+helps['ams streaming endpoint delete'] = """
+    type: command
+    short-summary: Delete a streaming endpoint.
+"""
+
 helps['ams live'] = """
     type: group
     short-summary: Manage live streaming operations for an Azure Media Service account.
