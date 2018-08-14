@@ -122,7 +122,6 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.custom_command('add', 'add_akamai_access_control',
                          custom_command_type=get_custom_sdk('streaming_endpoint', get_streaming_endpoints_client))
 
-
     with self.command_group('ams live event', get_sdk('LiveEvents', get_live_events_client)) as g:
         g.custom_command('create', 'create',
                          custom_command_type=get_custom_sdk('live_event', get_live_events_client),
