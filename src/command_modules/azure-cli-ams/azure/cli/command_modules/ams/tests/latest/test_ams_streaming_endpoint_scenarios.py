@@ -20,7 +20,6 @@ class AmsStreamingEndpointsTests(ScenarioTest):
         amsname = self.create_random_name(prefix='ams', length=12)
         streaming_endpoint_name = self.create_random_name(prefix="strep", length=12)
 
-        
         self.kwargs.update({
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
@@ -71,7 +70,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
     def test_ams_streaming_endpoint_create(self, storage_account_for_create):
         amsname = self.create_random_name(prefix='ams', length=12)
-        streaming_endpoint_name = self.create_random_name(prefix="strep", length=12)
+        streaming_endpoint_name = self.create_random_name(prefix="strep", length=11)
 
         self.kwargs.update({
             'amsname': amsname,
@@ -105,7 +104,6 @@ class AmsStreamingEndpointsTests(ScenarioTest):
         ])
 
         self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
-
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_show')
@@ -153,14 +151,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
     def test_ams_streaming_endpoint_delete(self, storage_account_for_delete):
         amsname = self.create_random_name(prefix='ams', length=12)
         streaming_endpoint_name1 = self.create_random_name(prefix="strep", length=12)
-        streaming_endpoint_name2 = self.create_random_name(prefix="strep", length=12)
 
         self.kwargs.update({
             'amsname': amsname,
             'storageAccount': storage_account_for_delete,
             'location': 'westus2',
             'streamingEndpointName1': streaming_endpoint_name1,
-            'availabilitySetName' : 'availaTest',
+            'availabilitySetName': 'availaTest',
             'cdnProvider': 'StandardVerizon',
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
@@ -174,7 +171,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
         self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName1} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
-        
+
         self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 2)
         ])
@@ -183,12 +180,6 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 1)
-        ])
-
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName2}')
-
-        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
-            self.check('length(@)', 0)
         ])
 
     @ResourceGroupPreparer()
