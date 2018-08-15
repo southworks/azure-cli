@@ -36,10 +36,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
         })
 
-        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}', checks=[
-            self.check('name', '{amsname}'),
-            self.check('location', 'West US 2')
-        ])
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}'])
 
         self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
 
@@ -82,10 +79,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
         })
 
-        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}', checks=[
-            self.check('name', '{amsname}'),
-            self.check('location', 'West US 2')
-        ])
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
         self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName1} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
         self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName2} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
