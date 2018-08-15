@@ -40,7 +40,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
 
-        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} --streaming-endpoint-name {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
@@ -53,7 +53,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(tags)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} --streaming-endpoint-name {streamingEndpointName}')
+        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_delete')
@@ -88,13 +88,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(@)', 2)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} --streaming-endpoint-name {streamingEndpointName1}')
+        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName1}')
 
         self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} --streaming-endpoint-name {streamingEndpointName2}')
+        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName2}')
 
         self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 0)
