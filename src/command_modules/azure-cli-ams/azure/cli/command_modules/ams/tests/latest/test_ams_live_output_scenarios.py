@@ -140,4 +140,3 @@ class AmsLiveOutputTests(ScenarioTest):
             self.check('name', '{liveOutputName}'),
             self.check('resourceGroup', '{rg}')
         ])
-
