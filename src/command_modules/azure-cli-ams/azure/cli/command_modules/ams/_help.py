@@ -287,6 +287,11 @@ helps['ams streaming endpoint delete'] = """
     short-summary: Delete a streaming endpoint.
 """
 
+helps['ams streaming endpoint akamai remove'] = """
+    type: command
+    short-summary: Remove an AkamaiAccessControl from an existing streaming endpoint.
+"""
+
 helps['ams live'] = """
     type: group
     short-summary: Manage live streaming operations for an Azure Media Service account.
