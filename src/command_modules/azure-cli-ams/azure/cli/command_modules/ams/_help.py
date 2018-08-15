@@ -277,6 +277,16 @@ helps['ams streaming endpoint akamai add'] = """
     short-summary: Add an AkamaiAccessControl to an existing streaming endpoint.
 """
 
+helps['ams streaming endpoint show'] = """
+    type: command
+    short-summary: Show the details of a streaming endpoint.
+"""
+
+helps['ams streaming endpoint delete'] = """
+    type: command
+    short-summary: Delete a streaming endpoint.
+"""
+
 helps['ams streaming endpoint akamai remove'] = """
     type: command
     short-summary: Remove an AkamaiAccessControl from an existing streaming endpoint.

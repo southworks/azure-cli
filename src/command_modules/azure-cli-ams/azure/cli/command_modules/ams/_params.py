@@ -165,12 +165,14 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)
 
+    with self.argument_context('ams streaming endpoint') as c:
+        c.argument('streaming_endpoint_name', name_arg_type, help='The name of the streaming endpoint.')
+
     with self.argument_context('ams streaming endpoint list') as c:
         c.argument('account_name', id_part=None)
 
     with self.argument_context('ams streaming endpoint create') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('streaming_endpoint_name', name_arg_type, help='The name of the streaming endpoint.')
         c.argument('tags', arg_type=tags_type)
         c.argument('location', arg_type=get_location_type(self.cli_ctx))
         c.argument('description', help='The streaming endpoint description.')
