@@ -117,6 +117,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
                          custom_command_type=get_custom_sdk('streaming_endpoint', get_streaming_endpoints_client))
         g.show_command('show', 'get')
         g.command('delete', 'delete')
+        g.command('scale', 'scale')
 
     with self.command_group('ams streaming endpoint akamai', get_sdk('StreamingEndpoints', get_streaming_endpoints_client)) as g:
         g.custom_command('add', 'add_akamai_access_control',

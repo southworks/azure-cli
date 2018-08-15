@@ -118,7 +118,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'storageAccount': storage_account_for_show,
             'location': 'westus2',
             'streamingEndpointName': streaming_endpoint_name,
-            'availabilitySetName' : 'availaTest',
+            'availabilitySetName': 'availaTest',
             'cdnProvider': 'StandardVerizon',
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
@@ -184,3 +184,45 @@ class AmsStreamingEndpointsTests(ScenarioTest):
         self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 1)
         ])
+
+        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName2}')
+
+        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
+            self.check('length(@)', 0)
+        ])
+
+    @ResourceGroupPreparer()
+    @StorageAccountPreparer(parameter_name='storage_account_for_scale')
+    def test_ams_streaming_endpoint_scale(self, storage_account_for_scale):
+        amsname = self.create_random_name(prefix='ams', length=12)
+        streaming_endpoint_name = self.create_random_name(prefix="strep", length=12)
+
+        self.kwargs.update({
+            'amsname': amsname,
+            'storageAccount': storage_account_for_scale,
+            'location': 'westus2',
+            'streamingEndpointName': streaming_endpoint_name,
+            'availabilitySetName': 'availaTest',
+            'cdnProvider': 'StandardVerizon',
+            'cdnProfile': 'testProfile',
+            'description': 'test streaming description',
+            'maxCacheAge': 11,
+            'scaleUnits': 4,
+            'tags': 'foo=bar',
+            'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
+            'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
+        })
+
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
+
+        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} -l {location} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+            self.check('scaleUnits', 4)
+        ])
+
+        self.cmd('az ams streaming endpoint scale -g {rg} -a {amsname} -n {streamingEndpointName} --scale-unit 10')
+
+        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+            self.check('scaleUnits', 10)
+        ])
+
+        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
