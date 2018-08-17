@@ -29,7 +29,8 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         )
 
     with self.command_group('ams account', get_sdk('Mediaservices', get_mediaservices_client)) as g:
-        g.show_command('show', 'get')
+        g.custom_command('show', 'get_mediaservice',
+                         custom_command_type=get_custom_sdk('account', get_mediaservices_client))
         g.command('delete', 'delete')
         g.generic_update_command('update',
                                  getter_name='mediaservice_update_getter',
