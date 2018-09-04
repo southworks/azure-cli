@@ -7,17 +7,22 @@ from azure.cli.core.util import (sdk_no_wait, CLIError)
 from azure.cli.core.commands import LongRunningOperation
 
 
-def create_streaming_endpoint(client, resource_group_name, account_name, streaming_endpoint_name, location,  # pylint: disable=too-many-locals
+def create_streaming_endpoint(cmd, client, resource_group_name, account_name, streaming_endpoint_name,  # pylint: disable=too-many-locals
                               auto_start=None, tags=None, cross_domain_policy=None, ips=None,
                               description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
                               cdn_provider=None, cdn_profile=None, custom_host_names=None, client_access_policy=None,
                               no_wait=False):
-    from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl)
+    from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl, MediaService)
+    from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 
     allow_list = []
     if ips is not None:
         for ip in ips:
             allow_list.append(create_ip_range(streaming_endpoint_name, ip))
+
+    ams_client = get_mediaservices_client(cmd.cli_ctx)
+    ams = ams_client.get(resource_group_name, account_name)
+    location = ams.location
 
     streaming_endpoint_access_control = StreamingEndpointAccessControl()
 
