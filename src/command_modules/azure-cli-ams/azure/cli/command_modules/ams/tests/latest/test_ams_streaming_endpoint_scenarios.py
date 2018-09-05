@@ -33,7 +33,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} -l {location}', checks=[
+        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
