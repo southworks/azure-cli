@@ -195,7 +195,6 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams streaming endpoint create') as c:
         c.argument('tags', arg_type=tags_type)
-        c.argument('location', arg_type=get_location_type(self.cli_ctx))
         c.argument('description', help='The streaming endpoint description.')
         c.argument('scale_units', help='The number of scale units.')
         c.argument('availability_set_name', help='AvailabilitySet name.')
@@ -210,16 +209,13 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams streaming endpoint update') as c:
         c.argument('tags', arg_type=tags_type)
-        c.argument('location', arg_type=get_location_type(self.cli_ctx))
         c.argument('description', help='The streaming endpoint description.')
-        c.argument('availability_set_name', help='AvailabilitySet name.')
         c.argument('max_cache_age', help='Max cache age.')
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
         c.argument('cdn_provider', arg_group='CDN Support', help='The CDN provider name. Allowed values: {}'.format(", ".join(get_cdn_provider_completion_list())))
         c.argument('cdn_profile', arg_group='CDN Support', help='The CDN profile name.')
         c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
         c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
-        c.argument('auto_start', action='store_true', help='Start the streaming endpoint automatically after creating it.')
         c.argument('ips', nargs='+', arg_group='Access Control Support', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('disable_cdn', arg_group='CDN Support', action='store_true', help='Use this flag to disable CDN for the streaming endpoint.')
 

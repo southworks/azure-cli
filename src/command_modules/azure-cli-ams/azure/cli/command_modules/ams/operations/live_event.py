@@ -9,16 +9,21 @@ from azure.mgmt.media.models import IPRange
 from azure.cli.core.util import CLIError
 
 
-def create(client, resource_group_name, account_name, live_event_name, streaming_protocol, location,  # pylint: disable=too-many-locals
+def create(cmd, client, resource_group_name, account_name, live_event_name, streaming_protocol,  # pylint: disable=too-many-locals
            auto_start=False, encoding_type=None, preset_name=None, tags=None, description=None,
            key_frame_interval_duration=None, access_token=None, no_wait=False, ips=None,
            preview_locator=None, streaming_policy_name=None, alternative_media_id=None,
            vanity_url=False, client_access_policy=None, cross_domain_policy=None, stream_options=None):
-    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding)
+    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding, MediaService)
+    from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 
     live_event_input = LiveEventInput(streaming_protocol=LiveEventInputProtocol(streaming_protocol),
                                       access_token=access_token,
                                       key_frame_interval_duration=key_frame_interval_duration)
+
+    ams_client = get_mediaservices_client(cmd.cli_ctx)
+    ams = ams_client.get(resource_group_name, account_name)
+    location = ams.location
 
     live_event_preview = create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id,
                                                    ips, live_event_name)
