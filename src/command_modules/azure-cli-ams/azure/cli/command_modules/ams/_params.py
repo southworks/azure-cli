@@ -10,7 +10,8 @@ from knack.arguments import CLIArgumentType
 from azure.cli.core.commands.validators import get_default_location_from_resource_group
 from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type, get_three_state_flag)
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
-                                                       get_default_streaming_policies_completion_list)
+                                                       get_default_streaming_policies_completion_list,
+                                                       get_presets_definition_name_completion_list)
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag)
 
@@ -69,9 +70,13 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The name of the transform.')
         c.argument('presets',
                    nargs='+',
-                   help='Space-separated list of preset names. Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
-                   .format(", ".join(get_cdn_provider_completion_list())))
+                   help='Space-separated list of presets. Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
+                   .format(", ".join(get_presets_definition_name_completion_list())))
         c.argument('description', help='The description of the transform.')
+
+    with self.argument_context('ams transform output remove') as c:
+        c.argument('output_index', help='The element index of the output to remove.',
+                   type=int, default=None)
 
     with self.argument_context('ams transform list') as c:
         c.argument('account_name', id_part=None)

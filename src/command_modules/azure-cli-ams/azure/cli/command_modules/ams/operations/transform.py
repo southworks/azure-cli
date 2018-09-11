@@ -38,13 +38,15 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
-def remove_transform_output(client, account_name, resource_group_name, transform_name, presets):
+def remove_transform_output(client, account_name, resource_group_name, transform_name, output_index):
     transform = client.get(resource_group_name, account_name, transform_name)
 
-    transform_output_list = list(filter(lambda x: not hasattr(x.preset, 'preset_name') or x.preset.preset_name.value not in presets,
-                                        transform.outputs))
+    try:
+        transform.outputs.pop(output_index)
+    except IndexError:
+        raise CLIError("index {} doesn't exist on outputs".format(output_index))
 
-    return client.create_or_update(resource_group_name, account_name, transform_name, transform_output_list)
+    return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
 def transform_update_setter(client, resource_group_name,
@@ -54,14 +56,14 @@ def transform_update_setter(client, resource_group_name,
                                    parameters.outputs, parameters.description)
 
 
-def update_transform(instance, presets, description=None):
+def update_transform(instance, presets=None, description=None):
     if not instance:
         raise CLIError('The transform resource was not found.')
 
-    if description:
+    if description is not None:
         instance.description = description
 
-    if presets:
+    if presets is not None:
         instance.outputs = []
         for preset in presets:
             instance.outputs.append(get_transform_output(preset))
