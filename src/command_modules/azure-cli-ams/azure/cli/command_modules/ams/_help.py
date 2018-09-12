@@ -121,7 +121,7 @@ helps['ams transform update'] = """
     type: command
     short-summary: Update the details of a transform.
     examples:
-        - name: Update a transform by setting up a new outputs list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
+        - name: Update a transform by setting up a new output list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
           text: >
             az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --presets AudioAnalyzer \"C:\\MyPresets\\NewCustomPreset.json\"
     """
