@@ -34,9 +34,7 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
                          path=None, audio_insights_only=False, audio_language=None):
     transform = client.get(resource_group_name, account_name, transform_name)
 
-    if not audio_language in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
-            'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']:
-        raise CLIError("Audio language {} doesn't exist.".format(audio_language))
+    validate_arguments(type, path, audio_insights_only, audio_language)
 
     if (type == 'StandardEncoder'):
         generated_preset = get_transform_output(path)
@@ -51,6 +49,22 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
     transform.outputs.append(generated_preset)
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
+
+
+def validate_arguments(type, path, audio_insights_only, audio_language):
+
+    if type == 'StandardEncoder' and path is None:
+        raise CLIError("StandardEncoderPreset requires a path to the JSON file.")
+
+    if audio_insights_only and not type == 'VideoAnalyzer':
+        raise CLIError("audio-insights-only parameter only works with VideoAnalyzer preset type.")
+
+    if audio_language and not (type == 'VideoAnalyzer' or type == 'AudioAnalyzer'):
+        raise CLIError("audio-language parameter only works with VideoAnalyzer or AudioAnalyzer preset type.")
+    
+    if not audio_language in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
+                              'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']:
+        raise CLIError("Audio language {} doesn't exist.".format(audio_language))
 
 
 def remove_transform_output(client, account_name, resource_group_name, transform_name, output_index):
