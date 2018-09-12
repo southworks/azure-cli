@@ -14,7 +14,8 @@ from azure.cli.command_modules.ams._sdk_utils import (map_format_type, map_codec
 from azure.cli.command_modules.ams._utils import (parse_iso_duration, camel_to_snake)
 
 from azure.mgmt.media.models import (StandardEncoderPreset, TransformOutput,
-                                     BuiltInStandardEncoderPreset, EncoderNamedPreset)
+                                     BuiltInStandardEncoderPreset, EncoderNamedPreset,
+                                     AudioAnalyzerPreset, VideoAnalyzerPreset)
 
 # pylint: disable=line-too-long
 
@@ -29,11 +30,25 @@ def create_transform(client, account_name, resource_group_name,
     return client.create_or_update(resource_group_name, account_name, transform_name, outputs, description)
 
 
-def add_transform_output(client, account_name, resource_group_name, transform_name, presets):
+def add_transform_output(client, account_name, resource_group_name, transform_name, type,
+                         path=None, audio_insights_only=False, audio_language=None):
     transform = client.get(resource_group_name, account_name, transform_name)
 
-    for preset in presets:
-        transform.outputs.append(get_transform_output(preset))
+    if not audio_language in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
+            'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']:
+        raise CLIError("Audio language {} doesn't exist.".format(audio_language))
+
+    if (type == 'StandardEncoder'):
+        generated_preset = get_transform_output(path)
+    if (type == 'VideoAnalyzer'):
+        generated_preset = VideoAnalyzerPreset(audio_language=audio_language,
+                                                audio_insights_only=audio_insights_only)
+    if (type == 'AudioAnalyzer'):
+        generated_preset = AudioAnalyzerPreset(audio_language=audio_language)
+    else:
+        generated_preset = get_transform_output(type)
+    
+    transform.outputs.append(generated_preset)
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
