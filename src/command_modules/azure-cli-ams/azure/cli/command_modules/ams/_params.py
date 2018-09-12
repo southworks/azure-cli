@@ -78,6 +78,12 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('output_index', help='The element index of the output to remove.',
                    type=int, default=None)
 
+    with self.argument_context('ams transform output add') as c:
+        c.argument('type', help='The type of the preset for the output. Allowed values: AudioAnalyzer, VideoAnalyzer, StandardEncoder, AdaptiveStreaming, AACGoodQualityAudio, H264MultipleBitrate1080p, H264MultipleBitrate720p, H264MultipleBitrateSD')
+        c.argument('audio_insights_only', arg_group='Audio/Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
+        c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). The list of supported languages are: en-US, en-GB, es-ES, es-MX, fr-FR, it-IT, ja-JP, pt-BR, zh-CN')
+        c.argument('path', arg_group='StandardEncoder', help='The local full path to a custom preset JSON file.')
+
     with self.argument_context('ams transform list') as c:
         c.argument('account_name', id_part=None)
 

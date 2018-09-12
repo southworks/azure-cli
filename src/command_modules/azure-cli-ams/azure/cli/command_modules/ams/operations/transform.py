@@ -37,16 +37,16 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
     validate_arguments(type, path, audio_insights_only, audio_language)
 
     if (type == 'StandardEncoder'):
-        generated_preset = get_transform_output(path)
-    if (type == 'VideoAnalyzer'):
-        generated_preset = VideoAnalyzerPreset(audio_language=audio_language,
-                                                audio_insights_only=audio_insights_only)
-    if (type == 'AudioAnalyzer'):
-        generated_preset = AudioAnalyzerPreset(audio_language=audio_language)
+        transform_output = get_transform_output(path)
+    elif (type == 'VideoAnalyzer'):
+        transform_output = TransformOutput(preset=VideoAnalyzerPreset(audio_language=audio_language,
+                                                                      audio_insights_only=audio_insights_only))
+    elif (type == 'AudioAnalyzer'):
+        transform_output = TransformOutput(preset=AudioAnalyzerPreset(audio_language=audio_language))
     else:
-        generated_preset = get_transform_output(type)
+        transform_output = get_transform_output(type)
     
-    transform.outputs.append(generated_preset)
+    transform.outputs.append(transform_output)
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
@@ -54,7 +54,7 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
 def validate_arguments(type, path, audio_insights_only, audio_language):
 
     if type == 'StandardEncoder' and path is None:
-        raise CLIError("StandardEncoderPreset requires a path to the JSON file.")
+        raise CLIError("StandardEncoder preset type requires the local full path to a custom preset JSON file.")
 
     if audio_insights_only and not type == 'VideoAnalyzer':
         raise CLIError("audio-insights-only parameter only works with VideoAnalyzer preset type.")

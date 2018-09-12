@@ -135,9 +135,12 @@ helps['ams transform output add'] = """
     type: command
     short-summary: Add an output to an existing transform.
     examples:
-        - name: Add AdaptiveStreaming and VideoAnalyzer built-in presets, and a custom preset from a local JSON file.
+        - name: Add a StandardEncoder preset from a local JSON file.
           text: >
-            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --add outputs AdaptiveStreaming VideoAnalyzer \"C:\\MyPresets\\CustomPreset.json\"
+            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --type StandardEncoder --path \"C:\\MyPresets\\CustomPreset.json\"
+        - name: Add a VideoAnalyzer preset with es-ES as audio language and only with audio insights.
+          text: >
+            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --type VideoAnalyzer --audio-language es-ES --audio-insights-only"
     """
 
 helps['ams transform output remove'] = """
