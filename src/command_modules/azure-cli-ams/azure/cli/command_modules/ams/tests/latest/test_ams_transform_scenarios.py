@@ -63,10 +63,10 @@ class AmsTransformTests(ScenarioTest):
             self.check('length(outputs)', 5)
         ])
 
-        self.cmd('az ams transform output remove --presets AACGoodQualityAudio AdaptiveStreaming -a {amsname} -n {transformName} -g {rg}', checks=[
+        self.cmd('az ams transform output remove --output-index 0 -a {amsname} -n {transformName} -g {rg}', checks=[
             self.check('name', '{transformName}'),
             self.check('resourceGroup', '{rg}'),
-            self.check('length(outputs)', 3)
+            self.check('length(outputs)', 4)
         ])
 
         list = self.cmd('az ams transform list -a {amsname} -g {rg}').get_output_in_json()

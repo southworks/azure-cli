@@ -107,7 +107,7 @@ helps['ams transform create'] = """
     type: command
     short-summary: Create a transform.
     examples:
-        - name: Create a transform with AdaptiveStreaming and VideoAnalyzer built-in presets and a custom preset from a local JSON file.
+        - name: Create a transform with AdaptiveStreaming and VideoAnalyzer built-in presets, and a custom preset from a local JSON file.
           text: >
             az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --presets AdaptiveStreaming VideoAnalyzer \"C:\\MyPresets\\CustomPreset.json\"
     """
@@ -120,7 +120,11 @@ helps['ams transform delete'] = """
 helps['ams transform update'] = """
     type: command
     short-summary: Update the details of a transform.
-"""
+    examples:
+        - name: Update a transform by setting up a new output list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
+          text: >
+            az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --presets AudioAnalyzer \"C:\\MyPresets\\NewCustomPreset.json\"
+    """
 
 helps['ams transform output'] = """
     type: group
@@ -130,12 +134,20 @@ helps['ams transform output'] = """
 helps['ams transform output add'] = """
     type: command
     short-summary: Add an output to an existing transform.
-"""
+    examples:
+        - name: Add AdaptiveStreaming and VideoAnalyzer built-in presets, and a custom preset from a local JSON file.
+          text: >
+            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --add outputs AdaptiveStreaming VideoAnalyzer \"C:\\MyPresets\\CustomPreset.json\"
+    """
 
 helps['ams transform output remove'] = """
     type: command
     short-summary: Remove an output from an existing transform.
-"""
+    examples:
+        - name: Remove the output element at the index specified with --output-index argument.
+          text: >
+            az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1"
+    """
 
 helps['ams asset'] = """
     type: group
