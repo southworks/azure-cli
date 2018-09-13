@@ -14,8 +14,7 @@ from azure.cli.command_modules.ams._sdk_utils import (map_format_type, map_codec
 from azure.cli.command_modules.ams._utils import (parse_iso_duration, camel_to_snake)
 
 from azure.mgmt.media.models import (StandardEncoderPreset, TransformOutput,
-                                     BuiltInStandardEncoderPreset, EncoderNamedPreset,
-                                     AudioAnalyzerPreset, VideoAnalyzerPreset)
+                                     BuiltInStandardEncoderPreset, EncoderNamedPreset)
 
 # pylint: disable=line-too-long
 
@@ -40,11 +39,11 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
     validate_arguments(preset, audio_insights_only, audio_language)
     transform_output = get_transform_output(preset)
 
-    if (preset == 'VideoAnalyzer'):
-        transform_output.preset.audio_language=audio_language
-        transform_output.preset.audio_insights_only=audio_insights_only
-    elif (preset == 'AudioAnalyzer'):
-        transform_output.preset.audio_language=audio_language        
+    if preset == 'VideoAnalyzer':
+        transform_output.preset.audio_language = audio_language
+        transform_output.preset.audio_insights_only = audio_insights_only
+    elif preset == 'AudioAnalyzer':
+        transform_output.preset.audio_language = audio_language
 
     if on_error is not None:
         transform_output.on_error = OnErrorType(on_error)
@@ -62,10 +61,10 @@ def validate_arguments(preset, audio_insights_only, audio_language):
     if audio_insights_only and not preset == 'VideoAnalyzer':
         raise CLIError("audio-insights-only parameter only works with VideoAnalyzer preset type.")
 
-    if audio_language and not (preset == 'VideoAnalyzer' or preset == 'AudioAnalyzer'):
+    if audio_language and preset not in ['VideoAnalyzer', 'AudioAnalyzer']:
         raise CLIError("audio-language parameter only works with VideoAnalyzer or AudioAnalyzer preset type.")
-    
-    if not audio_language in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
+
+    if audio_language not in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
                               'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']:
         raise CLIError("Audio language {} doesn't exist.".format(audio_language))
 

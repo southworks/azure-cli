@@ -14,7 +14,7 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
            key_frame_interval_duration=None, access_token=None, no_wait=False, ips=None,
            preview_locator=None, streaming_policy_name=None, alternative_media_id=None,
            vanity_url=False, client_access_policy=None, cross_domain_policy=None, stream_options=None):
-    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding, MediaService)
+    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding)
     from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 
     live_event_input = LiveEventInput(streaming_protocol=LiveEventInputProtocol(streaming_protocol),

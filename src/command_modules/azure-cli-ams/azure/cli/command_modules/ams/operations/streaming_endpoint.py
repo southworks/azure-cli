@@ -12,7 +12,7 @@ def create_streaming_endpoint(cmd, client, resource_group_name, account_name, st
                               description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
                               cdn_provider=None, cdn_profile=None, custom_host_names=None, client_access_policy=None,
                               no_wait=False):
-    from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl, MediaService)
+    from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl)
     from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 
     allow_list = []
