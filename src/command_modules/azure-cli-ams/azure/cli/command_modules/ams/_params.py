@@ -13,7 +13,7 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_default_streaming_policies_completion_list,
                                                        get_presets_definition_name_completion_list)
 
-from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag)
+from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
 
 from ._validators import validate_storage_account_id, datetime_format, validate_correlation_data
 
@@ -83,6 +83,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    .format(", ".join(get_presets_definition_name_completion_list())))
         c.argument('audio_insights_only', arg_group='Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
         c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). The list of supported languages are: en-US, en-GB, es-ES, es-MX, fr-FR, it-IT, ja-JP, pt-BR, zh-CN')
+        c.argument('relative_priority', arg_type=get_enum_type(Priority), help='Sets the relative priority of the transform outputs within a transform. This sets the priority that the service uses for processing TransformOutputs. The default priority is Normal.')
+        c.argument('on_error', arg_type=get_enum_type(OnErrorType), help='A Transform can define more than one output. This property defines what the service should do when one output fails - either continue to produce other outputs, or, stop the other outputs. The default is stop.')
 
     with self.argument_context('ams transform list') as c:
         c.argument('account_name', id_part=None)

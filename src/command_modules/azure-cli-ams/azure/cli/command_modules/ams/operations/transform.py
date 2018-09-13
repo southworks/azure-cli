@@ -31,7 +31,10 @@ def create_transform(client, account_name, resource_group_name,
 
 
 def add_transform_output(client, account_name, resource_group_name, transform_name, preset,
-                         audio_insights_only=False, audio_language=None):
+                         audio_insights_only=False, audio_language=None, on_error=None,
+                         relative_priority=None):
+    from azure.mgmt.media.models import (OnErrorType, Priority)
+
     transform = client.get(resource_group_name, account_name, transform_name)
 
     validate_arguments(preset, audio_insights_only, audio_language)
@@ -42,7 +45,13 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
         transform_output.preset.audio_insights_only=audio_insights_only
     elif (preset == 'AudioAnalyzer'):
         transform_output.preset.audio_language=audio_language        
-    
+
+    if on_error is not None:
+        transform_output.on_error = OnErrorType(on_error)
+
+    if relative_priority is not None:
+        transform_output.relative_priority = Priority(relative_priority)
+
     transform.outputs.append(transform_output)
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
