@@ -30,36 +30,30 @@ def create_transform(client, account_name, resource_group_name,
     return client.create_or_update(resource_group_name, account_name, transform_name, outputs, description)
 
 
-def add_transform_output(client, account_name, resource_group_name, transform_name, type,
-                         path=None, audio_insights_only=False, audio_language=None):
+def add_transform_output(client, account_name, resource_group_name, transform_name, preset,
+                         audio_insights_only=False, audio_language=None):
     transform = client.get(resource_group_name, account_name, transform_name)
 
-    validate_arguments(type, path, audio_insights_only, audio_language)
+    validate_arguments(preset, audio_insights_only, audio_language)
+    transform_output = get_transform_output(preset)
 
-    if (type == 'StandardEncoder'):
-        transform_output = get_transform_output(path)
-    elif (type == 'VideoAnalyzer'):
-        transform_output = TransformOutput(preset=VideoAnalyzerPreset(audio_language=audio_language,
-                                                                      audio_insights_only=audio_insights_only))
-    elif (type == 'AudioAnalyzer'):
-        transform_output = TransformOutput(preset=AudioAnalyzerPreset(audio_language=audio_language))
-    else:
-        transform_output = get_transform_output(type)
+    if (preset == 'VideoAnalyzer'):
+        transform_output.preset.audio_language=audio_language
+        transform_output.preset.audio_insights_only=audio_insights_only
+    elif (preset == 'AudioAnalyzer'):
+        transform_output.preset.audio_language=audio_language        
     
     transform.outputs.append(transform_output)
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
-def validate_arguments(type, path, audio_insights_only, audio_language):
+def validate_arguments(preset, audio_insights_only, audio_language):
 
-    if type == 'StandardEncoder' and path is None:
-        raise CLIError("StandardEncoder preset type requires the local full path to a custom preset JSON file.")
-
-    if audio_insights_only and not type == 'VideoAnalyzer':
+    if audio_insights_only and not preset == 'VideoAnalyzer':
         raise CLIError("audio-insights-only parameter only works with VideoAnalyzer preset type.")
 
-    if audio_language and not (type == 'VideoAnalyzer' or type == 'AudioAnalyzer'):
+    if audio_language and not (preset == 'VideoAnalyzer' or preset == 'AudioAnalyzer'):
         raise CLIError("audio-language parameter only works with VideoAnalyzer or AudioAnalyzer preset type.")
     
     if not audio_language in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
