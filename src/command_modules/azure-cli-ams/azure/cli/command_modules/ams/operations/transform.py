@@ -36,6 +36,9 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
 
     transform = client.get(resource_group_name, account_name, transform_name)
 
+    if not transform:
+        raise CLIError('The transform resource was not found.')
+
     validate_arguments(preset, audio_insights_only, audio_language)
     transform_output = get_transform_output(preset)
 
@@ -53,7 +56,7 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
 
     transform.outputs.append(transform_output)
 
-    return client.update(resource_group_name, account_name, transform_name, transform.outputs)
+    return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
 def validate_arguments(preset, audio_insights_only, audio_language):
