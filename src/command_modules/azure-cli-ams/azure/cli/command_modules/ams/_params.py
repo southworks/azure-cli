@@ -11,7 +11,8 @@ from azure.cli.core.commands.validators import get_default_location_from_resourc
 from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type, get_three_state_flag)
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
                                                        get_default_streaming_policies_completion_list,
-                                                       get_presets_definition_name_completion_list)
+                                                       get_presets_definition_name_completion_list,
+                                                       get_allowed_languages_for_preset_completion_list)
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
 
@@ -82,7 +83,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('preset', help='Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
                    .format(", ".join(get_presets_definition_name_completion_list())))
         c.argument('audio_insights_only', arg_group='Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
-        c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). The list of supported languages are: en-US, en-GB, es-ES, es-MX, fr-FR, it-IT, ja-JP, pt-BR, zh-CN')
+        c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). The list of supported languages are: {}.'
+                   .format(", ".join(get_allowed_languages_for_preset_completion_list())))
         c.argument('relative_priority', arg_type=get_enum_type(Priority), help='Sets the relative priority of the transform outputs within a transform. This sets the priority that the service uses for processing TransformOutputs. The default priority is Normal.')
         c.argument('on_error', arg_type=get_enum_type(OnErrorType), help='A Transform can define more than one output. This property defines what the service should do when one output fails - either continue to produce other outputs, or, stop the other outputs. The default is stop.')
 

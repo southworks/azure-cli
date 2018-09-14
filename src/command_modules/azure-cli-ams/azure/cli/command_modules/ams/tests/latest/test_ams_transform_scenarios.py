@@ -141,10 +141,7 @@ class AmsTransformTests(ScenarioTest):
             'location': 'westus2'
         })
 
-        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}', checks=[
-            self.check('name', '{amsname}'),
-            self.check('location', 'West US 2')
-        ])
+        self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
         transformName = self.create_random_name(prefix='tra', length=10)
 
@@ -156,11 +153,7 @@ class AmsTransformTests(ScenarioTest):
             'relativePriority': 'High'
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}', checks=[
-            self.check('name', '{transformName}'),
-            self.check('resourceGroup', '{rg}'),
-            self.check('length(outputs)', 1)
-        ])
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}')
 
         self.cmd('az ams transform output add -a {amsname} -n {transformName} -g {rg} --preset "{presetPath}" --on-error {onError} --relative-priority {relativePriority}', checks=[
             self.check('outputs[1].onError', '{onError}'),

@@ -53,20 +53,16 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
 
     transform.outputs.append(transform_output)
 
-    return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
+    return client.update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
 def validate_arguments(preset, audio_insights_only, audio_language):
 
     if audio_insights_only and not preset == 'VideoAnalyzer':
-        raise CLIError("audio-insights-only parameter only works with VideoAnalyzer preset type.")
+        raise CLIError("audio-insights-only argument only works with VideoAnalyzer preset type.")
 
-    if audio_language and preset not in ['VideoAnalyzer', 'AudioAnalyzer']:
-        raise CLIError("audio-language parameter only works with VideoAnalyzer or AudioAnalyzer preset type.")
-
-    if audio_language not in [None, 'en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR',
-                              'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']:
-        raise CLIError("Audio language {} doesn't exist.".format(audio_language))
+    if audio_language and preset not in get_stand_alone_presets():
+        raise CLIError("audio-language argument only works with VideoAnalyzer or AudioAnalyzer preset types.")
 
 
 def remove_transform_output(client, account_name, resource_group_name, transform_name, output_index):
