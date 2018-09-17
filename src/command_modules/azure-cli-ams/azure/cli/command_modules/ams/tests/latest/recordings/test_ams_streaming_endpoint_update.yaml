@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-09-05T23:07:54Z"}}'
+      "date": "2018-09-17T20:42:15Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -16,17 +16,17 @@ interactions:
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-05T23:07:54Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-17T20:42:15Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Wed, 05 Sep 2018 23:07:58 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:17 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1195']
+      x-ms-ratelimit-remaining-subscription-writes: ['1197']
     status: {code: 201, message: Created}
 - request:
     body: '{"sku": {"name": "Standard_LRS"}, "kind": "Storage", "location": "westus",
@@ -49,15 +49,15 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Wed, 05 Sep 2018 23:08:01 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:21 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/e88e73f1-313d-4704-871c-42535184e31f?monitor=true&api-version=2018-03-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/2ed9710c-2970-47b1-bb88-c4eca54f0731?monitor=true&api-version=2018-03-01-preview']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1194']
+      x-ms-ratelimit-remaining-subscription-writes: ['1184']
     status: {code: 202, message: Accepted}
 - request:
     body: null
@@ -69,14 +69,14 @@ interactions:
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/e88e73f1-313d-4704-871c-42535184e31f?monitor=true&api-version=2018-03-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/2ed9710c-2970-47b1-bb88-c4eca54f0731?monitor=true&api-version=2018-03-01-preview
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-05T23:08:02.3165719Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-05T23:08:02.3165719Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-05T23:08:02.1134487Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-17T20:42:22.0226846Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-17T20:42:22.0226846Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-17T20:42:21.8195658Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['1252']
       content-type: [application/json]
-      date: ['Wed, 05 Sep 2018 23:08:19 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:39 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -101,12 +101,12 @@ interactions:
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2018-03-01-preview
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"ebsH5v2AClp0GzvPQBxHvZKmDFgU73fznWCvQbqHsV4veGCjolWFd0uUXMpdW2M+R7p5CoFE3N70hKBObghHsw==","permissions":"FULL"},{"keyName":"key2","value":"lvmCDRnzrHnSxBTd5qo2D8hClkbjhjhIS2wY0MKgXKyrLJnuwwQ+A8JE8PwreG1+d/AStqIYm4rBDwYGbbbJhQ==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"3mO71gGzZ8MsoH+Nn8pUK87seMo556eoTnFFbRPiyAMJ//g09+L7GI9VAOAbXycKha2s/zOv8cguugn9xqTqYg==","permissions":"FULL"},{"keyName":"key2","value":"cMbJ25FzJVaGA8g1gHYmEi6JCx4w/O9sU6SCk2LW0ayu6W9tZ04oyRZxb6qPRiQTo3U5DSVjUReZUaypOgCJvQ==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Wed, 05 Sep 2018 23:08:21 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:41 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -115,7 +115,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1196']
+      x-ms-ratelimit-remaining-subscription-writes: ['1191']
     status: {code: 200, message: OK}
 - request:
     body: 'b''b\''{"location": "westus2", "properties": {"storageAccounts": [{"id":
@@ -135,21 +135,21 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"3d940daf-743f-4704-aab1-c79a87bb2fc6\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"6f6982bd-810a-4e41-bded-85b0ea8ef8e1\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:27 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:48 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1194']
+      x-ms-ratelimit-remaining-subscription-writes: ['1192']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
@@ -157,7 +157,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint create]
+      CommandName: [ams streaming-endpoint create]
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
@@ -167,14 +167,14 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"3d940daf-743f-4704-aab1-c79a87bb2fc6\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"6f6982bd-810a-4e41-bded-85b0ea8ef8e1\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:29 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:51 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -200,7 +200,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint create]
+      CommandName: [ams streaming-endpoint create]
       Connection: [keep-alive]
       Content-Length: ['983']
       Content-Type: [application/json; charset=utf-8]
@@ -221,22 +221,22 @@ interactions:
         \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
         \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
         version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"InProgress\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.8019812Z\",\"lastModified\":\"2018-09-05T23:08:33.8019812Z\"\r\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"InProgress\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5483128Z\",\"lastModified\":\"2018-09-17T20:42:57.5483128Z\"\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f405c1fe-393d-4f95-a9ce-819010f7509b?api-version=2018-06-01-preview']
       cache-control: [no-cache]
       content-length: ['1640']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:33 GMT']
+      date: ['Mon, 17 Sep 2018 20:42:57 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f405c1fe-393d-4f95-a9ce-819010f7509b?api-version=2018-06-01-preview']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1194']
+      x-ms-ratelimit-remaining-subscription-writes: ['1190']
       x-powered-by: [ASP.NET]
     status: {code: 202, message: Accepted}
 - request:
@@ -244,56 +244,24 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint create]
+      CommandName: [ams streaming-endpoint create]
       Connection: [keep-alive]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f405c1fe-393d-4f95-a9ce-819010f7509b?api-version=2018-06-01-preview
   response:
-    body: {string: "{\r\n  \"name\":\"62f983b2-2a1f-4305-8d33-bda6d2786f1d\",\"status\":\"InProgress\",\"error\":{\r\n
-        \   \"code\":\"None\",\"message\":null,\"target\":\"e651a47e-45ff-4f5e-b01a-474794784235\"\r\n
+    body: {string: "{\r\n  \"name\":\"f405c1fe-393d-4f95-a9ce-819010f7509b\",\"status\":\"Succeeded\",\"error\":{\r\n
+        \   \"code\":\"None\",\"message\":null,\"target\":\"cf65546e-7e83-4c4a-a2fe-c716eb860070\"\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
-      cache-control: [no-cache]
-      content-length: ['172']
-      content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:37 GMT']
-      expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
-      odata-version: ['4.0']
-      pragma: [no-cache]
-      server: [Microsoft-IIS/10.0]
-      strict-transport-security: [max-age=31536000; includeSubDomains]
-      transfer-encoding: [chunked]
-      vary: [Accept-Encoding]
-      x-content-type-options: [nosniff]
-      x-powered-by: [ASP.NET]
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: [application/json]
-      Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint create]
-      Connection: [keep-alive]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
-    method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview
-  response:
-    body: {string: "{\r\n  \"name\":\"62f983b2-2a1f-4305-8d33-bda6d2786f1d\",\"status\":\"Succeeded\",\"error\":{\r\n
-        \   \"code\":\"None\",\"message\":null,\"target\":\"e651a47e-45ff-4f5e-b01a-474794784235\"\r\n
-        \ }\r\n}"}
-    headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f405c1fe-393d-4f95-a9ce-819010f7509b?api-version=2018-06-01-preview']
       cache-control: [no-cache]
       content-length: ['171']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:42 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:01 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/62f983b2-2a1f-4305-8d33-bda6d2786f1d?api-version=2018-06-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f405c1fe-393d-4f95-a9ce-819010f7509b?api-version=2018-06-01-preview']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -308,7 +276,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint create]
+      CommandName: [ams streaming-endpoint create]
       Connection: [keep-alive]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
@@ -325,13 +293,13 @@ interactions:
         \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
         \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
         version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.817623Z\",\"lastModified\":\"2018-09-05T23:08:33.817623Z\"\r\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5639442Z\",\"lastModified\":\"2018-09-17T20:42:57.5639442Z\"\r\n
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1602']
+      content-length: ['1604']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:43 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:02 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -347,48 +315,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint update]
-      Connection: [keep-alive]
-      Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
-      accept-language: [en-US]
-    method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingEndpoints/strep000004?api-version=2018-06-01-preview
-  response:
-    body: {string: "{\r\n  \"name\":\"strep000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpoints/strep000004\",\"type\":\"Microsoft.Media/mediaservices/streamingEndpoints\",\"location\":\"West
-        US 2\",\"tags\":{\r\n    \"foo\":\"bar\"\r\n  },\"properties\":{\r\n    \"description\":\"test
-        streaming description\",\"scaleUnits\":4,\"availabilitySetName\":\"availaTest\",\"cdnEnabled\":true,\"cdnProvider\":\"StandardVerizon\",\"cdnProfile\":\"testProfile\",\"maxCacheAge\":11,\"customHostNames\":[\r\n
-        \     \r\n    ],\"accessControl\":null,\"crossSiteAccessPolicies\":{\r\n      \"clientAccessPolicy\":\"<?xml
-        version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\n<access-policy>\\n    <cross-domain-access>\\n
-        \       <policy>\\n            <allow-from http-request-headers='*'>\\n                <domain
-        uri='http://*' /> \\n            </allow-from> \\n            <grant-to>\\n
-        \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
-        \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
-        version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.817623Z\",\"lastModified\":\"2018-09-05T23:08:33.817623Z\"\r\n
-        \ }\r\n}"}
-    headers:
-      cache-control: [no-cache]
-      content-length: ['1602']
-      content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:45 GMT']
-      expires: ['-1']
-      odata-version: ['4.0']
-      pragma: [no-cache]
-      server: [Microsoft-IIS/10.0]
-      strict-transport-security: [max-age=31536000; includeSubDomains]
-      transfer-encoding: [chunked]
-      vary: [Accept-Encoding]
-      x-content-type-options: [nosniff]
-      x-powered-by: [ASP.NET]
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: [application/json]
-      Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint update]
+      CommandName: [ams streaming-endpoint update]
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
@@ -407,13 +334,54 @@ interactions:
         \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
         \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
         version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.817623Z\",\"lastModified\":\"2018-09-05T23:08:33.817623Z\"\r\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5639442Z\",\"lastModified\":\"2018-09-17T20:42:57.5639442Z\"\r\n
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1602']
+      content-length: ['1604']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:47 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:05 GMT']
+      expires: ['-1']
+      odata-version: ['4.0']
+      pragma: [no-cache]
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      transfer-encoding: [chunked]
+      vary: [Accept-Encoding]
+      x-content-type-options: [nosniff]
+      x-powered-by: [ASP.NET]
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams streaming-endpoint update]
+      Connection: [keep-alive]
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: GET
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingEndpoints/strep000004?api-version=2018-06-01-preview
+  response:
+    body: {string: "{\r\n  \"name\":\"strep000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpoints/strep000004\",\"type\":\"Microsoft.Media/mediaservices/streamingEndpoints\",\"location\":\"West
+        US 2\",\"tags\":{\r\n    \"foo\":\"bar\"\r\n  },\"properties\":{\r\n    \"description\":\"test
+        streaming description\",\"scaleUnits\":4,\"availabilitySetName\":\"availaTest\",\"cdnEnabled\":true,\"cdnProvider\":\"StandardVerizon\",\"cdnProfile\":\"testProfile\",\"maxCacheAge\":11,\"customHostNames\":[\r\n
+        \     \r\n    ],\"accessControl\":null,\"crossSiteAccessPolicies\":{\r\n      \"clientAccessPolicy\":\"<?xml
+        version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\\n<access-policy>\\n    <cross-domain-access>\\n
+        \       <policy>\\n            <allow-from http-request-headers='*'>\\n                <domain
+        uri='http://*' /> \\n            </allow-from> \\n            <grant-to>\\n
+        \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
+        \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
+        version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5639442Z\",\"lastModified\":\"2018-09-17T20:42:57.5639442Z\"\r\n
+        \ }\r\n}"}
+    headers:
+      cache-control: [no-cache]
+      content-length: ['1604']
+      content-type: [application/json; odata.metadata=minimal]
+      date: ['Mon, 17 Sep 2018 20:43:07 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -439,7 +407,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint update]
+      CommandName: [ams streaming-endpoint update]
       Connection: [keep-alive]
       Content-Length: ['1003']
       Content-Type: [application/json; charset=utf-8]
@@ -465,7 +433,7 @@ interactions:
       cache-control: [no-cache]
       content-length: ['1545']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:52 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:13 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -474,7 +442,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1195']
+      x-ms-ratelimit-remaining-subscription-writes: ['1194']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
 - request:
@@ -482,7 +450,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint update]
+      CommandName: [ams streaming-endpoint update]
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
@@ -501,13 +469,13 @@ interactions:
         \               <resource path='/' include-subpaths='false' />\\n            </grant-to>
         \   \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
         version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.817623Z\",\"lastModified\":\"2018-09-05T23:08:50.9092735Z\"\r\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5639442Z\",\"lastModified\":\"2018-09-17T20:43:12.3878442Z\"\r\n
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1619']
+      content-length: ['1620']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:54 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:15 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -537,7 +505,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint update]
+      CommandName: [ams streaming-endpoint update]
       Connection: [keep-alive]
       Content-Length: ['1282']
       Content-Type: [application/json; charset=utf-8]
@@ -567,7 +535,7 @@ interactions:
       cache-control: [no-cache]
       content-length: ['1928']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:08:59 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:19 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -576,7 +544,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1197']
+      x-ms-ratelimit-remaining-subscription-writes: ['1198']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
 - request:
@@ -584,7 +552,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint show]
+      CommandName: [ams streaming-endpoint show]
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
@@ -607,13 +575,13 @@ interactions:
         \           <grant-to>\\n                <resource path='/' include-subpaths='false'
         />\\n            </grant-to>    \\n        </policy>\\n    </cross-domain-access>\\n</access-policy>\",\"crossDomainPolicy\":\"<?xml
         version=\\\"1.0\\\" ?>\\n<!DOCTYPE cross-domain-policy SYSTEM 'http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd'>\\n<cross-domain-policy>\\n
-        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-05T23:08:33.817623Z\",\"lastModified\":\"2018-09-05T23:08:58.0983071Z\"\r\n
+        \ <allow-access-from domain='*' />\\n</cross-domain-policy>\"\r\n    },\"hostName\":\"strep000004-ams000003-usw22.streaming.media.azure.net\",\"freeTrialEndTime\":\"0001-01-01T00:00:00Z\",\"provisioningState\":\"Succeeded\",\"resourceState\":\"Stopped\",\"created\":\"2018-09-17T20:42:57.5639442Z\",\"lastModified\":\"2018-09-17T20:43:18.626561Z\"\r\n
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['1978']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:09:02 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:20 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -629,7 +597,7 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint delete]
+      CommandName: [ams streaming-endpoint delete]
       Connection: [keep-alive]
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
@@ -641,12 +609,12 @@ interactions:
   response:
     body: {string: ''}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f4008b9e-4701-4f6e-a8d8-2e69d93ea81c?api-version=2018-06-01-preview']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/ab1508f9-c214-45b7-b890-13cd3145c2b5?api-version=2018-06-01-preview']
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Wed, 05 Sep 2018 23:09:03 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:23 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f4008b9e-4701-4f6e-a8d8-2e69d93ea81c?api-version=2018-06-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/ab1508f9-c214-45b7-b890-13cd3145c2b5?api-version=2018-06-01-preview']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
@@ -659,24 +627,24 @@ interactions:
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming endpoint delete]
+      CommandName: [ams streaming-endpoint delete]
       Connection: [keep-alive]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f4008b9e-4701-4f6e-a8d8-2e69d93ea81c?api-version=2018-06-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/ab1508f9-c214-45b7-b890-13cd3145c2b5?api-version=2018-06-01-preview
   response:
-    body: {string: "{\r\n  \"name\":\"f4008b9e-4701-4f6e-a8d8-2e69d93ea81c\",\"status\":\"Succeeded\",\"error\":{\r\n
-        \   \"code\":\"None\",\"message\":null,\"target\":\"e651a47e-45ff-4f5e-b01a-474794784235\"\r\n
+    body: {string: "{\r\n  \"name\":\"ab1508f9-c214-45b7-b890-13cd3145c2b5\",\"status\":\"Succeeded\",\"error\":{\r\n
+        \   \"code\":\"None\",\"message\":null,\"target\":\"cf65546e-7e83-4c4a-a2fe-c716eb860070\"\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f4008b9e-4701-4f6e-a8d8-2e69d93ea81c?api-version=2018-06-01-preview']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/ab1508f9-c214-45b7-b890-13cd3145c2b5?api-version=2018-06-01-preview']
       cache-control: [no-cache]
       content-length: ['171']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Wed, 05 Sep 2018 23:09:08 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:27 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/f4008b9e-4701-4f6e-a8d8-2e69d93ea81c?api-version=2018-06-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingendpointoperations/ab1508f9-c214-45b7-b890-13cd3145c2b5?api-version=2018-06-01-preview']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -706,12 +674,12 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Wed, 05 Sep 2018 23:09:11 GMT']
+      date: ['Mon, 17 Sep 2018 20:43:31 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkc0TjU0QlhFRzUySTY0SFVPSFJWRE9UV1IzUU80UlpIV0NZNHwyNzY0M0EzRDk2RjdCMTJFLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdVMlhLNEo1RENQQUJDN0hPTUxOQkRORVhGTkNOSzRRR1U1RHw3NDEwMURDMUJBNDNFQ0ZFLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-deletes: ['14997']
+      x-ms-ratelimit-remaining-subscription-deletes: ['14999']
     status: {code: 202, message: Accepted}
 version: 1
