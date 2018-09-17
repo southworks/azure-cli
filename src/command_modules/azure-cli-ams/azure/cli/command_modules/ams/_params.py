@@ -194,6 +194,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    arg_type=get_three_state_flag(),
                    arg_group='Encryption Protocols',
                    help='Enable SmoothStreaming protocol.')
+        c.argument('cenc_key_track_properties', nargs='+')
+        c.argument('cenc_track_properties', nargs='+')
 
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)
