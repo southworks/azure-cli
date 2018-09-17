@@ -19,23 +19,61 @@ from azure.mgmt.media.models import (StandardEncoderPreset, TransformOutput,
 # pylint: disable=line-too-long
 
 
-def create_transform(client, account_name, resource_group_name,
-                     transform_name, presets, description=None):
-    outputs = []
+def create_transform(client, account_name, resource_group_name, transform_name, preset,
+                     audio_insights_only=False, audio_language=None, on_error=None,
+                     relative_priority=None, description=None):
 
-    for preset in presets:
-        outputs.append(get_transform_output(preset))
+    outputs = [build_transform_output(preset, audio_insights_only, audio_language,
+                                      on_error, relative_priority)]
 
-    return client.create_or_update(resource_group_name, account_name, transform_name, outputs, description)
+    return client.create_or_update(resource_group_name, account_name, transform_name,
+                                   outputs, description)
 
 
-def add_transform_output(client, account_name, resource_group_name, transform_name, presets):
+def add_transform_output(client, account_name, resource_group_name, transform_name, preset,
+                         audio_insights_only=False, audio_language=None, on_error=None,
+                         relative_priority=None):
+
     transform = client.get(resource_group_name, account_name, transform_name)
 
-    for preset in presets:
-        transform.outputs.append(get_transform_output(preset))
+    if not transform:
+        raise CLIError('The transform resource was not found.')
+
+    transform.outputs.append(build_transform_output(preset, audio_insights_only, audio_language,
+                                                    on_error, relative_priority))
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
+
+
+def build_transform_output(preset, audio_insights_only, audio_language, on_error,
+                           relative_priority):
+    from azure.mgmt.media.models import (OnErrorType, Priority)
+
+    validate_arguments(preset, audio_insights_only, audio_language)
+    transform_output = get_transform_output(preset)
+
+    if preset == 'VideoAnalyzer':
+        transform_output.preset.audio_language = audio_language
+        transform_output.preset.audio_insights_only = audio_insights_only
+    elif preset == 'AudioAnalyzer':
+        transform_output.preset.audio_language = audio_language
+
+    if on_error is not None:
+        transform_output.on_error = OnErrorType(on_error)
+
+    if relative_priority is not None:
+        transform_output.relative_priority = Priority(relative_priority)
+
+    return transform_output
+
+
+def validate_arguments(preset, audio_insights_only, audio_language):
+
+    if audio_insights_only and not preset == 'VideoAnalyzer':
+        raise CLIError("audio-insights-only argument only works with VideoAnalyzer preset type.")
+
+    if audio_language and preset not in get_stand_alone_presets():
+        raise CLIError("audio-language argument only works with VideoAnalyzer or AudioAnalyzer preset types.")
 
 
 def remove_transform_output(client, account_name, resource_group_name, transform_name, output_index):
@@ -51,22 +89,16 @@ def remove_transform_output(client, account_name, resource_group_name, transform
 
 def transform_update_setter(client, resource_group_name,
                             account_name, transform_name, parameters):
-    parameters.outputs = list(map(lambda x: get_transform_output(x) if isinstance(x, str) else x, parameters.outputs))
     return client.create_or_update(resource_group_name, account_name, transform_name,
                                    parameters.outputs, parameters.description)
 
 
-def update_transform(instance, presets=None, description=None):
+def update_transform(instance, description=None):
     if not instance:
         raise CLIError('The transform resource was not found.')
 
     if description is not None:
         instance.description = description
-
-    if presets is not None:
-        instance.outputs = []
-        for preset in presets:
-            instance.outputs.append(get_transform_output(preset))
 
     return instance
 

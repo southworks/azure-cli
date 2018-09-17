@@ -107,9 +107,9 @@ helps['ams transform create'] = """
     type: command
     short-summary: Create a transform.
     examples:
-        - name: Create a transform with AdaptiveStreaming and VideoAnalyzer built-in presets, and a custom preset from a local JSON file.
+        - name: Create a transform with AdaptiveStreaming built-in preset and High relative priority.
           text: >
-            az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --presets AdaptiveStreaming VideoAnalyzer \"C:\\MyPresets\\CustomPreset.json\"
+            az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --preset AdaptiveStreaming --relative-priority High
     """
 
 helps['ams transform delete'] = """
@@ -124,6 +124,9 @@ helps['ams transform update'] = """
         - name: Update a transform by setting up a new output list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
           text: >
             az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --presets AudioAnalyzer \"C:\\MyPresets\\NewCustomPreset.json\"
+        - name: Update the first transform output of a transform by setting its relative priority to High.
+          text: >
+            az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --set outputs[0].relativePriority=High
     """
 
 helps['ams transform output'] = """
@@ -135,9 +138,12 @@ helps['ams transform output add'] = """
     type: command
     short-summary: Add an output to an existing transform.
     examples:
-        - name: Add AdaptiveStreaming and VideoAnalyzer built-in presets, and a custom preset from a local JSON file.
+        - name: Add an output with a custom preset from a local JSON file.
           text: >
-            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --add outputs AdaptiveStreaming VideoAnalyzer \"C:\\MyPresets\\CustomPreset.json\"
+            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset \"C:\\MyPresets\\CustomPreset.json\"
+        - name: Add an output with a VideoAnalyzer preset with es-ES as audio language and only with audio insights.
+          text: >
+            az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset VideoAnalyzer --audio-language es-ES --audio-insights-only
     """
 
 helps['ams transform output remove'] = """
