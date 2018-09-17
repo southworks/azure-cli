@@ -46,9 +46,9 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
 
 
 def build_transform_output(preset, audio_insights_only, audio_language, on_error,
-                       relative_priority):
+                           relative_priority):
     from azure.mgmt.media.models import (OnErrorType, Priority)
-    
+
     validate_arguments(preset, audio_insights_only, audio_language)
     transform_output = get_transform_output(preset)
 
