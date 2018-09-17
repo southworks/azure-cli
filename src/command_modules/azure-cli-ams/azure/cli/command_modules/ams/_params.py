@@ -69,7 +69,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', name_arg_type, id_part='child_name_1',
                    help='The name of the transform.')
-        c.argument('preset', help='Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
+        c.argument('preset', help='Preset that describes the operations that will be used to modify, transcode, or extract insights from the source file to generate the transform output. Allowed values: {}. In addition to the allowed values, you can also pass a path to a custom preset JSON file.'
                    .format(", ".join(get_presets_definition_name_completion_list())))
         c.argument('audio_insights_only', arg_group='Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
         c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). Allowed values: {}.'

@@ -124,9 +124,9 @@ helps['ams transform update'] = """
         - name: Update a transform by setting up a new output list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
           text: >
             az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --presets AudioAnalyzer \"C:\\MyPresets\\NewCustomPreset.json\"
-        - name: Update a transform output by setting its relative priority to High.
+        - name: Update the first transform output of a transform by setting its relative priority to High.
           text: >
-            az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --set outputs[index].relativePriority=High
+            az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --set outputs[0].relativePriority=High
     """
 
 helps['ams transform output'] = """

@@ -89,22 +89,16 @@ def remove_transform_output(client, account_name, resource_group_name, transform
 
 def transform_update_setter(client, resource_group_name,
                             account_name, transform_name, parameters):
-    parameters.outputs = list(map(lambda x: get_transform_output(x) if isinstance(x, str) else x, parameters.outputs))
     return client.create_or_update(resource_group_name, account_name, transform_name,
                                    parameters.outputs, parameters.description)
 
 
-def update_transform(instance, presets=None, description=None):
+def update_transform(instance, description=None):
     if not instance:
         raise CLIError('The transform resource was not found.')
 
     if description is not None:
         instance.description = description
-
-    if presets is not None:
-        instance.outputs = []
-        for preset in presets:
-            instance.outputs.append(get_transform_output(preset))
 
     return instance
 

@@ -39,7 +39,7 @@ class AmsTransformTests(ScenarioTest):
             'presetPath': self._get_test_data_file('customPreset.json')
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}', checks=[
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset {presetName}', checks=[
             self.check('name', '{transformName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('length(outputs)', 1)
@@ -50,23 +50,22 @@ class AmsTransformTests(ScenarioTest):
             self.check('resourceGroup', '{rg}')
         ])
 
-        self.cmd('az ams transform update --presets H264MultipleBitrate720p "{presetPath}" --description mydesc -a {amsname} -n {transformName} -g {rg}', checks=[
+        self.cmd('az ams transform update --description mydesc -a {amsname} -n {transformName} -g {rg}', checks=[
             self.check('name', '{transformName}'),
             self.check('resourceGroup', '{rg}'),
-            self.check('description', 'mydesc'),
-            self.check('length(outputs)', 2)
+            self.check('description', 'mydesc')
         ])
 
-        self.cmd('az ams transform output add --presets AACGoodQualityAudio AdaptiveStreaming "{presetPath}" -a {amsname} -n {transformName} -g {rg}', checks=[
+        self.cmd('az ams transform output add --preset "{presetPath}" -a {amsname} -n {transformName} -g {rg}', checks=[
             self.check('name', '{transformName}'),
             self.check('resourceGroup', '{rg}'),
-            self.check('length(outputs)', 5)
+            self.check('length(outputs)', 2)
         ])
 
         self.cmd('az ams transform output remove --output-index 0 -a {amsname} -n {transformName} -g {rg}', checks=[
             self.check('name', '{transformName}'),
             self.check('resourceGroup', '{rg}'),
-            self.check('length(outputs)', 4)
+            self.check('length(outputs)', 1)
         ])
 
         list = self.cmd('az ams transform list -a {amsname} -g {rg}').get_output_in_json()
@@ -98,7 +97,7 @@ class AmsTransformTests(ScenarioTest):
         })
 
         with self.assertRaises(CLIError):
-            self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets "{invalidPresetPath}"')
+            self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset "{invalidPresetPath}"')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -123,7 +122,7 @@ class AmsTransformTests(ScenarioTest):
             'presetPath': self._get_test_data_file('customPreset.json')
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets "{presetPath}"', checks=[
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset "{presetPath}"', checks=[
             self.check('name', '{transformName}'),
             self.check('length(outputs[0].preset.codecs)', 2),
             self.check('length(outputs[0].preset.filters.overlays)', 1),
@@ -153,7 +152,7 @@ class AmsTransformTests(ScenarioTest):
             'relativePriority': 'High'
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}')
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset {presetName}')
 
         self.cmd('az ams transform output add -a {amsname} -n {transformName} -g {rg} --preset "{presetPath}" --on-error {onError} --relative-priority {relativePriority}', checks=[
             self.check('outputs[1].onError', '{onError}'),
