@@ -11,13 +11,17 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             cenc_default_key_label=None, cenc_default_key_policy_name=None,
                             cenc_key_label=None, cenc_key_policy_name=None, cenc_key_track_properties=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
-                            cenc_widevine_url_template=None):
+                            cenc_widevine_url_template=None, envelope_download=False, envelope_dash=False,
+                            envelope_hls=False, envelope_smooth_streaming=False,
+                            envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
+                            custom_key_acquisition_url_template=None, envelope_label=None,
+                            envelope_policy_name=None):
     from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
     from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
                                          CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
                                          StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
                                          CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
-                                         StreamingPolicyWidevineConfiguration)
+                                         StreamingPolicyWidevineConfiguration, EnvelopeEncryption)
 
     enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=smooth_streaming)
     cenc_enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=True)
@@ -44,6 +48,11 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                             policy_name=cenc_key_policy_name,
                                                             tracks=[TrackSelection(track_selections=key_track_selections)])]
 
+    envelope_encryption_enabled_protocols = EnabledProtocols(download=envelope_download, dash=envelope_dash, hls=envelope_hls,
+                                                             smooth_streaming=envelope_smooth_streaming)
+
+    envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols)
+
     common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
                                                   clear_tracks=[TrackSelection(track_selections=track_selections)],
                                                   content_keys=StreamingPolicyContentKeys(
@@ -54,7 +63,8 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
 
     streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
                                        no_encryption=NoEncryption(enabled_protocols=enabled_protocols),
-                                       common_encryption_cenc=common_encryption_cenc)
+                                       common_encryption_cenc=common_encryption_cenc,
+                                       envelope_encryption=envelope_encryption)
 
     return get_streaming_policies_client(cmd.cli_ctx).create(resource_group_name, account_name,
                                                              streaming_policy_name, streaming_policy)

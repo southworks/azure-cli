@@ -180,22 +180,53 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The name of the streaming policy.')
         c.argument('download',
                    arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable Download protocol.')
+                   arg_group='Common Encryption Cenc',
+                   help='Enable Download protocol for Common Encryption Cenc.')
         c.argument('dash',
                    arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable Dash protocol.')
+                   arg_group='Common Encryption Cenc',
+                   help='Enable Dash protocol for Common Encryption Cenc.')
         c.argument('hls',
                    arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable HLS protocol.')
+                   arg_group='Common Encryption Cenc',
+                   help='Enable HLS protocol for Common Encryption Cenc.')
         c.argument('smooth_streaming',
                    arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable SmoothStreaming protocol.')
+                   arg_group='Common Encryption Cenc',
+                   help='Enable SmoothStreaming protocol for Common Encryption Cenc.')
         c.argument('cenc_key_track_properties', nargs='+')
         c.argument('cenc_track_properties', nargs='+')
+        c.argument('envelope_download',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Envelope Encryption',
+                   help='Enable Download protocol for Envelope Encryption.')
+        c.argument('envelope_dash',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Envelope Encryption',
+                   help='Enable Dash protocol for Envelope Encryption.')
+        c.argument('envelope_hls',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Envelope Encryption',
+                   help='Enable HLS protocol for Envelope Encryption.')
+        c.argument('envelope_smooth_streaming',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Envelope Encryption',
+                   help='Enable SmoothStreaming protocol for Envelope Encryption.')
+        c.argument('envelope_clear_tracks',
+                   arg_group='Envelope Encryption',
+                   help='The filepath to a JSON representing which tracks should not be encrypted.')
+        c.argument('envelope_key_to_track_mappings',
+                   arg_group='Envelope Encryption',
+                   help='The filepath to a JSON representing a list of StreamingPolicyContentKey.')
+        c.argument('envelope_label',
+                   arg_group='Envelope Encryption',
+                   help='Label used to specify Content Key when creating a streaming locator.')
+        c.argument('envelope_policy_name',
+                   arg_group='Envelope Encryption',
+                   help='Policy used by Default Key.')
+        c.argument('custom_key_acquisition_url_template',
+                   arg_group='Envelope Encryption',
+                   help='The KeyAcquistionUrlTemplate is used to point to user specified service to delivery content keys.')
 
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)
