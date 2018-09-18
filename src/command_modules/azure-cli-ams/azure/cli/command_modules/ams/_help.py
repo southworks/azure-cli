@@ -250,11 +250,6 @@ helps['ams job cancel'] = """
     short-summary: Cancel a job.
 """
 
-helps['ams streaming'] = """
-    type: group
-    short-summary: Manage streamings for an Azure Media Services account.
-"""
-
 helps['ams streaming-locator'] = """
     type: group
     short-summary: Manage streaming locators for an Azure Media Services account.
@@ -363,11 +358,6 @@ helps['ams streaming-endpoint scale'] = """
 helps['ams streaming-endpoint update'] = """
     type: command
     short-summary: Update the details of a streaming endpoint.
-"""
-
-helps['ams live'] = """
-    type: group
-    short-summary: Manage live streaming operations for an Azure Media Service account.
 """
 
 helps['ams live-event'] = """
