@@ -29,17 +29,17 @@ class AmsStreamingPolicyTests(ScenarioTest):
             'streamingPolicyName': streamingPolicyName
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download', checks=[
+        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('resourceGroup', '{rg}')
         ])
 
-        self.cmd('az ams streaming policy show -a {amsname} -n {streamingPolicyName} -g {rg}', checks=[
+        self.cmd('az ams streaming-policy show -a {amsname} -n {streamingPolicyName} -g {rg}', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('resourceGroup', '{rg}')
         ])
 
-        list = self.cmd('az ams streaming policy list -a {amsname} -g {rg}').get_output_in_json()
+        list = self.cmd('az ams streaming-policy list -a {amsname} -g {rg}').get_output_in_json()
         assert len(list) > 0
 
-        self.cmd('az ams streaming policy delete -n {streamingPolicyName} -a {amsname} -g {rg}')
+        self.cmd('az ams streaming-policy delete -n {streamingPolicyName} -a {amsname} -g {rg}')

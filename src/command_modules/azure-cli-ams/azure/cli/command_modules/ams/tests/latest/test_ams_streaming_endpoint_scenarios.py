@@ -33,25 +33,25 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
         ])
 
-        self.cmd('az ams streaming endpoint akamai add -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier} --expiration {expiration} --base64-key {base64Key}', checks=[
+        self.cmd('az ams streaming-endpoint akamai add -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier} --expiration {expiration} --base64-key {base64Key}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('length(accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint akamai remove -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier}', checks=[
+        self.cmd('az ams streaming-endpoint akamai remove -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('length(accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList)', 0)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -79,7 +79,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --ips {ips} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --ips {ips} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
@@ -91,19 +91,19 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(tags)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint akamai add -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier} --expiration {expiration} --base64-key {base64Key}', checks=[
+        self.cmd('az ams streaming-endpoint akamai add -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier} --expiration {expiration} --base64-key {base64Key}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('length(accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint akamai remove -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier}', checks=[
+        self.cmd('az ams streaming-endpoint akamai remove -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('length(accessControl.akamai.akamaiSignatureHeaderAuthenticationKeyList)', 0)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -130,7 +130,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
@@ -144,7 +144,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
         ])
 
         with self.assertRaises(CLIError):
-            self.cmd('az ams streaming endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --add access_control.ip.allow {ip}')
+            self.cmd('az ams streaming-endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --add access_control.ip.allow {ip}')
 
         self.kwargs.update({
             'streamingEndpointName': streaming_endpoint_name,
@@ -159,7 +159,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'ips': '1.1.1.1 2.2.2.2 3.3.3.3'
         })
 
-        self.cmd('az ams streaming endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --tags {tags} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+        self.cmd('az ams streaming-endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --tags {tags} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('cdnProvider', '{cdnProvider}'),
             self.check('cdnProfile', '{cdnProfile}'),
@@ -168,9 +168,9 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(tags)', 2)
         ])
 
-        self.cmd('az ams streaming endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --ips {ips} --disable-cdn')
+        self.cmd('az ams streaming-endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --ips {ips} --disable-cdn')
 
-        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('cdnProvider', None),
             self.check('cdnProfile', ''),
@@ -178,7 +178,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(accessControl.ip.allow)', 3)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -204,7 +204,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
@@ -217,7 +217,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(tags)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_show')
@@ -243,9 +243,9 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
 
-        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
@@ -258,7 +258,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('length(tags)', 1)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_delete')
@@ -284,15 +284,15 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName1} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName1} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"')
 
-        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
+        self.cmd('az ams streaming-endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 2)
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName1}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName1}')
 
-        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
+        self.cmd('az ams streaming-endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 1)
         ])
 
@@ -321,17 +321,17 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --availability-set-name {availabilitySetName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --scale-units {scaleUnits} --tags "{tags}" --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
             self.check('scaleUnits', '{scaleUnits}')
         ])
 
-        self.cmd('az ams streaming endpoint scale -g {rg} -a {amsname} -n {streamingEndpointName} --scale-unit {scaleUnits2}')
+        self.cmd('az ams streaming-endpoint scale -g {rg} -a {amsname} -n {streamingEndpointName} --scale-unit {scaleUnits2}')
 
-        self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('scaleUnits', '{scaleUnits2}')
         ])
 
-        self.cmd('az ams streaming endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -348,9 +348,9 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
 
-        self.cmd('az ams streaming endpoint start -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint start -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('resourceState', 'Running')
         ])
 
@@ -369,11 +369,11 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
 
-        self.cmd('az ams streaming endpoint start -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
+        self.cmd('az ams streaming-endpoint start -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
 
-        str_endpoint = self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}').get_output_in_json()
+        str_endpoint = self.cmd('az ams streaming-endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}').get_output_in_json()
 
         resource_states = ['Starting', 'Running']
 
@@ -394,11 +394,11 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start')
 
-        self.cmd('az ams streaming endpoint stop -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
+        self.cmd('az ams streaming-endpoint stop -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
 
-        str_endpoint = self.cmd('az ams streaming endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}').get_output_in_json()
+        str_endpoint = self.cmd('az ams streaming-endpoint show -g {rg} -a {amsname} -n {streamingEndpointName}').get_output_in_json()
 
         resource_states = ['Stopping', 'Stopped']
 
@@ -419,11 +419,11 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start', checks=[
             self.check('resourceState', 'Running')
         ])
 
-        self.cmd('az ams streaming endpoint stop -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint stop -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('resourceState', 'Stopped')
         ])
 
@@ -442,12 +442,8 @@ class AmsStreamingEndpointsTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
-            self.check('length(@)', 1)
-        ])
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
 
-        self.cmd('az ams streaming endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
-
-        self.cmd('az ams streaming endpoint list -g {rg} -a {amsname}', checks=[
+        self.cmd('az ams streaming-endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 2)
         ])

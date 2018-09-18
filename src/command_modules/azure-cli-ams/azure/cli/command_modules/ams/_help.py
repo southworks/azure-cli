@@ -250,192 +250,182 @@ helps['ams job cancel'] = """
     short-summary: Cancel a job.
 """
 
-helps['ams streaming'] = """
-    type: group
-    short-summary: Manage streamings for an Azure Media Services account.
-"""
-
-helps['ams streaming locator'] = """
+helps['ams streaming-locator'] = """
     type: group
     short-summary: Manage streaming locators for an Azure Media Services account.
 """
 
-helps['ams streaming locator create'] = """
+helps['ams streaming-locator create'] = """
     type: command
     short-summary: Create a streaming locator.
 """
 
-helps['ams streaming locator list'] = """
+helps['ams streaming-locator list'] = """
     type: command
     short-summary: List all the streaming locators within an Azure Media Services account.
 """
 
-helps['ams streaming locator show'] = """
+helps['ams streaming-locator show'] = """
     type: command
     short-summary: Show the details of a streaming locator.
 """
 
-helps['ams streaming locator get-paths'] = """
+helps['ams streaming-locator get-paths'] = """
     type: command
     short-summary: List paths supported by a streaming locator.
 """
 
-helps['ams streaming locator get-content-keys'] = """
+helps['ams streaming-locator get-content-keys'] = """
     type: command
     short-summary: List content keys used by a streaming locator.
 """
 
-helps['ams streaming policy'] = """
+helps['ams streaming-policy'] = """
     type: group
     short-summary: Manage streaming policies for an Azure Media Services account.
 """
 
-helps['ams streaming policy create'] = """
+helps['ams streaming-policy create'] = """
     type: command
     short-summary: Create a streaming policy.
 """
 
-helps['ams streaming policy list'] = """
+helps['ams streaming-policy list'] = """
     type: command
     short-summary: List all the streaming policies within an Azure Media Services account.
 """
 
-helps['ams streaming policy show'] = """
+helps['ams streaming-policy show'] = """
     type: command
     short-summary: Show the details of a streaming policy.
 """
 
-helps['ams streaming endpoint'] = """
+helps['ams streaming-endpoint'] = """
     type: group
     short-summary: Manage streaming endpoints for an Azure Media Service account.
 """
 
-helps['ams streaming endpoint start'] = """
+helps['ams streaming-endpoint start'] = """
     type: command
     short-summary: Start a streaming endpoint.
 """
 
-helps['ams streaming endpoint stop'] = """
+helps['ams streaming-endpoint stop'] = """
     type: command
     short-summary: Stop a streaming endpoint.
 """
 
-helps['ams streaming endpoint list'] = """
+helps['ams streaming-endpoint list'] = """
     type: command
     short-summary: List all the streaming endpoints within an Azure Media Services account.
 """
 
-helps['ams streaming endpoint create'] = """
+helps['ams streaming-endpoint create'] = """
     type: command
     short-summary: Create a streaming endpoint.
 """
 
-helps['ams streaming endpoint akamai'] = """
+helps['ams streaming-endpoint akamai'] = """
     type: group
     short-summary: Manage AkamaiAccessControl objects to be used on streaming endpoints.
 """
 
-helps['ams streaming endpoint akamai add'] = """
+helps['ams streaming-endpoint akamai add'] = """
     type: command
     short-summary: Add an AkamaiAccessControl to an existing streaming endpoint.
 """
 
-helps['ams streaming endpoint show'] = """
+helps['ams streaming-endpoint show'] = """
     type: command
     short-summary: Show the details of a streaming endpoint.
 """
 
-helps['ams streaming endpoint delete'] = """
+helps['ams streaming-endpoint delete'] = """
     type: command
     short-summary: Delete a streaming endpoint.
 """
 
-helps['ams streaming endpoint akamai remove'] = """
+helps['ams streaming-endpoint akamai remove'] = """
     type: command
     short-summary: Remove an AkamaiAccessControl from an existing streaming endpoint.
 """
 
-helps['ams streaming endpoint scale'] = """
+helps['ams streaming-endpoint scale'] = """
     type: command
     short-summary: Set the scale of a streaming endpoint.
 """
 
-helps['ams streaming endpoint update'] = """
+helps['ams streaming-endpoint update'] = """
     type: command
     short-summary: Update the details of a streaming endpoint.
 """
 
-helps['ams live'] = """
-    type: group
-    short-summary: Manage live streaming operations for an Azure Media Service account.
-"""
-
-helps['ams live event'] = """
+helps['ams live-event'] = """
     type: group
     short-summary: Manage live events for an Azure Media Service account.
 """
 
-helps['ams live event create'] = """
+helps['ams live-event create'] = """
     type: command
     short-summary: Create a live event.
 """
 
-helps['ams live event start'] = """
+helps['ams live-event start'] = """
     type: command
     short-summary: Start a live event.
 """
 
-helps['ams live event show'] = """
+helps['ams live-event show'] = """
     type: command
     short-summary: Show the details of a live event.
 """
 
-helps['ams live event list'] = """
+helps['ams live-event list'] = """
     type: command
     short-summary: List all the live events of an Azure Media Services account.
 """
 
-helps['ams live event delete'] = """
+helps['ams live-event delete'] = """
     type: command
     short-summary: Delete a live event.
 """
 
-helps['ams live event stop'] = """
+helps['ams live-event stop'] = """
     type: command
     short-summary: Stop a live event.
 """
 
-helps['ams live event reset'] = """
+helps['ams live-event reset'] = """
     type: command
     short-summary: Reset a live event.
 """
 
-helps['ams live event update'] = """
+helps['ams live-event update'] = """
     type: command
     short-summary: Update the details of a live event.
 """
 
-helps['ams live output'] = """
+helps['ams live-output'] = """
     type: group
     short-summary: Manage live outputs for an Azure Media Service account.
 """
 
-helps['ams live output create'] = """
+helps['ams live-output create'] = """
     type: command
     short-summary: Create a live output.
 """
 
-helps['ams live output show'] = """
+helps['ams live-output show'] = """
     type: command
     short-summary: Show the details of a live output.
 """
 
-helps['ams live output list'] = """
+helps['ams live-output list'] = """
     type: command
     short-summary: List all the live outputs in a live event.
 """
 
-helps['ams live output delete'] = """
+helps['ams live-output delete'] = """
     type: command
     short-summary: Delete a live output.
 """
