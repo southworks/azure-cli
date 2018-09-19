@@ -194,8 +194,29 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    arg_type=get_three_state_flag(),
                    arg_group='Encryption Protocols',
                    help='Enable SmoothStreaming protocol.')
-        c.argument('cenc_key_track_properties', nargs='+')
-        c.argument('cenc_track_properties', nargs='+')
+        c.argument('cenc_download',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Common Encryption CENC',
+                   help='Enable Download protocol.')
+        c.argument('cenc_dash',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Common Encryption CENC',
+                   help='Enable Dash protocol.')
+        c.argument('cenc_hls',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Common Encryption CENC',
+                   help='Enable HLS protocol.')
+        c.argument('cenc_smooth_streaming',
+                   arg_type=get_three_state_flag(),
+                   arg_group='Common Encryption CENC',
+                   help='Enable SmoothStreaming protocol.')
+        c.argument('cenc_default_key_label', arg_group='Common Encryption CENC', help='Label to specify Default Content Key for an encryption scheme.')
+        c.argument('cenc_default_key_policy_name', arg_group='Common Encryption CENC', help='Policy used by Default Content Key.')
+        c.argument('cenc_clear_tracks', arg_group='Common Encryption CENC', help='JSON representing which tracks should not be encrypted.')
+        c.argument('cenc_key_to_track_mappings', arg_group='Common Encryption CENC', help='JSON representing tracks needs separated content keys.')
+        c.argument('cenc_play_ready_attributes', arg_group='Common Encryption CENC', help='Custom attributes for PlayReady.')
+        c.argument('cenc_widevine_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cenc_play_ready_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
 
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)
