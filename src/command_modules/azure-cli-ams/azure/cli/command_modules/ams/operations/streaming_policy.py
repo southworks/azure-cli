@@ -5,15 +5,14 @@
 
 
 def create_streaming_policy(cmd, resource_group_name, account_name,
-                            streaming_policy_name,
-                            download=False, dash=False, hls=False, smooth_streaming=False,
-                            default_content_key_policy_name=None,
+                            streaming_policy_name, no_encryption_protocols=None,
+                            default_content_key_policy_name=None, cenc_protocols=None,
                             cenc_default_key_label=None, cenc_default_key_policy_name=None,
                             cenc_clear_tracks=None, cenc_key_to_track_mappings=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
                             cenc_widevine_url_template=None, envelope_protocols=None,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
-                            custom_key_acquisition_url_template=None, envelope_label=None,
+                            envelope_custom_key_acquisition_url_template=None, envelope_label=None,
                             envelope_policy_name=None):
     from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
     from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
@@ -22,8 +21,8 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                          CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
                                          StreamingPolicyWidevineConfiguration, EnvelopeEncryption)
 
-    enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=smooth_streaming)
-    cenc_enabled_protocols = EnabledProtocols(download=cenc_download, dash=cenc_dash, hls=cenc_hls, smooth_streaming=cenc_smooth_streaming)
+    no_encryption_enabled_protocols = _build_enabled_protocols_object(no_encryption_protocols)
+    cenc_enabled_protocols = _build_enabled_protocols_object(cenc_protocols)
 
     # TODO: Remove this after adding support for parsing JSON data
     track_property_condition = TrackPropertyCondition(property='FourCC', operation='Equal', value='testValue')
@@ -40,18 +39,7 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                             policy_name='ckp',
                                                             tracks=[TrackSelection(track_selections=[track_property_condition])])]
 
-    envelope_encryption_enabled_protocols = EnabledProtocols()
-    for protocol in envelope_encryption_enabled_protocols:
-        if protocol == 'Download':
-            envelope_encryption_enabled_protocols.download = True
-        elif protocol == 'Dash':
-            envelope_encryption_enabled_protocols.dash = True
-        elif protocol == 'HLS':
-            envelope_encryption_enabled_protocols.hls = True
-        elif protocol == 'SmoothStreaming':
-            envelope_encryption_enabled_protocols.smooth_streaming = True
-        else:
-            raise CLIError('Unknown protocol {}.'.format(protocol))
+    envelope_encryption_enabled_protocols = _build_enabled_protocols_object(envelope_encryption_enabled_protocols)
             
 
 
@@ -64,7 +52,7 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
     envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols,
                                              clear_tracks=track_selection,
                                              content_keys=envelope_content_keys,
-                                             custom_key_acquisition_url_template=custom_key_acquisition_url_template)
+                                             custom_key_acquisition_url_template=envelope_custom_key_acquisition_url_template)
 
     common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
                                                   clear_tracks=[TrackSelection(track_selections=[track_property_condition])],
@@ -81,3 +69,18 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
 
     return get_streaming_policies_client(cmd.cli_ctx).create(resource_group_name, account_name,
                                                              streaming_policy_name, streaming_policy)
+
+def _build_enabled_protocols_object(protocols):
+    enabled_protocols = EnabledProtocols()
+    for protocol in protocols:
+        if protocol == 'Download':
+            enabled_protocols.download = True
+        elif protocol == 'Dash':
+            enabled_protocols.dash = True
+        elif protocol == 'HLS':
+            enabled_protocols.hls = True
+        elif protocol == 'SmoothStreaming':
+            enabled_protocols.smooth_streaming = True
+        else:
+            raise CLIError('Unknown protocol {}.'.format(protocol))
+    return enabled_protocols
