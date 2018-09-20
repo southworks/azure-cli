@@ -12,8 +12,8 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
                             cenc_widevine_url_template=None, envelope_protocols=None,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
-                            envelope_custom_key_acquisition_url_template=None, envelope_label=None,
-                            envelope_policy_name=None):
+                            envelope_custom_key_acquisition_url_template=None,
+                            envelope_default_key_label=None, envelope_default_key_policy_name=None):
     from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
     from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
                                          CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
@@ -45,8 +45,8 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
 
     # TODO: Define envelope_streaming_policy_content_key (StreamingPolicyContentKey list) json: envelope_key_to_track_mappings
 
-    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_label,
-                                                                              policy_name=envelope_policy_name),
+    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_default_key_label,
+                                                                              policy_name=envelope_default_key_policy_name),
                                                        key_to_track_mappings=envelope_streaming_policy_content_key)
 
     envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols,
