@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import uuid
 import re
 import isodate
+import json
 
 
 def _gen_guid():
@@ -36,3 +37,11 @@ def parse_iso_duration(str_duration):
 def camel_to_snake(name):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+
+def _json_object_hook(d):
+    return namedtuple('X', d.keys())(*d.values())
+
+
+def json2obj(data):
+    return json.loads(data, object_hook=_json_object_hook)
