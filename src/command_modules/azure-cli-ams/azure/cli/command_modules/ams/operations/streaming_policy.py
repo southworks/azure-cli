@@ -7,9 +7,9 @@
 def create_streaming_policy(cmd, resource_group_name, account_name,
                             streaming_policy_name,
                             download=False, dash=False, hls=False, smooth_streaming=False,
-                            default_content_key_policy_name=None, cenc_track_properties=None,
+                            default_content_key_policy_name=None,
                             cenc_default_key_label=None, cenc_default_key_policy_name=None,
-                            cenc_key_label=None, cenc_key_policy_name=None, cenc_key_track_properties=None,
+                            cenc_clear_tracks=None, cenc_key_to_track_mappings=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
                             cenc_widevine_url_template=None, envelope_protocols=None,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
@@ -23,17 +23,10 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                          StreamingPolicyWidevineConfiguration, EnvelopeEncryption)
 
     enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=smooth_streaming)
-    cenc_enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=True)
+    cenc_enabled_protocols = EnabledProtocols(download=cenc_download, dash=cenc_dash, hls=cenc_hls, smooth_streaming=cenc_smooth_streaming)
 
-    # TODO: Support Unknown value too
-    track_selections = list(map(lambda x: TrackPropertyCondition(property='FourCC',
-                                                                 operation='Equal',
-                                                                 value=x), cenc_track_properties))
-
-    # TODO: Support Unknown value too
-    key_track_selections = list(map(lambda x: TrackPropertyCondition(property='FourCC',
-                                                                     operation='Equal',
-                                                                     value=x), cenc_key_track_properties))
+    # TODO: Remove this after adding support for parsing JSON data
+    track_property_condition = TrackPropertyCondition(property='FourCC', operation='Equal', value='testValue')
 
     cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
         custom_license_acquisition_url_template=cenc_play_ready_url_template,
@@ -42,10 +35,10 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
     cenc_widevine_config = StreamingPolicyWidevineConfiguration(
         custom_license_acquisition_url_template=cenc_widevine_url_template)
 
-    # TODO: Allow multiple content keys to track
-    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label=cenc_key_label,
-                                                            policy_name=cenc_key_policy_name,
-                                                            tracks=[TrackSelection(track_selections=key_track_selections)])]
+    # TODO: Remove this after adding support for parsing JSON data
+    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label='testLabel',
+                                                            policy_name='ckp',
+                                                            tracks=[TrackSelection(track_selections=[track_property_condition])])]
 
     envelope_encryption_enabled_protocols = EnabledProtocols()
     for protocol in envelope_encryption_enabled_protocols:
@@ -74,7 +67,7 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                              custom_key_acquisition_url_template=custom_key_acquisition_url_template)
 
     common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
-                                                  clear_tracks=[TrackSelection(track_selections=track_selections)],
+                                                  clear_tracks=[TrackSelection(track_selections=[track_property_condition])],
                                                   content_keys=StreamingPolicyContentKeys(
                                                       default_key=DefaultKey(label=cenc_default_key_label,
                                                                              policy_name=cenc_default_key_policy_name),
