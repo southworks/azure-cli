@@ -11,8 +11,7 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             cenc_default_key_label=None, cenc_default_key_policy_name=None,
                             cenc_key_label=None, cenc_key_policy_name=None, cenc_key_track_properties=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
-                            cenc_widevine_url_template=None, envelope_download=False, envelope_dash=False,
-                            envelope_hls=False, envelope_smooth_streaming=False,
+                            cenc_widevine_url_template=None, envelope_protocols=None,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
                             custom_key_acquisition_url_template=None, envelope_label=None,
                             envelope_policy_name=None):
@@ -48,10 +47,31 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                             policy_name=cenc_key_policy_name,
                                                             tracks=[TrackSelection(track_selections=key_track_selections)])]
 
-    envelope_encryption_enabled_protocols = EnabledProtocols(download=envelope_download, dash=envelope_dash, hls=envelope_hls,
-                                                             smooth_streaming=envelope_smooth_streaming)
+    envelope_encryption_enabled_protocols = EnabledProtocols()
+    for protocol in envelope_encryption_enabled_protocols:
+        if protocol == 'Download':
+            envelope_encryption_enabled_protocols.download = True
+        elif protocol == 'Dash':
+            envelope_encryption_enabled_protocols.dash = True
+        elif protocol == 'HLS':
+            envelope_encryption_enabled_protocols.hls = True
+        elif protocol == 'SmoothStreaming':
+            envelope_encryption_enabled_protocols.smooth_streaming = True
+        else:
+            raise CLIError('Unknown protocol {}.'.format(protocol))
+            
 
-    envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols)
+
+    # TODO: Define envelope_streaming_policy_content_key (StreamingPolicyContentKey list) json: envelope_key_to_track_mappings
+
+    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_label,
+                                                                              policy_name=envelope_policy_name),
+                                                       key_to_track_mappings=envelope_streaming_policy_content_key)
+
+    envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols,
+                                             clear_tracks=track_selection,
+                                             content_keys=envelope_content_keys,
+                                             custom_key_acquisition_url_template=custom_key_acquisition_url_template)
 
     common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
                                                   clear_tracks=[TrackSelection(track_selections=track_selections)],

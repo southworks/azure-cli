@@ -12,7 +12,8 @@ from azure.cli.core.commands.parameters import (get_location_type, get_enum_type
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
                                                        get_default_streaming_policies_completion_list,
                                                        get_presets_definition_name_completion_list,
-                                                       get_allowed_languages_for_preset_completion_list)
+                                                       get_allowed_languages_for_preset_completion_list,
+                                                       get_protocols_completion_list)
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
 
@@ -196,22 +197,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='Enable SmoothStreaming protocol for Common Encryption Cenc.')
         c.argument('cenc_key_track_properties', nargs='+')
         c.argument('cenc_track_properties', nargs='+')
-        c.argument('envelope_download',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Envelope Encryption',
-                   help='Enable Download protocol for Envelope Encryption.')
-        c.argument('envelope_dash',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Envelope Encryption',
-                   help='Enable Dash protocol for Envelope Encryption.')
-        c.argument('envelope_hls',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Envelope Encryption',
-                   help='Enable HLS protocol for Envelope Encryption.')
-        c.argument('envelope_smooth_streaming',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Envelope Encryption',
-                   help='Enable SmoothStreaming protocol for Envelope Encryption.')
+        c.argument('envelope_protocols', nargs='+', arg_group='Envelope Encryption', help='Space-separated list of enabled protocols for the Envelope Encryption. Allowed values: {}'.format(", ".join(get_protocols_completion_list())))
         c.argument('envelope_clear_tracks',
                    arg_group='Envelope Encryption',
                    help='The filepath to a JSON representing which tracks should not be encrypted.')
