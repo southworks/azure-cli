@@ -213,6 +213,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('custom_key_acquisition_url_template',
                    arg_group='Envelope Encryption',
                    help='The KeyAcquistionUrlTemplate is used to point to user specified service to delivery content keys.')
+        c.argument('smooth_streaming',
+                   arg_type=get_three_state_flag(),
                    arg_group='Encryption Protocols',
                    help='Enable SmoothStreaming protocol.')
         c.argument('cenc_download',
