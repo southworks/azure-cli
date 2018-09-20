@@ -61,7 +61,7 @@ def _build_content_keys(content_keys):
             tracks=[__track_builder(t) for t in key.get('tracks')] if key.get('tracks') else None
         )
 
-    return [__content_key_builder(k) for k in json.loads(content_keys)]
+    return None if content_keys is None else [__content_key_builder(k) for k in json.loads(content_keys)]
 
 def _valid_content_keys(content_keys):
     if content_keys is None:
