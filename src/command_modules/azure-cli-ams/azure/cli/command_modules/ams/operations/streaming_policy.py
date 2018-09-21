@@ -3,6 +3,16 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+import json
+
+from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
+                                     CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
+                                     StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
+                                     StreamingPolicyContentKeys,
+                                     CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
+                                     StreamingPolicyWidevineConfiguration)
+from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
+
 
 def create_streaming_policy(cmd, resource_group_name, account_name,
                             streaming_policy_name,
@@ -12,19 +22,39 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             cenc_clear_tracks=None, cenc_key_to_track_mappings=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
                             cenc_widevine_url_template=None,
-                            cenc_download=None, cenc_dash=None, cenc_hls=None, cenc_smooth_streaming=None):
-    from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
-    from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
-                                         CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
-                                         StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
-                                         CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
-                                         StreamingPolicyWidevineConfiguration)
+                            cenc_download=False, cenc_dash=False, cenc_hls=False, cenc_smooth_streaming=False):
 
+    no_encryption = _no_encryption_factory(download, dash, hls, smooth_streaming)
+
+    common_encryption_cenc = _cenc_encryption_factory(cenc_download, cenc_dash, cenc_hls, cenc_smooth_streaming,
+                                                      cenc_default_key_label, cenc_default_key_policy_name,
+                                                      cenc_key_to_track_mappings, cenc_clear_tracks,
+                                                      cenc_play_ready_url_template, cenc_play_ready_attributes,
+                                                      cenc_widevine_url_template)
+
+    streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
+                                       no_encryption=no_encryption,
+                                       common_encryption_cenc=common_encryption_cenc)
+
+    return get_streaming_policies_client(cmd.cli_ctx).create(resource_group_name, account_name,
+                                                             streaming_policy_name, streaming_policy)
+
+
+def _no_encryption_factory(download, dash, hls, smooth_streaming):
     enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=smooth_streaming)
+    return NoEncryption(enabled_protocols=enabled_protocols)
+
+
+def _cenc_encryption_factory(cenc_download, cenc_dash, cenc_hls, cenc_smooth_streaming,
+                             cenc_default_key_label, cenc_default_key_policy_name,
+                             cenc_key_to_track_mappings, cenc_clear_tracks,
+                             cenc_play_ready_url_template, cenc_play_ready_attributes,
+                             cenc_widevine_url_template):
     cenc_enabled_protocols = EnabledProtocols(download=cenc_download, dash=cenc_dash, hls=cenc_hls, smooth_streaming=cenc_smooth_streaming)
 
-    # TODO: Remove this after adding support for parsing JSON data
-    track_property_condition = TrackPropertyCondition(property='FourCC', operation='Equal', value='testValue')
+    cenc_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cenc_default_key_label,
+                                                                          policy_name=cenc_default_key_policy_name),
+                                                   key_to_track_mappings = _parse_key_to_track_mappings_json(cenc_key_to_track_mappings))
 
     cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
         custom_license_acquisition_url_template=cenc_play_ready_url_template,
@@ -33,22 +63,17 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
     cenc_widevine_config = StreamingPolicyWidevineConfiguration(
         custom_license_acquisition_url_template=cenc_widevine_url_template)
 
-    # TODO: Remove this after adding support for parsing JSON data
-    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label='testLabel',
-                                                            policy_name='ckp',
-                                                            tracks=[TrackSelection(track_selections=[track_property_condition])])]
+    return CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
+                                clear_tracks=cenc_clear_tracks,
+                                content_keys=cenc_content_keys,
+                                drm=CencDrmConfiguration(play_ready=cenc_play_ready_config, widevine=cenc_widevine_config))
 
-    common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
-                                                  clear_tracks=[TrackSelection(track_selections=[track_property_condition])],
-                                                  content_keys=StreamingPolicyContentKeys(
-                                                      default_key=DefaultKey(label=cenc_default_key_label,
-                                                                             policy_name=cenc_default_key_policy_name),
-                                                      key_to_track_mappings=cenc_key_to_track_mappings),
-                                                  drm=CencDrmConfiguration(play_ready=cenc_play_ready_config, widevine=cenc_widevine_config))
 
-    streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
-                                       no_encryption=NoEncryption(enabled_protocols=enabled_protocols),
-                                       common_encryption_cenc=common_encryption_cenc)
-
-    return get_streaming_policies_client(cmd.cli_ctx).create(resource_group_name, account_name,
-                                                             streaming_policy_name, streaming_policy)
+def _parse_key_to_track_mappings_json(cenc_key_to_track_mappings):
+    key_to_track_mappings = []
+    with open(cenc_key_to_track_mappings) as cenc_key_to_track_mappings_stream:
+        cenc_key_to_track_mappings_json = json.load(cenc_key_to_track_mappings_stream)
+        for str_policy_content_key_json in cenc_key_to_track_mappings_json:
+            str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
+            key_to_track_mappings.append(str_policy_content_key)
+    return key_to_track_mappings
