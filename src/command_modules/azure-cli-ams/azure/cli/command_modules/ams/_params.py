@@ -12,7 +12,8 @@ from azure.cli.core.commands.parameters import (get_location_type, get_enum_type
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
                                                        get_default_streaming_policies_completion_list,
                                                        get_presets_definition_name_completion_list,
-                                                       get_allowed_languages_for_preset_completion_list)
+                                                       get_allowed_languages_for_preset_completion_list,
+                                                       get_protocols_completion_list)
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
 

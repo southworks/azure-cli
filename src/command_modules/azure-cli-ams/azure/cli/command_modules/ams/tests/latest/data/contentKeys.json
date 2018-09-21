@@ -1,0 +1,37 @@
+[
+	{
+		"id": "12345678-aaaa-bbbb-cccc-ddddeeeeffff",
+		"label": "je",
+		"value": "dmFsdWU="
+	},
+	{
+		"id": "12345678-aaaa-bbbb-cccc-ddddeeeeefff",
+		"label": "je",
+		"value": "YW5vdGhlciB2YWx1ZQ==",
+		"tracks": [
+			{
+				"trackSelections": [
+					{
+						"property": "FourCC",
+						"operation": "Equal",
+						"value": "foo"
+					}
+				]
+			},
+			{
+				"trackSelections": [
+					{
+						"property": "Unknown",
+						"operation": "Unknown",
+						"value": "foo"
+					},
+					{
+						"property": "FourCC",
+						"operation": "Equal",
+						"value": "bar"
+					}
+				]
+			}
+		]
+	}
+]
