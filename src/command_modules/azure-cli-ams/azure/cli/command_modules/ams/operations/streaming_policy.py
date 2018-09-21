@@ -10,27 +10,26 @@ from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProto
                                      StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
                                      StreamingPolicyContentKeys,
                                      CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
-                                     StreamingPolicyWidevineConfiguration)
+                                     StreamingPolicyWidevineConfiguration, EnabledProtocols)
 from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
 
 
 def create_streaming_policy(cmd, resource_group_name, account_name,
                             streaming_policy_name,
-                            download=False, dash=False, hls=False, smooth_streaming=False,
+                            no_encryption_protocols=None,
                             default_content_key_policy_name=None,
                             cenc_default_key_label=None, cenc_default_key_policy_name=None,
                             cenc_clear_tracks=None, cenc_key_to_track_mappings=None,
                             cenc_play_ready_url_template=None, cenc_play_ready_attributes=None,
                             cenc_widevine_url_template=None,
-                            cenc_download=False, cenc_dash=False, cenc_hls=False, cenc_smooth_streaming=False):
+                            cenc_protocols=None):
 
-    no_encryption = _no_encryption_factory(download, dash, hls, smooth_streaming)
+    no_encryption = _no_encryption_factory(no_encryption_protocols)
 
-    common_encryption_cenc = _cenc_encryption_factory(cenc_download, cenc_dash, cenc_hls, cenc_smooth_streaming,
+    common_encryption_cenc = _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                                                       cenc_default_key_label, cenc_default_key_policy_name,
                                                       cenc_key_to_track_mappings, cenc_clear_tracks,
-                                                      cenc_play_ready_url_template, cenc_play_ready_attributes,
-                                                      cenc_widevine_url_template)
+                                                      cenc_play_ready_url_template, cenc_play_ready_attributes)
 
     streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
                                        no_encryption=no_encryption,
@@ -40,16 +39,17 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                              streaming_policy_name, streaming_policy)
 
 
-def _no_encryption_factory(download, dash, hls, smooth_streaming):
-    enabled_protocols = EnabledProtocols(download=download, dash=dash, hls=hls, smooth_streaming=smooth_streaming)
+def _no_encryption_factory(no_encryption_protocols):
+    enabled_protocols = _build_enabled_protocols_object(no_encryption_protocols)
     return NoEncryption(enabled_protocols=enabled_protocols)
 
 
-def _cenc_encryption_factory(cenc_download, cenc_dash, cenc_hls, cenc_smooth_streaming,
+def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                              cenc_default_key_label, cenc_default_key_policy_name,
                              cenc_key_to_track_mappings, cenc_clear_tracks,
-                             cenc_play_ready_url_template, cenc_play_ready_attributes,
-                             cenc_widevine_url_template):
+                             cenc_play_ready_url_template, cenc_play_ready_attributes):
+    cenc_enabled_protocols = _build_enabled_protocols_object(cenc_protocols)
+
     cenc_enabled_protocols = EnabledProtocols(download=cenc_download, dash=cenc_dash, hls=cenc_hls, smooth_streaming=cenc_smooth_streaming)
 
     cenc_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cenc_default_key_label,
@@ -77,3 +77,10 @@ def _parse_key_to_track_mappings_json(cenc_key_to_track_mappings):
             str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
             key_to_track_mappings.append(str_policy_content_key)
     return key_to_track_mappings
+
+
+def _build_enabled_protocols_object(protocols):
+    return EnabledProtocols(download='Download' in protocols,
+                            dash='Dash' in protocols,
+                            hls='HLS' in protocols,
+                            smooth_streaming='SmoothStreaming' in protocols)
