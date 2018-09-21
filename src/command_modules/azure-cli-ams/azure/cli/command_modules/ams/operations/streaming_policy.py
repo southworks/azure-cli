@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
+import json
+
 import os
 
 from knack.util import CLIError
@@ -18,7 +20,6 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             envelope_custom_key_acquisition_url_template=None,
                             envelope_default_key_label=None, envelope_default_key_policy_name=None):
     from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
-    from azure.cli.command_modules.ams._utils import json2obj
     from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
                                          CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
                                          StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
@@ -53,10 +54,11 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
     if envelope_key_to_track_mappings is not None and os.path.exists(envelope_key_to_track_mappings):
         try:
             with open(envelope_key_to_track_mappings) as json_stream:
-                envelope_streaming_policy_content_key = json2obj(json_stream)
+                json_string = json.load(json_stream)
+                envelope_streaming_policy_content_key = json2obj(json_string)
         except:
-            raise CLIError("Couldn't find a valid JSON definition in '{}'. Check the schema is correct."
-                           .format(envelope_key_to_track_mappings))
+            raise CLIError("Couldn't find a valod JSON definition in '{}'. Check the schema is correct.".format(envelope_key_to_track_mappings)
+
     envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_default_key_label,
                                                                               policy_name=envelope_default_key_policy_name),
                                                        key_to_track_mappings=envelope_streaming_policy_content_key)
