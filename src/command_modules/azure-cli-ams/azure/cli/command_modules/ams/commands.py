@@ -117,6 +117,8 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
                          custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
         g.custom_command('remove', 'remove_content_key_policy_option',
                          custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
+        g.custom_command('update', 'update_content_key_policy_option',
+                         custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
 
     with self.command_group('ams streaming locator', get_sdk('StreamingLocators', get_streaming_locators_client)) as g:
         g.custom_command('create', 'create_streaming_locator',

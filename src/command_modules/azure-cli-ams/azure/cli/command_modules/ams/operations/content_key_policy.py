@@ -105,6 +105,16 @@ def remove_content_key_policy_option(client, resource_group_name, account_name, 
                          content_key_policy_name, policy.options)
 
 
+def update_content_key_policy_option(client, resource_group_name, account_name, content_key_policy_name,
+                                     policy_option_name=None, clear_key_configuration=False, open_restriction=False,
+                                     issuer=None, audience=None, token_key=None, token_key_type=None,
+                                  alt_symmetric_token_keys=None, alt_rsa_token_keys=None, alt_x509_certificate_token_keys=None,
+                                  token_claims=None, token_type=None, open_id_connect_discovery_document=None,
+                                  widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
+                                  rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
+    pass
+
+
 def update_content_key_policy_setter(client, resource_group_name, account_name, content_key_policy_name,
                                      parameters, alt_key_symmetric=False, alt_key_rsa=False, alt_key_x509=False,
                                      symmetric=False, rsa=False, x509=False):
