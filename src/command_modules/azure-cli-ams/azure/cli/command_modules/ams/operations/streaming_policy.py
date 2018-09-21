@@ -7,7 +7,14 @@ import json
 
 import os
 
-from knack.util import CLIError
+from knack.util import 
+
+from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
+from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
+                                        CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
+                                        StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
+                                        CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
+                                        StreamingPolicyWidevineConfiguration, EnvelopeEncryption)
 
 def create_streaming_policy(cmd, resource_group_name, account_name,
                             streaming_policy_name, no_encryption_protocols=None,
@@ -19,18 +26,24 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
                             envelope_custom_key_acquisition_url_template=None,
                             envelope_default_key_label=None, envelope_default_key_policy_name=None):
-    from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
-    from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
-                                         CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
-                                         StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
-                                         CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
-                                         StreamingPolicyWidevineConfiguration, EnvelopeEncryption)
 
     no_encryption_enabled_protocols = _build_enabled_protocols_object(no_encryption_protocols)
     cenc_enabled_protocols = _build_enabled_protocols_object(cenc_protocols)
 
+    
     # TODO: Remove this after adding support for parsing JSON data
     track_property_condition = TrackPropertyCondition(property='FourCC', operation='Equal', value='testValue')
+    # TODO: Remove this after adding support for parsing JSON data
+    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label='testLabel',
+                                                            policy_name='x512Policy',
+                                                            tracks=[TrackSelection(track_selections=[track_property_condition])])]
+
+    cenc_clear_tracks = []
+    with open(envelope_clear_tracks) as envelope_clear_tracks_stream:
+	    envelope_clear_tracks_json = json.load(envelope_clear_tracks_stream)
+	    for track_selection_json in envelope_clear_tracks_json:
+		    track_selection = TrackSelection(**track_selection_json)
+		    envelope_encryption.clear_tracks.append(track_selection)
 
     cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
         custom_license_acquisition_url_template=cenc_play_ready_url_template,
@@ -40,36 +53,19 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
         custom_license_acquisition_url_template=cenc_widevine_url_template)
 
     # TODO: Remove this after adding support for parsing JSON data
-    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label='testLabel',
-                                                            policy_name='x512Policy',
-                                                            tracks=[TrackSelection(track_selections=[track_property_condition])])]
+    cenc_key_to_track_mappings = [StreamingPolicyContentKey(label=cenc_default_key_label,
+                                                            policy_name=cenc_default_key_policy_name,
+                                                            tracks=cenc_tracks)]
 
     envelope_encryption_enabled_protocols = _build_enabled_protocols_object(envelope_protocols)
-            
 
-
-    # TODO: Define envelope_streaming_policy_content_key (StreamingPolicyContentKey list) json: envelope_key_to_track_mappings
-    track_selection = None
-    envelope_streaming_policy_content_key = None
-    if envelope_key_to_track_mappings is not None and os.path.exists(envelope_key_to_track_mappings):
-        try:
-            with open(envelope_key_to_track_mappings) as json_stream:
-                json_string = json.load(json_stream)
-                envelope_streaming_policy_content_key = json2obj(json_string)
-        except:
-            raise CLIError("Couldn't find a valod JSON definition in '{}'. Check the schema is correct.".format(envelope_key_to_track_mappings)
-
-    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_default_key_label,
-                                                                              policy_name=envelope_default_key_policy_name),
-                                                       key_to_track_mappings=envelope_streaming_policy_content_key)
-
-    envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols,
-                                             clear_tracks=track_selection,
-                                             content_keys=envelope_content_keys,
-                                             custom_key_acquisition_url_template=envelope_custom_key_acquisition_url_template)
+    envelope_encryption = _envelope_encryption_factory(envelope_encryption_enabled_protocols, envelope_clear_tracks,
+                                                       envelope_content_keys, envelope_custom_key_acquisition_url_template,
+                                                       envelope_default_key_label, envelope_default_key_policy_name,
+                                                       envelope_streaming_policy_content_key, envelope_key_to_track_mappings)
 
     common_encryption_cenc = CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
-                                                  clear_tracks=[TrackSelection(track_selections=[track_property_condition])],
+                                                  clear_tracks=cenc_tracks,
                                                   content_keys=StreamingPolicyContentKeys(
                                                       default_key=DefaultKey(label=cenc_default_key_label,
                                                                              policy_name=cenc_default_key_policy_name),
@@ -101,3 +97,33 @@ def _build_enabled_protocols_object(protocols):
             else:
                 raise CLIError('Unknown protocol {}.'.format(protocol))
     return enabled_protocols
+
+def _envelope_encryption_factory(envelope_encryption_enabled_protocols, envelope_clear_tracks,
+                                 envelope_content_keys, envelope_custom_key_acquisition_url_template,
+                                 envelope_default_key_label, envelope_default_key_policy_name,
+                                 envelope_streaming_policy_content_key, envelope_key_to_track_mappings):
+    
+    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_default_key_label,
+                                                                              policy_name=envelope_default_key_policy_name),
+                                                       key_to_track_mappings=None)
+
+    envelope_encryption = EnvelopeEncryption(enabled_protocols=envelope_encryption_enabled_protocols,
+                                             clear_tracks=None,
+                                             content_keys=envelope_content_keys,
+                                             custom_key_acquisition_url_template=envelope_custom_key_acquisition_url_template)
+
+    if envelope_key_to_track_mappings is not None:
+        with open(envelope_key_to_track_mappings) as envelope_key_to_track_mappings_stream:
+	        envelope_key_to_track_mappings_json = json.load(envelope_key_to_track_mappings_stream)
+	        for streaming_policy_content_key_json in envelope_key_to_track_mappings_json:
+		        streaming_policy_content_key = StreamingPolicyContentKey(**streaming_policy_content_key_json)
+		        envelope_encryption.content_keys.key_to_track_mappings.append(streaming_policy_content_key)
+
+    if envelope_clear_tracks is not None:
+        with open(envelope_clear_tracks) as envelope_clear_tracks_stream:
+	        envelope_clear_tracks_json = json.load(envelope_clear_tracks_stream)
+	        for track_selection_json in envelope_clear_tracks_json:
+		        track_selection = TrackSelection(**track_selection_json)
+		        envelope_encryption.clear_tracks.append(track_selection)
+
+    return envelope_encryption

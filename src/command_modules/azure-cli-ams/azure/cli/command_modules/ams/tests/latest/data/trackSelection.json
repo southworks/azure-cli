@@ -1,0 +1,12 @@
+[
+   {
+      "property":"FourCC",
+      "value1":"value",
+      "operation":"Equal"
+   },
+   {
+      "property":"FourCC",
+      "value":"value2",
+      "operation":"Unknown"
+   }
+]
