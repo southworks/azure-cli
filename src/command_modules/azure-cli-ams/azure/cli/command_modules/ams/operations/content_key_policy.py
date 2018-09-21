@@ -31,16 +31,16 @@ from azure.mgmt.media.models import (ContentKeyPolicyOption, ContentKeyPolicyCle
 def create_content_key_policy(client, resource_group_name, account_name, content_key_policy_name,
                               policy_option_name, description=None,
                               clear_key_configuration=False, open_restriction=False,
-                              issuer=None, audience=None, token_key=None, token_type=None,
+                              issuer=None, audience=None, token_key=None, token_key_type=None,
                               alt_symmetric_token_keys=None, alt_rsa_token_keys=None, alt_x509_certificate_token_keys=None,
-                              token_claims=None, restriction_token_type=None, open_id_connect_discovery_document=None,
+                              token_claims=None, token_type=None, open_id_connect_discovery_document=None,
                               widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
                               rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
 
     policy_option = _generate_content_key_policy_option(policy_option_name, clear_key_configuration, open_restriction,
-                                                        issuer, audience, token_key, token_type,
+                                                        issuer, audience, token_key, token_key_type,
                                                         alt_symmetric_token_keys, alt_rsa_token_keys, alt_x509_certificate_token_keys,
-                                                        token_claims, restriction_token_type, open_id_connect_discovery_document,
+                                                        token_claims, token_type, open_id_connect_discovery_document,
                                                         widevine_template, ask, fair_play_pfx_password, fair_play_pfx,
                                                         rental_and_lease_key_type, rental_duration, play_ready_template)
 
@@ -63,9 +63,9 @@ def show_content_key_policy(client, resource_group_name, account_name, content_k
 
 def add_content_key_policy_option(client, resource_group_name, account_name, content_key_policy_name,
                                   policy_option_name, clear_key_configuration=False, open_restriction=False,
-                                  issuer=None, audience=None, token_key=None, token_type=None,
+                                  issuer=None, audience=None, token_key=None, token_key_type=None,
                                   alt_symmetric_token_keys=None, alt_rsa_token_keys=None, alt_x509_certificate_token_keys=None,
-                                  token_claims=None, restriction_token_type=None, open_id_connect_discovery_document=None,
+                                  token_claims=None, token_type=None, open_id_connect_discovery_document=None,
                                   widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
                                   rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
 
@@ -77,9 +77,9 @@ def add_content_key_policy_option(client, resource_group_name, account_name, con
     options = policy.options
 
     policy_option = _generate_content_key_policy_option(policy_option_name, clear_key_configuration, open_restriction,
-                                                        issuer, audience, token_key, token_type,
+                                                        issuer, audience, token_key, token_key_type,
                                                         alt_symmetric_token_keys, alt_rsa_token_keys, alt_x509_certificate_token_keys,
-                                                        token_claims, restriction_token_type, open_id_connect_discovery_document,
+                                                        token_claims, token_type, open_id_connect_discovery_document,
                                                         widevine_template, ask, fair_play_pfx_password, fair_play_pfx,
                                                         rental_and_lease_key_type, rental_duration, play_ready_template)
 
@@ -159,17 +159,17 @@ def update_content_key_policy(instance, description=None):
 # Private methods used
 
 def _generate_content_key_policy_option(policy_option_name, clear_key_configuration, open_restriction,
-                                        issuer, audience, token_key, token_type,
+                                        issuer, audience, token_key, token_key_type,
                                         alt_symmetric_token_keys, alt_rsa_token_keys, alt_x509_certificate_token_keys,
-                                        token_claims, restriction_token_type, open_id_connect_discovery_document,
+                                        token_claims, token_type, open_id_connect_discovery_document,
                                         widevine_template, ask, fair_play_pfx_password, fair_play_pfx,
                                         rental_and_lease_key_type, rental_duration, play_ready_template):
 
     configuration = None
     restriction = None
 
-    valid_token_restriction = _valid_token_restriction(token_key, token_type,
-                                                       restriction_token_type, issuer, audience)
+    valid_token_restriction = _valid_token_restriction(token_key, token_key_type,
+                                                       token_type, issuer, audience)
 
     valid_fairplay_configuration = _valid_fairplay_configuration(ask, fair_play_pfx_password,
                                                                  fair_play_pfx, rental_and_lease_key_type,
@@ -208,11 +208,11 @@ def _generate_content_key_policy_option(policy_option_name, clear_key_configurat
         alternate_keys = []
         _token_claims = []
 
-        if token_type == 'Symmetric':
+        if token_key_type == 'Symmetric':
             primary_verification_key = _symmetric_token_key_factory(token_key)
-        elif token_type == 'RSA':
+        elif token_key_type == 'RSA':
             primary_verification_key = _rsa_token_key_factory(token_key)
-        elif token_type == 'X509':
+        elif token_key_type == 'X509':
             primary_verification_key = _x509_token_key_factory(token_key)
 
         for key in _coalesce_lst(alt_symmetric_token_keys):
@@ -233,7 +233,7 @@ def _generate_content_key_policy_option(policy_option_name, clear_key_configurat
         restriction = ContentKeyPolicyTokenRestriction(
             issuer=issuer, audience=audience, primary_verification_key=primary_verification_key,
             alternate_verification_keys=alternate_keys, required_claims=_token_claims,
-            restriction_token_type=restriction_token_type,
+            restriction_token_type=token_type,
             open_id_connect_discovery_document=open_id_connect_discovery_document)
 
     if restriction is None or configuration is None:
@@ -284,9 +284,9 @@ def _x509_token_key_factory(input_x509):
         raw_body=bytearray(content, 'ascii'))
 
 
-def _valid_token_restriction(token_key, token_type, restriction_token_type, issuer, audience):
+def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audience):
     return _validate_all_conditions(
-        [restriction_token_type, token_key, token_type in get_tokens(), issuer, audience],
+        [token_type, token_key, token_key_type in get_tokens(), issuer, audience],
         'Malformed content key policy token restriction.')
 
 

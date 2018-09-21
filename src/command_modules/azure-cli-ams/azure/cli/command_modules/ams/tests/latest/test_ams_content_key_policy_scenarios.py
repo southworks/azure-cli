@@ -147,7 +147,7 @@ class AmsContentKeyPolicyTests(ScenarioTest):
             'issuer': 'AnotherIssuer'
         })
 
-        self.cmd('az ams content-key-policy create -a {amsname} -n {contentKeyPolicyName} -g {rg} --description {description} --clear-key-configuration --issuer {issuer} --audience {audience} --token-key "{tokenKey}" --token-type {tokenType} --restriction-token-type {restrictionTokenType} --token-claims {tokenClaims} --open-id-connect-discovery-document {openIDConnectDiscoveryDocument} --policy-option-name {policyOptionName}', checks=[
+        self.cmd('az ams content-key-policy create -a {amsname} -n {contentKeyPolicyName} -g {rg} --description {description} --clear-key-configuration --issuer {issuer} --audience {audience} --token-key "{tokenKey}" --token-key-type {tokenType} --token-type {restrictionTokenType} --token-claims {tokenClaims} --open-id-connect-discovery-document {openIDConnectDiscoveryDocument} --policy-option-name {policyOptionName}', checks=[
             self.check('name', '{contentKeyPolicyName}'),
             self.check('options[0].configuration.odatatype', '{configurationODataType}'),
             self.check('options[0].restriction.issuer', '{issuer}'),
@@ -230,7 +230,7 @@ class AmsContentKeyPolicyTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams content-key-policy create -a {amsname} -n {contentKeyPolicyName} -g {rg} --description {description} --issuer {issuer} --audience {audience} --token-key "{tokenKey}" --token-type {tokenType} --restriction-token-type {restrictionTokenType} --widevine-template "{jsonFile}" --token-claims {tokenClaims} --open-id-connect-discovery-document {openIDConnectDiscoveryDocument} --policy-option-name {policyOptionName}', checks=[
+        self.cmd('az ams content-key-policy create -a {amsname} -n {contentKeyPolicyName} -g {rg} --description {description} --issuer {issuer} --audience {audience} --token-key "{tokenKey}" --token-key-type {tokenType} --token-type {restrictionTokenType} --widevine-template "{jsonFile}" --token-claims {tokenClaims} --open-id-connect-discovery-document {openIDConnectDiscoveryDocument} --policy-option-name {policyOptionName}', checks=[
             self.check('name', '{contentKeyPolicyName}'),
             self.check('options[0].configuration.odatatype', '{configurationODataType}'),
             self.check('options[0].restriction.issuer', '{issuer}'),
@@ -353,7 +353,7 @@ class AmsContentKeyPolicyTests(ScenarioTest):
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} -n {contentKeyPolicyName} --clear-key-configuration --policy-option-name {policyOptionName} --token-key "{tokenKey}" --token-type {tokenType} --issuer {issuer} --audience {audience} --restriction-token-type {restrictionTokenType}')
+        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} -n {contentKeyPolicyName} --clear-key-configuration --policy-option-name {policyOptionName} --token-key "{tokenKey}" --token-key-type {tokenType} --issuer {issuer} --audience {audience} --token-type {restrictionTokenType}')
 
         self.cmd('az ams content-key-policy show -a {amsname} -n {contentKeyPolicyName} -g {rg}', checks=[
             self.check('options[0].restriction.primaryVerificationKey.rawBody', None)
