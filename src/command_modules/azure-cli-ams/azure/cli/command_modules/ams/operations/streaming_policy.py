@@ -60,10 +60,6 @@ def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                              cenc_play_ready_url_template, cenc_play_ready_attributes):
     cenc_enabled_protocols = _build_enabled_protocols_object(cenc_protocols)
 
-    cenc_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cenc_default_key_label,
-                                                                          policy_name=cenc_default_key_policy_name),
-                                                   key_to_track_mappings = _parse_key_to_track_mappings_json(cenc_key_to_track_mappings))
-
     cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
         custom_license_acquisition_url_template=cenc_play_ready_url_template,
         play_ready_custom_attributes=cenc_play_ready_attributes)
@@ -76,7 +72,7 @@ def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                                                    key_to_track_mappings = _parse_key_to_track_mappings_json(cenc_key_to_track_mappings))
 
     return CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
-                                clear_tracks=cenc_clear_tracks,
+                                clear_tracks=_parse_clear_tracks_json(cenc_clear_tracks),
                                 content_keys=cenc_content_keys,
                                 drm=CencDrmConfiguration(play_ready=cenc_play_ready_config, widevine=cenc_widevine_config))
 
@@ -95,7 +91,7 @@ def _parse_key_to_track_mappings_json(key_to_track_mappings):
 def _parse_clear_tracks_json(clear_tracks):
     clear_tracks_result = []
     if clear_tracks is not None:
-        with open(clear_tracks_result) as clear_tracks_result_stream:
+        with open(clear_tracks) as clear_tracks_result_stream:
             clear_tracks_json = json.load(clear_tracks_result_stream)
             for track_selection_json in clear_tracks_json:
                 track_selection = TrackSelection(**track_selection_json)
