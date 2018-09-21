@@ -146,7 +146,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('open_restriction',
                    action='store_true',
                    arg_group='Open Restriction',
-                   help='Use open restriction. License or key will be delivered on every request.')
+                   help='Use open restriction. License or key will be delivered on every request. Not recommended for production environments.')
         c.argument('alt_key_symmetric',
                    action='store_true',
                    arg_group='Token Restriction Key Type',
