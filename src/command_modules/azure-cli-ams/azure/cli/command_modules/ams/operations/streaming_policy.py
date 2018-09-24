@@ -78,8 +78,9 @@ def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
-    key_to_track_mappings_result = []
+    key_to_track_mappings_result = None
     if key_to_track_mappings is not None:
+        key_to_track_mappings_result = []
         with open(key_to_track_mappings) as key_to_track_mappings_stream:
             key_to_track_mappings_json = json.load(key_to_track_mappings_stream)
             for str_policy_content_key_json in key_to_track_mappings_json:
@@ -89,8 +90,9 @@ def _parse_key_to_track_mappings_json(key_to_track_mappings):
 
 
 def _parse_clear_tracks_json(clear_tracks):
-    clear_tracks_result = []
+    clear_tracks_result = None
     if clear_tracks is not None:
+        clear_tracks_result = []
         with open(clear_tracks) as clear_tracks_result_stream:
             clear_tracks_json = json.load(clear_tracks_result_stream)
             for track_selection_json in clear_tracks_json:
