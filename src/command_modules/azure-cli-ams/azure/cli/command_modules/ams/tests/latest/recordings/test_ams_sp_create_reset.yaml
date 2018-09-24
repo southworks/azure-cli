@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-08-07T00:00:37Z"}}'
+      "date": "2018-09-24T16:41:56Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -10,18 +10,18 @@ interactions:
       Content-Length: ['110']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 resourcemanagementclient/2.0.0rc2 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 resourcemanagementclient/2.0.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-08-07T00:00:37Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-24T16:41:56Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:00:44 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:00 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
@@ -30,16 +30,16 @@ interactions:
     status: {code: 201, message: Created}
 - request:
     body: '{"sku": {"name": "Standard_LRS"}, "kind": "Storage", "location": "westus",
-      "properties": {"supportsHttpsTrafficOnly": false}}'
+      "properties": {"supportsHttpsTrafficOnly": false, "isHnsEnabled": false}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [storage account create]
       Connection: [keep-alive]
-      Content-Length: ['125']
+      Content-Length: ['148']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-storage/1.5.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002?api-version=2018-03-01-preview
@@ -49,9 +49,9 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:00:49 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:04 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/8474f459-4d19-45e3-9e24-5ea1ab04cdeb?monitor=true&api-version=2017-10-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/81ec891a-19ec-4415-9548-06434752148e?monitor=true&api-version=2018-03-01-preview']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
@@ -66,19 +66,17 @@ interactions:
       Accept-Encoding: ['gzip, deflate']
       CommandName: [storage account create]
       Connection: [keep-alive]
-      Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-storage/1.5.0 Azure-SDK-For-Python AZURECLI/2.0.43]
-      accept-language: [en-US]
+          msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/8474f459-4d19-45e3-9e24-5ea1ab04cdeb?monitor=true&api-version=2017-10-01
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/81ec891a-19ec-4415-9548-06434752148e?monitor=true&api-version=2018-03-01-preview
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-08-07T00:00:49.0734666Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-08-07T00:00:49.0734666Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-08-07T00:00:48.9607201Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-24T16:42:04.4377671Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-24T16:42:04.4377671Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-24T16:42:04.3128279Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
-      content-length: ['1231']
+      content-length: ['1252']
       content-type: [application/json]
-      date: ['Tue, 07 Aug 2018 00:01:06 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:23 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -98,17 +96,17 @@ interactions:
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-storage/1.5.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2018-03-01-preview
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"Wq1aa3w+uAxjX0CYM26xnxCLPAycKSeSXZ6LaYZ7lpUhb69EE+wZokWjYorX3j8HX41W1zhBsvH6HPtZ5uJEKg==","permissions":"FULL"},{"keyName":"key2","value":"mCNJofASaZgnR69DOvtfFr9k4gzyHIZJ45WELPGxrScozgmX1HndHFFvINc6xkXBA9d2ACEQkHgBx8Hn1l5JnA==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"fQFpOIzRMSdsExDqb7T9TfDp1CZM+Bppvd/8prUrrCPqo9SSJzED+8V+Q6Sbsk4iXEDGSIASuEIQAOOTFU98gA==","permissions":"FULL"},{"keyName":"key2","value":"G47nRGuC4zLyaR2K4D5GTrxf1GxkVnhoT6tcidvwE7ZZBOC6AYKM8Q1REzTQYab9sY6cvNZaITOyMS/ZbZ/MWA==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Tue, 07 Aug 2018 00:01:08 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:24 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -117,7 +115,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-ratelimit-remaining-subscription-writes: ['1196']
     status: {code: 200, message: OK}
 - request:
     body: 'b''b\''{"location": "westus2", "properties": {"storageAccounts": [{"id":
@@ -131,24 +129,24 @@ interactions:
       Content-Length: ['302']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc1 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-03-30-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d9b9d5f3-9dd6-4378-96b8-e8fd73f4e461\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d927af27-551e-4c3b-a4e0-35493673787e\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Tue, 07 Aug 2018 00:01:13 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:30 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
-      server: [Microsoft-IIS/8.5]
+      server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
       x-ms-ratelimit-remaining-subscription-writes: ['1199']
@@ -163,24 +161,24 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc1 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-03-30-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d9b9d5f3-9dd6-4378-96b8-e8fd73f4e461\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d927af27-551e-4c3b-a4e0-35493673787e\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Tue, 07 Aug 2018 00:01:16 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:32 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
-      server: [Microsoft-IIS/8.5]
+      server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
@@ -196,71 +194,70 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/servicePrincipals?$filter=servicePrincipalNames%2Fany%28x%3Ax%20eq%20%27http%3A%2F%2Fclitest.rg000001%27%29&api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal","value":[]}'}
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['166']
+      content-length: ['121']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:18 GMT']
-      duration: ['1950247']
+      date: ['Mon, 24 Sep 2018 16:42:33 GMT']
+      duration: ['2015453']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [eDBRdQV8u+1gM9UsCxIgTpJXzthWX/WsoVn8Knk1ff0=]
-      ocp-aad-session-key: [xjPgQY1FawzENeKyHEQcwfLEznndlqiXn3FWiOM7f4xKHKiLWYJtFkGvIG-fcvGIl-Smo1urqfAF3oRCwEPQKrOQgOeQtH6l56Il5ZpVIDOexL_15Iw_tVcE8NHN2GaM.TrBX2LbOScAgOKCML7REFgQ1D0QYQLv71YlHNQfucVY]
+      ocp-aad-diagnostics-server-name: [Ho795JkYdfSM8wV1ZyDMiLjrrCls8HK8hntiSRRDLyc=]
+      ocp-aad-session-key: [wgcGCj_SAhr9xvIEDrCShIySldEW2MCFjIzQ8IbEqD6GiVTkl4wST6GHzrZ5LVvLtA4y-CkkUVsbjFRtj9OwyUxKSX3CApxwwwjOgIgM6OVT9u2PQOFXn1Cvyb5w1Nz-.wFKZWW1RPT4UAZCU4Bv1RMbNFVV_rGifScCaotXmbOQ]
       pragma: [no-cache]
-      request-id: [afe70562-0d71-4585-b1ff-b81505c6d43b]
+      request-id: [d75a779e-92fe-4686-b6d4-e7d25b1d0881]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
-      x-content-type-options: [nosniff]
       x-ms-dirapi-data-contract-version: ['1.6']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
 - request:
     body: 'b''b\''b\\\''{"availableToOtherTenants": false, "displayName": "clitest.rg000001",
       "homepage": "http://clitest.rg000001", "identifierUris": ["http://clitest.rg000001"],
-      "passwordCredentials": [{"startDate": "2018-08-07T00:01:17.96033Z", "endDate":
-      "2019-08-07T00:01:17.96033Z", "keyId": "88888888-0000-0000-0000-000000000001",
+      "passwordCredentials": [{"startDate": "2018-09-24T16:42:35.948146Z", "endDate":
+      "2019-09-24T16:42:35.948146Z", "keyId": "88888888-0000-0000-0000-000000000001",
       "value": "spp000004"}]}\\\''\'''''
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams account sp create]
       Connection: [keep-alive]
-      Content-Length: ['515']
+      Content-Length: ['517']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: POST
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications?api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.Application/@Element","odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"ee3406c0-66d1-4530-8f26-01e850ef7c71","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"397c4626-4244-43ee-9483-03630a4441eb","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logo@odata.mediaContentType":"application/json;odata=minimalmetadata;
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.Application/@Element","odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"4ff1a95e-f5e8-4bfa-a419-0cb31be85290","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logo@odata.mediaContentType":"application/json;odata=minimalmetadata;
         charset=utf-8","logoUrl":null,"oauth2AllowIdTokenImplicitFlow":true,"oauth2AllowImplicitFlow":false,"oauth2AllowUrlPathMatching":false,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-08-07T00:01:17.96033Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-08-07T00:01:17.96033Z","value":null}],"publicClient":null,"publisherDomain":"mediasouthworksdirectory.onmicrosoft.com","recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}'}
+        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-09-24T16:42:35.948146Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-09-24T16:42:35.948146Z","value":null}],"publicClient":null,"publisherDomain":null,"recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['2444']
+      content-length: ['2408']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:19 GMT']
-      duration: ['13951669']
+      date: ['Mon, 24 Sep 2018 16:42:34 GMT']
+      duration: ['5872270']
       expires: ['-1']
-      location: ['https://graph.windows.net/00000000-0000-0000-0000-000000000000/directoryObjects/ee3406c0-66d1-4530-8f26-01e850ef7c71/Microsoft.DirectoryServices.Application']
-      ocp-aad-diagnostics-server-name: [aNY8kMDS4IwIFPDu3BGMu5wwDRNnJNSevZroy4aYsZ8=]
-      ocp-aad-session-key: [Vdsh7vRq7MsoiDNiZvntI07QQl4HwSb7FprDtYZXnzx2KCVgn9CydLDnnpGuH1VYVif8TBnkU94ELm2gofGDwaSRuf8GblRux0E6p2jCYUl97hrvU3BiLjfNx4gAaVP2YUEtvLIUGlENfgTrrF4U5A.ukw-lZL7yBRXT3L_MUhr7O7EF0POOVKf8wqNkvuH2YE]
+      location: ['https://graph.windows.net/00000000-0000-0000-0000-000000000000/directoryObjects/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/Microsoft.DirectoryServices.Application']
+      ocp-aad-diagnostics-server-name: [gVYeWZfSX9mkzriipUjAD9i6IZAJ5eI2PiGNN2hB0oU=]
+      ocp-aad-session-key: [8FnYiyfkKzIuJ9nAxMdQ61YdPNsp_Mk_aHSEtxyXk5B6HORBbztWl9DuX6Xzdrx2iuxTP5XM5m5tqh9vmVCVNqlWpWc_SHwf7Fw-K76x4s4Pd88_k10dtAUFnaAYUc9SWXjZjxkLwsOcTZv7NHB9Bw.9sHb3YNs4rgcM2WaPjOtzlhOq88q9pBebgnkoNxpvf0]
       pragma: [no-cache]
-      request-id: [8417bc45-184e-46d2-b421-de0494068eb1]
+      request-id: [3854399e-7ec7-4bbf-a678-b77c4f2a44b8]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
@@ -269,7 +266,7 @@ interactions:
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
-    body: '{"appId": "397c4626-4244-43ee-9483-03630a4441eb", "accountEnabled": true}'
+    body: '{"appId": "7be52e09-436e-4e13-b06d-f157cb670b69", "accountEnabled": true}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -278,30 +275,30 @@ interactions:
       Content-Length: ['73']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: POST
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/servicePrincipals?api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal/@Element","odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"f36a3cce-57a1-49ea-a93a-01e8df45b5a7","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"397c4626-4244-43ee-9483-03630a4441eb","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal/@Element","odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"ee970c5c-42d6-4b82-a155-bd3a08c9facc","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["397c4626-4244-43ee-9483-03630a4441eb","http://clitest.rg000001"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}'}
+        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["7be52e09-436e-4e13-b06d-f157cb670b69","http://clitest.rg000001"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
       content-length: ['1950']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:20 GMT']
-      duration: ['4439538']
+      date: ['Mon, 24 Sep 2018 16:42:35 GMT']
+      duration: ['5180818']
       expires: ['-1']
-      location: ['https://graph.windows.net/00000000-0000-0000-0000-000000000000/directoryObjects/f36a3cce-57a1-49ea-a93a-01e8df45b5a7/Microsoft.DirectoryServices.ServicePrincipal']
-      ocp-aad-diagnostics-server-name: [xsDuxg+DnSkPNi77Rg8RaRUuQ9cvtYMMdi27ynpDZuA=]
-      ocp-aad-session-key: [L_kBEfCJTLAY2N1ListIHQqT-y_KtoD8ODItdl0lGYuEYwe9R38LvMxACeEj0BqUAstvLF5AjwFHugJl6Lrib4VMM7aQysXNQci1OJhy_Vd6g_6_3svGGRwezceK18lUB1rq62haQA6JqBVsqRpwXA.1C4w92ZukAdyvZC8aKScpnNR2M9ueeVgKr_Gbp2jHvw]
+      location: ['https://graph.windows.net/00000000-0000-0000-0000-000000000000/directoryObjects/ee970c5c-42d6-4b82-a155-bd3a08c9facc/Microsoft.DirectoryServices.ServicePrincipal']
+      ocp-aad-diagnostics-server-name: [111y7HzMkoF7ETvCpr8Oy05nl+w+YtkaVR6AK6LH4Ao=]
+      ocp-aad-session-key: [GL3pLF_duaWrW7O6cZqqCdI4GVRl5zBlifm1xOiKBxGkG6m1AJLT2LZZqz5abURTuJYMgi7eqEu5-_8V7303-QS4ust8pRacofn-pTEkcKc-FKLI7lT6nyp1ACfC092F0Ki4TmnFGEV4wOPK3SG78g.1sv0eDqTV5wcGugK49HCzfKZoWMiNauHi66LQxxxH5s]
       pragma: [no-cache]
-      request-id: [a6c9eebe-a3c3-4800-8348-399887c57cb0]
+      request-id: [a30352ad-5486-4985-910b-51fdcb890c16]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
@@ -318,18 +315,18 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-authorization/0.40.0 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-authorization/0.50.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments?$filter=principalId%20eq%20%27f36a3cce-57a1-49ea-a93a-01e8df45b5a7%27&api-version=2018-01-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments?$filter=principalId%20eq%20%27ee970c5c-42d6-4b82-a155-bd3a08c9facc%27&api-version=2018-01-01-preview
   response:
     body: {string: '{"value":[]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['12']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:01:20 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:35 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -349,8 +346,8 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-authorization/0.40.0 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-authorization/0.50.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions?$filter=roleName%20eq%20%27Owner%27&api-version=2018-01-01-preview
@@ -361,7 +358,7 @@ interactions:
       cache-control: [no-cache]
       content-length: ['616']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:01:20 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:36 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -374,7 +371,7 @@ interactions:
     status: {code: 200, message: OK}
 - request:
     body: '{"properties": {"roleDefinitionId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
-      "principalId": "f36a3cce-57a1-49ea-a93a-01e8df45b5a7"}}'
+      "principalId": "ee970c5c-42d6-4b82-a155-bd3a08c9facc"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -383,26 +380,26 @@ interactions:
       Content-Length: ['233']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-authorization/0.40.0 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-authorization/0.50.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/88888888-0000-0000-0000-000000000002?api-version=2018-01-01-preview
   response:
-    body: {string: '{"properties":{"roleDefinitionId":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635","principalId":"f36a3cce-57a1-49ea-a93a-01e8df45b5a7","principalType":"ServicePrincipal","scope":"/subscriptions/00000000-0000-0000-0000-000000000000","createdOn":"2018-08-07T00:01:22.4228243Z","updatedOn":"2018-08-07T00:01:22.4228243Z","createdBy":null,"updatedBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57"},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/88888888-0000-0000-0000-000000000002","type":"Microsoft.Authorization/roleAssignments","name":"88888888-0000-0000-0000-000000000002"}'}
+    body: {string: '{"properties":{"roleDefinitionId":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635","principalId":"ee970c5c-42d6-4b82-a155-bd3a08c9facc","principalType":"ServicePrincipal","scope":"/subscriptions/00000000-0000-0000-0000-000000000000","createdOn":"2018-09-24T16:42:37.7782333Z","updatedOn":"2018-09-24T16:42:37.7782333Z","createdBy":null,"updatedBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57"},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/88888888-0000-0000-0000-000000000002","type":"Microsoft.Authorization/roleAssignments","name":"88888888-0000-0000-0000-000000000002"}'}
     headers:
       cache-control: [no-cache]
       content-length: ['721']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:01:27 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:43 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       set-cookie: [x-ms-gateway-slice=productionb; path=/; secure; HttpOnly]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
-      x-ms-request-charge: ['6']
+      x-ms-ratelimit-remaining-subscription-writes: ['1195']
+      x-ms-request-charge: ['7']
     status: {code: 201, message: Created}
 - request:
     body: null
@@ -413,24 +410,24 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc1 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-03-30-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d9b9d5f3-9dd6-4378-96b8-e8fd73f4e461\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"d927af27-551e-4c3b-a4e0-35493673787e\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Tue, 07 Aug 2018 00:01:29 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:44 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
-      server: [Microsoft-IIS/8.5]
+      server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
@@ -446,33 +443,32 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/servicePrincipals?$filter=servicePrincipalNames%2Fany%28x%3Ax%20eq%20%27http%3A%2F%2Fclitest.rg000001%27%29&api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.ServicePrincipal","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"f36a3cce-57a1-49ea-a93a-01e8df45b5a7","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"397c4626-4244-43ee-9483-03630a4441eb","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"ee970c5c-42d6-4b82-a155-bd3a08c9facc","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["http://clitest.rg000001","397c4626-4244-43ee-9483-03630a4441eb"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}]}'}
+        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["http://clitest.rg000001","7be52e09-436e-4e13-b06d-f157cb670b69"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['1953']
+      content-length: ['1908']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:30 GMT']
-      duration: ['1828374']
+      date: ['Mon, 24 Sep 2018 16:42:44 GMT']
+      duration: ['1717723']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [ajAuy+54u0qAiXjxBrFgLKwWHE/EqX+3rFmHXkT/eQk=]
-      ocp-aad-session-key: [185bxNHVv_GXi6FsAdtRmXbrb7qkn-qRLv7iGZ7gJX198BeWXccJWbiX39LdXHIdvK6iaEXhjYKaMy52RoOs2s2YglIQ8_ct1DdvCC3682TcDQYGvDqiMwEqxASvsgB0hwFW1-559c9Y0SBsarncbw.wZh--7__gSxZl3NSIHrLTKHNCXWakswh9Q7XYmv-hkE]
+      ocp-aad-diagnostics-server-name: [OdGMxGQXjcsEi1Ni8TYUlnct7L7Q1SWuomHGX99xfas=]
+      ocp-aad-session-key: [LqBmlYssKt3Ae_WtHWxCcNOJT8PkwLba66OaiUl9g8wBdGL3vqfszZcIQ8smbGQj9zgTYGVx8XO-jQNaYUAov6RJ_ctGkv8Vy3_JE1HWfnfj8YGa1Vo00Q4YqZx62b068WUQqzHMLv0OaeeiwFjeFQ.twEwoZuYJF-Y7TCf0P5_ShsIJHikqzOmeyNIVvf1MnU]
       pragma: [no-cache]
-      request-id: [5aa534a1-d546-4853-b1a9-1e0ab76c5602]
+      request-id: [3b60e81c-1ee7-47c9-b13f-f99352e42584]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
-      x-content-type-options: [nosniff]
       x-ms-dirapi-data-contract-version: ['1.6']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
@@ -485,33 +481,32 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications?$filter=appId%20eq%20%27397c4626-4244-43ee-9483-03630a4441eb%27&api-version=1.6
+    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications?$filter=appId%20eq%20%277be52e09-436e-4e13-b06d-f157cb670b69%27&api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.Application","value":[{"odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"ee3406c0-66d1-4530-8f26-01e850ef7c71","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"397c4626-4244-43ee-9483-03630a4441eb","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logoUrl":null,"oauth2AllowIdTokenImplicitFlow":true,"oauth2AllowImplicitFlow":false,"oauth2AllowUrlPathMatching":false,"oauth2Permissions":[{"adminConsentDescription":"Allow
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[{"odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"4ff1a95e-f5e8-4bfa-a419-0cb31be85290","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logo@odata.mediaEditLink":"directoryObjects/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/Microsoft.DirectoryServices.Application/logo","logoUrl":null,"mainLogo@odata.mediaEditLink":"directoryObjects/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/Microsoft.DirectoryServices.Application/mainLogo","oauth2AllowIdTokenImplicitFlow":true,"oauth2AllowImplicitFlow":false,"oauth2AllowUrlPathMatching":false,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-08-07T00:01:17.96033Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-08-07T00:01:17.96033Z","value":null}],"publicClient":null,"publisherDomain":"mediasouthworksdirectory.onmicrosoft.com","recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}]}'}
+        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-09-24T16:42:35.948146Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-09-24T16:42:35.948146Z","value":null}],"publicClient":null,"publisherDomain":null,"recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['2361']
+      content-length: ['2549']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:30 GMT']
-      duration: ['10253938']
+      date: ['Mon, 24 Sep 2018 16:42:45 GMT']
+      duration: ['1838927']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [2dwL4zmGotV02lDmIuML9wD2xi2nJgoszFrjUl3LYBw=]
-      ocp-aad-session-key: [HqmpN5Ha1asems21ENfWoYNugs1hmB24PgG1XMW9F5Ge9bs6qHVIRFTkS2TP_okA19B7qEIgzc4OT8zToHMtLMu08fzusPz5072rO1Y6lyLotdIJoLr8Mmyyan_6Us61-Z_An2aMdSWaxjHQ03eIiQ.lgcP9uCGu7OjMsCwvI1Mt5bnQkzUc9oklFAluB_hSsU]
+      ocp-aad-diagnostics-server-name: [j/TeueXqGoxg72Sodyo9LPF37e5fj6+aZ8dorDYYGeM=]
+      ocp-aad-session-key: [AFFUooncC4qnVhAw_z6oRmC9tLLVH2yMZ-01WceG7obsDym_SUyBXVmiT6cdZMRWJl0x3B8eQuoszbfyFvlMK25PDNgKwC3XSLxUnVfoRj-jc-2ddPlQzuNxzJa3pFLWAEhhFL-NBWm5lG3_tsxnsA.Euy3iAzB34WJaPHuEA4OyjGf7y1sxKQvLp8z2M5KHRM]
       pragma: [no-cache]
-      request-id: [4a2e93d3-e9ca-4110-8a5d-59b9a993a9be]
+      request-id: [9545d508-8a29-4144-a726-4062eeefea65]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
-      x-content-type-options: [nosniff]
       x-ms-dirapi-data-contract-version: ['1.6']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
@@ -524,62 +519,61 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/ee3406c0-66d1-4530-8f26-01e850ef7c71/passwordCredentials?api-version=1.6
+    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/passwordCredentials?api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#Collection(Microsoft.DirectoryServices.PasswordCredential)","value":[{"customKeyIdentifier":null,"endDate":"2019-08-07T00:01:17.96033Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-08-07T00:01:17.96033Z","value":null}]}'}
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#Collection(Microsoft.DirectoryServices.PasswordCredential)","value":[{"customKeyIdentifier":null,"endDate":"2019-09-24T16:42:35.948146Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-09-24T16:42:35.948146Z","value":null}]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['331']
+      content-length: ['333']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:32 GMT']
-      duration: ['9559341']
+      date: ['Mon, 24 Sep 2018 16:42:45 GMT']
+      duration: ['1757778']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [AO8aByeydM5hr4Nt08rI3IeFDTLsTL/1ZH6EpPaHXyU=]
-      ocp-aad-session-key: [jIAREsx92ZkkkY9e_YOdbsIzjdO9yBkV_LXoHltvtVSe0iQsqN3IKVMwyRXO4psGAp-0tiqsgRsiwqwN30CDwCP975MKQiqsTnnPcid-vd5yaqdMJOdyo-2QjHIdLuK5mkfVkbkYy46B9NGs1h-h0A.iqpzThyHqkLQCBPZBPLGUxssB1J2T0LGLEhcRkooQG0]
+      ocp-aad-diagnostics-server-name: [//4TX5pZNOCrnxb9nRymnqAwrGyiY4qbQf+67WslZ5A=]
+      ocp-aad-session-key: [sYgCIjnbLY4sldYI4ok0JYmdLFTkQquCN6tusM315Q-jwBJqCK-6yERhdfQbcGSs_onM92LuSiSMk6W4fnfDs0JDat4CrjS_NrrkY4FYA8blKfRHc1rZNojsdXfxyhmxtqnSGWNlXwDZ5DsYzz-1ng.ySMmEEd1kx9x4Qx4Rdkbnn2ouB8CEANzq2rxymX0pxY]
       pragma: [no-cache]
-      request-id: [d8a8ea43-959c-41dd-ae0f-98a0f3a586af]
+      request-id: [3481058d-9052-4be5-a686-97ace64a668e]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
-      x-content-type-options: [nosniff]
       x-ms-dirapi-data-contract-version: ['1.6']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
 - request:
-    body: 'b''b\''{"value": [{"customKeyIdentifier": null, "startDate": "2018-08-07T00:01:17.96033Z",
-      "endDate": "2019-08-07T00:01:17.96033Z", "keyId": "88888888-0000-0000-0000-000000000001"},
-      {"startDate": "2018-08-07T00:01:33.088214Z", "endDate": "2019-08-07T00:01:33.088214Z",
+    body: 'b''b\''{"value": [{"customKeyIdentifier": null, "startDate": "2018-09-24T16:42:35.948146Z",
+      "endDate": "2019-09-24T16:42:35.948146Z", "keyId": "88888888-0000-0000-0000-000000000001"},
+      {"startDate": "2018-09-24T16:42:48.216903Z", "endDate": "2019-09-24T16:42:48.216903Z",
       "keyId": "88888888-0000-0000-0000-000000000003", "value": "mynewpassword"}]}\'''''
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams account sp reset-credentials]
       Connection: [keep-alive]
-      Content-Length: ['338']
+      Content-Length: ['340']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PATCH
-    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/ee3406c0-66d1-4530-8f26-01e850ef7c71/passwordCredentials?api-version=1.6
+    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/passwordCredentials?api-version=1.6
   response:
     body: {string: ''}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
       dataserviceversion: [1.0;]
-      date: ['Tue, 07 Aug 2018 00:01:34 GMT']
-      duration: ['9003277']
+      date: ['Mon, 24 Sep 2018 16:42:47 GMT']
+      duration: ['5767099']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [+nuZMLTiSvc+2wqFU6pazf6WhUnCLVnMpclWVhs+ruw=]
-      ocp-aad-session-key: [oNpsY0Hgb6lDBhH7gXImQ0bHFui4goKz3aIqdD3oGkw79cPZ8qOftLgXaY0qg365SBVzRC8SZRbGNyACtAsZV4rMjVRsNH7CXstz8iNDhifJXYiYe1SQKwA7OKORGjCe-tfccHduABNbHtXAlqKhvw.PEBr4bTCLPtwfGxCOpWCsrOgHJ6kl4UdFZs52gg8joY]
+      ocp-aad-diagnostics-server-name: [xXW9ddbXeYWmGzv9+YNXmyjrsD4GUct5DyrD5artV+8=]
+      ocp-aad-session-key: [ORmh4t0kloKrpEM3jkAu-C9TQs-k58PfylDojAgrN6GY8UhUZBj_DmYguGEuZDocCRSeNlGMyl8Eh38dZy31rRivrcmOImLpsJkOvslI5t7vGDp9Q3-qjQNWrJxpJNZV1TIYrC348dcKHxLaXoiHrQ.TQS5lNPS5K4-92jLRk5fBA6jhpmVe6VMBaVr3Y-DDA4]
       pragma: [no-cache]
-      request-id: [8ff2ea43-c9a6-4dd5-a4a5-8957dd42f324]
+      request-id: [3327b057-c457-409f-a57f-db8031d9e6dd]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
@@ -596,18 +590,18 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-authorization/0.40.0 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-authorization/0.50.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments?$filter=principalId%20eq%20%27f36a3cce-57a1-49ea-a93a-01e8df45b5a7%27&api-version=2018-01-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments?$filter=principalId%20eq%20%27ee970c5c-42d6-4b82-a155-bd3a08c9facc%27&api-version=2018-01-01-preview
   response:
-    body: {string: '{"value":[{"properties":{"roleDefinitionId":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635","principalId":"f36a3cce-57a1-49ea-a93a-01e8df45b5a7","principalType":"ServicePrincipal","scope":"/subscriptions/00000000-0000-0000-0000-000000000000","createdOn":"2018-08-07T00:01:25.8135657Z","updatedOn":"2018-08-07T00:01:25.8135657Z","createdBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57","updatedBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57"},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/88888888-0000-0000-0000-000000000002","type":"Microsoft.Authorization/roleAssignments","name":"88888888-0000-0000-0000-000000000002"}]}'}
+    body: {string: '{"value":[{"properties":{"roleDefinitionId":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635","principalId":"ee970c5c-42d6-4b82-a155-bd3a08c9facc","principalType":"ServicePrincipal","scope":"/subscriptions/00000000-0000-0000-0000-000000000000","createdOn":"2018-09-24T16:42:41.1213457Z","updatedOn":"2018-09-24T16:42:41.1213457Z","createdBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57","updatedBy":"95d22973-f3d1-439e-ac7f-e3e77931cb57"},"id":"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/88888888-0000-0000-0000-000000000002","type":"Microsoft.Authorization/roleAssignments","name":"88888888-0000-0000-0000-000000000002"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['767']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:01:34 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:47 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -627,8 +621,8 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-mgmt-authorization/0.40.0 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-mgmt-authorization/0.50.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions?api-version=2018-01-01-preview
@@ -648,15 +642,19 @@ interactions:
         Insights Snapshot Debugger\",\"type\":\"BuiltInRole\",\"description\":\"Gives
         user permission to use Application Insights Snapshot Debugger features\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Insights/components/*/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-04-19T21:25:12.3728747Z\",\"updatedOn\":\"2017-04-19T23:34:59.9511581Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/08954f03-6346-4c2e-81c0-ec3a5cfae23b\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"08954f03-6346-4c2e-81c0-ec3a5cfae23b\"},{\"properties\":{\"roleName\":\"Automation
         Job Operator\",\"type\":\"BuiltInRole\",\"description\":\"Create and Manage
-        Jobs using Automation Runbooks.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Automation/automationAccounts/jobs/read\",\"Microsoft.Automation/automationAccounts/jobs/resume/action\",\"Microsoft.Automation/automationAccounts/jobs/stop/action\",\"Microsoft.Automation/automationAccounts/hybridRunbookWorkerGroups/read\",\"Microsoft.Automation/automationAccounts/jobs/streams/read\",\"Microsoft.Automation/automationAccounts/jobs/suspend/action\",\"Microsoft.Automation/automationAccounts/jobs/write\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-04-19T20:52:41.0020018Z\",\"updatedOn\":\"2018-03-06T02:20:41.6886187Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/4fe576fe-1146-4730-92eb-48519fa6bf9f\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"4fe576fe-1146-4730-92eb-48519fa6bf9f\"},{\"properties\":{\"roleName\":\"Automation
+        Jobs using Automation Runbooks.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Automation/automationAccounts/hybridRunbookWorkerGroups/read\",\"Microsoft.Automation/automationAccounts/jobs/read\",\"Microsoft.Automation/automationAccounts/jobs/resume/action\",\"Microsoft.Automation/automationAccounts/jobs/stop/action\",\"Microsoft.Automation/automationAccounts/jobs/streams/read\",\"Microsoft.Automation/automationAccounts/jobs/suspend/action\",\"Microsoft.Automation/automationAccounts/jobs/write\",\"Microsoft.Automation/automationAccounts/jobs/output/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-04-19T20:52:41.0020018Z\",\"updatedOn\":\"2018-08-14T22:08:48.1147327Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/4fe576fe-1146-4730-92eb-48519fa6bf9f\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"4fe576fe-1146-4730-92eb-48519fa6bf9f\"},{\"properties\":{\"roleName\":\"Automation
         Operator\",\"type\":\"BuiltInRole\",\"description\":\"Automation Operators
         are able to start, stop, suspend, and resume jobs\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Automation/automationAccounts/hybridRunbookWorkerGroups/read\",\"Microsoft.Automation/automationAccounts/jobs/read\",\"Microsoft.Automation/automationAccounts/jobs/resume/action\",\"Microsoft.Automation/automationAccounts/jobs/stop/action\",\"Microsoft.Automation/automationAccounts/jobs/streams/read\",\"Microsoft.Automation/automationAccounts/jobs/suspend/action\",\"Microsoft.Automation/automationAccounts/jobs/write\",\"Microsoft.Automation/automationAccounts/jobSchedules/read\",\"Microsoft.Automation/automationAccounts/jobSchedules/write\",\"Microsoft.Automation/automationAccounts/linkedWorkspace/read\",\"Microsoft.Automation/automationAccounts/read\",\"Microsoft.Automation/automationAccounts/runbooks/read\",\"Microsoft.Automation/automationAccounts/schedules/read\",\"Microsoft.Automation/automationAccounts/schedules/write\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Automation/automationAccounts/jobs/output/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-08-18T01:05:03.3916130Z\",\"updatedOn\":\"2018-05-10T20:12:39.6978200Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/d3881f73-407a-4167-8283-e981cbba0404\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"d3881f73-407a-4167-8283-e981cbba0404\"},{\"properties\":{\"roleName\":\"Automation
         Runbook Operator\",\"type\":\"BuiltInRole\",\"description\":\"Read Runbook
         properties - to be able to create Jobs of the runbook.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Automation/automationAccounts/runbooks/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-04-19T20:47:49.5640674Z\",\"updatedOn\":\"2017-04-25T01:00:45.6444999Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5fb5aef8-1081-4b8e-bb16-9d5d0385bab5\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5fb5aef8-1081-4b8e-bb16-9d5d0385bab5\"},{\"properties\":{\"roleName\":\"Azure
+        Kubernetes Service Cluster Admin Role\",\"type\":\"BuiltInRole\",\"description\":\"List
+        cluster admin credential action.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.ContainerService/managedClusters/listClusterAdminCredential/action\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-08-15T21:38:18.5953853Z\",\"updatedOn\":\"2018-08-15T21:47:19.4427524Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/0ab0b1a8-8aac-4efd-b8c2-3ee1fb270be8\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"0ab0b1a8-8aac-4efd-b8c2-3ee1fb270be8\"},{\"properties\":{\"roleName\":\"Azure
+        Kubernetes Service Cluster User Role\",\"type\":\"BuiltInRole\",\"description\":\"List
+        cluster user credential action.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.ContainerService/managedClusters/listClusterUserCredential/action\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-08-15T22:04:53.4037241Z\",\"updatedOn\":\"2018-08-15T22:06:51.5961392Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/4abbcc35-e782-43d8-92c5-2d3f1bd2253f\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"4abbcc35-e782-43d8-92c5-2d3f1bd2253f\"},{\"properties\":{\"roleName\":\"Azure
         Stack Registration Owner\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you manage Azure Stack registrations.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.AzureStack/registrations/products/listDetails/action\",\"Microsoft.AzureStack/registrations/products/read\",\"Microsoft.AzureStack/registrations/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-11-13T23:42:06.2161827Z\",\"updatedOn\":\"2017-11-13T23:54:02.4007080Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/6f12a6df-dd06-4f3e-bcb1-ce8be600526a\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"6f12a6df-dd06-4f3e-bcb1-ce8be600526a\"},{\"properties\":{\"roleName\":\"Backup
         Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage backup
-        service,but can't create vaults and give access to others\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.RecoveryServices/locations/allocatedStamp/read\",\"Microsoft.RecoveryServices/Vaults/backupconfig/vaultconfig/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/operationResults/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/*\",\"Microsoft.RecoveryServices/Vaults/backupJobs/*\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/action\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupManagementMetaData/*\",\"Microsoft.RecoveryServices/Vaults/backupOperationResults/*\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectableItems/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectedItems/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectionContainers/*\",\"Microsoft.RecoveryServices/Vaults/backupSecurityPIN/*\",\"Microsoft.RecoveryServices/Vaults/backupUsageSummaries/read\",\"Microsoft.RecoveryServices/Vaults/certificates/*\",\"Microsoft.RecoveryServices/Vaults/extendedInformation/*\",\"Microsoft.RecoveryServices/Vaults/monitoringAlerts/read\",\"Microsoft.RecoveryServices/Vaults/monitoringConfigurations/*\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/refreshContainers/*\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/*\",\"Microsoft.RecoveryServices/Vaults/storageConfig/*\",\"Microsoft.RecoveryServices/Vaults/usages/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Storage/storageAccounts/read\",\"Microsoft.RecoveryServices/locations/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-01-03T13:12:15.7321344Z\",\"updatedOn\":\"2018-07-19T09:10:17.6294993Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5e467623-bb1f-42f4-a55d-6e525e11384b\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5e467623-bb1f-42f4-a55d-6e525e11384b\"},{\"properties\":{\"roleName\":\"Backup
+        service,but can't create vaults and give access to others\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.RecoveryServices/locations/*\",\"Microsoft.RecoveryServices/locations/allocatedStamp/read\",\"Microsoft.RecoveryServices/Vaults/backupconfig/vaultconfig/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/operationResults/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/*\",\"Microsoft.RecoveryServices/Vaults/backupJobs/*\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/action\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupManagementMetaData/*\",\"Microsoft.RecoveryServices/Vaults/backupOperationResults/*\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectableItems/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectedItems/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectionContainers/*\",\"Microsoft.RecoveryServices/Vaults/backupSecurityPIN/*\",\"Microsoft.RecoveryServices/Vaults/backupUsageSummaries/read\",\"Microsoft.RecoveryServices/Vaults/certificates/*\",\"Microsoft.RecoveryServices/Vaults/extendedInformation/*\",\"Microsoft.RecoveryServices/Vaults/monitoringAlerts/read\",\"Microsoft.RecoveryServices/Vaults/monitoringConfigurations/*\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/refreshContainers/action\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/*\",\"Microsoft.RecoveryServices/Vaults/storageConfig/*\",\"Microsoft.RecoveryServices/Vaults/usages/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Storage/storageAccounts/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-01-03T13:12:15.7321344Z\",\"updatedOn\":\"2018-09-22T00:16:13.2878190Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5e467623-bb1f-42f4-a55d-6e525e11384b\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5e467623-bb1f-42f4-a55d-6e525e11384b\"},{\"properties\":{\"roleName\":\"Backup
         Operator\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage backup
         services, except removal of backup, vault creation and giving access to others\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.RecoveryServices/locations/allocatedStamp/read\",\"Microsoft.RecoveryServices/Vaults/backupconfig/vaultconfig/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/backup/action\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/operationsStatus/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/recoveryPoints/provisionInstantItemRecovery/action\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/recoveryPoints/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/recoveryPoints/restore/action\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/recoveryPoints/revokeInstantItemRecovery/action\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/write\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/read\",\"Microsoft.RecoveryServices/Vaults/backupJobs/*\",\"Microsoft.RecoveryServices/Vaults/backupJobs/cancel/action\",\"Microsoft.RecoveryServices/Vaults/backupJobs/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupJobs/read\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/action\",\"Microsoft.RecoveryServices/Vaults/backupJobsExport/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read\",\"Microsoft.RecoveryServices/Vaults/backupOperationResults/*\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/operationStatus/read\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/read\",\"Microsoft.RecoveryServices/Vaults/backupProtectableItems/*\",\"Microsoft.RecoveryServices/Vaults/backupProtectableItems/read\",\"Microsoft.RecoveryServices/Vaults/backupProtectedItems/read\",\"Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read\",\"Microsoft.RecoveryServices/Vaults/backupUsageSummaries/read\",\"Microsoft.RecoveryServices/Vaults/certificates/write\",\"Microsoft.RecoveryServices/Vaults/extendedInformation/read\",\"Microsoft.RecoveryServices/Vaults/extendedInformation/write\",\"Microsoft.RecoveryServices/Vaults/monitoringAlerts/read\",\"Microsoft.RecoveryServices/Vaults/monitoringConfigurations/*\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/refreshContainers/action\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/read\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/write\",\"Microsoft.RecoveryServices/Vaults/storageConfig/*\",\"Microsoft.RecoveryServices/Vaults/usages/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Storage/storageAccounts/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-01-03T13:21:11.8947640Z\",\"updatedOn\":\"2018-06-16T05:25:05.7455061Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00c29273-979b-4161-815c-10b084fb9324\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"00c29273-979b-4161-815c-10b084fb9324\"},{\"properties\":{\"roleName\":\"Backup
         Reader\",\"type\":\"BuiltInRole\",\"description\":\"Can view backup services,
@@ -684,15 +682,23 @@ interactions:
         you manage classic virtual machines, but not access to them, and not the virtual
         network or storage account they\u2019re connected to.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.ClassicCompute/domainNames/*\",\"Microsoft.ClassicCompute/virtualMachines/*\",\"Microsoft.ClassicNetwork/networkSecurityGroups/join/action\",\"Microsoft.ClassicNetwork/reservedIps/link/action\",\"Microsoft.ClassicNetwork/reservedIps/read\",\"Microsoft.ClassicNetwork/virtualNetworks/join/action\",\"Microsoft.ClassicNetwork/virtualNetworks/read\",\"Microsoft.ClassicStorage/storageAccounts/disks/read\",\"Microsoft.ClassicStorage/storageAccounts/images/read\",\"Microsoft.ClassicStorage/storageAccounts/listKeys/action\",\"Microsoft.ClassicStorage/storageAccounts/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:13:57.4788684Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/d73bb868-a0df-4d4d-bd69-98a00b01fccb\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"d73bb868-a0df-4d4d-bd69-98a00b01fccb\"},{\"properties\":{\"roleName\":\"ClearDB
         MySQL DB Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
-        manage ClearDB MySQL databases, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"successbricks.cleardb/databases/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:13:58.1393839Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9106cda0-8a86-4e81-b686-29a22c54effe\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9106cda0-8a86-4e81-b686-29a22c54effe\"},{\"properties\":{\"roleName\":\"Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets
+        manage ClearDB MySQL databases, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"successbricks.cleardb/databases/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:13:58.1393839Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9106cda0-8a86-4e81-b686-29a22c54effe\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9106cda0-8a86-4e81-b686-29a22c54effe\"},{\"properties\":{\"roleName\":\"Cognitive
+        Services Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
+        create, read, update, delete and manage keys of Cognitive Services.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.CognitiveServices/*\",\"Microsoft.Features/features/read\",\"Microsoft.Features/providers/features/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Insights/diagnosticSettings/*\",\"Microsoft.Insights/logDefinitions/read\",\"Microsoft.Insights/metricdefinitions/read\",\"Microsoft.Insights/metrics/read\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/deployments/operations/read\",\"Microsoft.Resources/subscriptions/operationresults/read\",\"Microsoft.Resources/subscriptions/read\",\"Microsoft.Resources/subscriptions/resourcegroups/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-08-08T23:18:39.2257848Z\",\"updatedOn\":\"2018-09-14T00:53:37.7546808Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/25fbc0a9-bd7c-42a3-aa1a-3b75d497ee68\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"25fbc0a9-bd7c-42a3-aa1a-3b75d497ee68\"},{\"properties\":{\"roleName\":\"Cognitive
+        Services User\",\"type\":\"BuiltInRole\",\"description\":\"Lets you read and
+        list keys of Cognitive Services.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.CognitiveServices/*/read\",\"Microsoft.CognitiveServices/accounts/listkeys/action\",\"Microsoft.Insights/metricdefinitions/read\",\"Microsoft.Insights/metrics/read\",\"Microsoft.Insights/alertRules/read\",\"Microsoft.Insights/diagnosticSettings/read\",\"Microsoft.Insights/logDefinitions/read\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/operations/read\",\"Microsoft.Resources/subscriptions/operationresults/read\",\"Microsoft.Resources/subscriptions/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-08-08T23:23:43.7701274Z\",\"updatedOn\":\"2018-08-23T21:57:35.0841571Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/a97b65f3-24c7-4388-baec-2e87135dc908\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"a97b65f3-24c7-4388-baec-2e87135dc908\"},{\"properties\":{\"roleName\":\"Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you manage everything except access to resources.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*\"],\"notActions\":[\"Microsoft.Authorization/*/Delete\",\"Microsoft.Authorization/*/Write\",\"Microsoft.Authorization/elevateAccess/Action\",\"Microsoft.Blueprint/blueprintAssignments/write\",\"Microsoft.Blueprint/blueprintAssignments/delete\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-05-30T19:22:32.4538167Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"b24988ac-6180-42a0-ab88-20f7382dd24c\"},{\"properties\":{\"roleName\":\"Cosmos
         DB Account Reader Role\",\"type\":\"BuiltInRole\",\"description\":\"Can read
-        Azure Cosmos DB Accounts data\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.DocumentDB/*/read\",\"Microsoft.DocumentDB/databaseAccounts/readonlykeys/action\",\"Microsoft.Insights/MetricDefinitions/read\",\"Microsoft.Insights/Metrics/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-10-30T17:53:54.6005577Z\",\"updatedOn\":\"2018-02-21T01:36:59.6186231Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/fbdf93bf-df7d-467e-a4d2-9458aa1360c8\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"fbdf93bf-df7d-467e-a4d2-9458aa1360c8\"},{\"properties\":{\"roleName\":\"Data
+        Azure Cosmos DB Accounts data\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.DocumentDB/*/read\",\"Microsoft.DocumentDB/databaseAccounts/readonlykeys/action\",\"Microsoft.Insights/MetricDefinitions/read\",\"Microsoft.Insights/Metrics/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-10-30T17:53:54.6005577Z\",\"updatedOn\":\"2018-02-21T01:36:59.6186231Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/fbdf93bf-df7d-467e-a4d2-9458aa1360c8\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"fbdf93bf-df7d-467e-a4d2-9458aa1360c8\"},{\"properties\":{\"roleName\":\"Cost
+        Management Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Can view
+        costs and manage cost configuration (e.g. budgets, exports)\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.CostManagement/*\",\"Microsoft.Consumption/*\",\"Microsoft.Resources/subscriptions/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-03-14T16:09:22.8834827Z\",\"updatedOn\":\"2018-09-12T18:20:29.6909617Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/434105ed-43f6-45c7-a02f-909b2ba83430\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"434105ed-43f6-45c7-a02f-909b2ba83430\"},{\"properties\":{\"roleName\":\"Cost
+        Management Reader\",\"type\":\"BuiltInRole\",\"description\":\"Can view cost
+        data and configuration (e.g. budgets, exports)\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Consumption/*/read\",\"Microsoft.CostManagement/*/read\",\"Microsoft.Resources/subscriptions/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-03-14T16:09:22.8834827Z\",\"updatedOn\":\"2018-09-23T08:19:37.9907020Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/72fafb9e-0641-4937-9268-a91bfd8191a3\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"72fafb9e-0641-4937-9268-a91bfd8191a3\"},{\"properties\":{\"roleName\":\"Data
         Box Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
         everything under Data Box Service except giving access to others.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"Microsoft.Databox/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-07-27T08:28:42.7140210Z\",\"updatedOn\":\"2018-07-27T08:36:56.3827309Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/add466c9-e687-43fc-8d98-dfcf8d720be5\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"add466c9-e687-43fc-8d98-dfcf8d720be5\"},{\"properties\":{\"roleName\":\"Data
-        Box Operator\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
-        Data Box Service except creating order or editing order details and giving
-        access to others.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Support/*\",\"Microsoft.Databox/jobs/listsecrets/action\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-07-27T08:26:21.9284772Z\",\"updatedOn\":\"2018-07-27T08:38:03.2036990Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/028f4ed7-e2a9-465e-a8f4-9c0ffdfdc027\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"028f4ed7-e2a9-465e-a8f4-9c0ffdfdc027\"},{\"properties\":{\"roleName\":\"Data
+        Box Reader\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage Data
+        Box Service except creating order or editing order details and giving access
+        to others.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Databox/*/read\",\"Microsoft.Databox/jobs/listsecrets/action\",\"Microsoft.Databox/jobs/listcredentials/action\",\"Microsoft.Databox/locations/availableSkus/action\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-07-27T08:26:21.9284772Z\",\"updatedOn\":\"2018-09-21T08:27:36.9405411Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/028f4ed7-e2a9-465e-a8f4-9c0ffdfdc027\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"028f4ed7-e2a9-465e-a8f4-9c0ffdfdc027\"},{\"properties\":{\"roleName\":\"Data
         Factory Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
         manage data factories, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.DataFactory/dataFactories/*\",\"Microsoft.DataFactory/factories/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-04-06T22:49:28.1118955Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/673868aa-7521-48a0-acc6-0f60742d39f5\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"673868aa-7521-48a0-acc6-0f60742d39f5\"},{\"properties\":{\"roleName\":\"Data
         Lake Analytics Developer\",\"type\":\"BuiltInRole\",\"description\":\"Lets
@@ -705,13 +711,16 @@ interactions:
         DNS zones and record sets in Azure DNS, but does not let you control who has
         access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/dnsZones/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-10-15T23:33:25.9730842Z\",\"updatedOn\":\"2016-05-31T23:13:40.3710365Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/befefa01-2a29-4197-83a8-272ff33ce314\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"befefa01-2a29-4197-83a8-272ff33ce314\"},{\"properties\":{\"roleName\":\"DocumentDB
         Account Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
-        manage DocumentDB accounts, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.DocumentDb/databaseAccounts/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:07.2132374Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5bd9cd88-fe45-4216-938b-f97437e15450\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5bd9cd88-fe45-4216-938b-f97437e15450\"},{\"properties\":{\"roleName\":\"Intelligent
+        manage DocumentDB accounts, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.DocumentDb/databaseAccounts/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:07.2132374Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5bd9cd88-fe45-4216-938b-f97437e15450\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5bd9cd88-fe45-4216-938b-f97437e15450\"},{\"properties\":{\"roleName\":\"HDInsight
+        Domain Services Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Can
+        Read, Create, Modify and Delete Domain Services related operations needed
+        for HDInsight Enterprise Security Package\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.AAD/*/read\",\"Microsoft.AAD/domainServices/*/read\",\"Microsoft.AAD/domainServices/oucontainer/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-09-12T22:42:51.7451109Z\",\"updatedOn\":\"2018-09-12T23:06:45.7641599Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8d8d5a11-05d3-4bda-a417-a08778121c7c\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"8d8d5a11-05d3-4bda-a417-a08778121c7c\"},{\"properties\":{\"roleName\":\"Intelligent
         Systems Account Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you manage Intelligent Systems accounts, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.IntelligentSystems/accounts/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:13:59.7946586Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/03a6d094-3444-4b3d-88af-7477090a9e5e\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"03a6d094-3444-4b3d-88af-7477090a9e5e\"},{\"properties\":{\"roleName\":\"Key
         Vault Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
         key vaults, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.KeyVault/*\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[\"Microsoft.KeyVault/locations/deletedVaults/purge/action\",\"Microsoft.KeyVault/hsmPools/*\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2017-12-14T02:01:18.4641200Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/f25e0fa2-a7c8-4377-a976-54943a77a395\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"f25e0fa2-a7c8-4377-a976-54943a77a395\"},{\"properties\":{\"roleName\":\"Lab
         Creator\",\"type\":\"BuiltInRole\",\"description\":\"Lets you create, manage,
-        delete your managed labs under your Azure Lab Accounts.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.LabServices/labAccounts/*/read\",\"Microsoft.LabServices/labAccounts/createLab/action\",\"Microsoft.LabServices/labAccounts/sizes/getRegionalAvailability/action\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-01-18T23:38:58.1036141Z\",\"updatedOn\":\"2018-07-03T17:35:50.6933331Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b97fb8bc-a8b2-4522-a38b-dd33c7e65ead\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"b97fb8bc-a8b2-4522-a38b-dd33c7e65ead\"},{\"properties\":{\"roleName\":\"Log
+        delete your managed labs under your Azure Lab Accounts.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.LabServices/labAccounts/*/read\",\"Microsoft.LabServices/labAccounts/createLab/action\",\"Microsoft.LabServices/labAccounts/sizes/getRegionalAvailability/action\",\"Microsoft.LabServices/labAccounts/getRegionalAvailability/action\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-01-18T23:38:58.1036141Z\",\"updatedOn\":\"2018-09-05T19:52:12.4859631Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b97fb8bc-a8b2-4522-a38b-dd33c7e65ead\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"b97fb8bc-a8b2-4522-a38b-dd33c7e65ead\"},{\"properties\":{\"roleName\":\"Log
         Analytics Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Log Analytics
         Contributor can read all monitoring data and edit monitoring settings. Editing
         monitoring settings includes adding the VM extension to VMs; reading storage
@@ -728,6 +737,8 @@ interactions:
         and disable logic app.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*/read\",\"Microsoft.Insights/diagnosticSettings/*/read\",\"Microsoft.Insights/metricDefinitions/*/read\",\"Microsoft.Logic/*/read\",\"Microsoft.Logic/workflows/disable/action\",\"Microsoft.Logic/workflows/enable/action\",\"Microsoft.Logic/workflows/validate/action\",\"Microsoft.Resources/deployments/operations/read\",\"Microsoft.Resources/subscriptions/operationresults/read\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"Microsoft.Web/connectionGateways/*/read\",\"Microsoft.Web/connections/*/read\",\"Microsoft.Web/customApis/*/read\",\"Microsoft.Web/serverFarms/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2016-04-28T21:33:30.4656007Z\",\"updatedOn\":\"2018-01-10T23:14:26.9539724Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/515c2055-d9d4-4321-b1b9-bd0c9a0f79fe\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"515c2055-d9d4-4321-b1b9-bd0c9a0f79fe\"},{\"properties\":{\"roleName\":\"Managed
         Application Operator Role\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you read and perform actions on Managed Application resources\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Solutions/applications/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-07-27T00:59:33.7988813Z\",\"updatedOn\":\"2018-07-27T21:13:51.4269241Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/c7393b34-138c-406f-901b-d8cf2b17e6ae\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"c7393b34-138c-406f-901b-d8cf2b17e6ae\"},{\"properties\":{\"roleName\":\"Managed
+        Applications Reader\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
+        read resources in a managed app and request JIT access.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Solutions/jitRequests/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-09-06T00:33:58.3651522Z\",\"updatedOn\":\"2018-09-06T00:33:58.3651522Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b9331d33-8a36-4f8c-b097-4f54124fdb44\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"b9331d33-8a36-4f8c-b097-4f54124fdb44\"},{\"properties\":{\"roleName\":\"Managed
         Identity Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Create,
         Read, Update, and Delete User Assigned Identity\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.ManagedIdentity/userAssignedIdentities/*/read\",\"Microsoft.ManagedIdentity/userAssignedIdentities/*/write\",\"Microsoft.ManagedIdentity/userAssignedIdentities/*/delete\",\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-12-14T19:53:42.8804692Z\",\"updatedOn\":\"2017-12-14T22:17:02.2740594Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/e40ec5ca-96e0-45a2-b4ff-59039f2c2b59\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"e40ec5ca-96e0-45a2-b4ff-59039f2c2b59\"},{\"properties\":{\"roleName\":\"Managed
         Identity Operator\",\"type\":\"BuiltInRole\",\"description\":\"Read and Assign
@@ -737,7 +748,9 @@ interactions:
         Group Reader\",\"type\":\"BuiltInRole\",\"description\":\"Management Group
         Reader Role\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Management/managementGroups/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-06-22T00:31:03.4295347Z\",\"updatedOn\":\"2018-07-10T20:49:42.5630340Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/ac63b705-f282-497d-ac71-919bf39d939d\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"ac63b705-f282-497d-ac71-919bf39d939d\"},{\"properties\":{\"roleName\":\"Monitoring
         Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Can read all monitoring
-        data and update monitoring settings.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*/read\",\"Microsoft.AlertsManagement/alerts/*\",\"Microsoft.AlertsManagement/alertsSummary/*\",\"Microsoft.Insights/actiongroups/*\",\"Microsoft.Insights/AlertRules/*\",\"Microsoft.Insights/components/*\",\"Microsoft.Insights/DiagnosticSettings/*\",\"Microsoft.Insights/eventtypes/*\",\"Microsoft.Insights/LogDefinitions/*\",\"Microsoft.Insights/metricalerts/*\",\"Microsoft.Insights/MetricDefinitions/*\",\"Microsoft.Insights/Metrics/*\",\"Microsoft.Insights/Register/Action\",\"Microsoft.Insights/scheduledqueryrules/*\",\"Microsoft.Insights/webtests/*\",\"Microsoft.OperationalInsights/workspaces/intelligencepacks/*\",\"Microsoft.OperationalInsights/workspaces/savedSearches/*\",\"Microsoft.OperationalInsights/workspaces/search/action\",\"Microsoft.OperationalInsights/workspaces/sharedKeys/action\",\"Microsoft.OperationalInsights/workspaces/storageinsightconfigs/*\",\"Microsoft.Support/*\",\"Microsoft.WorkloadMonitor/workloads/*\",\"Microsoft.WorkloadMonitor/workloadInsights/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2016-09-21T19:21:08.4345976Z\",\"updatedOn\":\"2018-07-09T08:44:50.9341209Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"749f88d5-cbae-40b8-bcfc-e573ddc772fa\"},{\"properties\":{\"roleName\":\"Monitoring
+        data and update monitoring settings.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*/read\",\"Microsoft.AlertsManagement/alerts/*\",\"Microsoft.AlertsManagement/alertsSummary/*\",\"Microsoft.Insights/actiongroups/*\",\"Microsoft.Insights/AlertRules/*\",\"Microsoft.Insights/components/*\",\"Microsoft.Insights/DiagnosticSettings/*\",\"Microsoft.Insights/eventtypes/*\",\"Microsoft.Insights/LogDefinitions/*\",\"Microsoft.Insights/metricalerts/*\",\"Microsoft.Insights/MetricDefinitions/*\",\"Microsoft.Insights/Metrics/*\",\"Microsoft.Insights/Register/Action\",\"Microsoft.Insights/scheduledqueryrules/*\",\"Microsoft.Insights/webtests/*\",\"Microsoft.OperationalInsights/workspaces/intelligencepacks/*\",\"Microsoft.OperationalInsights/workspaces/savedSearches/*\",\"Microsoft.OperationalInsights/workspaces/search/action\",\"Microsoft.OperationalInsights/workspaces/sharedKeys/action\",\"Microsoft.OperationalInsights/workspaces/storageinsightconfigs/*\",\"Microsoft.Support/*\",\"Microsoft.WorkloadMonitor/monitors/*\",\"Microsoft.WorkloadMonitor/notificationSettings/*\",\"Microsoft.WorkloadMonitor/workloadInsights/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2016-09-21T19:21:08.4345976Z\",\"updatedOn\":\"2018-08-20T07:32:25.9292392Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/749f88d5-cbae-40b8-bcfc-e573ddc772fa\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"749f88d5-cbae-40b8-bcfc-e573ddc772fa\"},{\"properties\":{\"roleName\":\"Monitoring
+        Metrics Publisher\",\"type\":\"BuiltInRole\",\"description\":\"Enables publishing
+        metrics against Azure resources\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Insights/Register/Action\",\"Microsoft.Support/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\"],\"notActions\":[],\"dataActions\":[\"Microsoft.Insights/Metrics/Write\"],\"notDataActions\":[]}],\"createdOn\":\"2018-08-14T00:36:16.5610279Z\",\"updatedOn\":\"2018-08-14T00:37:18.1465065Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/3913510d-42f4-4e42-8a64-420c390055eb\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"3913510d-42f4-4e42-8a64-420c390055eb\"},{\"properties\":{\"roleName\":\"Monitoring
         Reader\",\"type\":\"BuiltInRole\",\"description\":\"Can read all monitoring
         data.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*/read\",\"Microsoft.OperationalInsights/workspaces/search/action\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2016-09-21T19:19:52.4939376Z\",\"updatedOn\":\"2018-01-30T18:08:27.2626250Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/43d0d8ad-25c7-4714-9337-8ba259a9fe05\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"43d0d8ad-25c7-4714-9337-8ba259a9fe05\"},{\"properties\":{\"roleName\":\"Network
         Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage networks,
@@ -745,7 +758,10 @@ interactions:
         Relic APM Account Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you manage New Relic Application Performance Management accounts and applications,
         but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"NewRelic.APM/accounts/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:07.7538043Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/5d28c62d-5b37-4476-8438-e587778df237\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"5d28c62d-5b37-4476-8438-e587778df237\"},{\"properties\":{\"roleName\":\"Owner\",\"type\":\"BuiltInRole\",\"description\":\"Lets
-        you manage everything, including access to resources.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:00.9179619Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"8e3af657-a8ff-443c-a75c-2fe8c4bcb635\"},{\"properties\":{\"roleName\":\"Reader\",\"type\":\"BuiltInRole\",\"description\":\"Lets
+        you manage everything, including access to resources.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:00.9179619Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"8e3af657-a8ff-443c-a75c-2fe8c4bcb635\"},{\"properties\":{\"roleName\":\"PowerApps
+        Administrator Test\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
+        DNS zones and record sets in Azure DNS, but does not let you control who has
+        access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/dnsZones/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2018-09-10T19:45:27.2883493Z\",\"updatedOn\":\"2018-09-10T19:45:27.2883493Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/befefa01-2a29-4897-83a8-272ff33ce314\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"befefa01-2a29-4897-83a8-272ff33ce314\"},{\"properties\":{\"roleName\":\"Reader\",\"type\":\"BuiltInRole\",\"description\":\"Lets
         you view everything, but not make any changes.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"*/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-01-30T18:08:25.4031403Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"acdd72a7-3385-48ef-bd42-f606fba81ae7\"},{\"properties\":{\"roleName\":\"Reader
         and Data Access\",\"type\":\"BuiltInRole\",\"description\":\"Lets you view
         everything but will not let you delete or create a storage account or contained
@@ -760,7 +776,7 @@ interactions:
         you manage Scheduler job collections, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Scheduler/jobcollections/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:02.5343995Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/188a0f2f-5c9e-469b-ae67-2aa5ce574b94\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"188a0f2f-5c9e-469b-ae67-2aa5ce574b94\"},{\"properties\":{\"roleName\":\"Search
         Service Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
         manage Search services, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Search/searchServices/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:03.0463472Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/7ca78c08-252a-4471-8644-bb5ff32d4ba0\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"7ca78c08-252a-4471-8644-bb5ff32d4ba0\"},{\"properties\":{\"roleName\":\"Security
-        Admin\",\"type\":\"BuiltInRole\",\"description\":\"Security Admin Role\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Authorization/policyAssignments/*\",\"Microsoft.Authorization/policyDefinitions/*\",\"Microsoft.Authorization/policySetDefinitions/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.operationalInsights/workspaces/*/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Security/*/read\",\"Microsoft.Security/locations/alerts/activate/action\",\"Microsoft.Security/locations/alerts/dismiss/action\",\"Microsoft.Security/locations/tasks/activate/action\",\"Microsoft.Security/locations/tasks/dismiss/action\",\"Microsoft.Security/policies/write\",\"Microsoft.Support/*\",\"Microsoft.Management/managementGroups/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-05-03T07:51:23.0917487Z\",\"updatedOn\":\"2018-06-28T17:22:30.6518203Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"fb1c8493-542b-48eb-b624-b4c8fea62acd\"},{\"properties\":{\"roleName\":\"Security
+        Admin\",\"type\":\"BuiltInRole\",\"description\":\"Security Admin Role\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Authorization/policyAssignments/*\",\"Microsoft.Authorization/policyDefinitions/*\",\"Microsoft.Authorization/policySetDefinitions/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Management/managementGroups/read\",\"Microsoft.operationalInsights/workspaces/*/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Security/*/read\",\"Microsoft.Security/locations/alerts/activate/action\",\"Microsoft.Security/locations/alerts/dismiss/action\",\"Microsoft.Security/locations/tasks/activate/action\",\"Microsoft.Security/locations/tasks/dismiss/action\",\"Microsoft.Security/policies/write\",\"Microsoft.Security/securityContacts/write\",\"Microsoft.Security/securityContacts/delete\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-05-03T07:51:23.0917487Z\",\"updatedOn\":\"2018-08-07T14:22:30.7645655Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"fb1c8493-542b-48eb-b624-b4c8fea62acd\"},{\"properties\":{\"roleName\":\"Security
         Manager\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage security
         components, security policies and virtual machines\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.ClassicCompute/*/read\",\"Microsoft.ClassicCompute/virtualMachines/*/write\",\"Microsoft.ClassicNetwork/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Security/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-06-22T17:45:15.8986455Z\",\"updatedOn\":\"2018-03-08T18:18:48.6183620Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/e3d13bf0-dd5a-482e-ba6b-9b8433878d10\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"e3d13bf0-dd5a-482e-ba6b-9b8433878d10\"},{\"properties\":{\"roleName\":\"Security
         Reader\",\"type\":\"BuiltInRole\",\"description\":\"Security Reader Role\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.operationalInsights/workspaces/*/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Security/*/read\",\"Microsoft.Support/*\",\"Microsoft.Management/managementGroups/read\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-05-03T07:48:49.0516559Z\",\"updatedOn\":\"2018-06-28T17:27:23.1065610Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/39bc4728-0917-49c7-9d2c-d95423bc2eb4\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"39bc4728-0917-49c7-9d2c-d95423bc2eb4\"},{\"properties\":{\"roleName\":\"Site
@@ -772,13 +788,13 @@ interactions:
         Site Recovery status but not perform other management operations\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.RecoveryServices/locations/allocatedStamp/read\",\"Microsoft.RecoveryServices/Vaults/extendedInformation/read\",\"Microsoft.RecoveryServices/Vaults/monitoringAlerts/read\",\"Microsoft.RecoveryServices/Vaults/monitoringConfigurations/notificationConfiguration/read\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/refreshContainers/read\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read\",\"Microsoft.RecoveryServices/Vaults/registeredIdentities/read\",\"Microsoft.RecoveryServices/vaults/replicationAlertSettings/read\",\"Microsoft.RecoveryServices/vaults/replicationEvents/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationNetworks/replicationNetworkMappings/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectableItems/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems/recoveryPoints/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectionContainerMappings/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationRecoveryServicesProviders/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationStorageClassifications/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationStorageClassifications/replicationStorageClassificationMappings/read\",\"Microsoft.RecoveryServices/vaults/replicationFabrics/replicationvCenters/read\",\"Microsoft.RecoveryServices/vaults/replicationJobs/read\",\"Microsoft.RecoveryServices/vaults/replicationPolicies/read\",\"Microsoft.RecoveryServices/vaults/replicationRecoveryPlans/read\",\"Microsoft.RecoveryServices/Vaults/storageConfig/read\",\"Microsoft.RecoveryServices/Vaults/tokenInfo/read\",\"Microsoft.RecoveryServices/Vaults/usages/read\",\"Microsoft.RecoveryServices/Vaults/vaultTokens/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2017-05-19T13:35:40.0093634Z\",\"updatedOn\":\"2017-05-26T19:54:51.3933250Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/dbaa88c4-0c30-4179-9fb3-46319faa6149\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"dbaa88c4-0c30-4179-9fb3-46319faa6149\"},{\"properties\":{\"roleName\":\"SQL
         DB Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
         SQL databases, but not access to them. Also, you can't manage their security-related
-        policies or their parent SQL servers.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/locations/*/read\",\"Microsoft.Sql/servers/databases/*\",\"Microsoft.Sql/servers/read\",\"Microsoft.Support/*\"],\"notActions\":[\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-02-15T19:48:41.1575716Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9b7fa17d-e63e-47b0-bb0a-15c516ac86ec\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9b7fa17d-e63e-47b0-bb0a-15c516ac86ec\"},{\"properties\":{\"roleName\":\"SQL
+        policies or their parent SQL servers.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/locations/*/read\",\"Microsoft.Sql/servers/databases/*\",\"Microsoft.Sql/servers/read\",\"Microsoft.Support/*\"],\"notActions\":[\"Microsoft.Sql/managedInstances/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-09-21T20:21:17.5266709Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9b7fa17d-e63e-47b0-bb0a-15c516ac86ec\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9b7fa17d-e63e-47b0-bb0a-15c516ac86ec\"},{\"properties\":{\"roleName\":\"SQL
         Security Manager\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
         the security-related policies of SQL servers and databases, but not access
-        to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/servers/auditingPolicies/*\",\"Microsoft.Sql/servers/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/read\",\"Microsoft.Sql/servers/databases/schemas/read\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/read\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/schemas/tables/read\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\",\"Microsoft.Sql/servers/firewallRules/*\",\"Microsoft.Sql/servers/read\",\"Microsoft.Sql/servers/securityAlertPolicies/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-02-15T19:48:40.2200727Z\",\"createdBy\":null,\"updatedBy\":\"yaiyun\"},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"056cd41c-7e88-42e1-933e-88ba6a50c9c3\"},{\"properties\":{\"roleName\":\"SQL
+        to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/managedInstances/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/auditingPolicies/*\",\"Microsoft.Sql/servers/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/read\",\"Microsoft.Sql/servers/databases/schemas/read\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/read\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/schemas/tables/read\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\",\"Microsoft.Sql/servers/firewallRules/*\",\"Microsoft.Sql/servers/read\",\"Microsoft.Sql/servers/securityAlertPolicies/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-09-21T20:21:16.6047658Z\",\"createdBy\":null,\"updatedBy\":\"yaiyun\"},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/056cd41c-7e88-42e1-933e-88ba6a50c9c3\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"056cd41c-7e88-42e1-933e-88ba6a50c9c3\"},{\"properties\":{\"roleName\":\"SQL
         Server Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
         SQL servers and databases, but not access to them, and not their security
-        -related policies.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/locations/*/read\",\"Microsoft.Sql/servers/*\",\"Microsoft.Support/*\"],\"notActions\":[\"Microsoft.Sql/servers/auditingPolicies/*\",\"Microsoft.Sql/servers/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\",\"Microsoft.Sql/servers/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/securityAlertPolicies/*\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-02-15T19:48:41.8450730Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437\"},{\"properties\":{\"roleName\":\"Storage
+        -related policies.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Sql/locations/*/read\",\"Microsoft.Sql/servers/*\",\"Microsoft.Support/*\"],\"notActions\":[\"Microsoft.Sql/managedInstances/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/auditingPolicies/*\",\"Microsoft.Sql/servers/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditingPolicies/*\",\"Microsoft.Sql/servers/databases/auditingSettings/*\",\"Microsoft.Sql/servers/databases/auditRecords/read\",\"Microsoft.Sql/servers/databases/connectionPolicies/*\",\"Microsoft.Sql/servers/databases/dataMaskingPolicies/*\",\"Microsoft.Sql/servers/databases/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/databases/schemas/tables/columns/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/securityAlertPolicies/*\",\"Microsoft.Sql/servers/databases/securityMetrics/*\",\"Microsoft.Sql/servers/databases/sensitivityLabels/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessments/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentScans/*\",\"Microsoft.Sql/servers/databases/vulnerabilityAssessmentSettings/*\",\"Microsoft.Sql/servers/extendedAuditingSettings/*\",\"Microsoft.Sql/servers/securityAlertPolicies/*\"],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2018-09-21T20:21:18.3860548Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"6d8ee4ec-f05a-4a1d-8b00-a9b17e38b437\"},{\"properties\":{\"roleName\":\"Storage
         Account Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
         manage storage accounts, but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Insights/diagnosticSettings/*\",\"Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Storage/storageAccounts/*\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-06-02T00:18:27.3542698Z\",\"updatedOn\":\"2017-08-21T07:43:20.3060994Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/17d1049b-9a84-46fb-8f53-869881c3d3ab\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"17d1049b-9a84-46fb-8f53-869881c3d3ab\"},{\"properties\":{\"roleName\":\"Storage
         Account Key Operator Service Role\",\"type\":\"BuiltInRole\",\"description\":\"Storage
@@ -802,7 +818,7 @@ interactions:
         Virtual Machines in the portal and login as administrator\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Network/publicIPAddresses/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.Network/loadBalancers/read\",\"Microsoft.Network/networkInterfaces/read\",\"Microsoft.Compute/virtualMachines/*/read\"],\"notActions\":[],\"dataActions\":[\"Microsoft.Compute/virtualMachines/login/action\",\"Microsoft.Compute/virtualMachines/loginAsAdmin/action\"],\"notDataActions\":[]}],\"createdOn\":\"2018-02-09T18:36:13.3315744Z\",\"updatedOn\":\"2018-05-09T22:17:57.0514548Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/1c0163c0-47e6-4577-8991-ea5c82e286e4\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"1c0163c0-47e6-4577-8991-ea5c82e286e4\"},{\"properties\":{\"roleName\":\"Virtual
         Machine Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you
         manage virtual machines, but not access to them, and not the virtual network
-        or storage account they\u2019re connected to.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Compute/availabilitySets/*\",\"Microsoft.Compute/locations/*\",\"Microsoft.Compute/virtualMachines/*\",\"Microsoft.Compute/virtualMachineScaleSets/*\",\"Microsoft.DevTestLab/schedules/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/applicationGateways/backendAddressPools/join/action\",\"Microsoft.Network/loadBalancers/backendAddressPools/join/action\",\"Microsoft.Network/loadBalancers/inboundNatPools/join/action\",\"Microsoft.Network/loadBalancers/inboundNatRules/join/action\",\"Microsoft.Network/loadBalancers/probes/join/action\",\"Microsoft.Network/loadBalancers/read\",\"Microsoft.Network/locations/*\",\"Microsoft.Network/networkInterfaces/*\",\"Microsoft.Network/networkSecurityGroups/join/action\",\"Microsoft.Network/networkSecurityGroups/read\",\"Microsoft.Network/publicIPAddresses/join/action\",\"Microsoft.Network/publicIPAddresses/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.Network/virtualNetworks/subnets/join/action\",\"Microsoft.RecoveryServices/locations/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/*/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/write\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/backupProtectionIntent/write\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/read\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/write\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/usages/read\",\"Microsoft.RecoveryServices/Vaults/write\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Storage/storageAccounts/listKeys/action\",\"Microsoft.Storage/storageAccounts/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-06-02T00:18:27.3542698Z\",\"updatedOn\":\"2017-11-14T03:00:30.1736393Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9980e02c-c2be-4d73-94e8-173b1dc7cf3c\"},{\"properties\":{\"roleName\":\"Virtual
+        or storage account they\u2019re connected to.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Compute/availabilitySets/*\",\"Microsoft.Compute/locations/*\",\"Microsoft.Compute/virtualMachines/*\",\"Microsoft.Compute/virtualMachineScaleSets/*\",\"Microsoft.DevTestLab/schedules/*\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Network/applicationGateways/backendAddressPools/join/action\",\"Microsoft.Network/loadBalancers/backendAddressPools/join/action\",\"Microsoft.Network/loadBalancers/inboundNatPools/join/action\",\"Microsoft.Network/loadBalancers/inboundNatRules/join/action\",\"Microsoft.Network/loadBalancers/probes/join/action\",\"Microsoft.Network/loadBalancers/read\",\"Microsoft.Network/locations/*\",\"Microsoft.Network/networkInterfaces/*\",\"Microsoft.Network/networkSecurityGroups/join/action\",\"Microsoft.Network/networkSecurityGroups/read\",\"Microsoft.Network/publicIPAddresses/join/action\",\"Microsoft.Network/publicIPAddresses/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.Network/virtualNetworks/subnets/join/action\",\"Microsoft.RecoveryServices/locations/*\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/backupProtectionIntent/write\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/*/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/read\",\"Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/write\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/read\",\"Microsoft.RecoveryServices/Vaults/backupPolicies/write\",\"Microsoft.RecoveryServices/Vaults/read\",\"Microsoft.RecoveryServices/Vaults/usages/read\",\"Microsoft.RecoveryServices/Vaults/write\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.SqlVirtualMachine/*\",\"Microsoft.Storage/storageAccounts/listKeys/action\",\"Microsoft.Storage/storageAccounts/read\",\"Microsoft.Support/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"2015-06-02T00:18:27.3542698Z\",\"updatedOn\":\"2018-09-11T19:46:04.7319753Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"9980e02c-c2be-4d73-94e8-173b1dc7cf3c\"},{\"properties\":{\"roleName\":\"Virtual
         Machine User Login\",\"type\":\"BuiltInRole\",\"description\":\"View Virtual
         Machines in the portal and login as a regular user.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Network/publicIPAddresses/read\",\"Microsoft.Network/virtualNetworks/read\",\"Microsoft.Network/loadBalancers/read\",\"Microsoft.Network/networkInterfaces/read\",\"Microsoft.Compute/virtualMachines/*/read\"],\"notActions\":[],\"dataActions\":[\"Microsoft.Compute/virtualMachines/login/action\"],\"notDataActions\":[]}],\"createdOn\":\"2018-02-09T18:36:13.3315744Z\",\"updatedOn\":\"2018-05-09T22:18:52.2780979Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/fb879df8-f326-4884-b1cf-06f3ad86be52\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"fb879df8-f326-4884-b1cf-06f3ad86be52\"},{\"properties\":{\"roleName\":\"Web
         Plan Contributor\",\"type\":\"BuiltInRole\",\"description\":\"Lets you manage
@@ -811,9 +827,9 @@ interactions:
         (not web plans), but not access to them.\",\"assignableScopes\":[\"/\"],\"permissions\":[{\"actions\":[\"Microsoft.Authorization/*/read\",\"Microsoft.Insights/alertRules/*\",\"Microsoft.Insights/components/*\",\"Microsoft.ResourceHealth/availabilityStatuses/read\",\"Microsoft.Resources/deployments/*\",\"Microsoft.Resources/subscriptions/resourceGroups/read\",\"Microsoft.Support/*\",\"Microsoft.Web/certificates/*\",\"Microsoft.Web/listSitesAssignedToHostName/read\",\"Microsoft.Web/serverFarms/join/action\",\"Microsoft.Web/serverFarms/read\",\"Microsoft.Web/sites/*\"],\"notActions\":[],\"dataActions\":[],\"notDataActions\":[]}],\"createdOn\":\"0001-01-01T08:00:00.0000000Z\",\"updatedOn\":\"2016-05-31T23:14:06.5272742Z\",\"createdBy\":null,\"updatedBy\":null},\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/de139f84-1756-47ae-9be6-808fbbe84772\",\"type\":\"Microsoft.Authorization/roleDefinitions\",\"name\":\"de139f84-1756-47ae-9be6-808fbbe84772\"}]}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['96636']
+      content-length: ['106051']
       content-type: [application/json; charset=utf-8]
-      date: ['Tue, 07 Aug 2018 00:01:35 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:47 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -825,7 +841,7 @@ interactions:
       x-ms-request-charge: ['1']
     status: {code: 200, message: OK}
 - request:
-    body: '{"objectIds": ["f36a3cce-57a1-49ea-a93a-01e8df45b5a7"], "includeDirectoryObjectReferences":
+    body: '{"objectIds": ["ee970c5c-42d6-4b82-a155-bd3a08c9facc"], "includeDirectoryObjectReferences":
       true}'
     headers:
       Accept: [application/json]
@@ -835,29 +851,29 @@ interactions:
       Content-Length: ['97']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: POST
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/getObjectsByObjectIds?api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"f36a3cce-57a1-49ea-a93a-01e8df45b5a7","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"397c4626-4244-43ee-9483-03630a4441eb","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[{"odata.type":"Microsoft.DirectoryServices.ServicePrincipal","objectType":"ServicePrincipal","objectId":"ee970c5c-42d6-4b82-a155-bd3a08c9facc","deletionTimestamp":null,"accountEnabled":true,"addIns":[],"alternativeNames":[],"appDisplayName":"clitest.rg000001","appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appOwnerTenantId":"479473dc-cfef-474c-ba12-cba2854af0f6","appRoleAssignmentRequired":false,"appRoles":[],"displayName":"clitest.rg000001","errorUrl":null,"homepage":"http://clitest.rg000001","keyCredentials":[],"logoutUrl":null,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["http://clitest.rg000001","397c4626-4244-43ee-9483-03630a4441eb"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}]}'}
+        clitest.rg000001","value":"user_impersonation"}],"passwordCredentials":[],"preferredTokenSigningKeyThumbprint":null,"publisherName":"MediaSouthWorksDirectory","replyUrls":[],"samlMetadataUrl":null,"servicePrincipalNames":["http://clitest.rg000001","7be52e09-436e-4e13-b06d-f157cb670b69"],"servicePrincipalType":"Application","signInAudience":"AzureADMyOrg","tags":[],"tokenEncryptionKeyId":null}]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
       content-length: ['1908']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:35 GMT']
-      duration: ['3185809']
+      date: ['Mon, 24 Sep 2018 16:42:47 GMT']
+      duration: ['3197174']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [eDBRdQV8u+1gM9UsCxIgTpJXzthWX/WsoVn8Knk1ff0=]
-      ocp-aad-session-key: [kgXouZ3RdAlRaLUZr1pBFdWZTuDmnkFdSvUIjHtM2CSLwiOCFLI4BFsFJIHKM1QS5115gyRnnLhvknsMvtlmTIlVMAAuK-6FMnIXKFs3R89KUewCpA2k7ZLNatAZJkGB-1xGuJOCZ6vOcVRQBm_R9g.j5HJUb-OA65OX96Z0am9ScR71Di-2vlAOmkCaJw6iyI]
+      ocp-aad-diagnostics-server-name: [zvWoFjuE2ehmMVgbV3Cg2Jr+3wQYeCjyzG9gzD1iIS8=]
+      ocp-aad-session-key: [_FF1QQL1ufcl019eunKbl7iOWuwqy2OpEIUxBVdT7q9nd5PcLL07-G6g-92k9KFWN8dDjG9qI_XUpQNnpu4prP1StB3J6XsbWPVbZB9Le_r6tDXoBqAAaT6NDHc_tTHaqX1sev-ft8mpnZFoY96bWA.WMskzrWI-BTnwDC5W9-NH9Z95crCFGaTevhobKzzLeQ]
       pragma: [no-cache]
-      request-id: [550be293-aa63-4f9a-98eb-e8c08585dd81]
+      request-id: [a7ff24ac-98d5-49c7-9a7a-02f9c6cfafc0]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
@@ -874,33 +890,32 @@ interactions:
       Connection: [keep-alive]
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: GET
     uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications?$filter=identifierUris%2Fany%28s%3As%20eq%20%27http%3A%2F%2Fclitest.rg000001%27%29&api-version=1.6
   response:
-    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects/Microsoft.DirectoryServices.Application","value":[{"odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"ee3406c0-66d1-4530-8f26-01e850ef7c71","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"397c4626-4244-43ee-9483-03630a4441eb","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logoUrl":null,"oauth2AllowIdTokenImplicitFlow":true,"oauth2AllowImplicitFlow":false,"oauth2AllowUrlPathMatching":false,"oauth2Permissions":[{"adminConsentDescription":"Allow
+    body: {string: '{"odata.metadata":"https://graph.windows.net/00000000-0000-0000-0000-000000000000/$metadata#directoryObjects","value":[{"odata.type":"Microsoft.DirectoryServices.Application","objectType":"Application","objectId":"4ff1a95e-f5e8-4bfa-a419-0cb31be85290","deletionTimestamp":null,"acceptMappedClaims":null,"addIns":[],"appId":"7be52e09-436e-4e13-b06d-f157cb670b69","appRoles":[],"availableToOtherTenants":false,"displayName":"clitest.rg000001","errorUrl":null,"groupMembershipClaims":null,"homepage":"http://clitest.rg000001","identifierUris":["http://clitest.rg000001"],"informationalUrls":{"termsOfService":null,"support":null,"privacy":null,"marketing":null},"isDeviceOnlyAuthSupported":null,"keyCredentials":[],"knownClientApplications":[],"logoutUrl":null,"logo@odata.mediaEditLink":"directoryObjects/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/Microsoft.DirectoryServices.Application/logo","logoUrl":null,"mainLogo@odata.mediaEditLink":"directoryObjects/4ff1a95e-f5e8-4bfa-a419-0cb31be85290/Microsoft.DirectoryServices.Application/mainLogo","oauth2AllowIdTokenImplicitFlow":true,"oauth2AllowImplicitFlow":false,"oauth2AllowUrlPathMatching":false,"oauth2Permissions":[{"adminConsentDescription":"Allow
         the application to access clitest.rg000001 on behalf of the signed-in user.","adminConsentDisplayName":"Access
-        clitest.rg000001","id":"112e0fc5-f372-47c5-aa79-7d7783a167cf","isEnabled":true,"type":"User","userConsentDescription":"Allow
+        clitest.rg000001","id":"f3e0831e-dff6-4253-8385-655a9d6dc0c9","isEnabled":true,"type":"User","userConsentDescription":"Allow
         the application to access clitest.rg000001 on your behalf.","userConsentDisplayName":"Access
-        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-08-07T00:01:33.088214Z","keyId":"88888888-0000-0000-0000-000000000003","startDate":"2018-08-07T00:01:33.088214Z","value":null},{"customKeyIdentifier":null,"endDate":"2019-08-07T00:01:17.96033Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-08-07T00:01:17.96033Z","value":null}],"publicClient":null,"publisherDomain":"mediasouthworksdirectory.onmicrosoft.com","recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}]}'}
+        clitest.rg000001","value":"user_impersonation"}],"oauth2RequirePostResponse":false,"optionalClaims":null,"orgRestrictions":[],"parentalControlSettings":{"countriesBlockedForMinors":[],"legalAgeGroupRule":"Allow"},"passwordCredentials":[{"customKeyIdentifier":null,"endDate":"2019-09-24T16:42:48.216903Z","keyId":"88888888-0000-0000-0000-000000000003","startDate":"2018-09-24T16:42:48.216903Z","value":null},{"customKeyIdentifier":null,"endDate":"2019-09-24T16:42:35.948146Z","keyId":"88888888-0000-0000-0000-000000000001","startDate":"2018-09-24T16:42:35.948146Z","value":null}],"publicClient":null,"publisherDomain":null,"recordConsentConditions":null,"replyUrls":[],"requiredResourceAccess":[],"samlMetadataUrl":null,"signInAudience":"AzureADMyOrg","tokenEncryptionKeyId":null}]}'}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
-      content-length: ['2532']
+      content-length: ['2720']
       content-type: [application/json; odata=minimalmetadata; streaming=true; charset=utf-8]
       dataserviceversion: [3.0;]
-      date: ['Tue, 07 Aug 2018 00:01:35 GMT']
-      duration: ['1817710']
+      date: ['Mon, 24 Sep 2018 16:42:48 GMT']
+      duration: ['1771370']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [sA30sLdaChah6lI2dGX65yIw0zBwQAV2/qyrKSByTvE=]
-      ocp-aad-session-key: [JqEOJyf_9tO1hKbtLtYZcg6AjW42hdo8HMNgjjB-YRPZVAKG2ZnmODLJbUAwZwSuKwhEQq4356JcJb3EWe4GYTfGKZsh0gHg4F3b3-xcQZCPRnlNdzeClz_GzOh5LS-34x5Ou-SA9duiaDHukrk7tg.COincyJLD_6XuYmB_hKzexgNY7vBEY6bcJaWtbamqpk]
+      ocp-aad-diagnostics-server-name: [u84kEvNmBHxW4/vtHqUleUYQGGbAjaquR19gMFnyQJs=]
+      ocp-aad-session-key: [ZLL_e17nA7aRQ32nf9p59E6qR7jPMTd7WN-RkpT9sGhJzyfZYz5HRC3OAGzPpFeEx20I-Dghi-mK20bMRxl9rQNEVqISQI8Py7PhT7Qfe8X2c0HL4Jur22MABrsEnl3uAAWo9NQ1cli11GHfwOCY_Q.yGeKYi_x6tOBCgS8XeCqeM8ZCX0HKMeZm0iTNHuQdZc]
       pragma: [no-cache]
-      request-id: [23f940fd-a969-4932-8a9d-9e50f269b8c2]
+      request-id: [7ab9294b-4ff9-4adb-9b68-2333b28cc31b]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
-      x-content-type-options: [nosniff]
       x-ms-dirapi-data-contract-version: ['1.6']
       x-powered-by: [ASP.NET]
     status: {code: 200, message: OK}
@@ -914,23 +929,23 @@ interactions:
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.43]
+          msrest_azure/0.4.34 azure-graphrbac/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: DELETE
-    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/ee3406c0-66d1-4530-8f26-01e850ef7c71?api-version=1.6
+    uri: https://graph.windows.net/00000000-0000-0000-0000-000000000000/applications/4ff1a95e-f5e8-4bfa-a419-0cb31be85290?api-version=1.6
   response:
     body: {string: ''}
     headers:
       access-control-allow-origin: ['*']
       cache-control: [no-cache]
       dataserviceversion: [1.0;]
-      date: ['Tue, 07 Aug 2018 00:01:37 GMT']
-      duration: ['4772695']
+      date: ['Mon, 24 Sep 2018 16:42:49 GMT']
+      duration: ['3801235']
       expires: ['-1']
-      ocp-aad-diagnostics-server-name: [MXtk2KRUe+Pbxfgq6k/d269y526UaR5dGfiehIUvvGs=]
-      ocp-aad-session-key: [fcs0IItxN8unNPibszlsA9kGinaGTAKQArhs4pamwJBhe01MNCMXZNWPD-MjoKW8sG8p4NB1hHsyDbcgtFjrmngnmcFl6I8BqzfXiB__M1_iNgnLRH1P53-RBW9aq-crSgMlhi9ekB3zv4v--1REeA.cAoRamwdCmH5ICF-0lcdvffoe4t7T2CvGBCGFCa_kXw]
+      ocp-aad-diagnostics-server-name: [89ehBeiIi5vsLXIGQFsOdP5/iXWeBJ+QgcZg2nJAI+A=]
+      ocp-aad-session-key: [kJrL9mOwpFPdPLsOSasGAceZ9HgvbRkaO_ltX9QNiT3KTi0A3cwtvCsEZyJldVx0_mUN2o5gnP-ZPGMdbyzNDzR4JU_wKL2KAISNx7O6QB9X3opdq56plvEE0qHZhK_qz5RdbRQNC7aOMIKKq7KaHA.-4x7jJRYHabiqkMwcomMoS3PE3-5MK9NW94k5EKH2Xs]
       pragma: [no-cache]
-      request-id: [f1a5b63f-fc8b-494c-9aed-fbf52ad81c36]
+      request-id: [d73352df-190c-4e0b-ba0a-12a3e024ee8c]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
@@ -948,8 +963,8 @@ interactions:
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
-          msrest_azure/0.4.34 resourcemanagementclient/2.0.0rc2 Azure-SDK-For-Python
-          AZURECLI/2.0.43]
+          msrest_azure/0.4.34 resourcemanagementclient/2.0.0 Azure-SDK-For-Python
+          AZURECLI/2.0.46]
       accept-language: [en-US]
     method: DELETE
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
@@ -958,9 +973,9 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Tue, 07 Aug 2018 00:01:39 GMT']
+      date: ['Mon, 24 Sep 2018 16:42:53 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkc2QUhDSFdaTUxMRExMTjVHSjI1N0lNWFBOWklNQks2RldXMnxEQTRCRjFBMjFENzAxOEE1LVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkczQUwzTVRBWTdEQTUyRUhVVk1ZSEZITkpFWVZTS1JGRUZJTXxEQjYxNjFCNDE0NkVDRjg3LVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
