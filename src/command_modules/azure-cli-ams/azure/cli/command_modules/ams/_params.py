@@ -211,8 +211,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
         c.argument('cdn_provider', arg_group='CDN Support', help='The CDN provider name. Allowed values: {}'.format(", ".join(get_cdn_provider_completion_list())))
         c.argument('cdn_profile', arg_group='CDN Support', help='The CDN profile name.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('auto_start', action='store_true', help='Start the streaming endpoint automatically after creating it.')
         c.argument('ips', nargs='+', arg_group='Access Control Support', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
 
@@ -223,8 +225,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
         c.argument('cdn_provider', arg_group='CDN Support', help='The CDN provider name. Allowed values: {}'.format(", ".join(get_cdn_provider_completion_list())))
         c.argument('cdn_profile', arg_group='CDN Support', help='The CDN profile name.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('ips', nargs='+', arg_group='Access Control Support', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('disable_cdn', arg_group='CDN Support', action='store_true', help='Use this flag to disable CDN for the streaming endpoint.')
 
@@ -245,31 +249,33 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams live-event create') as c:
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
-                   help='The streaming protocol for the live event.')
+                   arg_group='Input', help='The streaming protocol for the live event.')
         c.argument('auto_start', action='store_true', help='Start the live event automatically after creating it.')
         c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
-                   help='The encoding type for live event.')
-        c.argument('preset_name', help='The encoding preset name.')
+                   arg_group='Encoding', help='The encoding type for live event.')
+        c.argument('preset_name', arg_group='Encoding', help='The encoding preset name.')
         c.argument('tags', arg_type=tags_type)
-        c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
-        c.argument('access_token', help='The access token.')
+        c.argument('key_frame_interval_duration', arg_group='Input',
+                   help='ISO 8601 timespan duration of the key frame interval duration.')
+        c.argument('access_token', arg_group='Input', help='The access token.')
         c.argument('description', help='The live event description.')
-        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control.')
-        c.argument('preview_locator', help='The preview locator Guid.')
-        c.argument('streaming_policy_name', help='The name of streaming policy used for live event preview.')
-        c.argument('alternative_media_id', help='An alternative media identifier associated with the preview URL. This identifier can be used to distinguish the preview of different live events for authorization purposes in the custom license acquisition URL template or the custom key acquisition URL template of the streaming policy specified in the streaming policy name field.')
+        c.argument('ips', nargs='+', arg_group='Preview', help='Space-separated list of allowed IP addresses for access control.')
+        c.argument('preview_locator', arg_group='Preview', help='The preview locator Guid.')
+        c.argument('streaming_policy_name', arg_group='Preview', help='The name of streaming policy used for live event preview.')
+        c.argument('alternative_media_id', arg_group='Preview', help='An alternative media identifier associated with the preview URL. This identifier can be used to distinguish the preview of different live events for authorization purposes in the custom license acquisition URL template or the custom key acquisition URL template of the streaming policy specified in the streaming policy name field.')
         c.argument('vanity_url', action='store_true', help='The live event vanity URL flag.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('stream_options', nargs='+', arg_type=get_enum_type(StreamOptionsFlag), help='The stream options.')
 
     with self.argument_context('ams live-event update') as c:
         c.argument('description', help='The live event description.')
-        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
+        c.argument('ips', nargs='+', arg_group='Preview',
+                   help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('tags', arg_type=tags_type)
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
-        c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('key_frame_interval_duration', arg_group='Input', help='ISO 8601 timespan duration of the key frame interval duration.')
 
     with self.argument_context('ams live-event stop') as c:
         c.argument('remove_outputs_on_stop', action='store_true', help='Remove live outputs on stop.')
