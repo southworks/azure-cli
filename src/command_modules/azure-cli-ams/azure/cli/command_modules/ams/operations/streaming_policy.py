@@ -6,6 +6,8 @@
 import json
 import os
 
+from azure.cli.core.util import CLIError
+
 from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
                                      CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
                                      StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
@@ -83,9 +85,13 @@ def _parse_key_to_track_mappings_json(key_to_track_mappings):
         key_to_track_mappings_result = []
         with open(key_to_track_mappings) as key_to_track_mappings_stream:
             key_to_track_mappings_json = json.load(key_to_track_mappings_stream)
-            for str_policy_content_key_json in key_to_track_mappings_json:
-                str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
-                key_to_track_mappings_result.append(str_policy_content_key)
+            try:
+                for str_policy_content_key_json in key_to_track_mappings_json:
+                    str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
+                    key_to_track_mappings_result.append(str_policy_content_key)
+            except:
+                raise CLIError('Malformed key-to-track-mappings JSON argument. Please, make sure you are sending a list of TrackSelection.' \
+                    ' For further information, please refer to https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
     return key_to_track_mappings_result
 
 
@@ -95,9 +101,16 @@ def _parse_clear_tracks_json(clear_tracks):
         clear_tracks_result = []
         with open(clear_tracks) as clear_tracks_result_stream:
             clear_tracks_json = json.load(clear_tracks_result_stream)
-            for track_selection_json in clear_tracks_json:
-                track_selection = TrackSelection(**track_selection_json)
-                clear_tracks_result.append(track_selection)
+            try:
+                for track_selection_json in clear_tracks_json:
+                    track_properties = []
+                    for track_property_json in track_selection_json.get('trackSelections'):
+                        track_property = TrackPropertyCondition(**track_property_json)
+                        track_properties.append(track_property)
+                    clear_tracks_result.append(TrackSelection(track_selections=track_properties))
+            except:
+                raise CLIError('Malformed clear-tracks JSON argument. Please, make sure you are sending a list of TrackSelection.' \
+                    ' For further information, please refer to https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
     return clear_tracks_result
 
 
