@@ -48,7 +48,7 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                       cenc_key_to_track_mappings, cenc_clear_tracks,
                                                       cenc_play_ready_url_template, cenc_play_ready_attributes)
 
-    common_encryption_cenc = _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
+    common_encryption_cbcs = _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
                                                       cbcs_default_key_label, cbcs_default_key_policy_name,
                                                       cbcs_key_to_track_mappings, cbcs_clear_tracks,
                                                       cbcs_play_ready_url_template, cbcs_play_ready_attributes,
@@ -58,7 +58,8 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
     streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
                                        no_encryption=no_encryption,
                                        envelope_encryption=envelope_encryption,
-                                       common_encryption_cenc=common_encryption_cenc)
+                                       common_encryption_cenc=common_encryption_cenc,
+                                       common_encryption_cbcs=common_encryption_cbcs)
 
     return get_streaming_policies_client(cmd.cli_ctx).create(resource_group_name, account_name,
                                                              streaming_policy_name, streaming_policy)
@@ -99,26 +100,31 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
                              cbcs_allow_persistent_license):
     cbcs_enabled_protocols = _build_enabled_protocols_object(cbcs_protocols)
 
-    cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(
-    custom_license_acquisition_url_template=cbcs_play_ready_url_template,
-    play_ready_custom_attributes=cbcs_play_ready_attributes)
+    cbcs_play_ready_config = None
+    if cbcs_play_ready_url_template or cbcs_play_ready_attributes:
+        cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(
+        custom_license_acquisition_url_template=cbcs_play_ready_url_template,
+        play_ready_custom_attributes=cbcs_play_ready_attributes)
 
-    cbcs_widevine_config = StreamingPolicyWidevineConfiguration(
-        custom_license_acquisition_url_template=cbcs_widevine_url_template)
+    cbcs_widevine_config = None
+    if cbcs_widevine_url_template:
+        cbcs_widevine_config = StreamingPolicyWidevineConfiguration(
+            custom_license_acquisition_url_template=cbcs_widevine_url_template)
+    
+    if cbcs_allow_persistent_license or cbcs_custom_license_acquisition_url_template:
+        cbcs_fair_play_configuration = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,
+                                                                        custom_license_acquisition_url_template=
+                                                                        cbcs_custom_license_acquisition_url_template)
 
     cbcs_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cbcs_default_key_label,
                                                                           policy_name=cbcs_default_key_policy_name),
                                                    key_to_track_mappings = _parse_key_to_track_mappings_json(cbcs_key_to_track_mappings))
 
-    cbcs_fair_play_configuration = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,
-                                                                        custom_license_acquisition_url_template=
-                                                                        cbcs_custom_license_acquisition_url_template)
-
-    return CommonEncryptionCbcs(enabled_protocols=cenc_enabled_protocols,
+    return CommonEncryptionCbcs(enabled_protocols=cbcs_enabled_protocols,
                                 clear_tracks=_parse_clear_tracks_json(cbcs_clear_tracks),
                                 content_keys=cbcs_content_keys,
                                 drm=CbcsDrmConfiguration(play_ready=cbcs_play_ready_config, widevine=cbcs_widevine_config,
-                                                         ))
+                                                         fair_play=cbcs_fair_play_configuration))
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
