@@ -50,15 +50,18 @@ def _build_content_keys(content_keys):
 
     def __track_builder(tracks):
         return TrackSelection(
-            track_selections=[__track_selection_builder(t) if t else None
-                              for t in tracks.get('trackSelections')])
+            track_selections=[None if t is None else __track_selection_builder(t)
+                              for t in tracks.get('trackSelections')]
+            if tracks.get('trackSelections') else None
+        )
 
     def __content_key_builder(key):
         return StreamingLocatorContentKey(
             id=key.get('id'),
             label=key.get('label'),
             value=key.get('value'),
-            tracks=[__track_builder(t) for t in key.get('tracks')] if key.get('tracks') else None
+            tracks=[None if t is None else __track_builder(t) for t in key.get('tracks')]
+            if key.get('tracks') else None
         )
 
     return None if content_keys is None else [__content_key_builder(k) for k in json.loads(content_keys)]
