@@ -229,6 +229,11 @@ helps['ams content-key-policy option remove'] = """
     short-summary: Remove an option from an existing content key policy.
 """
 
+helps['ams content-key-policy option update'] = """
+    type: command
+    short-summary: Update an option from an existing content key policy.
+"""
+
 helps['ams job'] = """
     type: group
     short-summary: Manage jobs for a transform.

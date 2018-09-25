@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# pylint: disable=line-too-long, too-many-arguments, too-many-locals, too-many-branches
+# pylint: disable=line-too-long, too-many-arguments, too-many-locals, too-many-branches, too-many-statements
 import base64
 import json
 import codecs
@@ -105,43 +105,87 @@ def remove_content_key_policy_option(client, resource_group_name, account_name, 
                          content_key_policy_name, policy.options)
 
 
+def update_content_key_policy_option(client, resource_group_name, account_name, content_key_policy_name,
+                                     policy_option_id, policy_option_name=None, issuer=None, audience=None,
+                                     token_key=None, token_key_type=None, alt_token_key=None, alt_token_key_type=None,
+                                     token_claims=None, token_type=None, open_id_connect_discovery_document=None,
+                                     widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
+                                     rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
+    policy = client.get_policy_properties_with_secrets(resource_group_name=resource_group_name, account_name=account_name,
+                                                       content_key_policy_name=content_key_policy_name)
+
+    policy_option = next((option for option in policy.options if option.policy_option_id == policy_option_id), None)
+
+    if policy_option is None:
+        raise CLIError('Policy option with id "' + policy_option_id + '" was not found.')
+
+    if policy_option_name is not None:
+        policy_option.name = policy_option_name
+
+    if isinstance(policy_option.restriction, ContentKeyPolicyTokenRestriction):
+        if issuer is not None:
+            policy_option.restriction.issuer = issuer
+
+        if audience is not None:
+            policy_option.restriction.audience = audience
+
+        if token_key is not None and token_key_type is not None:
+            if token_key_type == 'Symmetric':
+                policy_option.restriction.primary_verification_key = _symmetric_token_key_factory(token_key)
+            elif token_key_type == 'RSA':
+                policy_option.restriction.primary_verification_key = _rsa_token_key_factory(token_key)
+            elif token_key_type == 'X509':
+                policy_option.restriction.primary_verification_key = _x509_token_key_factory(token_key)
+
+        if alt_token_key is not None and alt_token_key_type is not None:
+            if alt_token_key_type == 'Symmetric':
+                policy_option.restriction.alternate_verification_keys.append(_symmetric_token_key_factory(alt_token_key))
+            elif alt_token_key_type == 'RSA':
+                policy_option.restriction.alternate_verification_keys.append(_rsa_token_key_factory(alt_token_key))
+            elif alt_token_key_type == 'X509':
+                policy_option.restriction.alternate_verification_keys.append(_x509_token_key_factory(alt_token_key))
+
+        if token_claims is not None:
+            policy_option.restriction.token_claims = []
+            for key in token_claims:
+                claim = ContentKeyPolicyTokenClaim(claim_type=key,
+                                                   claim_value=token_claims[key])
+                policy_option.restriction.token_claims.append(claim)
+
+        if token_type is not None:
+            policy_option.restriction.restriction_token_type = token_type
+
+        if open_id_connect_discovery_document is not None:
+            policy_option.restriction.open_id_connect_discovery_document = open_id_connect_discovery_document
+
+    if isinstance(policy_option.configuration, ContentKeyPolicyWidevineConfiguration):
+        if widevine_template is not None:
+            policy_option.configuration = ContentKeyPolicyWidevineConfiguration(widevine_template=widevine_template)
+    elif isinstance(policy_option.configuration, ContentKeyPolicyFairPlayConfiguration):
+        if ask is not None:
+            policy_option.configuration.ask = bytearray(ask, 'utf-8')
+
+        if fair_play_pfx_password is not None:
+            policy_option.configuration.fair_play_pfx_password = fair_play_pfx_password
+
+        if fair_play_pfx is not None:
+            policy_option.configuration.fair_play_pfx = _b64_to_str(_read_binary(fair_play_pfx)).decode('ascii')
+
+        if rental_and_lease_key_type is not None:
+            policy_option.configuration.rental_and_lease_key_type = rental_and_lease_key_type
+
+        if rental_duration is not None:
+            policy_option.configuration.rental_duration = rental_duration
+    elif isinstance(policy_option.configuration, ContentKeyPolicyPlayReadyConfiguration):
+        if play_ready_template is not None and _valid_playready_configuration(play_ready_template):
+            _play_ready_configuration_factory(json.loads(play_ready_template))
+
+    return client.update(resource_group_name, account_name,
+                         content_key_policy_name, policy.options, policy.description)
+
+
 def update_content_key_policy_setter(client, resource_group_name, account_name, content_key_policy_name,
-                                     parameters, alt_key_symmetric=False, alt_key_rsa=False, alt_key_x509=False,
-                                     symmetric=False, rsa=False, x509=False):
-    def __get_key(key):
-        if alt_key_symmetric or symmetric:
-            return _symmetric_token_key_factory(key)
-        if alt_key_rsa or rsa:
-            return _rsa_token_key_factory(key)
-        if alt_key_x509 or x509:
-            return _x509_token_key_factory(key)
-        raise CLIError('You must use one flag for an alternate token key.')
-
-    truthy_alts = _count_truthy([alt_key_symmetric, alt_key_rsa, alt_key_x509])
-    truthy_keys = _count_truthy([symmetric, rsa, x509])
-
-    if truthy_alts > 1:
-        raise CLIError('You must use exactly one flag for an alternate token key.')
-
-    if truthy_keys > 1:
-        raise CLIError('You must use exactly one flag for a token key.')
-
-    if truthy_alts == 1 and truthy_keys == 1:
-        raise CLIError('You must either update a token key or an alternate key')
-
-    if truthy_keys == 1:
-        for option in parameters.options:
-            if isinstance(option.restriction, ContentKeyPolicyTokenRestriction):
-                if isinstance(option.restriction.primary_verification_key, str):
-                    key = option.restriction.primary_verification_key
-                    option.restriction.primary_verification_key = __get_key(key)
-
-    if truthy_alts == 1:
-        for option in parameters.options:
-            if isinstance(option.restriction, ContentKeyPolicyTokenRestriction):
-                alt_keys = option.restriction.alternate_verification_keys
-                option.restriction.alternate_verification_keys = [__get_key(key) if isinstance(key, str) else key for key in alt_keys]
-
+                                     parameters):
     return client.update(resource_group_name, account_name,
                          content_key_policy_name, parameters.options, parameters.description)
 
@@ -245,6 +289,7 @@ def _generate_content_key_policy_option(policy_option_name, clear_key_configurat
                                   restriction=restriction)
 
 
+# Utility functions
 # Returns string if not null, or an empty string otherwise.
 def _coalesce_lst(value):
     return value or []
@@ -254,11 +299,36 @@ def _coalesce_timedelta(value):
     return parse_timedelta(value) if value else None
 
 
+def _read_json(path):
+    return _read(path, 'r')
+
+
+def _read_binary(path):
+    return _read(path, 'rb')
+
+
+def _read(path, read_type):
+    with open(path, read_type) as file:
+        return file.read()
+
+
+def _b64_to_str(data):
+    return base64.b64encode(data)
+
+
+def _int2bytes(int_value):
+    hex_value = '{0:x}'.format(int_value)
+    # make length of hex_value a multiple of two
+    hex_value = '0' * (len(hex_value) % 2) + hex_value
+    return codecs.decode(hex_value, 'hex_codec')
+
+
 # Counts how many values are truthy on a list.
 def _count_truthy(values):
     return len([value for value in values if value])
 
 
+# Factories
 def _symmetric_token_key_factory(input_symmetric):
     key = bytearray(input_symmetric, 'utf-8')
     return ContentKeyPolicySymmetricTokenKey(key_value=key)
@@ -282,60 +352,6 @@ def _x509_token_key_factory(input_x509):
     content = _read(input_x509, 'r')
     return ContentKeyPolicyX509CertificateTokenKey(
         raw_body=bytearray(content, 'ascii'))
-
-
-def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audience):
-    return _validate_all_conditions(
-        [token_type, token_key, token_key_type in get_tokens(), issuer, audience],
-        'Malformed content key policy token restriction.')
-
-
-def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration):
-    return _validate_all_conditions(
-        [ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration],
-        'Malformed content key policy FairPlay configuration.')
-
-
-def _valid_playready_configuration(play_ready_template):
-    if play_ready_template is None:
-        return False
-
-    def __valid_license(lic):
-        return _validate_all_conditions([lic.get('allowTestDevices') is not None,
-                                         lic.get('licenseType') in ['NonPersistent', 'Persistent'],
-                                         lic.get('contentKeyLocation') is not None,
-                                         lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
-                                         lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))],
-                                        'Malformed PlayReady license.')
-
-    def __valid_play_right(prl):
-        return _validate_all_conditions([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
-                                          __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
-                                         prl.get('digitalVideoOnlyContentRestriction') is not None,
-                                         prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
-                                         prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
-                                         prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
-                                                                                                'AllowedWithVideoConstriction']],
-                                        'Malformed license PlayRight.')
-
-    def __valid_eator(eator):
-        return _validate_all_conditions([eator.get('bestEffort') is not None,
-                                         eator.get('configurationData') is not None],
-                                        'Malformed explicit analog television output restriction.')
-
-    cfg = None
-
-    try:
-        cfg = json.loads(play_ready_template)
-    except ValueError as err:
-        raise CLIError('Malformed JSON: ' + str(err))
-
-    return _validate_all_conditions(
-        [cfg.get('licenses') is not None,
-         len(cfg.get('licenses')) > 0,
-         all(__valid_license(l) for l in cfg.get('licenses'))],
-        'Malformed content key policy PlayReady configuration'
-    )
 
 
 def _play_ready_configuration_factory(content):
@@ -399,6 +415,61 @@ def _play_ready_configuration_factory(content):
     )
 
 
+# Validator methods
+def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audience):
+    return _validate_all_conditions(
+        [token_type, token_key, token_key_type in get_tokens(), issuer, audience],
+        'Malformed content key policy token restriction.')
+
+
+def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration):
+    return _validate_all_conditions(
+        [ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration],
+        'Malformed content key policy FairPlay configuration.')
+
+
+def _valid_playready_configuration(play_ready_template):
+    if play_ready_template is None:
+        return False
+
+    def __valid_license(lic):
+        return _validate_all_conditions([lic.get('allowTestDevices') is not None,
+                                         lic.get('licenseType') in ['NonPersistent', 'Persistent'],
+                                         lic.get('contentKeyLocation') is not None,
+                                         lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
+                                         lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))],
+                                        'Malformed PlayReady license.')
+
+    def __valid_play_right(prl):
+        return _validate_all_conditions([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
+                                          __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
+                                         prl.get('digitalVideoOnlyContentRestriction') is not None,
+                                         prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
+                                         prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
+                                         prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
+                                                                                                'AllowedWithVideoConstriction']],
+                                        'Malformed license PlayRight.')
+
+    def __valid_eator(eator):
+        return _validate_all_conditions([eator.get('bestEffort') is not None,
+                                         eator.get('configurationData') is not None],
+                                        'Malformed explicit analog television output restriction.')
+
+    cfg = None
+
+    try:
+        cfg = json.loads(play_ready_template)
+    except ValueError as err:
+        raise CLIError('Malformed JSON: ' + str(err))
+
+    return _validate_all_conditions(
+        [cfg.get('licenses') is not None,
+         len(cfg.get('licenses')) > 0,
+         all(__valid_license(l) for l in cfg.get('licenses'))],
+        'Malformed content key policy PlayReady configuration'
+    )
+
+
 def _validate_all_conditions(conditions, error_if_malformed):
     well_formed = all(conditions)
 
@@ -406,27 +477,3 @@ def _validate_all_conditions(conditions, error_if_malformed):
         raise CLIError(error_if_malformed)
 
     return well_formed
-
-
-def _read_json(path):
-    return _read(path, 'r')
-
-
-def _read_binary(path):
-    return _read(path, 'rb')
-
-
-def _read(path, read_type):
-    with open(path, read_type) as file:
-        return file.read()
-
-
-def _b64_to_str(data):
-    return base64.b64encode(data)
-
-
-def _int2bytes(int_value):
-    hex_value = '{0:x}'.format(int_value)
-    # make length of hex_value a multiple of two
-    hex_value = '0' * (len(hex_value) % 2) + hex_value
-    return codecs.decode(hex_value, 'hex_codec')
