@@ -107,7 +107,7 @@ def remove_content_key_policy_option(client, resource_group_name, account_name, 
 
 def update_content_key_policy_option(client, resource_group_name, account_name, content_key_policy_name,
                                      policy_option_id, policy_option_name=None, issuer=None, audience=None,
-                                     token_key=None, token_key_type=None, alt_token_key=None, alt_token_key_type=None,
+                                     token_key=None, token_key_type=None, add_alt_token_key=None, add_alt_token_key_type=None,
                                      token_claims=None, token_type=None, open_id_connect_discovery_document=None,
                                      widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
                                      rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
@@ -137,13 +137,13 @@ def update_content_key_policy_option(client, resource_group_name, account_name, 
             elif token_key_type == 'X509':
                 policy_option.restriction.primary_verification_key = _x509_token_key_factory(token_key)
 
-        if alt_token_key is not None and alt_token_key_type is not None:
-            if alt_token_key_type == 'Symmetric':
-                policy_option.restriction.alternate_verification_keys.append(_symmetric_token_key_factory(alt_token_key))
-            elif alt_token_key_type == 'RSA':
-                policy_option.restriction.alternate_verification_keys.append(_rsa_token_key_factory(alt_token_key))
-            elif alt_token_key_type == 'X509':
-                policy_option.restriction.alternate_verification_keys.append(_x509_token_key_factory(alt_token_key))
+        if add_alt_token_key is not None and add_alt_token_key_type is not None:
+            if add_alt_token_key_type == 'Symmetric':
+                policy_option.restriction.alternate_verification_keys.append(_symmetric_token_key_factory(add_alt_token_key))
+            elif add_alt_token_key_type == 'RSA':
+                policy_option.restriction.alternate_verification_keys.append(_rsa_token_key_factory(add_alt_token_key))
+            elif add_alt_token_key_type == 'X509':
+                policy_option.restriction.alternate_verification_keys.append(_x509_token_key_factory(add_alt_token_key))
 
         if token_claims is not None:
             policy_option.restriction.token_claims = []
