@@ -148,7 +148,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    arg_group='Open Restriction',
                    help='Use open restriction. License or key will be delivered on every request. Not recommended for production environments.')
         c.argument('policy_option_name', help='The content key policy option name.')
-        c.argument('policy_option_id', help='The content key policy option identifier.')
+        c.argument('policy_option_id', help='The content key policy option identifier. This value can be obtained from "policyOptionId" property by running a show operation on a content key policy resource.')
         c.argument('issuer', arg_group='Token Restriction', help='The token issuer.')
         c.argument('audience', arg_group='Token Restriction', help='The audience for the token.')
         c.argument('token_key', arg_group='Token Restriction', help='Either a string (for symmetric key) or a filepath to a certificate (x509) or public key (rsa). Must be used in conjunction with --token-key-type.')
