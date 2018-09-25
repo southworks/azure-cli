@@ -193,8 +193,18 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('cenc_play_ready_attributes', arg_group='Common Encryption CENC', help='Custom attributes for PlayReady.')
         c.argument('cenc_widevine_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cenc_play_ready_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
-        c.argument('cenc_key_track_properties', nargs='+')
-        c.argument('cenc_track_properties', nargs='+')
+
+        c.argument('cbcs_protocols', nargs='+', arg_group='Common Encryption CBCS', help='Space-separated list of enabled protocols for Common Encryption CBCS. Allowed values: {}'.format(", ".join(get_protocols_completion_list())))
+        c.argument('cbcs_default_key_label', arg_group='Common Encryption CBCS', help='Label to specify Default Content Key for an encryption scheme.')
+        c.argument('cbcs_default_key_policy_name', arg_group='Common Encryption CBCS', help='Policy used by Default Content Key.')
+        c.argument('cbcs_clear_tracks', arg_group='Common Encryption CBCS', help='The filepath to a JSON representing which tracks should not be encrypted. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
+        c.argument('cbcs_key_to_track_mappings', arg_group='Common Encryption CBCS', help='The filepath to a JSON representing a list of StreamingPolicyContentKey. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey')
+        c.argument('cbcs_play_ready_attributes', arg_group='Common Encryption CBCS', help='Custom attributes for PlayReady.')
+        c.argument('cbcs_widevine_url_template', arg_group='Common Encryption CBCS', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_play_ready_url_template', arg_group='Common Encryption CBCS', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_custom_license_acquisition_url_template', arg_group='Common Encryption CBCS', help='The template for a customer service to deliver keys to end users.  Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_allow_persistent_license', arg_group='Common Encryption CBCS', action='store_true', help='All license to be persistent or not.')
+
 
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)

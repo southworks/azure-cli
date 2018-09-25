@@ -11,10 +11,11 @@ from azure.cli.core.util import CLIError
 from azure.mgmt.media.models import (StreamingPolicy, NoEncryption, EnabledProtocols,
                                      CommonEncryptionCenc, TrackSelection, TrackPropertyCondition,
                                      StreamingPolicyContentKeys, DefaultKey, StreamingPolicyContentKey,
-                                     StreamingPolicyContentKeys,
+                                     StreamingPolicyContentKeys, CommonEncryptionCbcs,
                                      CencDrmConfiguration, StreamingPolicyPlayReadyConfiguration,
                                      StreamingPolicyWidevineConfiguration, EnabledProtocols,
-                                     EnvelopeEncryption)
+                                     EnvelopeEncryption, CbcsDrmConfiguration,
+                                     StreamingPolicyFairPlayConfiguration)
 from azure.cli.command_modules.ams._client_factory import get_streaming_policies_client
 
 
@@ -28,7 +29,12 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             envelope_clear_tracks=None, envelope_key_to_track_mappings=None,
                             envelope_custom_key_acquisition_url_template=None,
                             envelope_default_key_label=None, envelope_default_key_policy_name=None,
-                            envelope_protocols=[]):
+                            envelope_protocols=[], cbcs_protocols=[], cbcs_default_key_label=None,
+                            cbcs_default_key_policy_name=None, cbcs_clear_tracks=None,
+                            cbcs_key_to_track_mappings=None, cbcs_play_ready_url_template=None,
+                            cbcs_play_ready_attributes=None, cbcs_widevine_url_template=None,
+                            cbcs_custom_license_acquisition_url_template=None,
+                            cbcs_allow_persistent_license=False):
 
     no_encryption = _no_encryption_factory(no_encryption_protocols)
 
@@ -41,6 +47,13 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                                                       cenc_default_key_label, cenc_default_key_policy_name,
                                                       cenc_key_to_track_mappings, cenc_clear_tracks,
                                                       cenc_play_ready_url_template, cenc_play_ready_attributes)
+
+    common_encryption_cenc = _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
+                                                      cbcs_default_key_label, cbcs_default_key_policy_name,
+                                                      cbcs_key_to_track_mappings, cbcs_clear_tracks,
+                                                      cbcs_play_ready_url_template, cbcs_play_ready_attributes,
+                                                      cbcs_custom_license_acquisition_url_template,
+                                                      cbcs_allow_persistent_license)
 
     streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
                                        no_encryption=no_encryption,
@@ -77,6 +90,35 @@ def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                                 clear_tracks=_parse_clear_tracks_json(cenc_clear_tracks),
                                 content_keys=cenc_content_keys,
                                 drm=CencDrmConfiguration(play_ready=cenc_play_ready_config, widevine=cenc_widevine_config))
+
+def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
+                             cbcs_default_key_label, cbcs_default_key_policy_name,
+                             cbcs_key_to_track_mappings, cbcs_clear_tracks,
+                             cbcs_play_ready_url_template, cbcs_play_ready_attributes,
+                             cbcs_custom_license_acquisition_url_template,
+                             cbcs_allow_persistent_license):
+    cbcs_enabled_protocols = _build_enabled_protocols_object(cbcs_protocols)
+
+    cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(
+    custom_license_acquisition_url_template=cbcs_play_ready_url_template,
+    play_ready_custom_attributes=cbcs_play_ready_attributes)
+
+    cbcs_widevine_config = StreamingPolicyWidevineConfiguration(
+        custom_license_acquisition_url_template=cbcs_widevine_url_template)
+
+    cbcs_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cbcs_default_key_label,
+                                                                          policy_name=cbcs_default_key_policy_name),
+                                                   key_to_track_mappings = _parse_key_to_track_mappings_json(cbcs_key_to_track_mappings))
+
+    cbcs_fair_play_configuration = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,
+                                                                        custom_license_acquisition_url_template=
+                                                                        cbcs_custom_license_acquisition_url_template)
+
+    return CommonEncryptionCbcs(enabled_protocols=cenc_enabled_protocols,
+                                clear_tracks=_parse_clear_tracks_json(cbcs_clear_tracks),
+                                content_keys=cbcs_content_keys,
+                                drm=CbcsDrmConfiguration(play_ready=cbcs_play_ready_config, widevine=cbcs_widevine_config,
+                                                         ))
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
