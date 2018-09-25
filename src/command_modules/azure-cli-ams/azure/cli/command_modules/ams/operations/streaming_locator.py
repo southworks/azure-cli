@@ -10,6 +10,7 @@ from knack.util import CLIError
 from azure.mgmt.media.models import (StreamingLocatorContentKey, TrackSelection,
                                      TrackPropertyCondition)
 
+
 def create_streaming_locator(client, resource_group_name, account_name,
                              streaming_locator_name, streaming_policy_name,
                              asset_name, start_time=None, default_content_key_policy_name=None,
@@ -38,6 +39,7 @@ def list_content_keys(client, resource_group_name, account_name,
     return client.list_content_keys(resource_group_name, account_name,
                                     streaming_locator_name).content_keys
 
+
 def _build_content_keys(content_keys):
     def __track_selection_builder(sel):
         return TrackPropertyCondition(
@@ -48,20 +50,19 @@ def _build_content_keys(content_keys):
 
     def __track_builder(tracks):
         return TrackSelection(
-            track_selections=[__track_selection_builder(t) 
-                              for t in tracks.get('trackSelections')]
-                              if tracks.get('trackSelections') else None)
+            track_selections=[__track_selection_builder(t) if t else None
+                              for t in tracks.get('trackSelections')])
 
     def __content_key_builder(key):
         return StreamingLocatorContentKey(
             id=key.get('id'),
-            type=key.get('type'),
             label=key.get('label'),
             value=key.get('value'),
             tracks=[__track_builder(t) for t in key.get('tracks')] if key.get('tracks') else None
         )
 
     return None if content_keys is None else [__content_key_builder(k) for k in json.loads(content_keys)]
+
 
 def _valid_content_keys(content_keys):
     if content_keys is None:
