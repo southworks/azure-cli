@@ -157,7 +157,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('alt_token_key_type', arg_group='Token Restriction', help='The type of the token key to be used for a new alternate verification key. Allowed values: {}'.format(", ".join(get_token_completion_list())))
         c.argument('alt_symmetric_token_keys', nargs='+', arg_group='Token Restriction', help='Space-separated list of alternate symmetric token keys.')
         c.argument('alt_rsa_token_keys', nargs='+', arg_group='Token Restriction', help='Space-separated list of alternate rsa token keys.')
-        c.argument('alt_x509_certificate_token_keys', nargs='+', arg_group='Token Restriction', help='Space-separated list of alternate x509 certificate token keys.')
+        c.argument('alt_x509_token_keys', nargs='+', arg_group='Token Restriction', help='Space-separated list of alternate x509 certificate token keys.')
         c.argument('token_claims', arg_group='Token Restriction', arg_type=token_claim_type)
         c.argument('token_type', arg_group='Token Restriction',
                    help='The type of token. Allowed values: {}.'.format(", ".join(get_token_type_completion_list())))
