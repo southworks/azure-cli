@@ -151,7 +151,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('policy_option_id', help='The content key policy option identifier.')
         c.argument('issuer', arg_group='Token Restriction', help='The token issuer.')
         c.argument('audience', arg_group='Token Restriction', help='The audience for the token.')
-        c.argument('token_key', arg_group='Token Restriction', help='Either a string (for symmetric key) or a filepath to a certificate (x509) or public key (rsa). Must be used in conjunction with --alt-token-key-type.')
+        c.argument('token_key', arg_group='Token Restriction', help='Either a string (for symmetric key) or a filepath to a certificate (x509) or public key (rsa). Must be used in conjunction with --token-key-type.')
         c.argument('token_key_type', arg_group='Token Restriction', help='The type of the token key to be used for the primary verification key. Allowed values: {}'.format(", ".join(get_token_completion_list())))
         c.argument('alt_token_key', arg_group='Token Restriction', help='Either a string (for symmetric key) or a filepath to a certificate (x509) or public key (rsa). Must be used in conjunction with --alt-token-key-type.')
         c.argument('alt_token_key_type', arg_group='Token Restriction', help='The type of the token key to be used for a new alternate verification key. Allowed values: {}'.format(", ".join(get_token_completion_list())))
