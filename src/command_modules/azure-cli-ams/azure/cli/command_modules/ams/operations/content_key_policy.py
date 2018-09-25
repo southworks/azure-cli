@@ -252,12 +252,13 @@ def _generate_content_key_policy_option(policy_option_name, clear_key_configurat
         alternate_keys = []
         _token_claims = []
 
-        if token_key_type == 'Symmetric':
-            primary_verification_key = _symmetric_token_key_factory(token_key)
-        elif token_key_type == 'RSA':
-            primary_verification_key = _rsa_token_key_factory(token_key)
-        elif token_key_type == 'X509':
-            primary_verification_key = _x509_token_key_factory(token_key)
+        if token_key is not None:
+            if token_key_type == 'Symmetric':
+                primary_verification_key = _symmetric_token_key_factory(token_key)
+            elif token_key_type == 'RSA':
+                primary_verification_key = _rsa_token_key_factory(token_key)
+            elif token_key_type == 'X509':
+                primary_verification_key = _x509_token_key_factory(token_key)
 
         for key in _coalesce_lst(alt_symmetric_token_keys):
             alternate_keys.append(_symmetric_token_key_factory(key))
@@ -279,10 +280,6 @@ def _generate_content_key_policy_option(policy_option_name, clear_key_configurat
             alternate_verification_keys=alternate_keys, required_claims=_token_claims,
             restriction_token_type=token_type,
             open_id_connect_discovery_document=open_id_connect_discovery_document)
-
-    if restriction is None or configuration is None:
-        raise CLIError(
-            'Could not build content key policy option due to invalid restriction or configuration.')
 
     return ContentKeyPolicyOption(name=policy_option_name,
                                   configuration=configuration,
@@ -417,15 +414,13 @@ def _play_ready_configuration_factory(content):
 
 # Validator methods
 def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audience):
-    return _validate_all_conditions(
-        [token_type, token_key, token_key_type in get_tokens(), issuer, audience],
-        'Malformed content key policy token restriction.')
+    return _validate_any_condition(
+        [token_type, token_key, token_key_type in get_tokens(), issuer, audience])
 
 
 def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration):
-    return _validate_all_conditions(
-        [ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration],
-        'Malformed content key policy FairPlay configuration.')
+    return _validate_any_condition(
+        [ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration])
 
 
 def _valid_playready_configuration(play_ready_template):
@@ -433,27 +428,24 @@ def _valid_playready_configuration(play_ready_template):
         return False
 
     def __valid_license(lic):
-        return _validate_all_conditions([lic.get('allowTestDevices') is not None,
-                                         lic.get('licenseType') in ['NonPersistent', 'Persistent'],
-                                         lic.get('contentKeyLocation') is not None,
-                                         lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
-                                         lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))],
-                                        'Malformed PlayReady license.')
+        return _validate_any_condition([lic.get('allowTestDevices') is not None,
+                                        lic.get('licenseType') in ['NonPersistent', 'Persistent'],
+                                        lic.get('contentKeyLocation') is not None,
+                                        lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
+                                        lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))])
 
     def __valid_play_right(prl):
-        return _validate_all_conditions([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
-                                          __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
-                                         prl.get('digitalVideoOnlyContentRestriction') is not None,
-                                         prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
-                                         prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
-                                         prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
-                                                                                                'AllowedWithVideoConstriction']],
-                                        'Malformed license PlayRight.')
+        return _validate_any_condition([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
+                                         __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
+                                        prl.get('digitalVideoOnlyContentRestriction') is not None,
+                                        prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
+                                        prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
+                                        prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
+                                                                                               'AllowedWithVideoConstriction']])
 
     def __valid_eator(eator):
-        return _validate_all_conditions([eator.get('bestEffort') is not None,
-                                         eator.get('configurationData') is not None],
-                                        'Malformed explicit analog television output restriction.')
+        return _validate_any_condition([eator.get('bestEffort') is not None,
+                                        eator.get('configurationData') is not None])
 
     cfg = None
 
@@ -462,18 +454,12 @@ def _valid_playready_configuration(play_ready_template):
     except ValueError as err:
         raise CLIError('Malformed JSON: ' + str(err))
 
-    return _validate_all_conditions(
+    return _validate_any_condition(
         [cfg.get('licenses') is not None,
          len(cfg.get('licenses')) > 0,
-         all(__valid_license(l) for l in cfg.get('licenses'))],
-        'Malformed content key policy PlayReady configuration'
+         all(__valid_license(l) for l in cfg.get('licenses'))]
     )
 
 
-def _validate_all_conditions(conditions, error_if_malformed):
-    well_formed = all(conditions)
-
-    if _count_truthy(conditions) >= 1 and not well_formed:
-        raise CLIError(error_if_malformed)
-
-    return well_formed
+def _validate_any_condition(conditions):
+    return any(conditions)
