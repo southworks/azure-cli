@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-09-24T16:44:32Z"}}'
+      "date": "2018-09-24T16:25:51Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -9,19 +9,19 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['110']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 resourcemanagementclient/2.0.0 Azure-SDK-For-Python
           AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-24T16:44:32Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-24T16:25:51Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Mon, 24 Sep 2018 16:44:32 GMT']
+      date: ['Mon, 24 Sep 2018 16:25:53 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
@@ -38,7 +38,7 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['148']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
@@ -49,9 +49,9 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Mon, 24 Sep 2018 16:44:35 GMT']
+      date: ['Mon, 24 Sep 2018 16:25:58 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/947366f0-7878-4fe0-a16f-dd80559f7e25?monitor=true&api-version=2018-03-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/8623dffb-66ba-47e5-ba4c-bb7c782feee9?monitor=true&api-version=2018-03-01-preview']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
@@ -66,17 +66,17 @@ interactions:
       Accept-Encoding: ['gzip, deflate']
       CommandName: [storage account create]
       Connection: [keep-alive]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/947366f0-7878-4fe0-a16f-dd80559f7e25?monitor=true&api-version=2018-03-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/8623dffb-66ba-47e5-ba4c-bb7c782feee9?monitor=true&api-version=2018-03-01-preview
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-24T16:44:35.4709506Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-24T16:44:35.4709506Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-24T16:44:35.3300488Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-24T16:25:58.0789611Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-24T16:25:58.0789611Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-24T16:25:57.9696203Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['1252']
       content-type: [application/json]
-      date: ['Mon, 24 Sep 2018 16:44:53 GMT']
+      date: ['Mon, 24 Sep 2018 16:26:16 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -95,18 +95,18 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2018-03-01-preview
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"EmO9iBCxglTUWZLJHgGVlOlSUyzqlM5ANd/+osLEpklY4pPt8TkJaam7oF79u5qmy2Kfx8FBWFiYuSWSrExcqw==","permissions":"FULL"},{"keyName":"key2","value":"2JmhdjglImczHJ1NM/F8wo0hhmH0qTft14zT08herNlCPeCyPxoKaPjOd3oR15sqElK5cDdioZgMQ3O29+dRvw==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"Xs+iyxw61mZi9xg7QuwYs9wtbYBbHn74DBw+Qj60I+bnGXljncyO6gMrHYHEY+Qi8X4bKLHANVR+wdGVSe4ANw==","permissions":"FULL"},{"keyName":"key2","value":"sI5bu/aI+SiByTG6AYRQh4mH2+OC+WQsoSrI9yfI50wGbTu+n8yDns+rCiy0L3btnwstZsP6TSluUEuxhPERfA==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Mon, 24 Sep 2018 16:44:55 GMT']
+      date: ['Mon, 24 Sep 2018 16:26:18 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -115,7 +115,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-ms-ratelimit-remaining-subscription-writes: ['1198']
     status: {code: 200, message: OK}
 - request:
     body: 'b''b\''{"location": "westus2", "properties": {"storageAccounts": [{"id":
@@ -128,79 +128,86 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['302']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"83e05fde-dbc8-4aad-87d3-e99cb1230af9\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"342b8869-1604-4bb7-a1dd-71992beedcff\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Mon, 24 Sep 2018 16:45:01 GMT']
+      date: ['Mon, 24 Sep 2018 16:26:24 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1195']
+      x-ms-ratelimit-remaining-subscription-writes: ['1198']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
     body: '{"properties": {"outputs": [{"preset": {"@odata.type": "#Microsoft.Media.StandardEncoderPreset",
-      "filters": {"overlays": [{"inputLabel": "Image001.png", "fadeInDuration": "PT1S",
-      "fadeOutDuration": "PT4S", "audioGainLevel": 0.0, "@odata.type": "#Microsoft.Media.VideoOverlay",
-      "position": {"left": "100", "top": "100", "width": "100", "height": "50"}}]},
-      "codecs": [{"@odata.type": "#Microsoft.Media.H264Video", "keyFrameInterval":
-      "PT2S", "layers": [{"width": "640", "height": "360", "@odata.type": "#Microsoft.Media.H264Layer",
-      "bitrate": 1045, "maxBitrate": 1045, "frameRate": "0/1", "profile": "Auto",
-      "level": "auto", "bufferWindow": "PT5S", "referenceFrames": 3, "entropyMode":
-      "Cavlc"}]}, {"@odata.type": "#Microsoft.Media.CopyAudio"}], "formats": [{"filenamePattern":
-      "{Basename}{Extension}", "@odata.type": "#Microsoft.Media.Mp4Format"}]}}]}}'
+      "filters": {"rotation": "Auto", "overlays": [{"inputLabel": "videooverlay",
+      "audioGainLevel": 1.0, "@odata.type": "#Microsoft.Media.VideoOverlay", "opacity":
+      1.0}]}, "codecs": [{"@odata.type": "#Microsoft.Media.AacAudio", "channels":
+      2, "samplingRate": 48000, "bitrate": 128000, "profile": "AacLc"}, {"@odata.type":
+      "#Microsoft.Media.H264Video", "keyFrameInterval": "PT2S", "stretchMode": "AutoSize",
+      "sceneChangeDetection": false, "complexity": "Balanced", "layers": [{"width":
+      "1280", "height": "720", "@odata.type": "#Microsoft.Media.H264Layer", "bitrate":
+      2000000, "maxBitrate": 2000000, "bFrames": 3, "slices": 0, "adaptiveBFrame":
+      true, "profile": "Auto", "level": "auto", "bufferWindow": "PT5S", "referenceFrames":
+      3, "entropyMode": "Cabac"}, {"width": "640", "height": "360", "@odata.type":
+      "#Microsoft.Media.H264Layer", "bitrate": 1000000, "maxBitrate": 1000000, "bFrames":
+      3, "slices": 0, "adaptiveBFrame": true, "profile": "Auto", "level": "auto",
+      "bufferWindow": "PT5S", "referenceFrames": 3, "entropyMode": "Cabac"}]}], "formats":
+      [{"filenamePattern": "{Basename}_{Bitrate}{Extension}", "@odata.type": "#Microsoft.Media.Mp4Format",
+      "outputFiles": []}]}}]}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams transform create]
       Connection: [keep-alive]
-      Content-Length: ['851']
+      Content-Length: ['1266']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 azure-mgmt-media/1.0.0rc2 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/transforms/tra000004?api-version=2018-06-01-preview
   response:
     body: {string: "{\r\n  \"name\":\"tra000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/transforms/tra000004\",\"type\":\"Microsoft.Media/mediaservices/transforms\",\"properties\":{\r\n
-        \   \"created\":\"2018-09-24T16:45:04.5775408Z\",\"lastModified\":\"2018-09-24T16:45:04.5775408Z\",\"outputs\":[\r\n
+        \   \"created\":\"2018-09-24T16:26:26.3425554Z\",\"lastModified\":\"2018-09-24T16:26:26.3425554Z\",\"outputs\":[\r\n
         \     {\r\n        \"onError\":\"StopProcessingJob\",\"relativePriority\":\"Normal\",\"preset\":{\r\n
         \         \"@odata.type\":\"#Microsoft.Media.StandardEncoderPreset\",\"filters\":{\r\n
-        \           \"rotation\":\"Auto\",\"overlays\":[\r\n              {\r\n                \"@odata.type\":\"#Microsoft.Media.VideoOverlay\",\"inputLabel\":\"Image001.png\",\"fadeInDuration\":\"PT1S\",\"fadeOutDuration\":\"PT4S\",\"audioGainLevel\":0.0,\"position\":{\r\n
-        \                 \"left\":\"100\",\"top\":\"100\",\"width\":\"100\",\"height\":\"50\"\r\n
-        \               },\"opacity\":1.0\r\n              }\r\n            ]\r\n
-        \         },\"codecs\":[\r\n            {\r\n              \"@odata.type\":\"#Microsoft.Media.H264Video\",\"keyFrameInterval\":\"PT2S\",\"stretchMode\":\"AutoSize\",\"sceneChangeDetection\":false,\"complexity\":\"Balanced\",\"layers\":[\r\n
-        \               {\r\n                  \"width\":\"640\",\"height\":\"360\",\"bitrate\":1045,\"maxBitrate\":1045,\"bFrames\":3,\"frameRate\":\"0\",\"slices\":0,\"adaptiveBFrame\":true,\"profile\":\"Auto\",\"level\":\"auto\",\"bufferWindow\":\"PT5S\",\"referenceFrames\":3,\"entropyMode\":\"Cavlc\"\r\n
-        \               }\r\n              ]\r\n            },{\r\n              \"@odata.type\":\"#Microsoft.Media.CopyAudio\"\r\n
-        \           }\r\n          ],\"formats\":[\r\n            {\r\n              \"@odata.type\":\"#Microsoft.Media.Mp4Format\",\"filenamePattern\":\"{Basename}{Extension}\",\"outputFiles\":[\r\n
+        \           \"rotation\":\"Auto\",\"overlays\":[\r\n              {\r\n                \"@odata.type\":\"#Microsoft.Media.VideoOverlay\",\"inputLabel\":\"videooverlay\",\"audioGainLevel\":1.0,\"opacity\":1.0\r\n
+        \             }\r\n            ]\r\n          },\"codecs\":[\r\n            {\r\n
+        \             \"@odata.type\":\"#Microsoft.Media.AacAudio\",\"channels\":2,\"samplingRate\":48000,\"bitrate\":128000,\"profile\":\"AacLc\"\r\n
+        \           },{\r\n              \"@odata.type\":\"#Microsoft.Media.H264Video\",\"keyFrameInterval\":\"PT2S\",\"stretchMode\":\"AutoSize\",\"sceneChangeDetection\":false,\"complexity\":\"Balanced\",\"layers\":[\r\n
+        \               {\r\n                  \"width\":\"1280\",\"height\":\"720\",\"bitrate\":2000000,\"maxBitrate\":2000000,\"bFrames\":3,\"slices\":0,\"adaptiveBFrame\":true,\"profile\":\"Auto\",\"level\":\"auto\",\"bufferWindow\":\"PT5S\",\"referenceFrames\":3,\"entropyMode\":\"Cabac\"\r\n
+        \               },{\r\n                  \"width\":\"640\",\"height\":\"360\",\"bitrate\":1000000,\"maxBitrate\":1000000,\"bFrames\":3,\"slices\":0,\"adaptiveBFrame\":true,\"profile\":\"Auto\",\"level\":\"auto\",\"bufferWindow\":\"PT5S\",\"referenceFrames\":3,\"entropyMode\":\"Cabac\"\r\n
+        \               }\r\n              ]\r\n            }\r\n          ],\"formats\":[\r\n
+        \           {\r\n              \"@odata.type\":\"#Microsoft.Media.Mp4Format\",\"filenamePattern\":\"{Basename}_{Bitrate}{Extension}\",\"outputFiles\":[\r\n
         \               \r\n              ]\r\n            }\r\n          ]\r\n        }\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1804']
+      content-length: ['1969']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Mon, 24 Sep 2018 16:45:03 GMT']
+      date: ['Mon, 24 Sep 2018 16:26:25 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1193']
+      x-ms-ratelimit-remaining-subscription-writes: ['1198']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
@@ -212,7 +219,7 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['0']
       Content-Type: [application/json; charset=utf-8]
-      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.5
           msrest_azure/0.4.34 resourcemanagementclient/2.0.0 Azure-SDK-For-Python
           AZURECLI/2.0.46]
       accept-language: [en-US]
@@ -223,12 +230,12 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Mon, 24 Sep 2018 16:45:07 GMT']
+      date: ['Mon, 24 Sep 2018 16:26:30 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdNN1A0NFVMR0dFUlM3UVRDM0hUV05QN0tQT1FJRU1NTlVQNHxGNTIxQjcyNDM1M0M2RTBDLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdTRkNPUTVFWkJLNjNUSENNQ0VNWFZERFpBWTRaUUVFVVNFSnxEQ0RCNjBDMTVCRTE1NEY5LVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-deletes: ['14998']
+      x-ms-ratelimit-remaining-subscription-deletes: ['14999']
     status: {code: 202, message: Accepted}
 version: 1
