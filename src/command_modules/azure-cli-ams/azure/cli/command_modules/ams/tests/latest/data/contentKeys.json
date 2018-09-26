@@ -1,0 +1,12 @@
+[
+	{
+		"id": "0d697a52-55a7-4a6e-bd7f-7ba2c8a514b1",
+		"labelReferenceInStreamingPolicy": "testLabel",
+		"value": "dmFsdWG="
+	},
+	{
+		"id": "0e00ebf8-e288-47da-8e44-4f723169e3e4",
+		"labelReferenceInStreamingPolicy": "testLabel2",
+		"value": "dmFsdWQ="
+	}
+]
