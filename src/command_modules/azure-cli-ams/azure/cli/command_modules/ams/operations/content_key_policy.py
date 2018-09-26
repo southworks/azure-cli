@@ -414,13 +414,11 @@ def _play_ready_configuration_factory(content):
 
 # Validator methods
 def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audience):
-    return _validate_any_condition(
-        [token_type, token_key, token_key_type in get_tokens(), issuer, audience])
+    return any([token_type, token_key, token_key_type in get_tokens(), issuer, audience])
 
 
 def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration):
-    return _validate_any_condition(
-        [ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration])
+    return any([ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration])
 
 
 def _valid_playready_configuration(play_ready_template):
@@ -428,24 +426,24 @@ def _valid_playready_configuration(play_ready_template):
         return False
 
     def __valid_license(lic):
-        return _validate_any_condition([lic.get('allowTestDevices') is not None,
-                                        lic.get('licenseType') in ['NonPersistent', 'Persistent'],
-                                        lic.get('contentKeyLocation') is not None,
-                                        lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
-                                        lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))])
+        return any([lic.get('allowTestDevices') is not None,
+                    lic.get('licenseType') in ['NonPersistent', 'Persistent'],
+                    lic.get('contentKeyLocation') is not None,
+                    lic.get('contentType') in ['Unspecified', 'UltraVioletDownload', 'UltraVioletStreaming'],
+                    lic.get('playRight') is None or __valid_play_right(lic.get('playRight'))])
 
     def __valid_play_right(prl):
-        return _validate_any_condition([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
-                                         __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
-                                        prl.get('digitalVideoOnlyContentRestriction') is not None,
-                                        prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
-                                        prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
-                                        prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
-                                                                                               'AllowedWithVideoConstriction']])
+        return any([(prl.get('explicitAnalogTelevisionOutputRestriction') is None or
+                     __valid_eator(prl.get('explicitAnalogTelevisionOutputRestriction'))),
+                    prl.get('digitalVideoOnlyContentRestriction') is not None,
+                    prl.get('imageConstraintForAnalogComponentVideoRestriction') is not None,
+                    prl.get('imageConstraintForAnalogComputerMonitorRestriction') is not None,
+                    prl.get('allowPassingVideoContentToUnknownOutput') in ['NotAllowed', 'Allowed',
+                                                                           'AllowedWithVideoConstriction']])
 
     def __valid_eator(eator):
-        return _validate_any_condition([eator.get('bestEffort') is not None,
-                                        eator.get('configurationData') is not None])
+        return any([eator.get('bestEffort') is not None,
+                    eator.get('configurationData') is not None])
 
     cfg = None
 
@@ -454,12 +452,8 @@ def _valid_playready_configuration(play_ready_template):
     except ValueError as err:
         raise CLIError('Malformed JSON: ' + str(err))
 
-    return _validate_any_condition(
+    return any(
         [cfg.get('licenses') is not None,
          len(cfg.get('licenses')) > 0,
          all(__valid_license(l) for l in cfg.get('licenses'))]
     )
-
-
-def _validate_any_condition(conditions):
-    return any(conditions)
