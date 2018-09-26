@@ -28,15 +28,17 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'streamingEndpointName': streaming_endpoint_name,
             'identifier': 'id1',
             'expiration': '2030-12-31T16:00:00-08:00',
-            'base64Key': 'dGVzdGlkMQ=='
+            'base64Key': 'dGVzdGlkMQ==',
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits}', checks=[
             self.check('name', '{streamingEndpointName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('location', 'West US 2'),
+            self.check('scaleUnits', '{scaleUnits}')
         ])
 
         self.cmd('az ams streaming-endpoint akamai add -g {rg} -a {amsname} -n {streamingEndpointName} --identifier {identifier} --expiration {expiration} --base64-key {base64Key}', checks=[
@@ -343,12 +345,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streamingEndpointName': streaming_endpoint_name
+            'streamingEndpointName': streaming_endpoint_name,
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits}')
 
         self.cmd('az ams streaming-endpoint start -g {rg} -a {amsname} -n {streamingEndpointName}', checks=[
             self.check('resourceState', 'Running')
@@ -364,12 +367,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streamingEndpointName': streaming_endpoint_name
+            'streamingEndpointName': streaming_endpoint_name,
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits}')
 
         self.cmd('az ams streaming-endpoint start -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
 
@@ -389,12 +393,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streamingEndpointName': streaming_endpoint_name
+            'streamingEndpointName': streaming_endpoint_name,
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits} --auto-start')
 
         self.cmd('az ams streaming-endpoint stop -g {rg} -a {amsname} -n {streamingEndpointName} --no-wait', checks=[self.is_empty()])
 
@@ -414,12 +419,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streamingEndpointName': streaming_endpoint_name
+            'streamingEndpointName': streaming_endpoint_name,
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --auto-start', checks=[
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits} --auto-start', checks=[
             self.check('resourceState', 'Running')
         ])
 
@@ -437,12 +443,13 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'amsname': amsname,
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
-            'streamingEndpointName': streaming_endpoint_name
+            'streamingEndpointName': streaming_endpoint_name,
+            'scaleUnits': 4
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
-        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName}')
+        self.cmd('az ams streaming-endpoint create -g {rg} -a {amsname} -n {streamingEndpointName} --scale-units {scaleUnits}')
 
         self.cmd('az ams streaming-endpoint list -g {rg} -a {amsname}', checks=[
             self.check('length(@)', 2)
