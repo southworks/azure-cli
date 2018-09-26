@@ -9,12 +9,16 @@ from knack.arguments import CLIArgumentType
 
 from azure.cli.core.commands.validators import get_default_location_from_resource_group
 from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type, get_three_state_flag)
-from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
-                                                       get_default_streaming_policies_completion_list, get_token_type_completion_list,
-                                                       get_fairplay_rentalandlease_completion_list, get_token_completion_list)
+from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list,
+                                                       get_cdn_provider_completion_list,
+                                                       get_default_streaming_policies_completion_list,
+                                                       get_presets_definition_name_completion_list,
+                                                       get_allowed_languages_for_preset_completion_list,
+                                                       get_token_type_completion_list,
+                                                       get_fairplay_rentalandlease_completion_list,
+                                                       get_token_completion_list)
 
-from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType,
-                                     StreamOptionsFlag)
+from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
 
 from ._validators import validate_storage_account_id, datetime_format, validate_correlation_data, validate_token_claim
 
@@ -70,11 +74,18 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', name_arg_type, id_part='child_name_1',
                    help='The name of the transform.')
-        c.argument('presets',
-                   nargs='+',
-                   help='Space-separated list of preset names. Allowed values: {}. In addition to the allowed values, you can also pass the local full path to a custom preset JSON file.'
-                   .format(", ".join(get_cdn_provider_completion_list())))
+        c.argument('preset', help='Preset that describes the operations that will be used to modify, transcode, or extract insights from the source file to generate the transform output. Allowed values: {}. In addition to the allowed values, you can also pass a path to a custom Standard Encoder preset JSON file. See https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset for further details on the settings to use to build a custom preset.'
+                   .format(", ".join(get_presets_definition_name_completion_list())))
+        c.argument('audio_insights_only', arg_group='Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
+        c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). Allowed values: {}.'
+                   .format(", ".join(get_allowed_languages_for_preset_completion_list())))
+        c.argument('relative_priority', arg_type=get_enum_type(Priority), help='Sets the relative priority of the transform outputs within a transform. This sets the priority that the service uses for processing TransformOutputs. The default priority is Normal.')
+        c.argument('on_error', arg_type=get_enum_type(OnErrorType), help='A Transform can define more than one output. This property defines what the service should do when one output fails - either continue to produce other outputs, or, stop the other outputs. The default is stop.')
         c.argument('description', help='The description of the transform.')
+
+    with self.argument_context('ams transform output remove') as c:
+        c.argument('output_index', help='The element index of the output to remove.',
+                   type=int, default=None)
 
     with self.argument_context('ams transform list') as c:
         c.argument('account_name', id_part=None)
@@ -175,11 +186,9 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    action='store_true',
                    help='Include secret values of the content key policy.')
 
-    with self.argument_context('ams streaming') as c:
+    with self.argument_context('ams streaming-locator') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('default_content_key_policy_name', default_policy_name_arg_type)
-
-    with self.argument_context('ams streaming locator') as c:
         c.argument('streaming_locator_name', name_arg_type, id_part='child_name_1',
                    help='The name of the streaming locator.')
         c.argument('asset_name',
@@ -193,10 +202,11 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('streaming_locator_id', help='The identifier of the streaming locator.')
         c.argument('alternative_media_id', help='An alternative media identifier associated with the streaming locator.')
 
-    with self.argument_context('ams streaming locator list') as c:
+    with self.argument_context('ams streaming-locator list') as c:
         c.argument('account_name', id_part=None)
 
-    with self.argument_context('ams streaming policy') as c:
+    with self.argument_context('ams streaming-policy') as c:
+        c.argument('account_name', account_name_arg_type)
         c.argument('streaming_policy_name', name_arg_type, id_part='child_name_1',
                    help='The name of the streaming policy.')
         c.argument('download',
@@ -216,16 +226,15 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    arg_group='Encryption Protocols',
                    help='Enable SmoothStreaming protocol.')
 
-    with self.argument_context('ams streaming policy list') as c:
+    with self.argument_context('ams streaming-policy list') as c:
         c.argument('account_name', id_part=None)
 
-    with self.argument_context('ams streaming endpoint') as c:
+    with self.argument_context('ams streaming-endpoint') as c:
         c.argument('streaming_endpoint_name', name_arg_type, help='The name of the streaming endpoint.')
         c.argument('account_name', account_name_arg_type)
 
-    with self.argument_context('ams streaming endpoint create') as c:
+    with self.argument_context('ams streaming-endpoint create') as c:
         c.argument('tags', arg_type=tags_type)
-        c.argument('location', arg_type=get_location_type(self.cli_ctx))
         c.argument('description', help='The streaming endpoint description.')
         c.argument('scale_units', help='The number of scale units.')
         c.argument('availability_set_name', help='AvailabilitySet name.')
@@ -233,75 +242,81 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
         c.argument('cdn_provider', arg_group='CDN Support', help='The CDN provider name. Allowed values: {}.'.format(", ".join(get_cdn_provider_completion_list())))
         c.argument('cdn_profile', arg_group='CDN Support', help='The CDN profile name.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('auto_start', action='store_true', help='Start the streaming endpoint automatically after creating it.')
         c.argument('ips', nargs='+', arg_group='Access Control Support', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
 
-    with self.argument_context('ams streaming endpoint update') as c:
+    with self.argument_context('ams streaming-endpoint update') as c:
         c.argument('tags', arg_type=tags_type)
         c.argument('description', help='The streaming endpoint description.')
         c.argument('max_cache_age', help='Max cache age.')
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
         c.argument('cdn_provider', arg_group='CDN Support', help='The CDN provider name. Allowed values: {}'.format(", ".join(get_cdn_provider_completion_list())))
         c.argument('cdn_profile', arg_group='CDN Support', help='The CDN profile name.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies',
+                   help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('ips', nargs='+', arg_group='Access Control Support', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('disable_cdn', arg_group='CDN Support', action='store_true', help='Use this flag to disable CDN for the streaming endpoint.')
 
-    with self.argument_context('ams streaming endpoint scale') as c:
+    with self.argument_context('ams streaming-endpoint scale') as c:
         c.argument('scale_unit', options_list=['--scale-units'], help='The number of scale units.')
 
-    with self.argument_context('ams streaming endpoint akamai add') as c:
+    with self.argument_context('ams streaming-endpoint akamai add') as c:
         c.argument('identifier', help='Identifier of the key.')
         c.argument('base64_key', help='Authentication key.')
         c.argument('expiration', help='The exact time for the authentication key to expire.')
 
-    with self.argument_context('ams streaming endpoint akamai remove') as c:
+    with self.argument_context('ams streaming-endpoint akamai remove') as c:
         c.argument('identifier', help='Identifier of the key.')
 
-    with self.argument_context('ams live event') as c:
+    with self.argument_context('ams live-event') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('live_event_name', name_arg_type, help='The name of the live event.')
 
-    with self.argument_context('ams live event create') as c:
+    with self.argument_context('ams live-event create') as c:
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
-                   help='The streaming protocol for the live event.')
+                   arg_group='Input', help='The streaming protocol for the live event.')
         c.argument('auto_start', action='store_true', help='Start the live event automatically after creating it.')
         c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
-                   help='The encoding type for live event.')
-        c.argument('preset_name', help='The encoding preset name.')
+                   arg_group='Encoding', help='The encoding type for live event.')
+        c.argument('preset_name', arg_group='Encoding', help='The encoding preset name.')
         c.argument('tags', arg_type=tags_type)
-        c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
-        c.argument('access_token', help='The access token.')
+        c.argument('key_frame_interval_duration', arg_group='Input',
+                   help='ISO 8601 timespan duration of the key frame interval duration.')
+        c.argument('access_token', arg_group='Input', help='The access token.')
         c.argument('description', help='The live event description.')
-        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control.')
-        c.argument('preview_locator', help='The preview locator Guid.')
-        c.argument('streaming_policy_name', help='The name of streaming policy used for live event preview.')
-        c.argument('alternative_media_id', help='An alternative media identifier associated with the preview URL. This identifier can be used to distinguish the preview of different live events for authorization purposes in the custom license acquisition URL template or the custom key acquisition URL template of the streaming policy specified in the streaming policy name field.')
+        c.argument('ips', nargs='+', arg_group='Preview', help='Space-separated list of allowed IP addresses for access control.')
+        c.argument('preview_locator', arg_group='Preview', help='The preview locator Guid.')
+        c.argument('streaming_policy_name', arg_group='Preview', help='The name of streaming policy used for live event preview.')
+        c.argument('alternative_media_id', arg_group='Preview', help='An alternative media identifier associated with the preview URL. This identifier can be used to distinguish the preview of different live events for authorization purposes in the custom license acquisition URL template or the custom key acquisition URL template of the streaming policy specified in the streaming policy name field.')
         c.argument('vanity_url', action='store_true', help='The live event vanity URL flag.')
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('stream_options', nargs='+', arg_type=get_enum_type(StreamOptionsFlag), help='The stream options.')
 
-    with self.argument_context('ams live event update') as c:
+    with self.argument_context('ams live-event update') as c:
         c.argument('description', help='The live event description.')
-        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
+        c.argument('ips', nargs='+', arg_group='Preview',
+                   help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('tags', arg_type=tags_type)
-        c.argument('client_access_policy', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
-        c.argument('cross_domain_policy', help='The local full path to the crossdomain.xml used by Silverlight.')
-        c.argument('key_frame_interval_duration', help='ISO 8601 timespan duration of the key frame interval duration.')
+        c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
+        c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
+        c.argument('key_frame_interval_duration', arg_group='Input', help='ISO 8601 timespan duration of the key frame interval duration.')
 
-    with self.argument_context('ams live event stop') as c:
+    with self.argument_context('ams live-event stop') as c:
         c.argument('remove_outputs_on_stop', action='store_true', help='Remove live outputs on stop.')
 
-    with self.argument_context('ams live output') as c:
+    with self.argument_context('ams live-output') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('live_event_name', help='The name of the live event.')
         c.argument('live_output_name', name_arg_type, help='The name of the live output.')
 
-    with self.argument_context('ams live output create') as c:
+    with self.argument_context('ams live-output create') as c:
         c.argument('asset_name', help='The name of the asset.')
         c.argument('manifest_name', help='The manifest file name.')
         c.argument('archive_window_length', help='ISO 8601 timespan duration of the archive window length. This is the duration that customer want to retain the recorded content.')

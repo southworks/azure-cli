@@ -22,7 +22,7 @@ class AmsLiveOutputTests(ScenarioTest):
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
 
         assetName = self.create_random_name(prefix='asset', length=12)
         live_output_name = self.create_random_name(prefix='lo', length=12)
@@ -40,7 +40,7 @@ class AmsLiveOutputTests(ScenarioTest):
 
         self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg}')
 
-        live_output = self.cmd('az ams live output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName} --description {description} --fragments-per-ts-segment {fragments} --output-snap-time {outputSnapTime}', checks=[
+        live_output = self.cmd('az ams live-output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName} --description {description} --fragments-per-ts-segment {fragments} --output-snap-time {outputSnapTime}', checks=[
             self.check('archiveWindowLength', '0:00:02'),
             self.check('assetName', '{assetName}'),
             self.check('manifestName', '{manifestName}'),
@@ -70,7 +70,7 @@ class AmsLiveOutputTests(ScenarioTest):
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
 
         assetName = self.create_random_name(prefix='asset', length=12)
         live_output_name = self.create_random_name(prefix='lo', length=12)
@@ -85,9 +85,9 @@ class AmsLiveOutputTests(ScenarioTest):
 
         self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg}')
 
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName}')
 
-        self.cmd('az ams live output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('length(@)', 1)
         ])
 
@@ -106,7 +106,7 @@ class AmsLiveOutputTests(ScenarioTest):
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol}')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol}')
 
         assetName = self.create_random_name(prefix='asset', length=12)
         live_output_name = self.create_random_name(prefix='lo', length=12)
@@ -121,9 +121,9 @@ class AmsLiveOutputTests(ScenarioTest):
 
         self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg}')
 
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName}')
 
-        self.cmd('az ams live output show -a {amsname} -n {liveOutputName} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output show -a {amsname} -n {liveOutputName} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('archiveWindowLength', '0:00:02'),
             self.check('assetName', '{assetName}'),
             self.check('manifestName', '{manifestName}'),
@@ -146,7 +146,7 @@ class AmsLiveOutputTests(ScenarioTest):
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
-        self.cmd('az ams live event create -a {amsname} -l {location} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streaming_protocol}')
 
         assetName = self.create_random_name(prefix='asset', length=12)
         live_output_name1 = self.create_random_name(prefix='lo1', length=12)
@@ -165,15 +165,15 @@ class AmsLiveOutputTests(ScenarioTest):
 
         self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg}')
 
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName1} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName1}')
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName2} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName2}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName1} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName1}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName2} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName2}')
 
-        self.cmd('az ams live output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('length(@)', 2)
         ])
 
-        self.cmd('az ams live output delete -a {amsname} -g {rg} -n {liveOutputName2} --live-event-name {liveEventName}')
+        self.cmd('az ams live-output delete -a {amsname} -g {rg} -n {liveOutputName2} --live-event-name {liveEventName}')
 
-        self.cmd('az ams live output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('length(@)', 1)
         ])

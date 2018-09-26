@@ -40,7 +40,7 @@ class AmsJobTests(ScenarioTest):
             'label': 'someLabel'
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}')
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset {presetName}')
 
         jobName = self.create_random_name(prefix='job', length=10)
 

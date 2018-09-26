@@ -1,74 +1,69 @@
 {
-  "Version": 1,
-  "Sources": [
-    {
-      "Streams": [],
-      "Filters": {
-        "VideoOverlay": {
-          "Position": {
-            "X": 100,
-            "Y": 100,
-            "Width": 100,
-            "Height": 50
-          },
-          "AudioGainLevel": 0,
-          "MediaParams": [
+    "@odata.type": "#Microsoft.Media.StandardEncoderPreset",
+    "filters": {
+        "rotation": "Auto",
+        "overlays": [
             {
-              "OverlayLoopCount": 1
-            },
-            {
-              "IsOverlay": true,
-              "OverlayLoopCount": 1,
-              "InputLoop": true
+                "@odata.type": "#Microsoft.Media.VideoOverlay",
+                "opacity": 1.0,
+                "inputLabel": "videooverlay",
+                "audioGainLevel": 1.0
             }
-          ],
-          "Source": "Image001.png",
-          "Clip": {
-            "Duration": "00:00:05"
-          },
-          "FadeInDuration": {
-            "Duration": "00:00:01"
-          },
-          "FadeOutDuration": {
-            "StartTime": "00:00:03",
-            "Duration": "00:00:04"
-          }
-        }
-      },
-      "Pad": true
-    }
-  ],
-  "Codecs": [
-    {
-      "KeyFrameInterval": "00:00:02",
-      "H264Layers": [
-        {
-          "Profile": "Auto",
-          "Level": "auto",
-          "Bitrate": 1045,
-          "MaxBitrate": 1045,
-          "BufferWindow": "00:00:05",
-          "ReferenceFrames": 3,
-          "EntropyMode": "Cavlc",
-          "AdaptiveBFrame": true,
-          "Type": "H264Layer",
-          "Width": "640",
-          "Height": "360",
-          "FrameRate": "0/1"
-        }
-      ],
-      "Type": "H264Video"
+        ]
     },
-    {
-      "Type": "CopyAudio"
-    }
-  ],
-  "Outputs": [
-    {
-      "FileName": "{Basename}{Extension}",
-      "Format": {
-        "Type": "MP4Format"
-      }
-    }
-  ]
+    "codecs": [
+        {
+            "@odata.type": "#Microsoft.Media.AacAudio",
+            "profile": "AacLc",
+            "channels": 2,
+            "samplingRate": 48000,
+            "bitrate": 128000
+        },
+        {
+            "@odata.type": "#Microsoft.Media.H264Video",
+            "sceneChangeDetection": false,
+            "complexity": "Balanced",
+            "layers": [
+                {
+                    "@odata.type": "#Microsoft.Media.H264Layer",
+                    "profile": "Auto",
+                    "level": "auto",
+                    "bufferWindow": "PT5S",
+                    "referenceFrames": 3,
+                    "entropyMode": "Cabac",
+                    "bitrate": 2000000,
+                    "maxBitrate": 2000000,
+                    "bFrames": 3,
+                    "slices": 0,
+                    "adaptiveBFrame": true,
+                    "width": "1280",
+                    "height": "720"
+                },
+                {
+                    "@odata.type": "#Microsoft.Media.H264Layer",
+                    "profile": "Auto",
+                    "level": "auto",
+                    "bufferWindow": "PT5S",
+                    "referenceFrames": 3,
+                    "entropyMode": "Cabac",
+                    "bitrate": 1000000,
+                    "maxBitrate": 1000000,
+                    "bFrames": 3,
+                    "slices": 0,
+                    "adaptiveBFrame": true,
+                    "width": "640",
+                    "height": "360"
+                }
+            ],
+            "keyFrameInterval": "PT2S",
+            "stretchMode": "AutoSize"
+        }
+    ],
+    "formats": [
+        {
+            "@odata.type": "#Microsoft.Media.Mp4Format",
+            "outputFiles": [],
+            "filenamePattern": "{Basename}_{Bitrate}{Extension}"
+        }
+    ]
 }
