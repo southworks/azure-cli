@@ -25,5 +25,17 @@ def get_default_streaming_policies():
             'Predefined_ClearKey', 'Predefined_SecureStreaming', 'Predefined_SecureStreamingWithFairPlay']
 
 
+def get_token_types():
+    return ['Jwt', 'Swt']
+
+
+def get_rentalandlease_types():
+    return ['Undefined', 'PersistentUnlimited', 'PersistentLimited']
+
+
+def get_tokens():
+    return ['Symmetric', 'RSA', 'X509']
+
+
 def get_allowed_languages_for_preset():
     return ['en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR', 'it-IT', 'ja-JP', 'pt-BR', 'zh-CN']
