@@ -8,7 +8,7 @@
 from knack.arguments import CLIArgumentType
 
 from azure.cli.core.commands.validators import get_default_location_from_resource_group
-from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type, get_three_state_flag)
+from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type)
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list, get_cdn_provider_completion_list,
                                                        get_default_streaming_policies_completion_list,
                                                        get_presets_definition_name_completion_list,
@@ -193,7 +193,6 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('cenc_play_ready_attributes', arg_group='Common Encryption CENC', help='Custom attributes for PlayReady.')
         c.argument('cenc_widevine_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cenc_play_ready_url_template', arg_group='Common Encryption CENC', help='The template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
-
         c.argument('cbcs_protocols', nargs='+', arg_group='Common Encryption CBCS', help='Space-separated list of enabled protocols for Common Encryption CBCS. Allowed values: {}'.format(", ".join(get_protocols_completion_list())))
         c.argument('cbcs_default_key_label', arg_group='Common Encryption CBCS', help='Label to specify Default Content Key for an encryption scheme.')
         c.argument('cbcs_default_key_policy_name', arg_group='Common Encryption CBCS', help='Policy used by Default Content Key.')

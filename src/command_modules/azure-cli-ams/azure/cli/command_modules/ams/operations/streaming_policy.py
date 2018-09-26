@@ -36,24 +36,36 @@ def create_streaming_policy(cmd, resource_group_name, account_name,
                             cbcs_custom_license_acquisition_url_template=None,
                             cbcs_allow_persistent_license=False):
 
-    no_encryption = _no_encryption_factory(no_encryption_protocols)
+    no_encryption = None
+    if no_encryption_protocols:
+        no_encryption = _no_encryption_factory(no_encryption_protocols)
 
-    envelope_encryption = _envelope_encryption_factory(envelope_protocols, envelope_clear_tracks,
-                                                       envelope_custom_key_acquisition_url_template,
-                                                       envelope_default_key_label, envelope_default_key_policy_name,
-                                                       envelope_key_to_track_mappings)
+    envelope_encryption = None
+    if any([envelope_protocols, envelope_clear_tracks, envelope_custom_key_acquisition_url_template,
+            envelope_default_key_label, envelope_default_key_policy_name, envelope_key_to_track_mappings]):
+        envelope_encryption = _envelope_encryption_factory(envelope_protocols, envelope_clear_tracks,
+                                                           envelope_custom_key_acquisition_url_template,
+                                                           envelope_default_key_label, envelope_default_key_policy_name,
+                                                           envelope_key_to_track_mappings)
 
-    common_encryption_cenc = _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
-                                                      cenc_default_key_label, cenc_default_key_policy_name,
-                                                      cenc_key_to_track_mappings, cenc_clear_tracks,
-                                                      cenc_play_ready_url_template, cenc_play_ready_attributes)
+    common_encryption_cenc = None
+    if any([cenc_protocols, cenc_widevine_url_template, cenc_default_key_label, cenc_default_key_policy_name,
+            cenc_key_to_track_mappings, cenc_clear_tracks, cenc_play_ready_url_template, cenc_play_ready_attributes]):
+        common_encryption_cenc = _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
+                                                          cenc_default_key_label, cenc_default_key_policy_name,
+                                                          cenc_key_to_track_mappings, cenc_clear_tracks,
+                                                          cenc_play_ready_url_template, cenc_play_ready_attributes)
 
-    common_encryption_cbcs = _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
-                                                      cbcs_default_key_label, cbcs_default_key_policy_name,
-                                                      cbcs_key_to_track_mappings, cbcs_clear_tracks,
-                                                      cbcs_play_ready_url_template, cbcs_play_ready_attributes,
-                                                      cbcs_custom_license_acquisition_url_template,
-                                                      cbcs_allow_persistent_license)
+    common_encryption_cbcs = None
+    if any([cbcs_protocols, cbcs_widevine_url_template, cbcs_default_key_label, cbcs_default_key_policy_name,
+            cbcs_key_to_track_mappings, cbcs_clear_tracks, cbcs_play_ready_url_template, cbcs_play_ready_attributes,
+            cbcs_custom_license_acquisition_url_template, cbcs_allow_persistent_license]):
+        common_encryption_cbcs = _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
+                                                          cbcs_default_key_label, cbcs_default_key_policy_name,
+                                                          cbcs_key_to_track_mappings, cbcs_clear_tracks,
+                                                          cbcs_play_ready_url_template, cbcs_play_ready_attributes,
+                                                          cbcs_custom_license_acquisition_url_template,
+                                                          cbcs_allow_persistent_license)
 
     streaming_policy = StreamingPolicy(default_content_key_policy_name=default_content_key_policy_name,
                                        no_encryption=no_encryption,
@@ -76,21 +88,27 @@ def _cenc_encryption_factory(cenc_protocols, cenc_widevine_url_template,
                              cenc_play_ready_url_template, cenc_play_ready_attributes):
     cenc_enabled_protocols = _build_enabled_protocols_object(cenc_protocols)
 
-    cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
-        custom_license_acquisition_url_template=cenc_play_ready_url_template,
-        play_ready_custom_attributes=cenc_play_ready_attributes)
+    cenc_play_ready_config = None
+    if cenc_play_ready_url_template or cenc_play_ready_attributes:
+        cenc_play_ready_config = StreamingPolicyPlayReadyConfiguration(
+            custom_license_acquisition_url_template=cenc_play_ready_url_template,
+            play_ready_custom_attributes=cenc_play_ready_attributes)
 
-    cenc_widevine_config = StreamingPolicyWidevineConfiguration(
-        custom_license_acquisition_url_template=cenc_widevine_url_template)
+    cenc_widevine_config = None
+    if cenc_widevine_url_template:
+        cenc_widevine_config = StreamingPolicyWidevineConfiguration(
+            custom_license_acquisition_url_template=cenc_widevine_url_template)
 
+    key_to_track_mappings = _parse_key_to_track_mappings_json(cenc_key_to_track_mappings)
     cenc_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cenc_default_key_label,
                                                                           policy_name=cenc_default_key_policy_name),
-                                                   key_to_track_mappings = _parse_key_to_track_mappings_json(cenc_key_to_track_mappings))
+                                                   key_to_track_mappings=key_to_track_mappings)
 
     return CommonEncryptionCenc(enabled_protocols=cenc_enabled_protocols,
                                 clear_tracks=_parse_clear_tracks_json(cenc_clear_tracks),
                                 content_keys=cenc_content_keys,
-                                drm=CencDrmConfiguration(play_ready=cenc_play_ready_config, widevine=cenc_widevine_config))
+                                drm=CencDrmConfiguration(play_ready=cenc_play_ready_config,
+                                                         widevine=cenc_widevine_config))
 
 def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
                              cbcs_default_key_label, cbcs_default_key_policy_name,
@@ -102,9 +120,8 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
 
     cbcs_play_ready_config = None
     if cbcs_play_ready_url_template or cbcs_play_ready_attributes:
-        cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(
-        custom_license_acquisition_url_template=cbcs_play_ready_url_template,
-        play_ready_custom_attributes=cbcs_play_ready_attributes)
+        cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(play_ready_custom_attributes=cbcs_play_ready_attributes,
+                                                                       custom_license_acquisition_url_template=cbcs_play_ready_url_template)
 
     cbcs_widevine_config = None
     if cbcs_widevine_url_template:
