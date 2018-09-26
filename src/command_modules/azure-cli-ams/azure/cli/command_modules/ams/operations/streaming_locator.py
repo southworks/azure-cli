@@ -7,9 +7,6 @@ import json
 
 from knack.util import CLIError
 
-from azure.mgmt.media.models import (StreamingLocatorContentKey, TrackSelection,
-                                     TrackPropertyCondition)
-
 
 def create_streaming_locator(client, resource_group_name, account_name,
                              streaming_locator_name, streaming_policy_name,
@@ -41,6 +38,8 @@ def list_content_keys(client, resource_group_name, account_name,
 
 
 def _build_content_keys(content_keys):
+    from azure.mgmt.media.models import StreamingLocatorContentKey
+    
     def __content_key_builder(key):
         return StreamingLocatorContentKey(
             id=key.get('id'),
