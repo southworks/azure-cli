@@ -215,9 +215,42 @@ helps['ams content-key-policy delete'] = """
     short-summary: Delete a content key policy.
 """
 
+helps['ams content-key-policy update'] = """
+    type: command
+    short-summary: Update an existing content key policy.
+    examples:
+        - name: Update an existing content-key-policy, set a new description and edit its first option setting a new issuer and audience.
+          text: >
+            az ams content-key-policy update -n contentKeyPolicyName -a amsAccount --description newDescription --set options[0].restriction.issuer=newIssuer --set options[0].restriction.audience=newAudience
+"""
+
 helps['ams content-key-policy list'] = """
     type: command
     short-summary: List all the content key policies within an Azure Media Services account.
+"""
+
+helps['ams content-key-policy option'] = """
+    type: group
+    short-summary: Manage options for an existing content key policy.
+"""
+
+helps['ams content-key-policy option add'] = """
+    type: command
+    short-summary: Add a new option to an existing content key policy.
+"""
+
+helps['ams content-key-policy option remove'] = """
+    type: command
+    short-summary: Remove an option from an existing content key policy.
+"""
+
+helps['ams content-key-policy option update'] = """
+    type: command
+    short-summary: Update an option from an existing content key policy.
+    examples:
+        - name: Update an existing content-key-policy by adding an alternate token key to an existing option.
+          text: >
+            az ams content-key-policy option update -n contentKeyPolicyName -g resourceGroup -a amsAccount --policy-option-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --add-alt-token-key tokenKey --add-alt-token-key-type Symmetric
 """
 
 helps['ams job'] = """
