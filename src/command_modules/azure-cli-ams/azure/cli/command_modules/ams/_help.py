@@ -75,7 +75,7 @@ helps['ams account sp create'] = """
     examples:
         - name: Create a service principal with password and configure its access to an Azure Media Services account. Output will be in xml format.
           text: >
-            az ams account sp create -a {myamsaccount} -g {myresourcegroup} -n {mySpName} -password {mySpPassword} --role {rol} --xml
+            az ams account sp create -a myAmsAccount -g myRG -n mySpName -password mySecret --role Owner --xml
     """
 
 helps['ams account sp reset-credentials'] = """
@@ -110,6 +110,9 @@ helps['ams transform create'] = """
         - name: Create a transform with AdaptiveStreaming built-in preset and High relative priority.
           text: >
             az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --preset AdaptiveStreaming --relative-priority High
+        - name: Create a transform with a custom Standard Encoder preset from a JSON file and Low relative priority.
+          text: >
+            az ams transform create -a myAmsAccount -n transformName -g myResourceGroup --preset \"C:\\MyPresets\\CustomPreset.json\" --relative-priority Low
     """
 
 helps['ams transform delete'] = """
@@ -121,9 +124,6 @@ helps['ams transform update'] = """
     type: command
     short-summary: Update the details of a transform.
     examples:
-        - name: Update a transform by setting up a new output list with AudioAnalyzer built-in preset and a custom preset from a local JSON file.
-          text: >
-            az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --presets AudioAnalyzer \"C:\\MyPresets\\NewCustomPreset.json\"
         - name: Update the first transform output of a transform by setting its relative priority to High.
           text: >
             az ams transform update -a myAmsAccount -n transformName -g myResourceGroup --set outputs[0].relativePriority=High
@@ -138,7 +138,7 @@ helps['ams transform output add'] = """
     type: command
     short-summary: Add an output to an existing transform.
     examples:
-        - name: Add an output with a custom preset from a local JSON file.
+        - name: Add an output with a custom Standard Encoder preset from a JSON file.
           text: >
             az ams transform output add -a myAmsAccount -n transformName -g myResourceGroup --preset \"C:\\MyPresets\\CustomPreset.json\"
         - name: Add an output with a VideoAnalyzer preset with es-ES as audio language and only with audio insights.
@@ -215,9 +215,42 @@ helps['ams content-key-policy delete'] = """
     short-summary: Delete a content key policy.
 """
 
+helps['ams content-key-policy update'] = """
+    type: command
+    short-summary: Update an existing content key policy.
+    examples:
+        - name: Update an existing content-key-policy, set a new description and edit its first option setting a new issuer and audience.
+          text: >
+            az ams content-key-policy update -n contentKeyPolicyName -a amsAccount --description newDescription --set options[0].restriction.issuer=newIssuer --set options[0].restriction.audience=newAudience
+"""
+
 helps['ams content-key-policy list'] = """
     type: command
     short-summary: List all the content key policies within an Azure Media Services account.
+"""
+
+helps['ams content-key-policy option'] = """
+    type: group
+    short-summary: Manage options for an existing content key policy.
+"""
+
+helps['ams content-key-policy option add'] = """
+    type: command
+    short-summary: Add a new option to an existing content key policy.
+"""
+
+helps['ams content-key-policy option remove'] = """
+    type: command
+    short-summary: Remove an option from an existing content key policy.
+"""
+
+helps['ams content-key-policy option update'] = """
+    type: command
+    short-summary: Update an option from an existing content key policy.
+    examples:
+        - name: Update an existing content-key-policy by adding an alternate token key to an existing option.
+          text: >
+            az ams content-key-policy option update -n contentKeyPolicyName -g resourceGroup -a amsAccount --policy-option-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --add-alt-token-key tokenKey --add-alt-token-key-type Symmetric
 """
 
 helps['ams job'] = """
