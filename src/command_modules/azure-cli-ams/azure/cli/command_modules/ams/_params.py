@@ -147,7 +147,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams content-key-policy') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('content_key_policy_name', name_arg_type,
+        c.argument('content_key_policy_name', name_arg_type, id_part='child_name_1',
                    help='The content key policy name.')
         c.argument('description', help='The content key policy description.')
         c.argument('clear_key_configuration',
@@ -230,7 +230,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('account_name', id_part=None)
 
     with self.argument_context('ams streaming-endpoint') as c:
-        c.argument('streaming_endpoint_name', name_arg_type, help='The name of the streaming endpoint.')
+        c.argument('streaming_endpoint_name', name_arg_type, id_part='child_name_1',
+                   help='The name of the streaming endpoint.')
         c.argument('account_name', account_name_arg_type)
 
     with self.argument_context('ams streaming-endpoint create') as c:
@@ -276,7 +277,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams live-event') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('live_event_name', name_arg_type, help='The name of the live event.')
+        c.argument('live_event_name', name_arg_type, id_part='child_name_1',
+                   help='The name of the live event.')
 
     with self.argument_context('ams live-event create') as c:
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
@@ -313,8 +315,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams live-output') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('live_event_name', help='The name of the live event.')
-        c.argument('live_output_name', name_arg_type, help='The name of the live output.')
+        c.argument('live_event_name', id_part='child_name_1',
+                   help='The name of the live event.')
+        c.argument('live_output_name', name_arg_type, id_part='child_name_2',
+                   help='The name of the live output.')
 
     with self.argument_context('ams live-output create') as c:
         c.argument('asset_name', help='The name of the asset.')
