@@ -29,7 +29,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'identifier': 'id1',
             'expiration': '2030-12-31T16:00:00-08:00',
             'base64Key': 'dGVzdGlkMQ==',
-            'scaleUnits': 4
+            'scaleUnits': 3
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
@@ -123,7 +123,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
             'maxCacheAge': 11,
-            'scaleUnits': 4,
+            'scaleUnits': 5,
             'tags': 'foo=bar',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml'),
@@ -198,7 +198,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
             'maxCacheAge': 11,
-            'scaleUnits': 4,
+            'scaleUnits': 6,
             'tags': 'foo=bar',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
@@ -237,7 +237,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
             'maxCacheAge': 11,
-            'scaleUnits': 4,
+            'scaleUnits': 7,
             'tags': 'foo=bar',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
@@ -278,7 +278,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
             'maxCacheAge': 11,
-            'scaleUnits': 4,
+            'scaleUnits': 8,
             'tags': 'foo=bar',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
@@ -314,7 +314,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'cdnProfile': 'testProfile',
             'description': 'test streaming description',
             'maxCacheAge': 11,
-            'scaleUnits': 4,
+            'scaleUnits': 9,
             'scaleUnits2': 10,
             'tags': 'foo=bar',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
@@ -368,7 +368,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
             'streamingEndpointName': streaming_endpoint_name,
-            'scaleUnits': 4
+            'scaleUnits': 11
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
@@ -394,7 +394,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
             'streamingEndpointName': streaming_endpoint_name,
-            'scaleUnits': 4
+            'scaleUnits': 12
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
@@ -420,7 +420,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
             'streamingEndpointName': streaming_endpoint_name,
-            'scaleUnits': 4
+            'scaleUnits': 13
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
@@ -444,7 +444,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'storageAccount': storage_account_for_create,
             'location': 'westus2',
             'streamingEndpointName': streaming_endpoint_name,
-            'scaleUnits': 4
+            'scaleUnits': 14
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
