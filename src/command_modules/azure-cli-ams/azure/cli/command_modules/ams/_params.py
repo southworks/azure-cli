@@ -18,7 +18,7 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list)
 
-from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType)
+from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
 
 from ._validators import validate_storage_account_id, datetime_format, validate_correlation_data, validate_token_claim
 
@@ -76,7 +76,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The name of the transform.')
         c.argument('preset', help='Preset that describes the operations that will be used to modify, transcode, or extract insights from the source file to generate the transform output. Allowed values: {}. In addition to the allowed values, you can also pass a path to a custom Standard Encoder preset JSON file. See https://docs.microsoft.com/rest/api/media/transforms/createorupdate#standardencoderpreset for further details on the settings to use to build a custom preset.'
                    .format(", ".join(get_presets_definition_name_completion_list())))
-        c.argument('audio_insights_only', arg_group='Video Analyzer', action='store_true', help='Use this flag to only extract audio insights when processing a video file.')
+        c.argument('insights_to_extract', arg_group='Video Analyzer', arg_type=get_enum_type(InsightsType), help='The type of insights to be extracted. If not set then the type will be selected based on the content type. If the content is audio only then only audio insights will be extracted and if it is video only video insights will be extracted.')
         c.argument('audio_language', arg_group='Audio/Video Analyzer', help='The language for the audio payload in the input using the BCP-47 format of \"language tag-region\" (e.g: en-US). If not specified, automatic language detection would be employed. This feature currently supports English, Chinese, French, German, Italian, Japanese, Spanish, Russian, and Portuguese. The automatic detection works best with audio recordings with clearly discernable speech. If automatic detection fails to find the language, transcription would fallback to English. Allowed values: {}.'
                    .format(", ".join(get_allowed_languages_for_preset_completion_list())))
         c.argument('relative_priority', arg_type=get_enum_type(Priority), help='Sets the relative priority of the transform outputs within a transform. This sets the priority that the service uses for processing TransformOutputs. The default priority is Normal.')

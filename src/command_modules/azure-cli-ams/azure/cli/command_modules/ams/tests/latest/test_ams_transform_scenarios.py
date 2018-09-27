@@ -163,14 +163,15 @@ class AmsTransformTests(ScenarioTest):
             'presetName': 'AudioAnalyzer',
             'presetName2': 'VideoAnalyzer',
             'audioLanguage': 'es-ES',
-            'audioLanguage2': 'en-US'
+            'audioLanguage2': 'en-US',
+            'insightsToExtract': 'AudioInsightsOnly'
         })
 
         self.cmd('az ams transform output add -a {amsname} -n {transformName} -g {rg} --preset {presetName} --audio-language {audioLanguage}', checks=[
             self.check('outputs[2].preset.audioLanguage', '{audioLanguage}')
         ])
 
-        self.cmd('az ams transform output add -a {amsname} -n {transformName} -g {rg} --preset {presetName2} --audio-language {audioLanguage2} --audio-insights-only', checks=[
+        self.cmd('az ams transform output add -a {amsname} -n {transformName} -g {rg} --preset {presetName2} --audio-language {audioLanguage2} --insights-to-extract {insightsToExtract}', checks=[
             self.check('outputs[3].preset.audioLanguage', '{audioLanguage2}'),
-            self.check('outputs[3].preset.audioInsightsOnly', True)
+            self.check('outputs[3].preset.insightsToExtract', '{insightsToExtract}')
         ])
