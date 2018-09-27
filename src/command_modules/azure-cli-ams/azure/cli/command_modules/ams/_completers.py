@@ -35,9 +35,11 @@ def get_default_streaming_policies_completion_list():
     default_streaming_policies = get_default_streaming_policies()
     return default_streaming_policies
 
+
 def get_protocols_completion_list():
     protocols = get_protocols()
     return protocols
+
 
 def get_allowed_languages_for_preset_completion_list():
     languages = get_allowed_languages_for_preset()

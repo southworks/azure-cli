@@ -204,7 +204,6 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('cbcs_custom_license_acquisition_url_template', arg_group='Common Encryption CBCS', help='The template for a customer service to deliver keys to end users.  Not needed when using Azure Media Services for issuing keys.')
         c.argument('cbcs_allow_persistent_license', arg_group='Common Encryption CBCS', action='store_true', help='All license to be persistent or not.')
 
-
     with self.argument_context('ams streaming policy list') as c:
         c.argument('account_name', id_part=None)
 

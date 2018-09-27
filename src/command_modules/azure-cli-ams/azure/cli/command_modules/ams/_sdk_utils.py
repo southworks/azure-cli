@@ -34,6 +34,7 @@ def get_default_streaming_policies():
     return ['Predefined_DownloadOnly', 'Predefined_ClearStreamingOnly', 'Predefined_DownloadAndClearStreaming',
             'Predefined_ClearKey', 'Predefined_SecureStreaming', 'Predefined_SecureStreamingWithFairPlay']
 
+
 def get_protocols():
     return ['Download', 'Dash', 'HLS', 'SmoothStreaming']
 
