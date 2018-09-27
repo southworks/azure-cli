@@ -265,7 +265,7 @@ helps['ams job start'] = """
 
 helps['ams job update'] = """
     type: command
-    short-summary: Updates an existing job.
+    short-summary: Update an existing job.
 """
 
 helps['ams job list'] = """
