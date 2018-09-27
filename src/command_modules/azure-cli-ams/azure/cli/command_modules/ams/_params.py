@@ -237,7 +237,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams streaming-endpoint create') as c:
         c.argument('tags', arg_type=tags_type)
         c.argument('description', help='The streaming endpoint description.')
-        c.argument('scale_units', help='The number of scale units.  Use the Scale operation to adjust this value.')
+        c.argument('scale_units', help='The number of scale units. Use the Scale operation to adjust this value.')
         c.argument('availability_set_name', help='The name of the AvailabilitySet used with this StreamingEndpoint for high availability streaming. This value can only be set at creation time.')
         c.argument('max_cache_age', help='Max cache age.')
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
@@ -290,7 +290,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('tags', arg_type=tags_type)
         c.argument('key_frame_interval_duration', arg_group='Input',
                    help='ISO 8601 timespan duration of the key frame interval duration.')
-        c.argument('access_token', arg_group='Input', help='A unique identifier for a stream.  This can be specified at creation time but cannot be updated.  If omitted, the service will generate a unique value.')
+        c.argument('access_token', arg_group='Input', help='A unique identifier for a stream. This can be specified at creation time but cannot be updated.  If omitted, the service will generate a unique value.')
         c.argument('description', help='The live event description.')
         c.argument('ips', nargs='+', arg_group='Preview', help='Space-separated list of allowed IP addresses for access control.')
         c.argument('preview_locator', arg_group='Preview', help='The identifier of the preview locator in Guid format. Specifying this at creation time allows the caller to know the preview locator url before the event is created.  If omitted, the service will generate a random identifier.  This value cannot be updated once the live event is created.')
