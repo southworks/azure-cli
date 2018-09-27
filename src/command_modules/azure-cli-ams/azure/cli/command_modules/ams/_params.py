@@ -120,14 +120,15 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The name of the transform.')
         c.argument('job_name', name_arg_type, id_part='child_name_2',
                    help='The name of the job.')
+        c.argument('description', help='The job description.')
+        c.argument('priority', arg_type=get_enum_type(Priority),
+                   help='The priority with which the job should be processed.')
 
     with self.argument_context('ams job list') as c:
         c.argument('account_name', id_part=None)
 
     with self.argument_context('ams job start') as c:
-        c.argument('priority', arg_type=get_enum_type(Priority),
-                   help='The priority with which the job should be processed.')
-        c.argument('description', help='The job description.')
+        c.argument('correlation_data', arg_type=correlation_data_type)
         c.argument('input_asset_name',
                    arg_group='Asset Job Input',
                    help='The name of the input asset.')
@@ -140,7 +141,6 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    nargs='+',
                    help='Space-separated list of files. It can be used to tell the service to only use the files specified from the input asset.')
         c.argument('label', help='A label that is assigned to a JobInput, that is used to satisfy a reference used in the Transform.')
-        c.argument('correlation_data', arg_type=correlation_data_type)
 
     with self.argument_context('ams job cancel') as c:
         c.argument('delete', action='store_true', help='Delete the job being cancelled.')
