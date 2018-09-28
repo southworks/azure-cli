@@ -96,15 +96,34 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
                          custom_command_type=get_custom_sdk('job', get_jobs_client))
         g.custom_command('start', 'create_job',
                          custom_command_type=get_custom_sdk('job', get_jobs_client))
+        g.generic_update_command('update',
+                                 setter_name='update',
+                                 custom_func_name='update_job',
+                                 custom_func_type=get_custom_sdk('job', get_jobs_client))
 
     with self.command_group('ams content-key-policy', get_sdk('ContentKeyPolicies', get_content_key_policies_client)) as g:
         g.custom_command('create', 'create_content_key_policy',
                          custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
-        g.show_command('show', 'get')
+        g.custom_command('show', 'show_content_key_policy',
+                         custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
         g.command('delete', 'delete')
         g.command('list', 'list')
+        g.generic_update_command('update',
+                                 getter_name='get_policy_properties_with_secrets',
+                                 setter_name='update_content_key_policy_setter',
+                                 setter_type=get_custom_sdk('content_key_policy', get_content_key_policies_client),
+                                 custom_func_name='update_content_key_policy',
+                                 custom_func_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
 
-    with self.command_group('ams streaming locator', get_sdk('StreamingLocators', get_streaming_locators_client)) as g:
+    with self.command_group('ams content-key-policy option', get_sdk('ContentKeyPolicies', get_content_key_policies_client)) as g:
+        g.custom_command('add', 'add_content_key_policy_option',
+                         custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
+        g.custom_command('remove', 'remove_content_key_policy_option',
+                         custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
+        g.custom_command('update', 'update_content_key_policy_option',
+                         custom_command_type=get_custom_sdk('content_key_policy', get_content_key_policies_client))
+
+    with self.command_group('ams streaming-locator', get_sdk('StreamingLocators', get_streaming_locators_client)) as g:
         g.custom_command('create', 'create_streaming_locator',
                          custom_command_type=get_custom_sdk('streaming_locator', get_streaming_locators_client))
         g.command('list', 'list')
@@ -114,14 +133,14 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.custom_command('get-content-keys', 'list_content_keys',
                          custom_command_type=get_custom_sdk('streaming_locator', get_streaming_locators_client))
 
-    with self.command_group('ams streaming policy', get_sdk('StreamingPolicies', get_streaming_policies_client)) as g:
+    with self.command_group('ams streaming-policy', get_sdk('StreamingPolicies', get_streaming_policies_client)) as g:
         g.custom_command('create', 'create_streaming_policy',
                          custom_command_type=get_custom_sdk('streaming_policy', get_streaming_policies_client))
         g.command('list', 'list')
         g.show_command('show', 'get')
         g.command('delete', 'delete')
 
-    with self.command_group('ams streaming endpoint', get_sdk('StreamingEndpoints', get_streaming_endpoints_client)) as g:
+    with self.command_group('ams streaming-endpoint', get_sdk('StreamingEndpoints', get_streaming_endpoints_client)) as g:
         g.command('list', 'list')
         g.custom_command('start', 'start',
                          custom_command_type=get_custom_sdk('streaming_endpoint', get_streaming_endpoints_client),
@@ -142,13 +161,13 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.command('delete', 'delete')
         g.command('scale', 'scale')
 
-    with self.command_group('ams streaming endpoint akamai', get_sdk('StreamingEndpoints', get_streaming_endpoints_client)) as g:
+    with self.command_group('ams streaming-endpoint akamai', get_sdk('StreamingEndpoints', get_streaming_endpoints_client)) as g:
         g.custom_command('add', 'add_akamai_access_control',
                          custom_command_type=get_custom_sdk('streaming_endpoint', get_streaming_endpoints_client))
         g.custom_command('remove', 'remove_akamai_access_control',
                          custom_command_type=get_custom_sdk('streaming_endpoint', get_streaming_endpoints_client))
 
-    with self.command_group('ams live event', get_sdk('LiveEvents', get_live_events_client)) as g:
+    with self.command_group('ams live-event', get_sdk('LiveEvents', get_live_events_client)) as g:
         g.custom_command('create', 'create',
                          custom_command_type=get_custom_sdk('live_event', get_live_events_client),
                          supports_no_wait=True)
@@ -170,7 +189,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
                                  custom_func_name='update_live_event',
                                  custom_func_type=get_custom_sdk('live_event', get_live_events_client))
 
-    with self.command_group('ams live output', get_sdk('LiveOutputs', get_live_outputs_client)) as g:
+    with self.command_group('ams live-output', get_sdk('LiveOutputs', get_live_outputs_client)) as g:
         g.custom_command('create', 'create_live_output',
                          custom_command_type=get_custom_sdk('live_output', get_live_outputs_client))
         g.show_command('show', 'get')

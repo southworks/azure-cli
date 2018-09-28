@@ -29,6 +29,16 @@ def create_job(client, resource_group_name, account_name, transform_name, job_na
     return client.create(resource_group_name, account_name, transform_name, job_name, job)
 
 
+def update_job(instance, description=None, priority=None):
+    if description is not None:
+        instance.description = description
+
+    if priority is not None:
+        instance.priority = priority
+
+    return instance
+
+
 def cancel_job(client, resource_group_name, account_name,
                transform_name, job_name, delete=False):
     cancel_result = client.cancel_job(resource_group_name, account_name,

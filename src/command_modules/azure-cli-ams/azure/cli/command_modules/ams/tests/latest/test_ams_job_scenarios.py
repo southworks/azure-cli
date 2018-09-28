@@ -40,7 +40,7 @@ class AmsJobTests(ScenarioTest):
             'label': 'someLabel'
         })
 
-        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --presets {presetName}')
+        self.cmd('az ams transform create -a {amsname} -n {transformName} -g {rg} --preset {presetName}')
 
         jobName = self.create_random_name(prefix='job', length=10)
 
@@ -66,6 +66,16 @@ class AmsJobTests(ScenarioTest):
 
         list = self.cmd('az ams job list -a {amsname} -g {rg} -t {transformName}').get_output_in_json()
         assert len(list) > 0
+
+        self.kwargs.update({
+            'priority': 'Low',
+            'description': 'someDescription'
+        })
+
+        self.cmd('az ams job update -a {amsname} -n {jobName} -g {rg} -t {transformName} --description {description} --priority {priority}', checks=[
+            self.check('priority', '{priority}'),
+            self.check('description', '{description}')
+        ])
 
         self.cmd('az ams job cancel -n {jobName} -a {amsname} -g {rg} -t {transformName}')
 

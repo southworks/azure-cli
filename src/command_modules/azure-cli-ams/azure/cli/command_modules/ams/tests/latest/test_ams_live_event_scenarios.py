@@ -42,12 +42,13 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        live_event = self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --auto-start --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url', checks=[
+        live_event = self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --auto-start --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.2.3.4 5.6.7.8 9.10.11.12 --preview-ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', '{streamingProtocol}'),
             self.check('encoding.encodingType', '{encodingType}'),
             self.check('length(preview.accessControl.ip.allow)', 2),
+            self.check('length(input.accessControl.ip.allow)', 3),
             self.check('preview.previewLocator', '{previewLocator}'),
             self.check('input.keyFrameIntervalDuration', '{keyFrameIntervalDuration}'),
             self.check('length(streamOptions)', 2),
@@ -62,9 +63,9 @@ class AmsLiveEventTests(ScenarioTest):
         self.assertNotEquals('Stopping', live_event['resourceState'])
         self.assertNotEquals('Stopped', live_event['resourceState'])
 
-        self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg}')
+        self.cmd('az ams live-event stop -a {amsname} -n {liveEventName} -g {rg}')
 
-        self.cmd('az ams live event delete -a {amsname} -n {liveEventName} -g {rg}')
+        self.cmd('az ams live-event delete -a {amsname} -n {liveEventName} -g {rg}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -86,14 +87,14 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value', checks=[
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4'),
             self.check('encoding.encodingType', 'Basic')
         ])
 
-        live_event = self.cmd('az ams live event start -a {amsname} --name {liveEventName} -g {rg}', checks=[
+        live_event = self.cmd('az ams live-event start -a {amsname} --name {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4')
@@ -122,9 +123,9 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value --auto-start')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value --auto-start')
 
-        live_event = self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg}', checks=[
+        live_event = self.cmd('az ams live-event stop -a {amsname} -n {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}')
         ]).get_output_in_json()
 
@@ -151,7 +152,7 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value --auto-start')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value --auto-start')
 
         assetName = self.create_random_name(prefix='asset', length=12)
         live_output_name1 = self.create_random_name(prefix='lo1', length=12)
@@ -170,21 +171,21 @@ class AmsLiveEventTests(ScenarioTest):
 
         self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg}')
 
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName1} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName1}')
-        self.cmd('az ams live output create -a {amsname} -n {liveOutputName2} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName2}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName1} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName1}')
+        self.cmd('az ams live-output create -a {amsname} -n {liveOutputName2} -g {rg} --asset-name {assetName} --live-event-name {liveEventName} --archive-window-length {archiveWindowLength} --manifest-name {manifestName2}')
 
-        self.cmd('az ams live output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('length(@)', 2)
         ])
 
-        live_event = self.cmd('az ams live event stop -a {amsname} -n {liveEventName} -g {rg} --remove-outputs-on-stop', checks=[
+        live_event = self.cmd('az ams live-event stop -a {amsname} -n {liveEventName} -g {rg} --remove-outputs-on-stop', checks=[
             self.check('name', '{liveEventName}')
         ]).get_output_in_json()
 
         self.assertNotEquals('Starting', live_event['resourceState'])
         self.assertNotEquals('Running', live_event['resourceState'])
 
-        self.cmd('az ams live output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
+        self.cmd('az ams live-output list -a {amsname} -g {rg} --live-event-name {liveEventName}', checks=[
             self.check('length(@)', 0)
         ])
 
@@ -210,15 +211,15 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value')
 
-        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+        self.cmd('az ams live-event list -a {amsname} -g {rg}', checks=[
             self.check('length(@)', 1)
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value')
 
-        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+        self.cmd('az ams live-event list -a {amsname} -g {rg}', checks=[
             self.check('length(@)', 2)
         ])
 
@@ -244,21 +245,21 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value')
 
-        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+        self.cmd('az ams live-event list -a {amsname} -g {rg}', checks=[
             self.check('length(@)', 1)
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --tags key=value')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName2} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags key=value')
 
-        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+        self.cmd('az ams live-event list -a {amsname} -g {rg}', checks=[
             self.check('length(@)', 2)
         ])
 
-        self.cmd('az ams live event delete -a {amsname} -g {rg} -n {liveEventName2}')
+        self.cmd('az ams live-event delete -a {amsname} -g {rg} -n {liveEventName2}')
 
-        self.cmd('az ams live event list -a {amsname} -g {rg}', checks=[
+        self.cmd('az ams live-event list -a {amsname} -g {rg}', checks=[
             self.check('length(@)', 1)
         ])
 
@@ -282,14 +283,14 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --preset-name Default720p --auto-start', checks=[
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --auto-start', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', 'FragmentedMP4'),
             self.check('encoding.encodingType', 'Basic')
         ])
 
-        live_event = self.cmd('az ams live event reset -a {amsname} -n {liveEventName} -g {rg}', checks=[
+        live_event = self.cmd('az ams live-event reset -a {amsname} -n {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2')
         ]).get_output_in_json()
@@ -312,7 +313,7 @@ class AmsLiveEventTests(ScenarioTest):
         })
 
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol}')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol}')
 
         self.kwargs.update({
             'tags': 'key=value',
@@ -322,10 +323,11 @@ class AmsLiveEventTests(ScenarioTest):
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml')
         })
 
-        live_event_updated = self.cmd('az ams live event update -a {amsname} -n {liveEventName} -g {rg} --ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --tags {tags}', checks=[
+        live_event_updated = self.cmd('az ams live-event update -a {amsname} -n {liveEventName} -g {rg} --ips 1.2.3.4 5.6.7.8 9.10.11.12 --preview-ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --tags {tags}', checks=[
             self.check('description', '{description}'),
             self.check('input.keyFrameIntervalDuration', '{keyFrameIntervalDuration}'),
             self.check('length(preview.accessControl.ip.allow)', 2),
+            self.check('length(input.accessControl.ip.allow)', 3),
             self.check('tags.key', 'value')
         ]).get_output_in_json()
 
@@ -359,14 +361,15 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        self.cmd('az ams live event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url')
+        self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.2.3.4 5.6.7.8 9.10.11.12 --preview-ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url')
 
-        self.cmd('az ams live event show -a {amsname} -n {liveEventName} -g {rg}', checks=[
+        self.cmd('az ams live-event show -a {amsname} -n {liveEventName} -g {rg}', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', '{streamingProtocol}'),
             self.check('encoding.encodingType', '{encodingType}'),
             self.check('length(preview.accessControl.ip.allow)', 2),
+            self.check('length(input.accessControl.ip.allow)', 3),
             self.check('preview.previewLocator', '{previewLocator}'),
             self.check('input.keyFrameIntervalDuration', '{keyFrameIntervalDuration}'),
             self.check('length(streamOptions)', 2),
@@ -375,4 +378,4 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('vanityUrl', True)
         ])
 
-        self.cmd('az ams live event delete -a {amsname} -n {liveEventName} -g {rg}')
+        self.cmd('az ams live-event delete -a {amsname} -n {liveEventName} -g {rg}')

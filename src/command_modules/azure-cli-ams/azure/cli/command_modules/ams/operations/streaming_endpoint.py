@@ -8,10 +8,9 @@ from azure.cli.core.commands import LongRunningOperation
 
 
 def create_streaming_endpoint(cmd, client, resource_group_name, account_name, streaming_endpoint_name,  # pylint: disable=too-many-locals
-                              auto_start=None, tags=None, cross_domain_policy=None, ips=None,
-                              description=None, scale_units=None, availability_set_name=None, max_cache_age=None,
-                              cdn_provider=None, cdn_profile=None, custom_host_names=None, client_access_policy=None,
-                              no_wait=False):
+                              scale_units, auto_start=None, tags=None, cross_domain_policy=None, ips=None,
+                              description=None, availability_set_name=None, max_cache_age=None, cdn_provider=None,
+                              cdn_profile=None, custom_host_names=None, client_access_policy=None, no_wait=False):
     from azure.mgmt.media.models import (StreamingEndpoint, IPAccessControl, StreamingEndpointAccessControl)
     from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 

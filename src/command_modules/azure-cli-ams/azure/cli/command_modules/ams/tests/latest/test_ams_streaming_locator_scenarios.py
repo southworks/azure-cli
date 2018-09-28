@@ -34,7 +34,7 @@ class AmsStreamingLocatorTests(ScenarioTest):
             'streamingPolicyName': streamingPolicyName
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download')
+        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download')
 
         streaming_locator_name = self.create_random_name(prefix='sln', length=10)
 
@@ -46,24 +46,24 @@ class AmsStreamingLocatorTests(ScenarioTest):
             'alternativeMediaId': self.create_guid()
         })
 
-        self.cmd('az ams streaming locator create -n {streamingLocatorName} -a {amsname} -g {rg} --streaming-policy-name {streamingPolicyName} --asset-name {assetName} --start-time {startTime} --end-time {endTime} --streaming-locator-id {streamingLocatorId} --alternative-media-id {alternativeMediaId}', checks=[
+        self.cmd('az ams streaming-locator create -n {streamingLocatorName} -a {amsname} -g {rg} --streaming-policy-name {streamingPolicyName} --asset-name {assetName} --start-time {startTime} --end-time {endTime} --streaming-locator-id {streamingLocatorId} --alternative-media-id {alternativeMediaId}', checks=[
             self.check('name', '{streamingLocatorName}'),
             self.check('resourceGroup', '{rg}'),
             self.check('streamingLocatorId', '{streamingLocatorId}'),
             self.check('alternativeMediaId', '{alternativeMediaId}')
         ])
 
-        self.cmd('az ams streaming locator show -a {amsname} -n {streamingLocatorName} -g {rg}', checks=[
+        self.cmd('az ams streaming-locator show -a {amsname} -n {streamingLocatorName} -g {rg}', checks=[
             self.check('name', '{streamingLocatorName}'),
             self.check('resourceGroup', '{rg}')
         ])
 
-        list = self.cmd('az ams streaming locator list -a {amsname} -g {rg}').get_output_in_json()
+        list = self.cmd('az ams streaming-locator list -a {amsname} -g {rg}').get_output_in_json()
         assert len(list) > 0
 
-        self.cmd('az ams streaming locator get-paths -a {amsname} -n {streamingLocatorName} -g {rg}')
+        self.cmd('az ams streaming-locator get-paths -a {amsname} -n {streamingLocatorName} -g {rg}')
 
-        self.cmd('az ams streaming locator delete -n {streamingLocatorName} -a {amsname} -g {rg}')
+        self.cmd('az ams streaming-locator delete -n {streamingLocatorName} -a {amsname} -g {rg}')
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
@@ -97,9 +97,9 @@ class AmsStreamingLocatorTests(ScenarioTest):
 
         self.cmd('az ams content-key-policy create -a {amsname} -n {contentKeyPolicyName} -g {rg} --clear-key-configuration --open-restriction --policy-option-name testOption')
 
-        self.cmd('az ams streaming locator create -n {streamingLocatorName} -a {amsname} -g {rg} --content-key-policy-name {contentKeyPolicyName} --streaming-policy-name {streamingPolicyName} --asset-name {assetName}')
+        self.cmd('az ams streaming-locator create -n {streamingLocatorName} -a {amsname} -g {rg} --content-key-policy-name {contentKeyPolicyName} --streaming-policy-name {streamingPolicyName} --asset-name {assetName}')
 
-        self.cmd('az ams streaming locator get-content-keys -a {amsname} -n {streamingLocatorName} -g {rg}', checks=[
+        self.cmd('az ams streaming-locator get-content-keys -a {amsname} -n {streamingLocatorName} -g {rg}', checks=[
             self.check('length(@)', 1),
             self.check('@[0].policyName', '{contentKeyPolicyName}')
         ])
