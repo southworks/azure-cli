@@ -143,8 +143,10 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
                                                          fair_play=cbcs_fair_play_configuration))
 
 
-def _parse_key_to_track_mappings_json(key_to_track_mappings, errorMessage):
-    errorMessage = 'Malformed key-to-track-mappings JSON argument. Please, make sure you are sending a list of TrackSelection. For further information, please refer to https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection'  # pylint: disable=line-too-long
+def _parse_key_to_track_mappings_json(key_to_track_mappings):
+    errorMessage = '''Malformed key-to-track-mappings JSON argument. Please, make sure you are sending a StreamingPolicyContentKeys. 
+                    For further information, please refer to 
+    https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkeys'''
     key_to_track_mappings_result = None
     if key_to_track_mappings is not None:
         key_to_track_mappings_result = []
@@ -159,8 +161,10 @@ def _parse_key_to_track_mappings_json(key_to_track_mappings, errorMessage):
     return key_to_track_mappings_result
 
 
-def _parse_clear_tracks_json(clear_tracks, errorMessage):
-    errorMessage = 'Malformed key-to-track-mappings JSON argument. Please, make sure you are sending a list of TrackSelection. For further information, please refer to https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection'  # pylint: disable=line-too-long
+def _parse_clear_tracks_json(clear_tracks):
+    errorMessage = '''Malformed key-to-track-mappings JSON argument. Please, make sure you are sending a list of TrackSelection. 
+                    For further information, please refer to 
+                    https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection'''
     clear_tracks_result = None
     if clear_tracks is not None:
         clear_tracks_result = []
