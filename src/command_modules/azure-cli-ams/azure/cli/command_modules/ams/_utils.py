@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 import uuid
 import re
 import isodate
-import json
 
 
 def _gen_guid():
