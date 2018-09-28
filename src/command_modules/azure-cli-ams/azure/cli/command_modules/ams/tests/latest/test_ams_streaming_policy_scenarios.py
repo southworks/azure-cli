@@ -73,7 +73,6 @@ class AmsStreamingPolicyTests(ScenarioTest):
         self.kwargs.update({
             'streamingPolicyName': streamingPolicyName,
             'protocols': 'HLS Dash',
-            'keyToTrackMappings': self._get_test_data_file('keyToTrackMappings.json'),
             'urlTemplate': 'xyz.foo.bar',
             'label': 'label'
         })
@@ -115,7 +114,7 @@ class AmsStreamingPolicyTests(ScenarioTest):
             'widevineUrlTemplate': 'widevineTemplate.foo.bar'
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cenc-protocols {protocols} --cenc-clear-tracks "{clearTracks}" --cenc-key-to-track-mappings "{keyToTrackMappings}" --cenc-default-key-label {label} --cenc-play-ready-template {playReadyUrlTemplate} --cenc-play-ready-attributes {playReadyAttributes} --cenc-widevine-template {widevineUrlTemplate}', checks=[
+        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cenc-protocols {protocols} --cenc-clear-tracks @"{clearTracks}" --cenc-key-to-track-mappings @"{keyToTrackMappings}" --cenc-default-key-label {label} --cenc-play-ready-template {playReadyUrlTemplate} --cenc-play-ready-attributes {playReadyAttributes} --cenc-widevine-template {widevineUrlTemplate}', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('commonEncryptionCenc.enabledProtocols.hls', True),
             self.check('commonEncryptionCenc.enabledProtocols.smoothStreaming', True),
