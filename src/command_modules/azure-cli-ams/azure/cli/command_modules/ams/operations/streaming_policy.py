@@ -128,8 +128,9 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
         cbcs_widevine_config = StreamingPolicyWidevineConfiguration(
             custom_license_acquisition_url_template=cbcs_widevine_url_template)
 
+    cbcs_fair_play_configuration = None
     if cbcs_allow_persistent_license or cbcs_custom_license_acquisition_url_template:
-        cbcs_fair_play_configuration = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,  # pylint: disable=line-too-long
+        cbcs_fair_play_config = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,  # pylint: disable=line-too-long
                                                                             custom_license_acquisition_url_template=cbcs_custom_license_acquisition_url_template)  # pylint: disable=line-too-long
 
     cbcs_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cbcs_default_key_label,
@@ -140,7 +141,7 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
                                 clear_tracks=_parse_clear_tracks_json(cbcs_clear_tracks),
                                 content_keys=cbcs_content_keys,
                                 drm=CbcsDrmConfiguration(play_ready=cbcs_play_ready_config, widevine=cbcs_widevine_config,  # pylint: disable=line-too-long
-                                                         fair_play=cbcs_fair_play_configuration))
+                                                         fair_play=cbcs_fair_play_config))
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
