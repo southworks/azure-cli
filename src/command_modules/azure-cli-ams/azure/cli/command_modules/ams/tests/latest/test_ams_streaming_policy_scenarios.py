@@ -78,7 +78,7 @@ class AmsStreamingPolicyTests(ScenarioTest):
             'label': 'label'
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --envelope-protocols {protocols} --envelope-custom-key-acquisition-url-template {urlTemplate} --envelope-default-key-label {label}', checks=[
+        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --envelope-protocols {protocols} --envelope-template {urlTemplate} --envelope-default-key-label {label}', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('envelopeEncryption.enabledProtocols.hls', True),
             self.check('envelopeEncryption.enabledProtocols.dash', True),
@@ -115,7 +115,7 @@ class AmsStreamingPolicyTests(ScenarioTest):
             'widevineUrlTemplate': 'widevineTemplate.foo.bar'
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cenc-protocols {protocols} --cenc-clear-tracks "{clearTracks}" --cenc-key-to-track-mappings "{keyToTrackMappings}" --cenc-default-key-label {label} --cenc-play-ready-url-template {playReadyUrlTemplate} --cenc-play-ready-attributes {playReadyAttributes} --cenc-widevine-url-template {widevineUrlTemplate}', checks=[
+        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cenc-protocols {protocols} --cenc-clear-tracks "{clearTracks}" --cenc-key-to-track-mappings "{keyToTrackMappings}" --cenc-default-key-label {label} --cenc-play-ready-template {playReadyUrlTemplate} --cenc-play-ready-attributes {playReadyAttributes} --cenc-widevine-template {widevineUrlTemplate}', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('commonEncryptionCenc.enabledProtocols.hls', True),
             self.check('commonEncryptionCenc.enabledProtocols.smoothStreaming', True),
@@ -150,7 +150,7 @@ class AmsStreamingPolicyTests(ScenarioTest):
             'urlTemplate': 'xyz.foo.bar',
         })
 
-        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cbcs-protocols {protocols} --cbcs-custom-license-acquisition-url-template {urlTemplate} --cbcs-default-key-label {label} --cbcs-allow-persistent-license', checks=[
+        self.cmd('az ams streaming policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cbcs-protocols {protocols} --cbcs-fair-play-template {urlTemplate} --cbcs-default-key-label {label} --cbcs-fair-play-allow-persistent-license', checks=[
             self.check('name', '{streamingPolicyName}'),
             self.check('commonEncryptionCbcs.enabledProtocols.hls', True),
             self.check('commonEncryptionCbcs.enabledProtocols.smoothStreaming', True),
