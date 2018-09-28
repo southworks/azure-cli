@@ -123,7 +123,7 @@ def update_live_event_setter(client, resource_group_name, account_name, live_eve
 
 
 def update_live_event(instance, tags=None, description=None, key_frame_interval_duration=None,
-                      preview_ips=None, client_access_policy=None, cross_domain_policy=None):
+                      preview_ips=None, ips=None, client_access_policy=None, cross_domain_policy=None):
     if not instance:
         raise CLIError('The live event resource was not found.')
 
@@ -141,6 +141,12 @@ def update_live_event(instance, tags=None, description=None, key_frame_interval_
         if len(preview_ips) > 1 or preview_ips[0]:
             for ip in preview_ips:
                 instance.preview.access_control.ip.allow.append(create_ip_range(instance.name, ip))
+
+    if ips is not None:
+        instance.input.access_control.ip.allow = []
+        if len(ips) > 1 or ips[0]:
+            for ip in ips:
+                instance.input.access_control.ip.allow.append(create_ip_range(instance.name, ip))
 
     if client_access_policy is not None:
         if not client_access_policy:

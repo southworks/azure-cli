@@ -369,6 +369,7 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('input.streamingProtocol', '{streamingProtocol}'),
             self.check('encoding.encodingType', '{encodingType}'),
             self.check('length(preview.accessControl.ip.allow)', 2),
+            self.check('length(input.accessControl.ip.allow)', 3),
             self.check('preview.previewLocator', '{previewLocator}'),
             self.check('input.keyFrameIntervalDuration', '{keyFrameIntervalDuration}'),
             self.check('length(streamOptions)', 2),
