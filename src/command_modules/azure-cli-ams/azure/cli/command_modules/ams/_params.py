@@ -294,6 +294,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='ISO 8601 timespan duration of the key frame interval duration.')
         c.argument('access_token', arg_group='Input', help='A unique identifier for a stream. This can be specified at creation time but cannot be updated. If omitted, the service will generate a unique value.')
         c.argument('description', help='The live event description.')
+        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control.')
         c.argument('preview_ips', nargs='+', arg_group='Preview', help='Space-separated list of allowed IP addresses for access control.')
         c.argument('preview_locator', arg_group='Preview', help='The identifier of the preview locator in Guid format. Specifying this at creation time allows the caller to know the preview locator url before the event is created. If omitted, the service will generate a random identifier. This value cannot be updated once the live event is created.')
         c.argument('streaming_policy_name', arg_group='Preview', help='The name of streaming policy used for the live event preview. This can be specified at creation time but cannot be updated.')
@@ -305,6 +306,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams live-event update') as c:
         c.argument('description', help='The live event description.')
+        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control.')
         c.argument('preview_ips', nargs='+', arg_group='Preview',
                    help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('tags', arg_type=tags_type)

@@ -39,7 +39,8 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
                        live_event_name=live_event_name, parameters=live_event, auto_start=auto_start)
 
 
-def create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id, preview_ips, live_event_name):
+def create_live_event_preview(preview_locator, streaming_policy_name,
+                              alternative_media_id, preview_ips, live_event_name):
     from azure.mgmt.media.models import (IPAccessControl, LiveEventPreviewAccessControl, LiveEventPreview)
 
     allow_list = []
@@ -104,7 +105,7 @@ def reset(cmd, client, resource_group_name, account_name, live_event_name,
 def update_live_event_setter(client, resource_group_name, account_name, live_event_name,
                              parameters):
     preview_ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
-                   parameters.preview.access_control.ip.allow))
+                           parameters.preview.access_control.ip.allow))
     parameters.preview.access_control.ip.allow = preview_ips
     return client.update(resource_group_name, account_name, live_event_name, parameters)
 
