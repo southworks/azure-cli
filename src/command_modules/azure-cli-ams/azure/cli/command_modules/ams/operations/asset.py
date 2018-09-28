@@ -35,3 +35,9 @@ def update_asset(instance, alternate_id=None, description=None):
         instance.description = description
 
     return instance
+
+def get_encryption_key(client, account_name, resource_group_name, asset_name):
+    storage_encrypted_asset = client.get_encryption_key(resource_group_name, account_name, asset_name)
+    print(storage_encrypted_asset.key)
+    storage_encrypted_asset.key = storage_encrypted_asset.key.decode('utf-8', 'ignore')
+    return storage_encrypted_asset
