@@ -263,6 +263,11 @@ helps['ams job start'] = """
     short-summary: Start a job.
 """
 
+helps['ams job update'] = """
+    type: command
+    short-summary: Update an existing job.
+"""
+
 helps['ams job list'] = """
     type: command
     short-summary: List all the jobs of a transform within an Azure Media Services account.

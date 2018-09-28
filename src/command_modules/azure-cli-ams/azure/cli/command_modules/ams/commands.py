@@ -96,6 +96,10 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
                          custom_command_type=get_custom_sdk('job', get_jobs_client))
         g.custom_command('start', 'create_job',
                          custom_command_type=get_custom_sdk('job', get_jobs_client))
+        g.generic_update_command('update',
+                                 setter_name='update',
+                                 custom_func_name='update_job',
+                                 custom_func_type=get_custom_sdk('job', get_jobs_client))
 
     with self.command_group('ams content-key-policy', get_sdk('ContentKeyPolicies', get_content_key_policies_client)) as g:
         g.custom_command('create', 'create_content_key_policy',
