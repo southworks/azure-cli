@@ -11,7 +11,7 @@ from azure.cli.core.util import CLIError
 
 def create(cmd, client, resource_group_name, account_name, live_event_name, streaming_protocol,  # pylint: disable=too-many-locals
            auto_start=False, encoding_type=None, preset_name=None, tags=None, description=None,
-           key_frame_interval_duration=None, access_token=None, no_wait=False, ips=None,
+           key_frame_interval_duration=None, access_token=None, no_wait=False, preview_ips=None,
            preview_locator=None, streaming_policy_name=None, alternative_media_id=None,
            vanity_url=False, client_access_policy=None, cross_domain_policy=None, stream_options=None):
     from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding)
@@ -26,7 +26,7 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
     location = ams.location
 
     live_event_preview = create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id,
-                                                   ips, live_event_name)
+                                                   preview_ips, live_event_name)
 
     policies = create_cross_site_access_policies(client_access_policy, cross_domain_policy)
 
@@ -39,12 +39,12 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
                        live_event_name=live_event_name, parameters=live_event, auto_start=auto_start)
 
 
-def create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id, ips, live_event_name):
+def create_live_event_preview(preview_locator, streaming_policy_name, alternative_media_id, preview_ips, live_event_name):
     from azure.mgmt.media.models import (IPAccessControl, LiveEventPreviewAccessControl, LiveEventPreview)
 
     allow_list = []
-    if ips is not None:
-        for ip in ips:
+    if preview_ips is not None:
+        for ip in preview_ips:
             allow_list.append(create_ip_range(live_event_name, ip))
 
     live_event_preview_access_control = LiveEventPreviewAccessControl(ip=IPAccessControl(allow=allow_list))
@@ -103,14 +103,14 @@ def reset(cmd, client, resource_group_name, account_name, live_event_name,
 
 def update_live_event_setter(client, resource_group_name, account_name, live_event_name,
                              parameters):
-    ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
+    preview_ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
                    parameters.preview.access_control.ip.allow))
-    parameters.preview.access_control.ip.allow = ips
+    parameters.preview.access_control.ip.allow = preview_ips
     return client.update(resource_group_name, account_name, live_event_name, parameters)
 
 
 def update_live_event(instance, tags=None, description=None, key_frame_interval_duration=None,
-                      ips=None, client_access_policy=None, cross_domain_policy=None):
+                      preview_ips=None, client_access_policy=None, cross_domain_policy=None):
     if not instance:
         raise CLIError('The live event resource was not found.')
 
@@ -123,10 +123,10 @@ def update_live_event(instance, tags=None, description=None, key_frame_interval_
     if key_frame_interval_duration is not None:
         instance.input.key_frame_interval_duration = key_frame_interval_duration
 
-    if ips is not None:
+    if preview_ips is not None:
         instance.preview.access_control.ip.allow = []
-        if len(ips) > 1 or ips[0]:
-            for ip in ips:
+        if len(preview_ips) > 1 or preview_ips[0]:
+            for ip in preview_ips:
                 instance.preview.access_control.ip.allow.append(create_ip_range(instance.name, ip))
 
     if client_access_policy is not None:
