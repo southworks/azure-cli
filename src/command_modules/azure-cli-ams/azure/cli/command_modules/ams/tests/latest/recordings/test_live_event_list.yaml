@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-09-28T15:22:20Z"}}'
+      "date": "2018-09-28T16:30:30Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -16,17 +16,17 @@ interactions:
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-28T15:22:20Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-28T16:30:30Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Fri, 28 Sep 2018 15:22:24 GMT']
+      date: ['Fri, 28 Sep 2018 16:30:35 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
     status: {code: 201, message: Created}
 - request:
     body: '{"sku": {"name": "Standard_LRS"}, "kind": "Storage", "location": "westus",
@@ -49,15 +49,15 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Fri, 28 Sep 2018 15:22:28 GMT']
+      date: ['Fri, 28 Sep 2018 16:30:50 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/5e3aaa6d-b210-48e6-b7dd-9cc24e0a1f93?monitor=true&api-version=2018-03-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/630e460f-06e2-4ac0-9ac8-3a3d97562288?monitor=true&api-version=2018-03-01-preview']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-ms-ratelimit-remaining-subscription-writes: ['1197']
     status: {code: 202, message: Accepted}
 - request:
     body: null
@@ -69,14 +69,14 @@ interactions:
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/5e3aaa6d-b210-48e6-b7dd-9cc24e0a1f93?monitor=true&api-version=2018-03-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/630e460f-06e2-4ac0-9ac8-3a3d97562288?monitor=true&api-version=2018-03-01-preview
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-28T15:22:29.0560874Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-28T15:22:29.0560874Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-28T15:22:28.9467097Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-28T16:30:39.5953667Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-28T16:30:39.5953667Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-28T16:30:39.4859916Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['1252']
       content-type: [application/json]
-      date: ['Fri, 28 Sep 2018 15:22:46 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:08 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -101,12 +101,12 @@ interactions:
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2018-03-01-preview
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"viEt7y82dg5n3+f9cRL0x8UU86BvC5TkSD0Thd3kj1JayE07JeJEKREMJ15TRgVloESWZ2twyljIovxRM0Ji7g==","permissions":"FULL"},{"keyName":"key2","value":"ANIMSeUsy7L+qBO0XEMsA+6/bwMi+CQhqd4RIzglLnJljXVeyBraU4DCa6Ei2Ub/x0vrfanyrH/1D+M6gpwkyA==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"Kh2QNrLCWUBMDQlSfH+mct9er3emYEq8oEk4wGF2u4dnfYpOmjTOu1AJKnwEHiRG15R2vHT9RwznKNWeBaBBHw==","permissions":"FULL"},{"keyName":"key2","value":"UM9U/3AG1Ls0HNrnZ9vQaGg77YFIGfUUvdVACCbotaih7+CU1DBNR8hmubJa/6FkKE17VQBNR2VdF103M+7CYg==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Fri, 28 Sep 2018 15:22:49 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:11 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -115,7 +115,7 @@ interactions:
       transfer-encoding: [chunked]
       vary: [Accept-Encoding]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1194']
+      x-ms-ratelimit-remaining-subscription-writes: ['1197']
     status: {code: 200, message: OK}
 - request:
     body: 'b''b\''{"location": "westus2", "properties": {"storageAccounts": [{"id":
@@ -135,21 +135,21 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-07-01
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"57644700-97c6-4e50-ae38-183abd540422\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"89e0c517-7e69-498c-8fff-dbe89ad01b7a\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:22:57 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:16 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-ratelimit-remaining-subscription-writes: ['1197']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
@@ -166,14 +166,14 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-07-01
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"57644700-97c6-4e50-ae38-183abd540422\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"89e0c517-7e69-498c-8fff-dbe89ad01b7a\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:00 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:19 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -186,15 +186,15 @@ interactions:
     status: {code: 200, message: OK}
 - request:
     body: '{"tags": {"key": "value"}, "location": "West US 2", "properties": {"input":
-      {"streamingProtocol": "FragmentedMP4"}, "preview": {"accessControl": {"ip":
-      {"allow": []}}}, "encoding": {"encodingType": "Basic"}, "crossSiteAccessPolicies":
-      {}, "vanityUrl": false}}'
+      {"streamingProtocol": "FragmentedMP4", "accessControl": {"ip": {"allow": []}}},
+      "preview": {"accessControl": {"ip": {"allow": []}}}, "encoding": {"encodingType":
+      "Basic"}, "crossSiteAccessPolicies": {}, "vanityUrl": false}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams live-event create]
       Connection: [keep-alive]
-      Content-Length: ['259']
+      Content-Length: ['299']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
@@ -203,22 +203,24 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveEvents/le000004?api-version=2018-07-01&autoStart=false
   response:
     body: {string: "{\r\n  \"name\":\"le000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000004\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
-        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"InProgress\",\"created\":\"2018-09-28T15:23:04.5553652Z\",\"lastModified\":\"2018-09-28T15:23:04.5553652Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"fe2147c0af8842038df29472fe5a9e98\",\"endpoints\":[\r\n
-        \       \r\n      ],\"accessControl\":null\r\n    },\"preview\":{\r\n      \"previewLocator\":\"e0a4b797-fb44-406d-aedd-182e822bad48\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"InProgress\",\"created\":\"2018-09-28T16:31:24.4428612Z\",\"lastModified\":\"2018-09-28T16:31:24.4428612Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"1def4df95be540b7b95f02e714dd1d7b\",\"endpoints\":[\r\n
+        \       \r\n      ],\"accessControl\":{\r\n        \"ip\":{\r\n          \"allow\":[\r\n
+        \           \r\n          ]\r\n        }\r\n      }\r\n    },\"preview\":{\r\n
+        \     \"previewLocator\":\"9da7cb6e-5437-4aac-9e85-434d540ebc76\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \       \"ip\":{\r\n          \"allow\":[\r\n            \r\n          ]\r\n
         \       }\r\n      },\"endpoints\":[\r\n        \r\n      ]\r\n    },\"encoding\":{\r\n
         \     \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n    },\"crossSiteAccessPolicies\":{\r\n
         \     \"clientAccessPolicy\":null,\"crossDomainPolicy\":null\r\n    }\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/21094dd4-e107-4a33-977d-b1b2431581be?api-version=2018-07-01']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/7b435ec1-d6a7-44c4-8e88-6e6421485f9d?api-version=2018-07-01']
       cache-control: [no-cache]
-      content-length: ['1264']
+      content-length: ['1345']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:04 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:24 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/21094dd4-e107-4a33-977d-b1b2431581be?api-version=2018-07-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/7b435ec1-d6a7-44c4-8e88-6e6421485f9d?api-version=2018-07-01']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -237,19 +239,19 @@ interactions:
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/21094dd4-e107-4a33-977d-b1b2431581be?api-version=2018-07-01
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/7b435ec1-d6a7-44c4-8e88-6e6421485f9d?api-version=2018-07-01
   response:
-    body: {string: "{\r\n  \"name\":\"21094dd4-e107-4a33-977d-b1b2431581be\",\"status\":\"Succeeded\",\"error\":{\r\n
-        \   \"code\":\"None\",\"message\":null,\"target\":\"e53e3940-f42f-4741-803a-67d772fd0c93\"\r\n
+    body: {string: "{\r\n  \"name\":\"7b435ec1-d6a7-44c4-8e88-6e6421485f9d\",\"status\":\"Succeeded\",\"error\":{\r\n
+        \   \"code\":\"None\",\"message\":null,\"target\":\"6da4c133-a42c-4c95-8ce3-3b28d2384a02\"\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/21094dd4-e107-4a33-977d-b1b2431581be?api-version=2018-07-01']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/7b435ec1-d6a7-44c4-8e88-6e6421485f9d?api-version=2018-07-01']
       cache-control: [no-cache]
       content-length: ['171']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:08 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:28 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/21094dd4-e107-4a33-977d-b1b2431581be?api-version=2018-07-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/7b435ec1-d6a7-44c4-8e88-6e6421485f9d?api-version=2018-07-01']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -272,9 +274,11 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveEvents/le000004?api-version=2018-07-01&autoStart=false
   response:
     body: {string: "{\r\n  \"name\":\"le000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000004\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
-        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T15:23:04.5866109Z\",\"lastModified\":\"2018-09-28T15:23:04.5866109Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"fe2147c0af8842038df29472fe5a9e98\",\"endpoints\":[\r\n
-        \       \r\n      ],\"accessControl\":null\r\n    },\"preview\":{\r\n      \"previewLocator\":\"e0a4b797-fb44-406d-aedd-182e822bad48\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T16:31:24.4584852Z\",\"lastModified\":\"2018-09-28T16:31:24.4584852Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"1def4df95be540b7b95f02e714dd1d7b\",\"endpoints\":[\r\n
+        \       \r\n      ],\"accessControl\":{\r\n        \"ip\":{\r\n          \"allow\":[\r\n
+        \           \r\n          ]\r\n        }\r\n      }\r\n    },\"preview\":{\r\n
+        \     \"previewLocator\":\"9da7cb6e-5437-4aac-9e85-434d540ebc76\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \       \"ip\":{\r\n          \"allow\":[\r\n            \r\n          ]\r\n
         \       }\r\n      },\"endpoints\":[\r\n        \r\n      ]\r\n    },\"encoding\":{\r\n
         \     \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n    },\"crossSiteAccessPolicies\":{\r\n
@@ -282,9 +286,9 @@ interactions:
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1263']
+      content-length: ['1344']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:09 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:29 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -310,10 +314,11 @@ interactions:
   response:
     body: {string: "{\r\n  \"value\":[\r\n    {\r\n      \"name\":\"le000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000004\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
         US 2\",\"tags\":{\r\n        \"key\":\"value\"\r\n      },\"properties\":{\r\n
-        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T15:23:04.5866109Z\",\"lastModified\":\"2018-09-28T15:23:04.5866109Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"fe2147c0af8842038df29472fe5a9e98\",\"endpoints\":[\r\n
-        \           \r\n          ],\"accessControl\":null\r\n        },\"preview\":{\r\n
-        \         \"previewLocator\":\"e0a4b797-fb44-406d-aedd-182e822bad48\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T16:31:24.4584852Z\",\"lastModified\":\"2018-09-28T16:31:24.4584852Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"1def4df95be540b7b95f02e714dd1d7b\",\"endpoints\":[\r\n
+        \           \r\n          ],\"accessControl\":{\r\n            \"ip\":{\r\n
+        \             \"allow\":[\r\n                \r\n              ]\r\n            }\r\n
+        \         }\r\n        },\"preview\":{\r\n          \"previewLocator\":\"9da7cb6e-5437-4aac-9e85-434d540ebc76\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \           \"ip\":{\r\n              \"allow\":[\r\n                \r\n
         \             ]\r\n            }\r\n          },\"endpoints\":[\r\n            \r\n
         \         ]\r\n        },\"encoding\":{\r\n          \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n
@@ -321,9 +326,9 @@ interactions:
         \       }\r\n      }\r\n    }\r\n  ]\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1395']
+      content-length: ['1500']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:12 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:32 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -348,14 +353,14 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-07-01
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"57644700-97c6-4e50-ae38-183abd540422\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"89e0c517-7e69-498c-8fff-dbe89ad01b7a\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:15 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:34 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -368,15 +373,15 @@ interactions:
     status: {code: 200, message: OK}
 - request:
     body: '{"tags": {"key": "value"}, "location": "West US 2", "properties": {"input":
-      {"streamingProtocol": "FragmentedMP4"}, "preview": {"accessControl": {"ip":
-      {"allow": []}}}, "encoding": {"encodingType": "Basic"}, "crossSiteAccessPolicies":
-      {}, "vanityUrl": false}}'
+      {"streamingProtocol": "FragmentedMP4", "accessControl": {"ip": {"allow": []}}},
+      "preview": {"accessControl": {"ip": {"allow": []}}}, "encoding": {"encodingType":
+      "Basic"}, "crossSiteAccessPolicies": {}, "vanityUrl": false}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams live-event create]
       Connection: [keep-alive]
-      Content-Length: ['259']
+      Content-Length: ['299']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
@@ -385,28 +390,30 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveEvents/le000005?api-version=2018-07-01&autoStart=false
   response:
     body: {string: "{\r\n  \"name\":\"le000005\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000005\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
-        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"InProgress\",\"created\":\"2018-09-28T15:23:19.3352551Z\",\"lastModified\":\"2018-09-28T15:23:19.3352551Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"2b6f0e9992634ea9a65c217c6b8f6e67\",\"endpoints\":[\r\n
-        \       \r\n      ],\"accessControl\":null\r\n    },\"preview\":{\r\n      \"previewLocator\":\"ab69e5c9-df99-4258-9c11-0bcbe2a6b9d3\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"InProgress\",\"created\":\"2018-09-28T16:31:39.1377406Z\",\"lastModified\":\"2018-09-28T16:31:39.1377406Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"c59f164f92664814bc57e2bbe655ffc4\",\"endpoints\":[\r\n
+        \       \r\n      ],\"accessControl\":{\r\n        \"ip\":{\r\n          \"allow\":[\r\n
+        \           \r\n          ]\r\n        }\r\n      }\r\n    },\"preview\":{\r\n
+        \     \"previewLocator\":\"61b04da1-79d7-4e85-92b0-98b3eadca120\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \       \"ip\":{\r\n          \"allow\":[\r\n            \r\n          ]\r\n
         \       }\r\n      },\"endpoints\":[\r\n        \r\n      ]\r\n    },\"encoding\":{\r\n
         \     \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n    },\"crossSiteAccessPolicies\":{\r\n
         \     \"clientAccessPolicy\":null,\"crossDomainPolicy\":null\r\n    }\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/1e708db1-6513-474f-9d7f-532aecac84c2?api-version=2018-07-01']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/dec32d35-c71f-4ba2-b49a-fb251e193802?api-version=2018-07-01']
       cache-control: [no-cache]
-      content-length: ['1264']
+      content-length: ['1345']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:19 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:38 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/1e708db1-6513-474f-9d7f-532aecac84c2?api-version=2018-07-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/dec32d35-c71f-4ba2-b49a-fb251e193802?api-version=2018-07-01']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1195']
+      x-ms-ratelimit-remaining-subscription-writes: ['1196']
       x-powered-by: [ASP.NET]
     status: {code: 202, message: Accepted}
 - request:
@@ -419,19 +426,19 @@ interactions:
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/1e708db1-6513-474f-9d7f-532aecac84c2?api-version=2018-07-01
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/dec32d35-c71f-4ba2-b49a-fb251e193802?api-version=2018-07-01
   response:
-    body: {string: "{\r\n  \"name\":\"1e708db1-6513-474f-9d7f-532aecac84c2\",\"status\":\"Succeeded\",\"error\":{\r\n
-        \   \"code\":\"None\",\"message\":null,\"target\":\"626e6fbe-47b4-48c9-8b30-6fa04f5e9408\"\r\n
+    body: {string: "{\r\n  \"name\":\"dec32d35-c71f-4ba2-b49a-fb251e193802\",\"status\":\"Succeeded\",\"error\":{\r\n
+        \   \"code\":\"None\",\"message\":null,\"target\":\"ba13d558-a214-4c83-ba9d-803df0fc3c9f\"\r\n
         \ }\r\n}"}
     headers:
-      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/1e708db1-6513-474f-9d7f-532aecac84c2?api-version=2018-07-01']
+      azure-asyncoperation: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/dec32d35-c71f-4ba2-b49a-fb251e193802?api-version=2018-07-01']
       cache-control: [no-cache]
       content-length: ['171']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:22 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:42 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/1e708db1-6513-474f-9d7f-532aecac84c2?api-version=2018-07-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveeventoperations/dec32d35-c71f-4ba2-b49a-fb251e193802?api-version=2018-07-01']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
@@ -454,9 +461,11 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveEvents/le000005?api-version=2018-07-01&autoStart=false
   response:
     body: {string: "{\r\n  \"name\":\"le000005\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000005\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
-        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T15:23:19.4133378Z\",\"lastModified\":\"2018-09-28T15:23:19.4133378Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"2b6f0e9992634ea9a65c217c6b8f6e67\",\"endpoints\":[\r\n
-        \       \r\n      ],\"accessControl\":null\r\n    },\"preview\":{\r\n      \"previewLocator\":\"ab69e5c9-df99-4258-9c11-0bcbe2a6b9d3\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        US 2\",\"tags\":{\r\n    \"key\":\"value\"\r\n  },\"properties\":{\r\n    \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T16:31:39.1533534Z\",\"lastModified\":\"2018-09-28T16:31:39.1533534Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \     \r\n    ],\"input\":{\r\n      \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"c59f164f92664814bc57e2bbe655ffc4\",\"endpoints\":[\r\n
+        \       \r\n      ],\"accessControl\":{\r\n        \"ip\":{\r\n          \"allow\":[\r\n
+        \           \r\n          ]\r\n        }\r\n      }\r\n    },\"preview\":{\r\n
+        \     \"previewLocator\":\"61b04da1-79d7-4e85-92b0-98b3eadca120\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \       \"ip\":{\r\n          \"allow\":[\r\n            \r\n          ]\r\n
         \       }\r\n      },\"endpoints\":[\r\n        \r\n      ]\r\n    },\"encoding\":{\r\n
         \     \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n    },\"crossSiteAccessPolicies\":{\r\n
@@ -464,9 +473,9 @@ interactions:
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['1263']
+      content-length: ['1344']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:22 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:45 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -490,22 +499,24 @@ interactions:
     method: GET
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveEvents?api-version=2018-07-01
   response:
-    body: {string: "{\r\n  \"value\":[\r\n    {\r\n      \"name\":\"le000005\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000005\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
+    body: {string: "{\r\n  \"value\":[\r\n    {\r\n      \"name\":\"le000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000004\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
         US 2\",\"tags\":{\r\n        \"key\":\"value\"\r\n      },\"properties\":{\r\n
-        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T15:23:19.4133378Z\",\"lastModified\":\"2018-09-28T15:23:19.4133378Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"2b6f0e9992634ea9a65c217c6b8f6e67\",\"endpoints\":[\r\n
-        \           \r\n          ],\"accessControl\":null\r\n        },\"preview\":{\r\n
-        \         \"previewLocator\":\"ab69e5c9-df99-4258-9c11-0bcbe2a6b9d3\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T16:31:24.4584852Z\",\"lastModified\":\"2018-09-28T16:31:24.4584852Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"1def4df95be540b7b95f02e714dd1d7b\",\"endpoints\":[\r\n
+        \           \r\n          ],\"accessControl\":{\r\n            \"ip\":{\r\n
+        \             \"allow\":[\r\n                \r\n              ]\r\n            }\r\n
+        \         }\r\n        },\"preview\":{\r\n          \"previewLocator\":\"9da7cb6e-5437-4aac-9e85-434d540ebc76\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \           \"ip\":{\r\n              \"allow\":[\r\n                \r\n
         \             ]\r\n            }\r\n          },\"endpoints\":[\r\n            \r\n
         \         ]\r\n        },\"encoding\":{\r\n          \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n
         \       },\"crossSiteAccessPolicies\":{\r\n          \"clientAccessPolicy\":null,\"crossDomainPolicy\":null\r\n
-        \       }\r\n      }\r\n    },{\r\n      \"name\":\"le000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000004\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
+        \       }\r\n      }\r\n    },{\r\n      \"name\":\"le000005\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/liveevents/le000005\",\"type\":\"Microsoft.Media/mediaservices/liveevents\",\"location\":\"West
         US 2\",\"tags\":{\r\n        \"key\":\"value\"\r\n      },\"properties\":{\r\n
-        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T15:23:04.5866109Z\",\"lastModified\":\"2018-09-28T15:23:04.5866109Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
-        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"fe2147c0af8842038df29472fe5a9e98\",\"endpoints\":[\r\n
-        \           \r\n          ],\"accessControl\":null\r\n        },\"preview\":{\r\n
-        \         \"previewLocator\":\"e0a4b797-fb44-406d-aedd-182e822bad48\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
+        \       \"description\":\"\",\"resourceState\":\"Stopped\",\"provisioningState\":\"Succeeded\",\"created\":\"2018-09-28T16:31:39.1533534Z\",\"lastModified\":\"2018-09-28T16:31:39.1533534Z\",\"vanityUrl\":false,\"streamOptions\":[\r\n
+        \         \r\n        ],\"input\":{\r\n          \"keyFrameIntervalDuration\":\"\",\"streamingProtocol\":\"FragmentedMP4\",\"accessToken\":\"c59f164f92664814bc57e2bbe655ffc4\",\"endpoints\":[\r\n
+        \           \r\n          ],\"accessControl\":{\r\n            \"ip\":{\r\n
+        \             \"allow\":[\r\n                \r\n              ]\r\n            }\r\n
+        \         }\r\n        },\"preview\":{\r\n          \"previewLocator\":\"61b04da1-79d7-4e85-92b0-98b3eadca120\",\"streamingPolicyName\":\"Predefined_ClearStreamingOnly\",\"alternativeMediaId\":null,\"accessControl\":{\r\n
         \           \"ip\":{\r\n              \"allow\":[\r\n                \r\n
         \             ]\r\n            }\r\n          },\"endpoints\":[\r\n            \r\n
         \         ]\r\n        },\"encoding\":{\r\n          \"encodingType\":\"Basic\",\"presetName\":\"AmsDefault720p\"\r\n
@@ -513,9 +524,9 @@ interactions:
         \       }\r\n      }\r\n    }\r\n  ]\r\n}"}
     headers:
       cache-control: [no-cache]
-      content-length: ['2763']
+      content-length: ['2973']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Fri, 28 Sep 2018 15:23:25 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:47 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -546,12 +557,12 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Fri, 28 Sep 2018 15:23:30 GMT']
+      date: ['Fri, 28 Sep 2018 16:31:51 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdOQVBTMkRNWUhYSzJaTUNCSkxBMlpPVlBQVU9IU0pZTUpWNHw5QUMzMDhBRDAzRjU5N0I2LVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkc3UkhPT0VBR01JS1BZSTdFR0s1Q1NUSjdaT0xXUTZVRUpOWHxENzAyM0EzNUFDRDU5MEVELVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-deletes: ['14998']
+      x-ms-ratelimit-remaining-subscription-deletes: ['14999']
     status: {code: 202, message: Accepted}
 version: 1
