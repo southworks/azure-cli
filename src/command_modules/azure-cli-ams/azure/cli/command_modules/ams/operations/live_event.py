@@ -12,14 +12,23 @@ from azure.cli.core.util import CLIError
 def create(cmd, client, resource_group_name, account_name, live_event_name, streaming_protocol,  # pylint: disable=too-many-locals
            auto_start=False, encoding_type=None, preset_name=None, tags=None, description=None,
            key_frame_interval_duration=None, access_token=None, no_wait=False, preview_ips=None,
-           preview_locator=None, streaming_policy_name=None, alternative_media_id=None,
+           ips=None, preview_locator=None, streaming_policy_name=None, alternative_media_id=None,
            vanity_url=False, client_access_policy=None, cross_domain_policy=None, stream_options=None):
-    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent, LiveEventEncoding)
+    from azure.mgmt.media.models import (LiveEventInputProtocol, LiveEventInput, LiveEvent,
+                                         LiveEventEncoding, LiveEventInputAccessControl, IPAccessControl)
     from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
+
+    allowed_ips = []
+    if ips is not None:
+        for ip in ips:
+            allowed_ips.append(create_ip_range(live_event_name, ip))
+
+    live_event_input_access_control = LiveEventInputAccessControl(ip=IPAccessControl(allow=allowed_ips))
 
     live_event_input = LiveEventInput(streaming_protocol=LiveEventInputProtocol(streaming_protocol),
                                       access_token=access_token,
-                                      key_frame_interval_duration=key_frame_interval_duration)
+                                      key_frame_interval_duration=key_frame_interval_duration,
+                                      access_control=live_event_input_access_control)
 
     ams_client = get_mediaservices_client(cmd.cli_ctx)
     ams = ams_client.get(resource_group_name, account_name)
@@ -104,8 +113,11 @@ def reset(cmd, client, resource_group_name, account_name, live_event_name,
 
 def update_live_event_setter(client, resource_group_name, account_name, live_event_name,
                              parameters):
+    ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
+                   parameters.input.access_control.ip.allow))
     preview_ips = list(map(lambda x: create_ip_range(live_event_name, x) if isinstance(x, str) else x,
                            parameters.preview.access_control.ip.allow))
+    parameters.input.access_control.ip.allow = ips
     parameters.preview.access_control.ip.allow = preview_ips
     return client.update(resource_group_name, account_name, live_event_name, parameters)
 
