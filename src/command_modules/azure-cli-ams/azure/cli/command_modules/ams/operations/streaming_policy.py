@@ -128,7 +128,7 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_url_template,
         cbcs_widevine_config = StreamingPolicyWidevineConfiguration(
             custom_license_acquisition_url_template=cbcs_widevine_url_template)
 
-    cbcs_fair_play_configuration = None
+    cbcs_fair_play_config = None
     if cbcs_allow_persistent_license or cbcs_custom_license_acquisition_url_template:
         cbcs_fair_play_config = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_allow_persistent_license,  # pylint: disable=line-too-long
                                                                             custom_license_acquisition_url_template=cbcs_custom_license_acquisition_url_template)  # pylint: disable=line-too-long
