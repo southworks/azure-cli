@@ -145,29 +145,18 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_template,
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
-    errorMessage = '''Malformed key-to-track-mappings JSON argument. \
-                   Please, make sure you are sending a StreamingPolicyContentKeys. \
-                   For further information, please refer to \
-    https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkeys'''
     key_to_track_mappings_result = None
     if key_to_track_mappings is not None:
         key_to_track_mappings_result = []
         with open(key_to_track_mappings) as key_to_track_mappings_stream:
             key_to_track_mappings_json = json.load(key_to_track_mappings_stream)
-            try:
-                for str_policy_content_key_json in key_to_track_mappings_json:
-                    str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
-                    key_to_track_mappings_result.append(str_policy_content_key)
-            except:
-                raise CLIError(errorMessage)
+            for str_policy_content_key_json in key_to_track_mappings_json:
+                str_policy_content_key = StreamingPolicyContentKey(**str_policy_content_key_json)
+                key_to_track_mappings_result.append(str_policy_content_key)
     return key_to_track_mappings_result
 
 
 def _parse_clear_tracks_json(clear_tracks):
-    errorMessage = '''Malformed key-to-track-mappings JSON argument. \
-                    Please, make sure you are sending a list of TrackSelection. \
-                    For further information, please refer to \
-                    https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection'''
     clear_tracks_result = None
     if clear_tracks is not None:
         clear_tracks_result = []
@@ -180,8 +169,11 @@ def _parse_clear_tracks_json(clear_tracks):
                         track_property = TrackPropertyCondition(**track_property_json)
                         track_properties.append(track_property)
                     clear_tracks_result.append(TrackSelection(track_selections=track_properties))
-            except:
-                raise CLIError(errorMessage)
+            except TypeError as ex:
+                errorMessage = 'For further information on how to build the JSON ' \
+                    'containing a list of TrackSelection, please refer to ' \
+                    'https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection'
+                raise CLIError('{}. {}'.format(str(ex), errorMessage))
     return clear_tracks_result
 
 
