@@ -306,7 +306,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams live-event update') as c:
         c.argument('description', help='The live event description.')
-        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control.')
+        c.argument('ips', nargs='+', help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('preview_ips', nargs='+', arg_group='Preview',
                    help='Space-separated list of allowed IP addresses for access control. Use "" to clear existing list.')
         c.argument('tags', arg_type=tags_type)
