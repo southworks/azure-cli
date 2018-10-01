@@ -41,7 +41,7 @@ class AmsStreamingLocatorTests(ScenarioTest):
             'streamingPolicyName': streamingPolicyName
         })
 
-        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download')
+        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --no-encryption-protocols Download')
 
         streaming_locator_name = self.create_random_name(prefix='sln', length=10)
 
@@ -96,10 +96,20 @@ class AmsStreamingLocatorTests(ScenarioTest):
         streamingPolicyName = self.create_random_name(prefix='spn', length=10)
 
         self.kwargs.update({
-            'streamingPolicyName': streamingPolicyName
+            'streamingPolicyName': streamingPolicyName,
+            'CBCSDefaultKeyLabel': 'testLabel1',
+            'CBCSDefaultKeyPolicyName': 'ckpTestStrLctr1',
+            'CENCDefaultKeyLabel': 'testLabel2',
+            'CENCDefaultKeyPolicyName': 'ckpTestStrLctr2',
+            'protocol': 'HLS SmoothStreaming',
+            'urlTemplate': 'test.com',
+            'policyOptionName': 'testOption'
         })
 
-        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --download')
+        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} --clear-key-configuration --open-restriction --policy-option-name {policyOptionName} -n {CBCSDefaultKeyPolicyName}')
+        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} --clear-key-configuration --open-restriction --policy-option-name {policyOptionName} -n {CENCDefaultKeyPolicyName}')
+
+        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cbcs-default-key-label {CBCSDefaultKeyLabel} --cbcs-default-key-policy-name {CBCSDefaultKeyPolicyName} --cenc-default-key-label {CENCDefaultKeyLabel} --cenc-default-key-policy-name {CENCDefaultKeyPolicyName} --cbcs-protocols {protocol} --cenc-protocols {protocol} --cbcs-fair-play-template {urlTemplate} --cenc-play-ready-template {urlTemplate} --cenc-widevine-template {urlTemplate}')
 
         streaming_locator_name = self.create_random_name(prefix='sln', length=10)
 

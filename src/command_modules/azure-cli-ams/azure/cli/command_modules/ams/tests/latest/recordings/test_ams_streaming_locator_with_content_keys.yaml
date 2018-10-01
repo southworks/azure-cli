@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: '{"location": "westus", "tags": {"product": "azurecli", "cause": "automation",
-      "date": "2018-09-27T15:54:04Z"}}'
+      "date": "2018-10-01T17:48:22Z"}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -16,17 +16,17 @@ interactions:
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/clitest.rg000001?api-version=2018-05-01
   response:
-    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-09-27T15:54:04Z"},"properties":{"provisioningState":"Succeeded"}}'}
+    body: {string: '{"id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001","name":"clitest.rg000001","location":"westus","tags":{"product":"azurecli","cause":"automation","date":"2018-10-01T17:48:22Z"},"properties":{"provisioningState":"Succeeded"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['384']
       content-type: [application/json; charset=utf-8]
-      date: ['Thu, 27 Sep 2018 15:54:10 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:27 GMT']
       expires: ['-1']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
     status: {code: 201, message: Created}
 - request:
     body: '{"sku": {"name": "Standard_LRS"}, "kind": "Storage", "location": "westus",
@@ -49,9 +49,9 @@ interactions:
       cache-control: [no-cache]
       content-length: ['0']
       content-type: [text/plain; charset=utf-8]
-      date: ['Thu, 27 Sep 2018 15:54:14 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:31 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/f50db6f4-2d58-4b56-84d3-7b56c185a74f?monitor=true&api-version=2018-03-01-preview']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/05ca4074-21ed-4051-bea7-c813fef4cfa1?monitor=true&api-version=2018-03-01-preview']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
           Microsoft-HTTPAPI/2.0']
@@ -69,14 +69,14 @@ interactions:
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-storage/2.0.0rc4 Azure-SDK-For-Python AZURECLI/2.0.46]
     method: GET
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/f50db6f4-2d58-4b56-84d3-7b56c185a74f?monitor=true&api-version=2018-03-01-preview
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Storage/locations/westus/asyncoperations/05ca4074-21ed-4051-bea7-c813fef4cfa1?monitor=true&api-version=2018-03-01-preview
   response:
-    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-09-27T15:54:14.7777950Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-09-27T15:54:14.7777950Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-09-27T15:54:14.6684190Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
+    body: {string: '{"sku":{"name":"Standard_LRS","tier":"Standard"},"kind":"Storage","id":"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002","name":"clitest000002","type":"Microsoft.Storage/storageAccounts","location":"westus","tags":{},"properties":{"isHnsEnabled":false,"networkAcls":{"bypass":"AzureServices","virtualNetworkRules":[],"ipRules":[],"defaultAction":"Allow"},"trustedDirectories":["479473dc-cfef-474c-ba12-cba2854af0f6"],"supportsHttpsTrafficOnly":false,"encryption":{"services":{"file":{"enabled":true,"lastEnabledTime":"2018-10-01T17:48:31.4377289Z"},"blob":{"enabled":true,"lastEnabledTime":"2018-10-01T17:48:31.4377289Z"}},"keySource":"Microsoft.Storage"},"provisioningState":"Succeeded","creationTime":"2018-10-01T17:48:31.3439142Z","primaryEndpoints":{"blob":"https://clitest000002.blob.core.windows.net/","queue":"https://clitest000002.queue.core.windows.net/","table":"https://clitest000002.table.core.windows.net/","file":"https://clitest000002.file.core.windows.net/"},"primaryLocation":"westus","statusOfPrimary":"available"}}'}
     headers:
       cache-control: [no-cache]
       content-length: ['1252']
       content-type: [application/json]
-      date: ['Thu, 27 Sep 2018 15:54:32 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:49 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -101,12 +101,12 @@ interactions:
     method: POST
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002/listKeys?api-version=2018-03-01-preview
   response:
-    body: {string: '{"keys":[{"keyName":"key1","value":"eF/+VwHVSKNlIEDq7r7qkwvi5uEKAVnQ6UTvmAXqzhOkcQTo4MdxdyH8U1zSv7e0x2O/DLy1kia4CcOO33qXUg==","permissions":"FULL"},{"keyName":"key2","value":"BoBMnHytBQ6bSKrJNs2Tj4hs6KyNndX/D9R4tr6z9FQEqe8NWF8a2nEJsdwfdZKdcY1QVmNMlEsViOUobll+gA==","permissions":"FULL"}]}'}
+    body: {string: '{"keys":[{"keyName":"key1","value":"FZRw2SmVdYlAPEtUfoZRZbGY2PyRKRx6a7Tsjr3Mq/uwrzYca4Nlvp+SWIMCF52VtLeH9PwHFTMD9IC08V56uw==","permissions":"FULL"},{"keyName":"key2","value":"gKZOWnk729lCGPS86k3HlqSh/bJRnBX9ilAefWX82wxcgllDTJeVHjL4BLXzGyAHvHa+L2ve9k/UOLhsfdC2jQ==","permissions":"FULL"}]}'}
     headers:
       cache-control: [no-cache]
       content-length: ['288']
       content-type: [application/json]
-      date: ['Thu, 27 Sep 2018 15:54:35 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:52 GMT']
       expires: ['-1']
       pragma: [no-cache]
       server: ['Microsoft-Azure-Storage-Resource-Provider/1.0,Microsoft-HTTPAPI/2.0
@@ -135,21 +135,21 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003?api-version=2018-07-01
   response:
     body: {string: "{\r\n  \"name\":\"ams000003\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003\",\"type\":\"Microsoft.Media/mediaservices\",\"location\":\"West
-        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"8ab05da6-9572-4df3-b8ee-c3a135a872e8\",\"storageAccounts\":[\r\n
+        US 2\",\"properties\":{\r\n    \"mediaServiceId\":\"5ec054ff-586f-47a7-94f0-a608788971c2\",\"storageAccounts\":[\r\n
         \     {\r\n        \"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Storage/storageAccounts/clitest000002\",\"type\":\"Primary\"\r\n
         \     }\r\n    ]\r\n  }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['665']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Thu, 27 Sep 2018 15:54:41 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:55 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
@@ -168,13 +168,13 @@ interactions:
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/assets/asset000004?api-version=2018-07-01
   response:
     body: {string: "{\r\n  \"name\":\"asset000004\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/assets/asset000004\",\"type\":\"Microsoft.Media/mediaservices/assets\",\"properties\":{\r\n
-        \   \"assetId\":\"2f3eee32-c318-42eb-8013-f13c7819570e\",\"created\":\"2018-09-27T15:54:44.85Z\",\"lastModified\":\"2018-09-27T15:54:44.85Z\",\"storageAccountName\":\"clitest000002\",\"storageEncryptionFormat\":\"None\"\r\n
+        \   \"assetId\":\"b7113944-1e29-438c-acf0-ce6de3f64b58\",\"created\":\"2018-10-01T17:48:57.81Z\",\"lastModified\":\"2018-10-01T17:48:57.81Z\",\"storageAccountName\":\"clitest000002\",\"storageEncryptionFormat\":\"None\"\r\n
         \ }\r\n}"}
     headers:
       cache-control: [no-cache]
       content-length: ['530']
       content-type: [application/json; odata.metadata=minimal]
-      date: ['Thu, 27 Sep 2018 15:54:44 GMT']
+      date: ['Mon, 01 Oct 2018 17:48:58 GMT']
       expires: ['-1']
       odata-version: ['4.0']
       pragma: [no-cache]
@@ -185,14 +185,99 @@ interactions:
       x-powered-by: [ASP.NET]
     status: {code: 201, message: Created}
 - request:
-    body: '{"properties": {"noEncryption": {"enabledProtocols": {"download": true,
-      "dash": false, "hls": false, "smoothStreaming": false}}}}'
+    body: '{"properties": {"options": [{"name": "testOption", "configuration": {"@odata.type":
+      "#Microsoft.Media.ContentKeyPolicyClearKeyConfiguration"}, "restriction": {"@odata.type":
+      "#Microsoft.Media.ContentKeyPolicyOpenRestriction"}}]}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams content-key-policy create]
+      Connection: [keep-alive]
+      Content-Length: ['229']
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: PUT
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/contentKeyPolicies/ckpTestStrLctr1?api-version=2018-07-01
+  response:
+    body: {string: "{\r\n  \"name\":\"ckpTestStrLctr1\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/contentKeyPolicies/ckpTestStrLctr1\",\"type\":\"Microsoft.Media/mediaservices/contentKeyPolicies\",\"properties\":{\r\n
+        \   \"policyId\":\"2d769b77-3ce4-4d3d-9e60-8609dc74029c\",\"created\":\"2018-10-01T17:49:01.007Z\",\"lastModified\":\"2018-10-01T17:49:01.007Z\",\"options\":[\r\n
+        \     {\r\n        \"policyOptionId\":\"3d8d3ea0-7d23-4991-a84b-45201618dabf\",\"name\":\"testOption\",\"configuration\":{\r\n
+        \         \"@odata.type\":\"#Microsoft.Media.ContentKeyPolicyClearKeyConfiguration\"\r\n
+        \       },\"restriction\":{\r\n          \"@odata.type\":\"#Microsoft.Media.ContentKeyPolicyOpenRestriction\"\r\n
+        \       }\r\n      }\r\n    ]\r\n  }\r\n}"}
+    headers:
+      cache-control: [no-cache]
+      content-length: ['818']
+      content-type: [application/json; odata.metadata=minimal]
+      date: ['Mon, 01 Oct 2018 17:49:01 GMT']
+      expires: ['-1']
+      odata-version: ['4.0']
+      pragma: [no-cache]
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      transfer-encoding: [chunked]
+      vary: ['Accept-Encoding,Accept-Encoding']
+      x-content-type-options: [nosniff]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-powered-by: [ASP.NET]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"properties": {"options": [{"name": "testOption", "configuration": {"@odata.type":
+      "#Microsoft.Media.ContentKeyPolicyClearKeyConfiguration"}, "restriction": {"@odata.type":
+      "#Microsoft.Media.ContentKeyPolicyOpenRestriction"}}]}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams content-key-policy create]
+      Connection: [keep-alive]
+      Content-Length: ['229']
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: PUT
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/contentKeyPolicies/ckpTestStrLctr2?api-version=2018-07-01
+  response:
+    body: {string: "{\r\n  \"name\":\"ckpTestStrLctr2\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/contentKeyPolicies/ckpTestStrLctr2\",\"type\":\"Microsoft.Media/mediaservices/contentKeyPolicies\",\"properties\":{\r\n
+        \   \"policyId\":\"ac3cbaf6-1581-472e-9269-740d32bfb6dd\",\"created\":\"2018-10-01T17:49:03.267Z\",\"lastModified\":\"2018-10-01T17:49:03.267Z\",\"options\":[\r\n
+        \     {\r\n        \"policyOptionId\":\"c9519fbb-8a3d-4e86-8337-416db7a5b9bc\",\"name\":\"testOption\",\"configuration\":{\r\n
+        \         \"@odata.type\":\"#Microsoft.Media.ContentKeyPolicyClearKeyConfiguration\"\r\n
+        \       },\"restriction\":{\r\n          \"@odata.type\":\"#Microsoft.Media.ContentKeyPolicyOpenRestriction\"\r\n
+        \       }\r\n      }\r\n    ]\r\n  }\r\n}"}
+    headers:
+      cache-control: [no-cache]
+      content-length: ['818']
+      content-type: [application/json; odata.metadata=minimal]
+      date: ['Mon, 01 Oct 2018 17:49:03 GMT']
+      expires: ['-1']
+      odata-version: ['4.0']
+      pragma: [no-cache]
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      transfer-encoding: [chunked]
+      vary: ['Accept-Encoding,Accept-Encoding']
+      x-content-type-options: [nosniff]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-powered-by: [ASP.NET]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"properties": {"commonEncryptionCenc": {"enabledProtocols": {"download":
+      false, "dash": false, "hls": true, "smoothStreaming": true}, "contentKeys":
+      {"defaultKey": {"label": "testLabel2", "policyName": "ckpTestStrLctr2"}}, "drm":
+      {"playReady": {"customLicenseAcquisitionUrlTemplate": "test.com"}, "widevine":
+      {"customLicenseAcquisitionUrlTemplate": "test.com"}}}, "commonEncryptionCbcs":
+      {"enabledProtocols": {"download": false, "dash": false, "hls": true, "smoothStreaming":
+      true}, "contentKeys": {"defaultKey": {"label": "testLabel1", "policyName": "ckpTestStrLctr1"}},
+      "drm": {"fairPlay": {"customLicenseAcquisitionUrlTemplate": "test.com", "allowPersistentLicense":
+      false}}}}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
       CommandName: [ams streaming-policy create]
       Connection: [keep-alive]
-      Content-Length: ['129']
+      Content-Length: ['681']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
@@ -200,59 +285,188 @@ interactions:
     method: PUT
     uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingPolicies/spn000005?api-version=2018-07-01
   response:
-    body: {string: "{\r\n  \"name\":\"spn000005\",\"id\":\"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaservices/ams000003/streamingPolicies/spn000005\",\"type\":\"Microsoft.Media/mediaservices/streamingPolicies\",\"properties\":{\r\n
-        \   \"created\":\"2018-09-27T15:54:48.778169Z\",\"noEncryption\":{\r\n      \"enabledProtocols\":{\r\n
-        \       \"download\":true,\"dash\":false,\"hls\":false,\"smoothStreaming\":false\r\n
-        \     }\r\n    }\r\n  }\r\n}"}
+    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"InternalServerError\",\r\n
+        \   \"message\": \"The server encountered an internal error. Please try again
+        later.\"\r\n  }\r\n}"}
     headers:
-      cache-control: [no-cache]
-      content-length: ['516']
-      content-type: [application/json; odata.metadata=minimal]
-      date: ['Thu, 27 Sep 2018 15:54:48 GMT']
-      expires: ['-1']
-      odata-version: ['4.0']
-      pragma: [no-cache]
+      cache-control: [private]
+      connection: [close]
+      content-language: [en-US]
+      content-length: ['143']
+      content-type: [application/json; charset=utf-8]
+      date: ['Mon, 01 Oct 2018 17:49:05 GMT']
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
+      x-aspnet-version: [4.0.30319]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-writes: ['1198']
+      x-ms-failure-cause: [service]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
       x-powered-by: [ASP.NET]
-    status: {code: 201, message: Created}
+    status: {code: 500, message: Internal Server Error}
 - request:
-    body: 'b''b\''b\\\''b\\\\\\\''{"properties": {"assetName": "asset000004", "startTime":
-      "2018-03-29T10:00:00.000Z", "endTime": "2018-03-29T12:00:00.000Z", "streamingLocatorId":
-      "88888888-0000-0000-0000-000000000001", "streamingPolicyName": "spn000005",
-      "contentKeys": [{"id": "0d697a52-55a7-4a6e-bd7f-7ba2c8a514b1", "labelReferenceInStreamingPolicy":
-      "testLabel", "value": "dmFsdWG="}, {"id": "0e00ebf8-e288-47da-8e44-4f723169e3e4",
-      "labelReferenceInStreamingPolicy": "testLabel2", "value": "dmFsdWQ="}], "alternativeMediaId":
-      "88888888-0000-0000-0000-000000000002"}}\\\\\\\''\\\''\'''''
+    body: '{"properties": {"commonEncryptionCenc": {"enabledProtocols": {"download":
+      false, "dash": false, "hls": true, "smoothStreaming": true}, "contentKeys":
+      {"defaultKey": {"label": "testLabel2", "policyName": "ckpTestStrLctr2"}}, "drm":
+      {"playReady": {"customLicenseAcquisitionUrlTemplate": "test.com"}, "widevine":
+      {"customLicenseAcquisitionUrlTemplate": "test.com"}}}, "commonEncryptionCbcs":
+      {"enabledProtocols": {"download": false, "dash": false, "hls": true, "smoothStreaming":
+      true}, "contentKeys": {"defaultKey": {"label": "testLabel1", "policyName": "ckpTestStrLctr1"}},
+      "drm": {"fairPlay": {"customLicenseAcquisitionUrlTemplate": "test.com", "allowPersistentLicense":
+      false}}}}}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
-      CommandName: [ams streaming-locator create]
+      CommandName: [ams streaming-policy create]
       Connection: [keep-alive]
-      Content-Length: ['538']
+      Content-Length: ['681']
       Content-Type: [application/json; charset=utf-8]
       User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
           msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
       accept-language: [en-US]
     method: PUT
-    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingLocators/sln000006?api-version=2018-07-01
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingPolicies/spn000005?api-version=2018-07-01
   response:
-    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"BadRequest\",\r\n    \"message\":
-        \"User defined content keys count should be: 0\"\r\n  }\r\n}"}
+    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"InternalServerError\",\r\n
+        \   \"message\": \"The server encountered an internal error. Please try again
+        later.\"\r\n  }\r\n}"}
     headers:
       cache-control: [private]
-      content-length: ['113']
+      connection: [close]
+      content-language: [en-US]
+      content-length: ['143']
       content-type: [application/json; charset=utf-8]
-      date: ['Thu, 27 Sep 2018 15:54:50 GMT']
+      date: ['Mon, 01 Oct 2018 17:49:07 GMT']
       server: [Microsoft-IIS/10.0]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-aspnet-version: [4.0.30319]
       x-content-type-options: [nosniff]
-      x-ms-ratelimit-remaining-subscription-resource-requests: ['11999']
+      x-ms-failure-cause: [service]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
       x-powered-by: [ASP.NET]
-    status: {code: 400, message: Bad Request}
+    status: {code: 500, message: Internal Server Error}
+- request:
+    body: '{"properties": {"commonEncryptionCenc": {"enabledProtocols": {"download":
+      false, "dash": false, "hls": true, "smoothStreaming": true}, "contentKeys":
+      {"defaultKey": {"label": "testLabel2", "policyName": "ckpTestStrLctr2"}}, "drm":
+      {"playReady": {"customLicenseAcquisitionUrlTemplate": "test.com"}, "widevine":
+      {"customLicenseAcquisitionUrlTemplate": "test.com"}}}, "commonEncryptionCbcs":
+      {"enabledProtocols": {"download": false, "dash": false, "hls": true, "smoothStreaming":
+      true}, "contentKeys": {"defaultKey": {"label": "testLabel1", "policyName": "ckpTestStrLctr1"}},
+      "drm": {"fairPlay": {"customLicenseAcquisitionUrlTemplate": "test.com", "allowPersistentLicense":
+      false}}}}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams streaming-policy create]
+      Connection: [keep-alive]
+      Content-Length: ['681']
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: PUT
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingPolicies/spn000005?api-version=2018-07-01
+  response:
+    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"InternalServerError\",\r\n
+        \   \"message\": \"The server encountered an internal error. Please try again
+        later.\"\r\n  }\r\n}"}
+    headers:
+      cache-control: [private]
+      connection: [close]
+      content-language: [en-US]
+      content-length: ['143']
+      content-type: [application/json; charset=utf-8]
+      date: ['Mon, 01 Oct 2018 17:49:10 GMT']
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      x-aspnet-version: [4.0.30319]
+      x-content-type-options: [nosniff]
+      x-ms-failure-cause: [service]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-powered-by: [ASP.NET]
+    status: {code: 500, message: Internal Server Error}
+- request:
+    body: '{"properties": {"commonEncryptionCenc": {"enabledProtocols": {"download":
+      false, "dash": false, "hls": true, "smoothStreaming": true}, "contentKeys":
+      {"defaultKey": {"label": "testLabel2", "policyName": "ckpTestStrLctr2"}}, "drm":
+      {"playReady": {"customLicenseAcquisitionUrlTemplate": "test.com"}, "widevine":
+      {"customLicenseAcquisitionUrlTemplate": "test.com"}}}, "commonEncryptionCbcs":
+      {"enabledProtocols": {"download": false, "dash": false, "hls": true, "smoothStreaming":
+      true}, "contentKeys": {"defaultKey": {"label": "testLabel1", "policyName": "ckpTestStrLctr1"}},
+      "drm": {"fairPlay": {"customLicenseAcquisitionUrlTemplate": "test.com", "allowPersistentLicense":
+      false}}}}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams streaming-policy create]
+      Connection: [keep-alive]
+      Content-Length: ['681']
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: PUT
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingPolicies/spn000005?api-version=2018-07-01
+  response:
+    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"InternalServerError\",\r\n
+        \   \"message\": \"The server encountered an internal error. Please try again
+        later.\"\r\n  }\r\n}"}
+    headers:
+      cache-control: [private]
+      connection: [close]
+      content-language: [en-US]
+      content-length: ['143']
+      content-type: [application/json; charset=utf-8]
+      date: ['Mon, 01 Oct 2018 17:49:16 GMT']
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      x-aspnet-version: [4.0.30319]
+      x-content-type-options: [nosniff]
+      x-ms-failure-cause: [service]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-powered-by: [ASP.NET]
+    status: {code: 500, message: Internal Server Error}
+- request:
+    body: '{"properties": {"commonEncryptionCenc": {"enabledProtocols": {"download":
+      false, "dash": false, "hls": true, "smoothStreaming": true}, "contentKeys":
+      {"defaultKey": {"label": "testLabel2", "policyName": "ckpTestStrLctr2"}}, "drm":
+      {"playReady": {"customLicenseAcquisitionUrlTemplate": "test.com"}, "widevine":
+      {"customLicenseAcquisitionUrlTemplate": "test.com"}}}, "commonEncryptionCbcs":
+      {"enabledProtocols": {"download": false, "dash": false, "hls": true, "smoothStreaming":
+      true}, "contentKeys": {"defaultKey": {"label": "testLabel1", "policyName": "ckpTestStrLctr1"}},
+      "drm": {"fairPlay": {"customLicenseAcquisitionUrlTemplate": "test.com", "allowPersistentLicense":
+      false}}}}}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      CommandName: [ams streaming-policy create]
+      Connection: [keep-alive]
+      Content-Length: ['681']
+      Content-Type: [application/json; charset=utf-8]
+      User-Agent: [python/3.7.0 (Windows-10-10.0.17134-SP0) requests/2.19.1 msrest/0.5.4
+          msrest_azure/0.4.34 azure-mgmt-media/2018-07-01 Azure-SDK-For-Python AZURECLI/2.0.46]
+      accept-language: [en-US]
+    method: PUT
+    uri: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/clitest.rg000001/providers/Microsoft.Media/mediaServices/ams000003/streamingPolicies/spn000005?api-version=2018-07-01
+  response:
+    body: {string: "{\r\n  \"error\": {\r\n    \"code\": \"InternalServerError\",\r\n
+        \   \"message\": \"The server encountered an internal error. Please try again
+        later.\"\r\n  }\r\n}"}
+    headers:
+      cache-control: [private]
+      connection: [close]
+      content-language: [en-US]
+      content-length: ['143']
+      content-type: [application/json; charset=utf-8]
+      date: ['Mon, 01 Oct 2018 17:49:23 GMT']
+      server: [Microsoft-IIS/10.0]
+      strict-transport-security: [max-age=31536000; includeSubDomains]
+      x-aspnet-version: [4.0.30319]
+      x-content-type-options: [nosniff]
+      x-ms-failure-cause: [service]
+      x-ms-ratelimit-remaining-subscription-writes: ['1199']
+      x-powered-by: [ASP.NET]
+    status: {code: 500, message: Internal Server Error}
 - request:
     body: null
     headers:
@@ -273,9 +487,9 @@ interactions:
     headers:
       cache-control: [no-cache]
       content-length: ['0']
-      date: ['Thu, 27 Sep 2018 15:54:54 GMT']
+      date: ['Mon, 01 Oct 2018 17:49:26 GMT']
       expires: ['-1']
-      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkcyTElMWU82R0g0T0lFSkZZUFRBVFYzNzVJU0pTRVozMlo0Snw5Q0FEQkU5M0Q0NzlGQkFDLVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
+      location: ['https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/operationresults/eyJqb2JJZCI6IlJFU09VUkNFR1JPVVBERUxFVElPTkpPQi1DTElURVNUOjJFUkdXN0ZYUUNJSldQRElZNVRWRzVONk40VVNBMzZER1VTWktEQ3w4MDcxNjk5QTk1MjlCNUY5LVdFU1RVUyIsImpvYkxvY2F0aW9uIjoid2VzdHVzIn0?api-version=2018-05-01']
       pragma: [no-cache]
       strict-transport-security: [max-age=31536000; includeSubDomains]
       x-content-type-options: [nosniff]
