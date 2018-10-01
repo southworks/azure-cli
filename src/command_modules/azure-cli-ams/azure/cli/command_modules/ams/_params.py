@@ -8,19 +8,19 @@
 from knack.arguments import CLIArgumentType
 
 from azure.cli.core.commands.validators import get_default_location_from_resource_group
-from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type, get_three_state_flag)
+from azure.cli.core.commands.parameters import (get_location_type, get_enum_type, tags_type)
 from azure.cli.command_modules.ams._completers import (get_role_definition_name_completion_list,
                                                        get_cdn_provider_completion_list,
                                                        get_default_streaming_policies_completion_list,
                                                        get_presets_definition_name_completion_list,
                                                        get_allowed_languages_for_preset_completion_list,
+                                                       get_protocols_completion_list,
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list)
+from azure.cli.command_modules.ams._validators import validate_storage_account_id, datetime_format, validate_correlation_data, validate_token_claim
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
-
-from ._validators import validate_storage_account_id, datetime_format, validate_correlation_data, validate_token_claim
 
 
 def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statements
@@ -209,24 +209,32 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams streaming-policy') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('streaming_policy_name', name_arg_type, id_part='child_name_1',
-                   help='The name of the streaming policy.')
-        c.argument('download',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable Download protocol.')
-        c.argument('dash',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable Dash protocol.')
-        c.argument('hls',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable HLS protocol.')
-        c.argument('smooth_streaming',
-                   arg_type=get_three_state_flag(),
-                   arg_group='Encryption Protocols',
-                   help='Enable SmoothStreaming protocol.')
+        c.argument('streaming_policy_name', name_arg_type, id_part='child_name_1', help='The name of the streaming policy.')
+        c.argument('no_encryption_protocols', nargs='+', help='Space-separated list of enabled protocols for NoEncryption. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
+        c.argument('envelope_protocols', nargs='+', arg_group='Envelope Encryption', help='Space-separated list of enabled protocols for Envelope Encryption. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
+        c.argument('envelope_clear_tracks', arg_group='Envelope Encryption', help='The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
+        c.argument('envelope_key_to_track_mappings', arg_group='Envelope Encryption', help='The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey')
+        c.argument('envelope_default_key_label', arg_group='Envelope Encryption', help='Label used to specify Content Key when creating a streaming locator.')
+        c.argument('envelope_default_key_policy_name', arg_group='Envelope Encryption', help='Policy used by Default Key.')
+        c.argument('envelope_template', arg_group='Envelope Encryption', help='The KeyAcquistionUrlTemplate is used to point to user specified service to delivery content keys.')
+        c.argument('cenc_protocols', nargs='+', arg_group='Common Encryption CENC', help='Space-separated list of enabled protocols for Common Encryption CENC. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
+        c.argument('cenc_default_key_label', arg_group='Common Encryption CENC', help='Label to specify Default Content Key for an encryption scheme.')
+        c.argument('cenc_default_key_policy_name', arg_group='Common Encryption CENC', help='Policy used by Default Content Key.')
+        c.argument('cenc_clear_tracks', arg_group='Common Encryption CENC', help='The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
+        c.argument('cenc_key_to_track_mappings', arg_group='Common Encryption CENC', help='The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey')
+        c.argument('cenc_play_ready_attributes', arg_group='Common Encryption CENC', help='Custom attributes for PlayReady.')
+        c.argument('cenc_widevine_template', arg_group='Common Encryption CENC', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cenc_play_ready_template', arg_group='Common Encryption CENC', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_protocols', nargs='+', arg_group='Common Encryption CBCS', help='Space-separated list of enabled protocols for Common Encryption CBCS. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
+        c.argument('cbcs_default_key_label', arg_group='Common Encryption CBCS', help='Label to specify Default Content Key for an encryption scheme.')
+        c.argument('cbcs_default_key_policy_name', arg_group='Common Encryption CBCS', help='Policy used by Default Content Key.')
+        c.argument('cbcs_clear_tracks', arg_group='Common Encryption CBCS', help='The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
+        c.argument('cbcs_key_to_track_mappings', arg_group='Common Encryption CBCS', help='The JSON representing a list of StreamingPolicyContentKey. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#streamingpolicycontentkey')
+        c.argument('cbcs_play_ready_attributes', arg_group='Common Encryption CBCS', help='Custom attributes for PlayReady.')
+        c.argument('cbcs_widevine_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_play_ready_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_fair_play_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
+        c.argument('cbcs_fair_play_allow_persistent_license', arg_group='Common Encryption CBCS', action='store_true', help='Allows the license to be persistent or not.')
 
     with self.argument_context('ams streaming-policy list') as c:
         c.argument('account_name', id_part=None)
