@@ -27,7 +27,8 @@ def create_account_filter(client, account_name, resource_group_name, filter_name
                                                     force_end_timestamp=force_end_timestamp)
 
     account_filter = AccountFilter(tracks=_parse_filter_tracks_json(tracks),
-                                   presentation_time_range=presentation_time_range)
+                                   presentation_time_range=presentation_time_range,
+                                   first_quality=first_quality)
 
     return client.create_or_update(resource_group_name, account_name, filter_name,
                                    account_filter)

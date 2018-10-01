@@ -341,9 +341,11 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('fragments_per_ts_segment', help='The amount of fragments per HLS segment.')
         c.argument('output_snap_time', help='The output snapshot time.')
 
-    with self.argument_context('ams account-filter create') as c:
+    with self.argument_context('ams account-filter') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('filter_name', name_arg_type, id_part='child_name_1', help='The name of the account filter.')
+
+    with self.argument_context('ams account-filter create') as c:
         c.argument('start_timestamp', help='The absolute start time boundary.')
         c.argument('end_timestamp', help='The absolute end time boundary.')
         c.argument('presentation_window_duration', help='The relative to end sliding window.')

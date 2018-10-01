@@ -467,3 +467,28 @@ helps['ams live-output delete'] = """
     type: command
     short-summary: Delete a live output.
 """
+
+helps['ams account-filter show'] = """
+    type: command
+    short-summary: Show the details of an account filter.
+"""
+
+helps['ams account-filter list'] = """
+    type: command
+    short-summary: List all the account filters of an Azure Media Services account.
+"""
+
+helps['ams account-filter create'] = """
+    type: command
+    short-summary: Create an account filter.
+"""
+
+helps['ams account-filter update'] = """
+    type: command
+    short-summary: Update the details of an account filter.
+"""
+
+helps['ams account-filter delete'] = """
+    type: command
+    short-summary: Delete an account filter.
+"""

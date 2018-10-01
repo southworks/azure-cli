@@ -1,0 +1,25 @@
+[
+    {
+        "trackSelections": [
+            {
+                "property": "FourCC",
+                "operation": "Equal",
+                "value": "bar"
+            }
+        ]
+    },
+    {
+        "trackSelections": [
+            {
+                "property": "Unknown",
+                "operation": "NotEqual",
+                "value": "foo"
+            },
+            {
+                "property": "FourCC",
+                "operation": "Equal",
+                "value": "something"
+            }
+        ]
+    }
+]
