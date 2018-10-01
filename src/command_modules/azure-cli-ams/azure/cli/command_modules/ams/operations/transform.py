@@ -18,10 +18,10 @@ from azure.mgmt.media.models import (StandardEncoderPreset, TransformOutput,
 
 
 def create_transform(client, account_name, resource_group_name, transform_name, preset,
-                     audio_insights_only=False, audio_language=None, on_error=None,
+                     insights_to_extract=None, audio_language=None, on_error=None,
                      relative_priority=None, description=None):
 
-    outputs = [build_transform_output(preset, audio_insights_only, audio_language,
+    outputs = [build_transform_output(preset, insights_to_extract, audio_language,
                                       on_error, relative_priority)]
 
     return client.create_or_update(resource_group_name, account_name, transform_name,
@@ -29,7 +29,7 @@ def create_transform(client, account_name, resource_group_name, transform_name, 
 
 
 def add_transform_output(client, account_name, resource_group_name, transform_name, preset,
-                         audio_insights_only=False, audio_language=None, on_error=None,
+                         insights_to_extract=None, audio_language=None, on_error=None,
                          relative_priority=None):
 
     transform = client.get(resource_group_name, account_name, transform_name)
@@ -37,22 +37,22 @@ def add_transform_output(client, account_name, resource_group_name, transform_na
     if not transform:
         raise CLIError('The transform resource was not found.')
 
-    transform.outputs.append(build_transform_output(preset, audio_insights_only, audio_language,
+    transform.outputs.append(build_transform_output(preset, insights_to_extract, audio_language,
                                                     on_error, relative_priority))
 
     return client.create_or_update(resource_group_name, account_name, transform_name, transform.outputs)
 
 
-def build_transform_output(preset, audio_insights_only, audio_language, on_error,
+def build_transform_output(preset, insights_to_extract, audio_language, on_error,
                            relative_priority):
     from azure.mgmt.media.models import (OnErrorType, Priority)
 
-    validate_arguments(preset, audio_insights_only, audio_language)
+    validate_arguments(preset, insights_to_extract, audio_language)
     transform_output = get_transform_output(preset)
 
     if preset == 'VideoAnalyzer':
         transform_output.preset.audio_language = audio_language
-        transform_output.preset.audio_insights_only = audio_insights_only
+        transform_output.preset.insights_to_extract = insights_to_extract
     elif preset == 'AudioAnalyzer':
         transform_output.preset.audio_language = audio_language
 
@@ -65,10 +65,10 @@ def build_transform_output(preset, audio_insights_only, audio_language, on_error
     return transform_output
 
 
-def validate_arguments(preset, audio_insights_only, audio_language):
+def validate_arguments(preset, insights_to_extract, audio_language):
 
-    if audio_insights_only and not preset == 'VideoAnalyzer':
-        raise CLIError("audio-insights-only argument only works with VideoAnalyzer preset type.")
+    if insights_to_extract and preset != 'VideoAnalyzer':
+        raise CLIError("insights-to-extract argument only works with VideoAnalyzer preset type.")
 
     if audio_language and preset not in get_stand_alone_presets():
         raise CLIError("audio-language argument only works with VideoAnalyzer or AudioAnalyzer preset types.")

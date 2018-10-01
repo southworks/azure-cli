@@ -7,7 +7,7 @@ from azure.mgmt.media.models import LiveOutput
 
 
 def create_live_output(client, resource_group_name, account_name, live_event_name,
-                       live_output_name, asset_name, archive_window_length, manifest_name,
+                       live_output_name, asset_name, archive_window_length, manifest_name=None,
                        description=None, fragments_per_ts_segment=None, output_snap_time=None):
     from azure.mgmt.media.models import (Hls)
 

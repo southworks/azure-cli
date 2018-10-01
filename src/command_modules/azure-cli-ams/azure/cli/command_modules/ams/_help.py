@@ -187,7 +187,7 @@ helps['ams asset delete'] = """
 
 helps['ams asset get-sas-urls'] = """
     type: command
-    short-summary: Lists the asset SAS URLs used for uploading and downloading asset content.
+    short-summary: Lists storage container URLs with shared access signatures (SAS) for uploading and downloading Asset content. The signatures are derived from the storage account keys.
 """
 
 helps['ams asset get-encryption-key'] = """
@@ -261,6 +261,11 @@ helps['ams job'] = """
 helps['ams job start'] = """
     type: command
     short-summary: Start a job.
+"""
+
+helps['ams job update'] = """
+    type: command
+    short-summary: Update an existing job.
 """
 
 helps['ams job list'] = """
