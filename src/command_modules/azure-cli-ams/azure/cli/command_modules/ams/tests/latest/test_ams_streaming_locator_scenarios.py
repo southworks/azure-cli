@@ -7,6 +7,7 @@ from azure.cli.testsdk import ScenarioTest, ResourceGroupPreparer, StorageAccoun
 
 import os
 
+
 class AmsStreamingLocatorTests(ScenarioTest):
     def _get_test_data_file(self, filename):
         filepath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data', filename)
@@ -129,7 +130,6 @@ class AmsStreamingLocatorTests(ScenarioTest):
         self.cmd('az ams streaming-locator get-paths -a {amsname} -n {streamingLocatorName} -g {rg}')
 
         self.cmd('az ams streaming-locator delete -n {streamingLocatorName} -a {amsname} -g {rg}')
-
 
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
