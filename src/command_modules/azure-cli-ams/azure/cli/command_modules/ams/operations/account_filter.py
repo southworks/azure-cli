@@ -1,0 +1,50 @@
+# --------------------------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation.  All rights reserved.
+# Licensed under the MIT License.  See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------------------------
+
+import json
+
+from knack.util import CLIError
+
+from azure.mgmt.media.models import (AccountFilter, FilterTrackSelection,
+                                     FilterTrackPropertyCondition, EncoderNamedPreset,
+                                     PresentationTimeRange, FirstQuality)
+
+
+def create_account_filter(client, account_name, resource_group_name, filter_name, start_timestamp,
+                          end_timestamp, presentation_window_duration, live_backoff_duration,
+                          timescale, force_end_timestamp=False, bitrate=None, tracks=None):
+
+    first_quality = FirstQuality(bitrate=bitrate)
+
+    presentation_time_range = PresentationTimeRange(start_timestamp=start_timestamp,
+                                                    end_timestamp=end_timestamp,
+                                                    presentation_window_duration=presentation_window_duration,
+                                                    live_backoff_duration=live_backoff_duration,
+                                                    timescale=timescale,
+                                                    force_end_timestamp=force_end_timestamp)
+
+    account_filter = AccountFilter(tracks=_parse_filter_tracks_json(tracks),
+                                   presentation_time_range=presentation_time_range)
+
+    return client.create_or_update(resource_group_name, account_name, filter_name,
+                                   account_filter)
+
+def _parse_filter_tracks_json(tracks):
+    tracks_result = None
+    if tracks is not None:
+        tracks_result = []
+        try:
+            tracks_json = json.loads(tracks)
+            for track_selection_json in tracks_json:
+                track_properties = []
+                for track_property_json in track_selection_json.get('trackSelections'):
+                    track_property = FilterTrackPropertyCondition(**track_property_json)
+                    track_properties.append(track_property)
+                tracks_result.append(FilterTrackSelection(track_selections=track_properties))
+        except TypeError as ex:
+            errorMessage = 'Malformed JSON.'
+            raise CLIError('{}. {}'.format(str(ex), errorMessage))
+    return tracks_result
