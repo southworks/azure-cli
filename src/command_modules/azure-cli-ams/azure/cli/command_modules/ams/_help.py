@@ -160,6 +160,11 @@ helps['ams asset'] = """
     short-summary: Manage assets for an Azure Media Services account.
 """
 
+helps['ams asset-filter'] = """
+    type: group
+    short-summary: Manage asset filters for an Azure Media Services account.
+"""
+
 helps['ams asset show'] = """
     type: command
     short-summary: Show the details of an asset.
@@ -193,6 +198,21 @@ helps['ams asset get-sas-urls'] = """
 helps['ams asset get-encryption-key'] = """
     type: command
     short-summary: Get the asset storage encryption keys used to decrypt content created by version 2 of the Media Services API.
+"""
+
+helps['ams asset-filter create'] = """
+    type: command
+    short-summary: Create an asset filter.
+"""
+
+helps['ams asset-filter list'] = """
+    type: command
+    short-summary: List all the asset filters of an Azure Media Services account.
+"""
+
+helps['ams asset-filter show'] = """
+    type: command
+    short-summary: Show the details of an asset filter.
 """
 
 helps['ams content-key-policy'] = """

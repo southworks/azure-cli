@@ -114,6 +114,11 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The permissions to set on the SAS URL.')
         c.argument('expiry_time', expiry_arg_type, help="Specifies the UTC datetime (Y-m-d'T'H:M:S'Z') at which the SAS becomes invalid.")
 
+    with self.argument_context('ams asset-filter') as c:
+        c.argument('account_name', account_name_arg_type)
+        c.argument('filter_name', name_arg_type, help='The name of the asset filter.')
+        c.argument('asset_name', help='The name of the asset.')
+
     with self.argument_context('ams job') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', transform_name_arg_type, id_part='child_name_1',
