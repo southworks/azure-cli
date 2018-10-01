@@ -210,6 +210,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams streaming-policy') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('streaming_policy_name', name_arg_type, id_part='child_name_1', help='The name of the streaming policy.')
+        c.argument('default_content_key_policy_name', help='Default Content Key used by current streaming policy.')
         c.argument('no_encryption_protocols', nargs='+', help='Space-separated list of enabled protocols for NoEncryption. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
         c.argument('envelope_protocols', nargs='+', arg_group='Envelope Encryption', help='Space-separated list of enabled protocols for Envelope Encryption. Allowed values: {}.'.format(", ".join(get_protocols_completion_list())))
         c.argument('envelope_clear_tracks', arg_group='Envelope Encryption', help='The JSON representing which tracks should not be encrypted. Use @{file} to load from a file. For further information about the JSON structure please refer to swagger documentation on https://docs.microsoft.com/en-us/rest/api/media/streamingpolicies/create#trackselection')
