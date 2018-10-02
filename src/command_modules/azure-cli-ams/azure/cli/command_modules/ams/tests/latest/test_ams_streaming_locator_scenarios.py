@@ -6,14 +6,10 @@
 from azure.cli.testsdk import ScenarioTest, ResourceGroupPreparer, StorageAccountPreparer
 
 import os
+import json
 
 
 class AmsStreamingLocatorTests(ScenarioTest):
-    def _get_test_data_file(self, filename):
-        filepath = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data', filename)
-        self.assertTrue(os.path.isfile(filepath), 'File {} does not exist.'.format(filepath))
-        return filepath
-
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
     def test_ams_streaming_locator(self, resource_group, storage_account_for_create):
@@ -95,21 +91,28 @@ class AmsStreamingLocatorTests(ScenarioTest):
 
         streamingPolicyName = self.create_random_name(prefix='spn', length=10)
 
+        cbcs_default_key_label = 'testLabel1'
+        cenc_default_key_label = 'testLabel2'
+
         self.kwargs.update({
             'streamingPolicyName': streamingPolicyName,
-            'CBCSDefaultKeyLabel': 'testLabel1',
+            'CBCSDefaultKeyLabel': cbcs_default_key_label,
             'CBCSDefaultKeyPolicyName': 'ckpTestStrLctr1',
-            'CENCDefaultKeyLabel': 'testLabel2',
+            'CENCDefaultKeyLabel': cenc_default_key_label,
             'CENCDefaultKeyPolicyName': 'ckpTestStrLctr2',
             'protocol': 'HLS SmoothStreaming',
             'urlTemplate': 'test.com',
             'policyOptionName': 'testOption'
         })
 
-        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} --clear-key-configuration --open-restriction --policy-option-name {policyOptionName} -n {CBCSDefaultKeyPolicyName}')
-        self.cmd('az ams content-key-policy create -a {amsname} -g {rg} --clear-key-configuration --open-restriction --policy-option-name {policyOptionName} -n {CENCDefaultKeyPolicyName}')
+        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cbcs-default-key-label {CBCSDefaultKeyLabel} --cenc-default-key-label {CENCDefaultKeyLabel} --cbcs-protocols {protocol} --cenc-protocols {protocol} --cbcs-fair-play-template {urlTemplate} --cenc-play-ready-template {urlTemplate} --cenc-widevine-template {urlTemplate}')
 
-        self.cmd('az ams streaming-policy create -a {amsname} -n {streamingPolicyName} -g {rg} --cbcs-default-key-label {CBCSDefaultKeyLabel} --cbcs-default-key-policy-name {CBCSDefaultKeyPolicyName} --cenc-default-key-label {CENCDefaultKeyLabel} --cenc-default-key-policy-name {CENCDefaultKeyPolicyName} --cbcs-protocols {protocol} --cenc-protocols {protocol} --cbcs-fair-play-template {urlTemplate} --cenc-play-ready-template {urlTemplate} --cenc-widevine-template {urlTemplate}')
+        content_keys_json = [{'id': str(self.create_guid()),
+                              'labelReferenceInStreamingPolicy': cbcs_default_key_label,
+                              'value': 'dmFsdWG='},
+                             {'id': str(self.create_guid()),
+                              'labelReferenceInStreamingPolicy': cenc_default_key_label,
+                              'value': 'dmFsdWQ='}]
 
         streaming_locator_name = self.create_random_name(prefix='sln', length=10)
 
@@ -119,7 +122,7 @@ class AmsStreamingLocatorTests(ScenarioTest):
             'endTime': '2018-03-29T12:00:00',
             'streamingLocatorId': self.create_guid(),
             'alternativeMediaId': self.create_guid(),
-            'contentKeys': '@' + self._get_test_data_file('contentKeys.json')
+            'contentKeys': json.dumps(content_keys_json).replace('"', '\\"')
         })
 
         self.cmd('az ams streaming-locator create -n {streamingLocatorName} -a {amsname} -g {rg} --streaming-policy-name {streamingPolicyName} --asset-name {assetName} --start-time {startTime} --end-time {endTime} --streaming-locator-id {streamingLocatorId} --alternative-media-id {alternativeMediaId} --content-keys "{contentKeys}"', checks=[
