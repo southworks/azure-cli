@@ -91,6 +91,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
     with self.command_group('ams asset-filter', get_sdk('AssetFilters', get_asset_filters_client)) as g:
         g.command('list', 'list')
         g.command('show', 'get')
+        g.command('delete', 'delete')
         g.custom_command('create', 'create_asset_filter',
                          custom_command_type=get_custom_sdk('asset_filter', get_asset_filters_client))
 

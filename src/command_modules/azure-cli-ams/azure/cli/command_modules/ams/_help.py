@@ -205,6 +205,11 @@ helps['ams asset-filter create'] = """
     short-summary: Create an asset filter.
 """
 
+helps['ams asset-filter delete'] = """
+    type: command
+    short-summary: Delete an asset filter.
+"""
+
 helps['ams asset-filter list'] = """
     type: command
     short-summary: List all the asset filters of an Azure Media Services account.

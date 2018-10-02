@@ -116,8 +116,16 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams asset-filter') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('filter_name', name_arg_type, help='The name of the asset filter.')
         c.argument('asset_name', help='The name of the asset.')
+        c.argument('filter_name', name_arg_type, id_part='child_name_1', help='The name of the asset filter.')
+        c.argument('start_timestamp', arg_group='Presentation Time Range', help='The absolute start time boundary.')
+        c.argument('end_timestamp', arg_group='Presentation Time Range', help='The absolute end time boundary.')
+        c.argument('presentation_window_duration', arg_group='Presentation Time Range', help='The relative to end sliding window.')
+        c.argument('live_backoff_duration', arg_group='Presentation Time Range', help='The relative to end right edge.')
+        c.argument('timescale', arg_group='Presentation Time Range', help='The time scale of time stamps.')
+        c.argument('force_end_timestamp', arg_group='Presentation Time Range', action='store_true', help='The indicator of forcing the existance of an end time stamp.')
+        c.argument('bitrate', help='The first quality bitrate.')
+        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file.')
 
     with self.argument_context('ams job') as c:
         c.argument('account_name', account_name_arg_type)
