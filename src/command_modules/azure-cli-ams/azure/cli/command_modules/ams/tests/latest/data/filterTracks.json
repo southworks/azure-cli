@@ -4,7 +4,7 @@
             {
                 "property": "FourCC",
                 "operation": "Equal",
-                "value": "bar"
+                "value": "AVC1"
             }
         ]
     },
@@ -13,12 +13,12 @@
             {
                 "property": "Unknown",
                 "operation": "NotEqual",
-                "value": "foo"
+                "value": "EC-3"
             },
             {
                 "property": "FourCC",
                 "operation": "Equal",
-                "value": "something"
+                "value": "MP4A"
             }
         ]
     }

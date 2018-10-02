@@ -17,7 +17,8 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_protocols_completion_list,
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
-                                                       get_token_completion_list)
+                                                       get_token_completion_list,
+                                                       get_allowed_codecs_completion_list)
 from azure.cli.command_modules.ams._validators import validate_storage_account_id, datetime_format, validate_correlation_data, validate_token_claim
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
@@ -344,13 +345,11 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams account-filter') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('filter_name', name_arg_type, id_part='child_name_1', help='The name of the account filter.')
-
-    with self.argument_context('ams account-filter create') as c:
-        c.argument('start_timestamp', help='The absolute start time boundary.')
-        c.argument('end_timestamp', help='The absolute end time boundary.')
-        c.argument('presentation_window_duration', help='The relative to end sliding window.')
-        c.argument('live_backoff_duration', help='The relative to end right edge.')
-        c.argument('timescale', help='The time scale of time stamps.')
-        c.argument('force_end_timestamp', action='store_true', help='The indicator of forcing exsiting of end time stamp.')
+        c.argument('start_timestamp', arg_group='Presentation Time Range', help='The absolute start time boundary.')
+        c.argument('end_timestamp', arg_group='Presentation Time Range', help='The absolute end time boundary.')
+        c.argument('presentation_window_duration', arg_group='Presentation Time Range', help='The relative to end sliding window.')
+        c.argument('live_backoff_duration', arg_group='Presentation Time Range', help='The relative to end right edge.')
+        c.argument('timescale', arg_group='Presentation Time Range', help='The time scale of time stamps.')
+        c.argument('force_end_timestamp', arg_group='Presentation Time Range', action='store_true', help='Indicates whether to force the existance of an end timestamp.')
         c.argument('bitrate', help='The first quality bitrate.')
-        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file.')
+        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file. Allowed codecs: ' + '{}.'.format(", ".join(get_allowed_codecs_completion_list())))

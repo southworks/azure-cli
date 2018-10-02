@@ -33,6 +33,36 @@ def create_account_filter(client, account_name, resource_group_name, filter_name
     return client.create_or_update(resource_group_name, account_name, filter_name,
                                    account_filter)
 
+def update_account_filter(instance, start_timestamp=None, end_timestamp=None,
+                          presentation_window_duration=None, live_backoff_duration=None,
+                          timescale=None, bitrate=None, tracks=None):
+
+    if not instance:
+        raise CLIError('The transform resource was not found.')
+
+    if start_timestamp is not None:
+        instance.presentation_time_range.start_timestamp = start_timestamp
+
+    if end_timestamp is not None:
+        instance.presentation_time_range.end_timestamp = end_timestamp
+
+    if presentation_window_duration is not None:
+        instance.presentation_time_range.presentation_window_duration = presentation_window_duration
+
+    if live_backoff_duration is not None:
+        instance.presentation_time_range.live_backoff_duration = live_backoff_duration
+
+    if timescale is not None:
+        instance.presentation_time_range.timescale = timescale
+
+    if bitrate is not None:
+        instance.first_quality.bitrate = bitrate
+
+    if tracks is not None:
+        instance.tracks = _parse_filter_tracks_json(tracks)
+
+    return instance
+
 def _parse_filter_tracks_json(tracks):
     tracks_result = None
     if tracks is not None:
