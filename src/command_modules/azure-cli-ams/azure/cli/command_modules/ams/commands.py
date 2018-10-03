@@ -94,6 +94,9 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.command('delete', 'delete')
         g.custom_command('create', 'create_asset_filter',
                          custom_command_type=get_custom_sdk('asset_filter', get_asset_filters_client))
+        g.generic_update_command('update',
+                                 custom_func_name='update_asset_filter',
+                                 custom_func_type=get_custom_sdk('asset_filter', get_mediaservices_client))
 
     with self.command_group('ams job', get_sdk('Jobs', get_jobs_client)) as g:
         g.show_command('show', 'get')

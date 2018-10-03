@@ -205,6 +205,11 @@ helps['ams asset-filter create'] = """
     short-summary: Create an asset filter.
 """
 
+helps['ams asset-filter update'] = """
+    type: command
+    short-summary: Update the details of an asset filter.
+"""
+
 helps['ams asset-filter delete'] = """
     type: command
     short-summary: Delete an asset filter.
