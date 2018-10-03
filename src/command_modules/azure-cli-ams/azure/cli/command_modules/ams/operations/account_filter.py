@@ -17,14 +17,22 @@ def create_account_filter(client, account_name, resource_group_name, filter_name
                           end_timestamp, presentation_window_duration, live_backoff_duration,
                           timescale, force_end_timestamp=False, bitrate=None, tracks=None):
 
-    first_quality = FirstQuality(bitrate=bitrate)
+    first_quality = None
+    presentation_time_range = None
 
-    presentation_time_range = PresentationTimeRange(start_timestamp=start_timestamp,
-                                                    end_timestamp=end_timestamp,
-                                                    presentation_window_duration=presentation_window_duration,
-                                                    live_backoff_duration=live_backoff_duration,
-                                                    timescale=timescale,
-                                                    force_end_timestamp=force_end_timestamp)
+    if bitrate:
+        first_quality = FirstQuality(bitrate=bitrate)
+
+    if any([start_timestamp, end_timestamp, presentation_window_duration,
+            live_backoff_duration, timescale]):
+        presentation_time_range = PresentationTimeRange(
+            start_timestamp=start_timestamp,
+            end_timestamp=end_timestamp,
+            presentation_window_duration=presentation_window_duration,
+            live_backoff_duration=live_backoff_duration,
+            timescale=timescale,
+            force_end_timestamp=force_end_timestamp
+        )
 
     account_filter = AccountFilter(tracks=_parse_filter_tracks_json(tracks),
                                    presentation_time_range=presentation_time_range,
