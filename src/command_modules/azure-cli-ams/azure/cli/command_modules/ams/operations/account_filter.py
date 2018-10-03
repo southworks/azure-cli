@@ -20,7 +20,7 @@ def create_account_filter(client, account_name, resource_group_name, filter_name
     first_quality = None
     presentation_time_range = None
 
-    if bitrate:
+    if bitrate is not None:
         first_quality = FirstQuality(bitrate=bitrate)
 
     if any([start_timestamp, end_timestamp, presentation_window_duration,
@@ -47,7 +47,7 @@ def update_account_filter(instance, start_timestamp=None, end_timestamp=None,
                           timescale=None, bitrate=None, tracks=None):
 
     if not instance:
-        raise CLIError('The transform resource was not found.')
+        raise CLIError('The account filter resource was not found.')
 
     if start_timestamp is not None:
         instance.presentation_time_range.start_timestamp = start_timestamp
