@@ -117,8 +117,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams asset-filter') as c:
         c.argument('account_name', account_name_arg_type)
-        c.argument('asset_name', help='The name of the asset.')
-        c.argument('filter_name', name_arg_type, id_part='child_name_1', help='The name of the asset filter.')
+        c.argument('asset_name', help='The name of the asset.', id_part='child_name_1')
+        c.argument('filter_name', name_arg_type, id_part='child_name_2', help='The name of the asset filter.')
         c.argument('start_timestamp', arg_group='Presentation Time Range', help='The absolute start time boundary.')
         c.argument('end_timestamp', arg_group='Presentation Time Range', help='The absolute end time boundary.')
         c.argument('presentation_window_duration', arg_group='Presentation Time Range', help='The relative to end sliding window.')
