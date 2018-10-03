@@ -203,5 +203,5 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.command('list', 'list')
         g.command('delete', 'delete')
         g.generic_update_command('update',
-                            custom_func_name='update_account_filter',
-                            custom_func_type=get_custom_sdk('account_filter', get_mediaservices_client))
+                                 custom_func_name='update_account_filter',
+                                 custom_func_type=get_custom_sdk('account_filter', get_mediaservices_client))

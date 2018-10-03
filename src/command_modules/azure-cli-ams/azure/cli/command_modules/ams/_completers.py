@@ -61,6 +61,7 @@ def get_allowed_languages_for_preset_completion_list():
     languages = get_allowed_languages_for_preset()
     return languages
 
+
 def get_allowed_codecs_completion_list():
     codecs = get_allowed_codecs()
     return codecs

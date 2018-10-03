@@ -9,7 +9,7 @@ import json
 from knack.util import CLIError
 
 from azure.mgmt.media.models import (AccountFilter, FilterTrackSelection,
-                                     FilterTrackPropertyCondition, EncoderNamedPreset,
+                                     FilterTrackPropertyCondition,
                                      PresentationTimeRange, FirstQuality)
 
 
@@ -32,6 +32,7 @@ def create_account_filter(client, account_name, resource_group_name, filter_name
 
     return client.create_or_update(resource_group_name, account_name, filter_name,
                                    account_filter)
+
 
 def update_account_filter(instance, start_timestamp=None, end_timestamp=None,
                           presentation_window_duration=None, live_backoff_duration=None,
@@ -62,6 +63,7 @@ def update_account_filter(instance, start_timestamp=None, end_timestamp=None,
         instance.tracks = _parse_filter_tracks_json(tracks)
 
     return instance
+
 
 def _parse_filter_tracks_json(tracks):
     tracks_result = None
