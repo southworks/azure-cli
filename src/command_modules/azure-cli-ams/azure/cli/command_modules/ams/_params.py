@@ -128,7 +128,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    arg_type=get_three_state_flag(), help='Indicates whether to force the existance of an end timestamp.')
         c.argument('bitrate', help='The first quality bitrate.')
         c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file. Allowed codecs: ' + '{}'.format(", ").join(get_allowed_codecs_completion_list()))
-        
+
     with self.argument_context('ams job') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', transform_name_arg_type, id_part='child_name_1',

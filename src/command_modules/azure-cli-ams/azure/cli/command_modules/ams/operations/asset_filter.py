@@ -10,6 +10,7 @@ from knack.util import CLIError
 from azure.mgmt.media.models import (AssetFilter, FilterTrackSelection, FilterTrackPropertyCondition,
                                      PresentationTimeRange, FirstQuality)
 
+
 def create_asset_filter(client, account_name, resource_group_name, asset_name, filter_name,
                         start_timestamp=None, end_timestamp=None, presentation_window_duration=None,
                         live_backoff_duration=None, timescale=None, force_end_timestamp=False, bitrate=None,
@@ -51,11 +52,11 @@ def update_asset_filter(instance, start_timestamp=None, end_timestamp=None, pres
 
     if any([start_timestamp, end_timestamp, presentation_window_duration,
             live_backoff_duration, timescale, force_end_timestamp is not None]):
-    
+
         if instance.presentation_time_range is None:
             if not all([start_timestamp, end_timestamp, presentation_window_duration,
                         live_backoff_duration, timescale, force_end_timestamp is not None]):
-                raise CLIError('All the parameters related to PresentationTimeRange must be set since object is not created.')
+                raise CLIError('All parameters related to PresentationTimeRange must be set since object is null.')
 
             instance.presentation_time_range = PresentationTimeRange(
                 start_timestamp=start_timestamp,
