@@ -175,6 +175,11 @@ helps['ams asset list'] = """
     short-summary: List all the assets of an Azure Media Services account.
 """
 
+helps['ams asset list-streaming-locators'] = """
+    type: command
+    short-summary: List all the streaming locators related to a particular asset.
+"""
+
 helps['ams asset create'] = """
     type: command
     short-summary: Create an asset.
