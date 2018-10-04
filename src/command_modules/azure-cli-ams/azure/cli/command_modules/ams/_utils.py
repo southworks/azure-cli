@@ -69,3 +69,17 @@ class JsonBytearrayEncoder(json.JSONEncoder):
             for key in keys:
                 obj[snake_to_camel_case(key)] = obj.pop(key)
             return obj
+
+
+def create_ip_range(resource_name, ip):
+    from azure.mgmt.media.models import IPRange
+    from ipaddress import ip_network
+    subnet_prefix_length = None
+    try:
+        ipv4_network = ip_network(ip)
+        if ipv4_network.with_prefixlen == ip:
+            subnet_prefix_length = ipv4_network.prefixlen
+            ip = ipv4_network.network_address.compressed
+    except ValueError:
+        pass
+    return IPRange(name=("{}_{}".format(resource_name, ip)), address=ip, subnet_prefix_length=subnet_prefix_length)

@@ -13,12 +13,12 @@
             {
                 "property": "Unknown",
                 "operation": "NotEqual",
-                "value": "AVC1"
+                "value": "EC-3"
             },
             {
                 "property": "FourCC",
                 "operation": "Equal",
-                "value": "EC-3"
+                "value": "MP4A"
             }
         ]
     }

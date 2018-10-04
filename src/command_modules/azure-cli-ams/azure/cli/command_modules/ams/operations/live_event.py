@@ -5,8 +5,8 @@
 
 from azure.cli.core.util import sdk_no_wait
 from azure.cli.core.commands import LongRunningOperation
-from azure.mgmt.media.models import IPRange
 from azure.cli.core.util import CLIError
+from azure.cli.command_modules.ams._utils import create_ip_range
 
 
 def create(cmd, client, resource_group_name, account_name, live_event_name, streaming_protocol,  # pylint: disable=too-many-locals
@@ -166,7 +166,3 @@ def update_live_event(instance, tags=None, description=None, key_frame_interval_
 def read_xml_policy(xml_policy_path):
     with open(xml_policy_path, 'r') as file:
         return file.read()
-
-
-def create_ip_range(live_event_name, ip):
-    return IPRange(name=("{}_{}".format(live_event_name, ip)), address=ip, subnet_prefix_length=0)

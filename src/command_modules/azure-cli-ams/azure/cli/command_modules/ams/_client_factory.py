@@ -79,5 +79,9 @@ def get_content_key_policies_client(cli_ctx, *_):
     return cf_media(cli_ctx).content_key_policies
 
 
+def get_account_filters_client(cli_ctx, *_):
+    return cf_media(cli_ctx).account_filters
+
+
 def get_asset_filters_client(cli_ctx, *_):
     return cf_media(cli_ctx).asset_filters

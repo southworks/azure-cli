@@ -42,7 +42,7 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('location', 'West US 2')
         ])
 
-        live_event = self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --auto-start --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.2.3.4 5.6.7.8 9.10.11.12 --preview-ips 1.1.1.1 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url', checks=[
+        live_event = self.cmd('az ams live-event create -a {amsname} -n {liveEventName} -g {rg} --auto-start --streaming-protocol {streamingProtocol} --encoding-type {encodingType} --tags {tags} --stream-options Default LowLatency --preview-locator {previewLocator} --ips 1.2.3.4 5.6.7.8 192.168.0.0/28 --preview-ips 192.168.0.0/28 0.0.0.0 --key-frame-interval-duration {keyFrameIntervalDuration} --access-token {accessToken} --description {description} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}" --vanity-url', checks=[
             self.check('name', '{liveEventName}'),
             self.check('location', 'West US 2'),
             self.check('input.streamingProtocol', '{streamingProtocol}'),
@@ -54,7 +54,11 @@ class AmsLiveEventTests(ScenarioTest):
             self.check('length(streamOptions)', 2),
             self.check('description', '{description}'),
             self.check('input.accessToken', '{accessToken}'),
-            self.check('vanityUrl', True)
+            self.check('vanityUrl', True),
+            self.check('input.accessControl.ip.allow[2].address', '192.168.0.0'),
+            self.check('input.accessControl.ip.allow[2].subnetPrefixLength', '28'),
+            self.check('preview.accessControl.ip.allow[0].address', '192.168.0.0'),
+            self.check('preview.accessControl.ip.allow[0].subnetPrefixLength', '28')
         ]).get_output_in_json()
 
         self.assertIsNotNone(live_event['crossSiteAccessPolicies']['crossDomainPolicy'])

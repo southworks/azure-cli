@@ -158,7 +158,7 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             'tags': 'foo2=bar2 foo3=bar3',
             'clientAccessPolicy': self._get_test_data_file('clientAccessPolicy.xml'),
             'crossDomainPolicy': self._get_test_data_file('crossDomainPolicy.xml'),
-            'ips': '1.1.1.1 2.2.2.2 3.3.3.3'
+            'ips': '1.1.1.1 2.2.2.2 192.168.0.0/28'
         })
 
         self.cmd('az ams streaming-endpoint update -g {rg} -a {amsname} -n {streamingEndpointName} --cdn-provider {cdnProvider} --cdn-profile {cdnProfile} --description "{description}" --max-cache-age {maxCacheAge} --tags {tags} --client-access-policy "{clientAccessPolicy}" --cross-domain-policy "{crossDomainPolicy}"', checks=[
@@ -177,7 +177,9 @@ class AmsStreamingEndpointsTests(ScenarioTest):
             self.check('cdnProvider', None),
             self.check('cdnProfile', ''),
             self.check('cdnEnabled', False),
-            self.check('length(accessControl.ip.allow)', 3)
+            self.check('length(accessControl.ip.allow)', 3),
+            self.check('accessControl.ip.allow[2].address', '192.168.0.0'),
+            self.check('accessControl.ip.allow[2].subnetPrefixLength', '28')
         ])
 
         self.cmd('az ams streaming-endpoint delete -g {rg} -a {amsname} -n {streamingEndpointName}')
