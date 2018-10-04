@@ -8,8 +8,8 @@ from ._client_factory import (get_mediaservices_client, get_transforms_client,
                               get_assets_client, get_jobs_client, get_streaming_locators_client,
                               get_streaming_policies_client, get_streaming_endpoints_client,
                               get_locations_client, get_live_events_client, get_live_outputs_client,
-                              get_content_key_policies_client, get_asset_filters_client)
-                              get_content_key_policies_client, get_account_filters_client)
+                              get_content_key_policies_client, get_asset_filters_client,
+                              get_account_filters_client)
 from ._exception_handler import ams_exception_handler
 
 

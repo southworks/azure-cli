@@ -69,10 +69,10 @@ class AmsAssetFilterTests(ScenarioTest):
             self.check('tracks[0].trackSelections[0].value', 'AVC1'),
             self.check('tracks[1].trackSelections[0].operation', 'NotEqual'),
             self.check('tracks[1].trackSelections[0].property', 'Unknown'),
-            self.check('tracks[1].trackSelections[0].value', 'AVC1'),
+            self.check('tracks[1].trackSelections[0].value', 'EC-3'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'EC-3'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A')
         ])
 
     @ResourceGroupPreparer()
@@ -131,10 +131,10 @@ class AmsAssetFilterTests(ScenarioTest):
             self.check('tracks[0].trackSelections[0].value', 'AVC1'),
             self.check('tracks[1].trackSelections[0].operation', 'NotEqual'),
             self.check('tracks[1].trackSelections[0].property', 'Unknown'),
-            self.check('tracks[1].trackSelections[0].value', 'AVC1'),
+            self.check('tracks[1].trackSelections[0].value', 'EC-3'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'EC-3'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A')
         ])
 
     @ResourceGroupPreparer()
@@ -262,5 +262,5 @@ class AmsAssetFilterTests(ScenarioTest):
             self.check('tracks[1].trackSelections[0].value', '{newTrackValue}'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'EC-3'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A'),
         ])
