@@ -56,7 +56,7 @@ def update_asset_filter(instance, start_timestamp=None, end_timestamp=None, pres
         if instance.presentation_time_range is None:
             if not all([start_timestamp, end_timestamp, presentation_window_duration,
                         live_backoff_duration, timescale, force_end_timestamp is not None]):
-                raise CLIError('All parameters related to PresentationTimeRange must be set since object is null.')
+                raise CLIError('All parameters related to PresentationTimeRange must be set to create it.')
 
             instance.presentation_time_range = PresentationTimeRange(
                 start_timestamp=start_timestamp,
