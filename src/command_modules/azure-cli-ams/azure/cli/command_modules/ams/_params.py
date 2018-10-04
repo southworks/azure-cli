@@ -118,6 +118,20 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
                    help='The permissions to set on the SAS URL.')
         c.argument('expiry_time', expiry_arg_type, help="Specifies the UTC datetime (Y-m-d'T'H:M:S'Z') at which the SAS becomes invalid.")
 
+    with self.argument_context('ams asset-filter') as c:
+        c.argument('account_name', account_name_arg_type)
+        c.argument('asset_name', help='The name of the asset.', id_part='child_name_1')
+        c.argument('filter_name', name_arg_type, id_part='child_name_2', help='The name of the asset filter.')
+        c.argument('start_timestamp', arg_group='Presentation Time Range', help='The absolute start time boundary.')
+        c.argument('end_timestamp', arg_group='Presentation Time Range', help='The absolute end time boundary.')
+        c.argument('presentation_window_duration', arg_group='Presentation Time Range', help='The relative to end sliding window.')
+        c.argument('live_backoff_duration', arg_group='Presentation Time Range', help='The relative to end right edge.')
+        c.argument('timescale', arg_group='Presentation Time Range', help='The time scale of time stamps.')
+        c.argument('force_end_timestamp', arg_group='Presentation Time Range',
+                   arg_type=get_three_state_flag(), help='Indicates whether to force the existance of an end timestamp.')
+        c.argument('bitrate', help='The first quality bitrate.')
+        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file. Allowed codecs: ' + '{}'.format(", ").join(get_allowed_codecs_completion_list()))
+
     with self.argument_context('ams job') as c:
         c.argument('account_name', account_name_arg_type)
         c.argument('transform_name', transform_name_arg_type, id_part='child_name_1',

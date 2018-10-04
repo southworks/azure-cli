@@ -53,7 +53,7 @@ class AmsAccountFilterTests(ScenarioTest):
             self.check('tracks[1].trackSelections[0].value', 'EC-3'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'MP4A'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A')
         ])
 
         self.cmd('az ams account-filter show -a {amsname} -g {rg} -n {filterName}', checks=[
@@ -72,7 +72,7 @@ class AmsAccountFilterTests(ScenarioTest):
             self.check('tracks[1].trackSelections[0].value', 'EC-3'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'MP4A'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A')
         ])
 
     @ResourceGroupPreparer()
@@ -167,5 +167,5 @@ class AmsAccountFilterTests(ScenarioTest):
             self.check('tracks[1].trackSelections[0].value', '{newTrackValue}'),
             self.check('tracks[1].trackSelections[1].operation', 'Equal'),
             self.check('tracks[1].trackSelections[1].property', 'FourCC'),
-            self.check('tracks[1].trackSelections[1].value', 'MP4A'),
+            self.check('tracks[1].trackSelections[1].value', 'MP4A')
         ])
