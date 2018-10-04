@@ -31,22 +31,22 @@ class AmsAssetFilterTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
         self.cmd('az ams account storage add -a {amsname} -g {rg} -n {storageAccount}')
 
-        assetName = self.create_random_name(prefix='asset', length=12)
-        alternateId = self.create_random_name(prefix='aid', length=12)
+        asset_name = self.create_random_name(prefix='asset', length=12)
+        alternate_id = self.create_random_name(prefix='aid', length=12)
         description = self.create_random_name(prefix='desc', length=12)
 
         self.kwargs.update({
-            'assetName': assetName,
-            'alternateId': alternateId,
+            'asset_name': asset_name,
+            'alternate_id': alternate_id,
             'description': description
         })
 
-        self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg} --description {description} --alternate-id {alternateId} --storage-account {storageAccount} --container {container}')
+        self.cmd('az ams asset create -a {amsname} -n {asset_name} -g {rg} --description {description} --alternate-id {alternate_id} --storage-account {storageAccount} --container {container}')
 
-        filterName = self.create_random_name(prefix='filter', length=12)
+        filter_name = self.create_random_name(prefix='filter', length=12)
 
         self.kwargs.update({
-            'filterName': filterName,
+            'filter_name': filter_name,
             'bitrate': 420,
             'endTimestamp': 100000000,
             'liveBackoffDuration': 60,
@@ -56,9 +56,9 @@ class AmsAssetFilterTests(ScenarioTest):
             'tracks': '@' + self._get_test_data_file('filterTracks.json'),
         })
 
-        self.cmd('az ams asset-filter create -a {amsname} --asset-name {assetName} -g {rg} -n {filterName} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"', checks=[
+        self.cmd('az ams asset-filter create -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"', checks=[
             self.check('firstQuality.bitrate', '{bitrate}'),
-            self.check('name', '{filterName}'),
+            self.check('name', '{filter_name}'),
             self.check('presentationTimeRange.endTimestamp', '{endTimestamp}'),
             self.check('presentationTimeRange.liveBackoffDuration', '{liveBackoffDuration}'),
             self.check('presentationTimeRange.presentationWindowDuration', '{presentationWindowDuration}'),
@@ -91,22 +91,22 @@ class AmsAssetFilterTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
         self.cmd('az ams account storage add -a {amsname} -g {rg} -n {storageAccount}')
 
-        assetName = self.create_random_name(prefix='asset', length=12)
-        alternateId = self.create_random_name(prefix='aid', length=12)
+        asset_name = self.create_random_name(prefix='asset', length=12)
+        alternate_id = self.create_random_name(prefix='aid', length=12)
         description = self.create_random_name(prefix='desc', length=12)
 
         self.kwargs.update({
-            'assetName': assetName,
-            'alternateId': alternateId,
+            'asset_name': asset_name,
+            'alternate_id': alternate_id,
             'description': description
         })
 
-        self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg} --description {description} --alternate-id {alternateId} --storage-account {storageAccount} --container {container}')
+        self.cmd('az ams asset create -a {amsname} -n {asset_name} -g {rg} --description {description} --alternate-id {alternate_id} --storage-account {storageAccount} --container {container}')
 
-        filterName = self.create_random_name(prefix='filter', length=12)
+        filter_name = self.create_random_name(prefix='filter', length=12)
 
         self.kwargs.update({
-            'filterName': filterName,
+            'filter_name': filter_name,
             'bitrate': 420,
             'endTimestamp': 100000000,
             'liveBackoffDuration': 60,
@@ -116,11 +116,11 @@ class AmsAssetFilterTests(ScenarioTest):
             'tracks': '@' + self._get_test_data_file('filterTracks.json'),
         })
 
-        self.cmd('az ams asset-filter create -a {amsname} --asset-name {assetName} -g {rg} -n {filterName} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"')
+        self.cmd('az ams asset-filter create -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"')
 
-        self.cmd('az ams asset-filter show -a {amsname} --asset-name {assetName} -g {rg} -n {filterName}', checks=[
+        self.cmd('az ams asset-filter show -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name}', checks=[
             self.check('firstQuality.bitrate', '{bitrate}'),
-            self.check('name', '{filterName}'),
+            self.check('name', '{filter_name}'),
             self.check('presentationTimeRange.endTimestamp', '{endTimestamp}'),
             self.check('presentationTimeRange.liveBackoffDuration', '{liveBackoffDuration}'),
             self.check('presentationTimeRange.presentationWindowDuration', '{presentationWindowDuration}'),
@@ -153,47 +153,47 @@ class AmsAssetFilterTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
         self.cmd('az ams account storage add -a {amsname} -g {rg} -n {storageAccount}')
 
-        assetName = self.create_random_name(prefix='asset', length=12)
-        alternateId = self.create_random_name(prefix='aid', length=12)
+        asset_name = self.create_random_name(prefix='asset', length=12)
+        alternate_id = self.create_random_name(prefix='aid', length=12)
         description = self.create_random_name(prefix='desc', length=12)
 
         self.kwargs.update({
-            'assetName': assetName,
-            'alternateId': alternateId,
+            'asset_name': asset_name,
+            'alternate_id': alternate_id,
             'description': description
         })
 
-        self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg} --description {description} --alternate-id {alternateId} --storage-account {storageAccount} --container {container}')
+        self.cmd('az ams asset create -a {amsname} -n {asset_name} -g {rg} --description {description} --alternate-id {alternate_id} --storage-account {storageAccount} --container {container}')
 
-        filterName1 = self.create_random_name(prefix='filter', length=12)
-        filterName2 = self.create_random_name(prefix='filter', length=13)
+        filter_name1 = self.create_random_name(prefix='filter', length=12)
+        filter_name2 = self.create_random_name(prefix='filter', length=13)
 
         self.kwargs.update({
-            'filterName1': filterName1,
-            'filterName2': filterName2,
+            'filter_name1': filter_name1,
+            'filter_name2': filter_name2,
             'bitrate1': 420,
             'bitrate2': 1000,
         })
 
-        self.cmd('az ams asset-filter list -a {amsname} --asset-name {assetName} -g {rg}', checks=[
+        self.cmd('az ams asset-filter list -a {amsname} --asset-name {asset_name} -g {rg}', checks=[
             self.check('length(@)', 0)
         ])
 
-        self.cmd('az ams asset-filter create -a {amsname} --asset-name {assetName} -g {rg} -n {filterName1} --bitrate {bitrate1}')
+        self.cmd('az ams asset-filter create -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name1} --bitrate {bitrate1}')
 
-        self.cmd('az ams asset-filter list -a {amsname} --asset-name {assetName} -g {rg}', checks=[
+        self.cmd('az ams asset-filter list -a {amsname} --asset-name {asset_name} -g {rg}', checks=[
             self.check('length(@)', 1)
         ])
 
-        self.cmd('az ams asset-filter create -a {amsname} --asset-name {assetName} -g {rg} -n {filterName2} --bitrate {bitrate2}')
+        self.cmd('az ams asset-filter create -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name2} --bitrate {bitrate2}')
 
-        self.cmd('az ams asset-filter list -a {amsname} --asset-name {assetName} -g {rg}', checks=[
+        self.cmd('az ams asset-filter list -a {amsname} --asset-name {asset_name} -g {rg}', checks=[
             self.check('length(@)', 2)
         ])
 
-        self.cmd('az ams asset-filter delete -a {amsname} --asset-name {assetName} -g {rg} -n {filterName2}')
+        self.cmd('az ams asset-filter delete -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name2}')
 
-        self.cmd('az ams asset-filter list -a {amsname} --asset-name {assetName} -g {rg}', checks=[
+        self.cmd('az ams asset-filter list -a {amsname} --asset-name {asset_name} -g {rg}', checks=[
             self.check('length(@)', 1)
         ])
 
@@ -213,22 +213,22 @@ class AmsAssetFilterTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
         self.cmd('az ams account storage add -a {amsname} -g {rg} -n {storageAccount}')
 
-        assetName = self.create_random_name(prefix='asset', length=12)
-        alternateId = self.create_random_name(prefix='aid', length=12)
+        asset_name = self.create_random_name(prefix='asset', length=12)
+        alternate_id = self.create_random_name(prefix='aid', length=12)
         description = self.create_random_name(prefix='desc', length=12)
 
         self.kwargs.update({
-            'assetName': assetName,
-            'alternateId': alternateId,
+            'asset_name': asset_name,
+            'alternate_id': alternate_id,
             'description': description
         })
 
-        self.cmd('az ams asset create -a {amsname} -n {assetName} -g {rg} --description {description} --alternate-id {alternateId} --storage-account {storageAccount} --container {container}')
+        self.cmd('az ams asset create -a {amsname} -n {asset_name} -g {rg} --description {description} --alternate-id {alternate_id} --storage-account {storageAccount} --container {container}')
 
-        filterName = self.create_random_name(prefix='filter', length=12)
+        filter_name = self.create_random_name(prefix='filter', length=12)
 
         self.kwargs.update({
-            'filterName': filterName,
+            'filter_name': filter_name,
             'bitrate': 420,
             'endTimestamp': 100000000,
             'liveBackoffDuration': 60,
@@ -244,11 +244,11 @@ class AmsAssetFilterTests(ScenarioTest):
             'newTrackValue': 'EC-3'
         })
 
-        self.cmd('az ams asset-filter create -a {amsname} --asset-name {assetName} -g {rg} -n {filterName} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"')
+        self.cmd('az ams asset-filter create -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name} --bitrate {bitrate} --end-timestamp {endTimestamp} --live-backoff-duration {liveBackoffDuration} --presentation-window-duration {presentationWindowDuration} --start-timestamp {startTimestamp} --timescale {timescale} --tracks "{tracks}"')
 
-        self.cmd('az ams asset-filter update -a {amsname} --asset-name {assetName} -g {rg} -n {filterName} --bitrate {newBitrate} --start-timestamp {newStartTimestamp} --end-timestamp {newEndTimestamp} --set tracks[1].trackSelections[0].operation={newTrackOperation} tracks[1].trackSelections[0].property={newTrackProperty} tracks[1].trackSelections[0].value={newTrackValue}', checks=[
+        self.cmd('az ams asset-filter update -a {amsname} --asset-name {asset_name} -g {rg} -n {filter_name} --bitrate {newBitrate} --start-timestamp {newStartTimestamp} --end-timestamp {newEndTimestamp} --set tracks[1].trackSelections[0].operation={newTrackOperation} tracks[1].trackSelections[0].property={newTrackProperty} tracks[1].trackSelections[0].value={newTrackValue}', checks=[
             self.check('firstQuality.bitrate', '{newBitrate}'),
-            self.check('name', '{filterName}'),
+            self.check('name', '{filter_name}'),
             self.check('presentationTimeRange.endTimestamp', '{newEndTimestamp}'),
             self.check('presentationTimeRange.liveBackoffDuration', '{liveBackoffDuration}'),
             self.check('presentationTimeRange.presentationWindowDuration', '{presentationWindowDuration}'),
