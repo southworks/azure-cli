@@ -13,8 +13,7 @@
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>MSBuild|{54f4b6dc-0859-46dc-99bb-b275c9d0aca3}|$(MSBuildProjectFullPath)</InterpreterId>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
-    <CommandLineArguments>
-    </CommandLineArguments>
+    <CommandLineArguments>ams job start -g juanirg -a juaniams -n demoJobWithAssetLabel --transform-name demoTr --input-asset-name demoassetforstorage --output-assets testAsset2=assetLabel myasset=assetLabel2</CommandLineArguments>
     <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />

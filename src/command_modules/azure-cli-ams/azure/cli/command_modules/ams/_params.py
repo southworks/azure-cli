@@ -150,8 +150,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('input_asset_name',
                    arg_group='Asset Job Input',
                    help='The name of the input asset.')
-        c.argument('output_asset_names',
-                   nargs='+', help='Space-separated list of output asset names.')
+        c.argument('output_assets',
+                   nargs='*', help="Space-separated assets in '[name=label]' format.")
         c.argument('base_uri',
                    arg_group='Http Job Input',
                    help='Base uri for http job input. It will be concatenated with provided file names. If no base uri is given, then the provided file list is assumed to be fully qualified uris.')
