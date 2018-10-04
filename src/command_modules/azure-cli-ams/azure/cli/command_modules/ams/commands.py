@@ -8,7 +8,7 @@ from ._client_factory import (get_mediaservices_client, get_transforms_client,
                               get_assets_client, get_jobs_client, get_streaming_locators_client,
                               get_streaming_policies_client, get_streaming_endpoints_client,
                               get_locations_client, get_live_events_client, get_live_outputs_client,
-                              get_content_key_policies_client)
+                              get_content_key_policies_client, get_account_filters_client)
 from ._exception_handler import ams_exception_handler
 
 
@@ -196,3 +196,13 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.show_command('show', 'get')
         g.command('list', 'list')
         g.command('delete', 'delete')
+
+    with self.command_group('ams account-filter', get_sdk('AccountFilters', get_account_filters_client)) as g:
+        g.custom_command('create', 'create_account_filter',
+                         custom_command_type=get_custom_sdk('account_filter', get_account_filters_client))
+        g.show_command('show', 'get')
+        g.command('list', 'list')
+        g.command('delete', 'delete')
+        g.generic_update_command('update',
+                                 custom_func_name='update_account_filter',
+                                 custom_func_type=get_custom_sdk('account_filter', get_mediaservices_client))
