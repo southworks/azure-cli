@@ -80,6 +80,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.show_command('show', 'get')
         g.command('list', 'list')
         g.command('delete', 'delete')
+        g.command('list-streaming-locators', 'list_streaming_locators')
         g.custom_command('get-encryption-key', 'get_encryption_key',
                          custom_command_type=get_custom_sdk('asset', get_assets_client))
         g.generic_update_command('update',
