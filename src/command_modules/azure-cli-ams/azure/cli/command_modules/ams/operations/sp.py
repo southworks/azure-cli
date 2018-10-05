@@ -105,7 +105,7 @@ def _get_displayable_name(graph_object):
     return graph_object.display_name or ''
 
 
-def list_role_assignments(cmd, assignee_object_id):
+def list_role_assignments(cmd, assignee_object_id, scope=None):
     '''
     :param include_groups: include extra assignments to the groups of which the user is a
     member(transitively).
@@ -126,7 +126,7 @@ def list_role_assignments(cmd, assignee_object_id):
     # (it's possible that associated roles and principals were deleted, and we just do nothing.)
     # 2. fill in role names
     role_defs = list(definitions_client.list(
-        scope=('/subscriptions/' + definitions_client.config.subscription_id)))
+        scope=(scope if scope else '/subscriptions/' + definitions_client.config.subscription_id)))
     role_dics = {i.id: i.role_name for i in role_defs}
     for i in results:
         if role_dics.get(i['roleDefinitionId']):
@@ -155,8 +155,6 @@ def _create_role_assignment(cli_ctx, role, assignee_object_id, scope):
     factory = _auth_client_factory(cli_ctx, scope)
     assignments_client = factory.role_assignments
     definitions_client = factory.role_definitions
-
-    scope = '/subscriptions/' + assignments_client.config.subscription_id
 
     role_id = _resolve_role_id(role, scope, definitions_client)
 
@@ -261,7 +259,7 @@ def _search_role_assignments(assignments_client, assignee_object_id):
 
 
 def _assign_role(cmd, role, sp_oid, scope):
-    assignments = list_role_assignments(cmd, sp_oid)
+    assignments = list_role_assignments(cmd, sp_oid, scope)
     if assignments and list(filter(lambda x: x['roleDefinitionName'] == role, assignments)):
         return
 
