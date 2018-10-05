@@ -18,8 +18,7 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_protocols_completion_list,
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
-                                                       get_token_completion_list,
-                                                       get_allowed_codecs_completion_list)
+                                                       get_token_completion_list)
 from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
                                                        validate_correlation_data, validate_token_claim,
                                                        validate_output_assets)
@@ -132,7 +131,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('force_end_timestamp', arg_group='Presentation Time Range',
                    arg_type=get_three_state_flag(), help='Indicates whether to force the existance of an end timestamp.')
         c.argument('bitrate', help='The first quality bitrate.')
-        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file. Allowed codecs: ' + '{}'.format(", ").join(get_allowed_codecs_completion_list()))
+        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file.')
 
     with self.argument_context('ams job') as c:
         c.argument('account_name', account_name_arg_type)
@@ -370,4 +369,4 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('timescale', arg_group='Presentation Time Range', help='The time scale of time stamps.')
         c.argument('force_end_timestamp', arg_type=get_three_state_flag(), arg_group='Presentation Time Range', help='Indicates whether to force the existance of an end timestamp.')
         c.argument('bitrate', help='The first quality bitrate.')
-        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file. Allowed codecs: ' + '{}.'.format(", ".join(get_allowed_codecs_completion_list())))
+        c.argument('tracks', help='The JSON representing the track selections. Use @{file} to load from a file.')

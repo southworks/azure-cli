@@ -165,6 +165,11 @@ helps['ams asset-filter'] = """
     short-summary: Manage asset filters for an Azure Media Services account.
 """
 
+helps['ams account-filter'] = """
+    type: group
+    short-summary: Manage account filters for an Azure Media Services account.
+"""
+
 helps['ams asset show'] = """
     type: command
     short-summary: Show the details of an asset.
