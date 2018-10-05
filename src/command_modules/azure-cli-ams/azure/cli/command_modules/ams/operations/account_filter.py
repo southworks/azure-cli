@@ -13,9 +13,9 @@ from azure.mgmt.media.models import (AccountFilter, FilterTrackSelection,
                                      PresentationTimeRange, FirstQuality)
 
 
-def create_account_filter(client, account_name, resource_group_name, filter_name, start_timestamp,
-                          end_timestamp, presentation_window_duration, live_backoff_duration,
-                          timescale, force_end_timestamp=False, bitrate=None, tracks=None):
+def create_account_filter(client, account_name, resource_group_name, filter_name, start_timestamp=None,
+                          end_timestamp=None, presentation_window_duration=None, live_backoff_duration=None,
+                          timescale=None, force_end_timestamp=False, bitrate=None, tracks=None):
 
     first_quality = None
     presentation_time_range = None
