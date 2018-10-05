@@ -21,21 +21,12 @@ def create_job(client, resource_group_name, account_name, transform_name, job_na
         else:
             job_input = JobInputHttp(files=files, base_uri=base_uri, label=label)
 
-    job_outputs = list(map(lambda x: _get_asset(x), output_assets))
+    job_outputs = output_assets
 
     job = Job(input=job_input, outputs=job_outputs, correlation_data=correlation_data,
               description=description, priority=priority)
 
     return client.create(resource_group_name, account_name, transform_name, job_name, job)
-
-
-def _get_asset(asset_string):
-    from azure.mgmt.media.models import JobOutputAsset
-
-    name_and_label = asset_string.split('=')
-    name = name_and_label[0]
-    label = name_and_label[1]
-    return JobOutputAsset(asset_name=name, label=label)
 
 
 def update_job(instance, description=None, priority=None):
