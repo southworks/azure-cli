@@ -20,7 +20,8 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list)
 from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
-                                                       validate_correlation_data, validate_token_claim)
+                                                       validate_correlation_data, validate_token_claim,
+                                                       validate_output_assets)
 
 from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
 
@@ -36,6 +37,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     correlation_data_type = CLIArgumentType(validator=validate_correlation_data, help="Space-separated correlation data in 'key[=value]' format. This customer provided data will be returned in Job and JobOutput state events.", nargs='*', metavar='CORRELATION_DATA')
     token_claim_type = CLIArgumentType(validator=validate_token_claim, help="Space-separated required token claims in '[key=value]' format.", nargs='*', metavar='ASYMMETRIC TOKEN CLAIMS')
     ip_range_type = CLIArgumentType(nargs='+', help='Space-separated IP addresses for access control. You can also use CIDR notation to specify the length of the subnet mask prefix (e.g: 192.168.0.0/28). Use "" to clear existing list.')
+    output_assets_type = CLIArgumentType(validator=validate_output_assets, nargs='*', help="Space-separated assets in 'assetName=label' format. An asset without label can be sent like this: 'assetName='", metavar='OUTPUT_ASSETS')
 
     with self.argument_context('ams') as c:
         c.argument('account_name', name_arg_type)
@@ -149,8 +151,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('input_asset_name',
                    arg_group='Asset Job Input',
                    help='The name of the input asset.')
-        c.argument('output_asset_names',
-                   nargs='+', help='Space-separated list of output asset names.')
+        c.argument('output_assets', arg_type=output_assets_type)
         c.argument('base_uri',
                    arg_group='Http Job Input',
                    help='Base uri for http job input. It will be concatenated with provided file names. If no base uri is given, then the provided file list is assumed to be fully qualified uris.')

@@ -50,3 +50,17 @@ def validate_token_claim(ns):
         for item in ns.token_claims:
             token_claims_dict.update(validate_tag(item))
         ns.token_claims = token_claims_dict
+
+
+def validate_output_assets(ns):
+    """ Extracts multiple space-separated output assets in key[=value] format """
+    def _get_asset(asset_string):
+        from azure.mgmt.media.models import JobOutputAsset
+
+        name_and_label = asset_string.split('=')
+        name = name_and_label[0]
+        label = name_and_label[1]
+        return JobOutputAsset(asset_name=name, label=label)
+
+    if isinstance(ns.output_assets, list):
+        ns.output_assets = list(map(lambda x: _get_asset(x), ns.output_assets))
