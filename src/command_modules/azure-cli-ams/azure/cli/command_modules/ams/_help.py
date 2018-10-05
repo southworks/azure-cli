@@ -178,6 +178,10 @@ helps['ams asset show'] = """
 helps['ams asset list'] = """
     type: command
     short-summary: List all the assets of an Azure Media Services account.
+    examples:
+        - name: List all the assets whose names start with the string 'Something'.
+          text: >
+            az ams asset list -a amsAccount -g resourceGroup --query [?starts_with(name,'Something')]
 """
 
 helps['ams asset create'] = """
@@ -456,6 +460,10 @@ helps['ams live-event show'] = """
 helps['ams live-event list'] = """
     type: command
     short-summary: List all the live events of an Azure Media Services account.
+    examples:
+        - name: Get the list of live-event names by runningState quickly. 
+          text: >
+            az ams live-event list -a amsAccount -g resourceGroup --query [].{name:liveEventName,state:resourceState}
 """
 
 helps['ams live-event delete'] = """
