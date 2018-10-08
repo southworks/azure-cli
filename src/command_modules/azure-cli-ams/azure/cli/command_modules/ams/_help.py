@@ -152,7 +152,7 @@ helps['ams transform output remove'] = """
     examples:
         - name: Remove the output element at the index specified with --output-index argument.
           text: >
-            az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1"
+            az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1
     """
 
 helps['ams asset'] = """
@@ -208,6 +208,10 @@ helps['ams asset get-encryption-key'] = """
 helps['ams asset-filter create'] = """
     type: command
     short-summary: Create an asset filter.
+    examples:
+        - name: Create an asset filter with filter track selections.
+          text: >
+            az ams asset-filter create -a amsAccount -g resourceGroup -n filterName --force-end-timestamp=False --end-timestamp 200000 --start-timestamp 100000 --live-backoff-duration 60 --presentation-window-duration 600000 --timescale 1000 --bitrate 720 --asset-name assetName --tracks @C:\\tracks.json
 """
 
 helps['ams asset-filter update'] = """
@@ -516,6 +520,10 @@ helps['ams account-filter list'] = """
 helps['ams account-filter create'] = """
     type: command
     short-summary: Create an account filter.
+    examples:
+        - name: Create an asset filter with filter track selections.
+          text: >
+            az ams account-filter create -a amsAccount -g resourceGroup -n filterName --force-end-timestamp=False --end-timestamp 200000 --start-timestamp 100000 --live-backoff-duration 60 --presentation-window-duration 600000 --timescale 1000 --bitrate 720 --tracks @C:\\tracks.json
 """
 
 helps['ams account-filter update'] = """
