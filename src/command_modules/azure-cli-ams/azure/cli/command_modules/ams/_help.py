@@ -311,9 +311,12 @@ helps['ams job list'] = """
     type: command
     short-summary: List all the jobs of a transform within an Azure Media Services account.
     examples:
-        - name: List all the jobs with 'Normal' priority by name.
+        - name: List all the jobs of a transform with 'Normal' priority by name.
           text: >
             az ams job list -a amsAccount -g resourceGroup -t transformName --query [?priority=='Normal'].{jobName:name}
+        - name: List all the jobs of a transform by name and input.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [].{jobName:name,jobInput:input}
 """
 
 helps['ams job show'] = """
