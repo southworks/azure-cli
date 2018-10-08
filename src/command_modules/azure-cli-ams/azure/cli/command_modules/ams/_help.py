@@ -310,6 +310,10 @@ helps['ams job update'] = """
 helps['ams job list'] = """
     type: command
     short-summary: List all the jobs of a transform within an Azure Media Services account.
+    examples:
+        - name: List all the jobs with 'Normal' priority by name.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [?priority=='Normal'].{jobName:name}
 """
 
 helps['ams job show'] = """
@@ -461,9 +465,9 @@ helps['ams live-event list'] = """
     type: command
     short-summary: List all the live events of an Azure Media Services account.
     examples:
-        - name: Get the list of live-event names by runningState quickly. 
+        - name: List all the live events by name and resourceState quickly. 
           text: >
-            az ams live-event list -a amsAccount -g resourceGroup --query [].{name:liveEventName,state:resourceState}
+            az ams live-event list -a amsAccount -g resourceGroup --query [].{liveEventName:name,state:resourceState}
 """
 
 helps['ams live-event delete'] = """
