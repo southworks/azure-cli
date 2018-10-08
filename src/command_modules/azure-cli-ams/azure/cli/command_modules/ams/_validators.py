@@ -63,4 +63,4 @@ def validate_output_assets(ns):
         return JobOutputAsset(asset_name=name, label=label)
 
     if isinstance(ns.output_assets, list):
-        ns.output_assets = list(map(lambda x: _get_asset(x), ns.output_assets))
+        ns.output_assets = list(map(_get_asset, ns.output_assets))

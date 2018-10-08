@@ -73,14 +73,18 @@ def remove_akamai_access_control(client, account_name, resource_group_name, stre
 
     if streaming_endpoint.access_control is not None:
         if streaming_endpoint.access_control.akamai is not None:
-            streaming_endpoint.access_control.akamai.akamai_signature_header_authentication_key_list = list(filter(lambda x: x.identifier != identifier, streaming_endpoint.access_control.akamai.akamai_signature_header_authentication_key_list))  # pylint: disable=line-too-long
+            streaming_endpoint.access_control.akamai.akamai_signature_header_authentication_key_list = list(
+                filter(lambda x: x.identifier != identifier,
+                       streaming_endpoint.access_control.akamai.akamai_signature_header_authentication_key_list))
 
     return client.update(resource_group_name, account_name, streaming_endpoint_name, streaming_endpoint)
 
 
 def update_streaming_endpoint_setter(client, resource_group_name, account_name, streaming_endpoint_name,
                                      parameters, no_wait):
-    if parameters.access_control is not None and parameters.access_control.ip is not None and parameters.access_control.ip.allow:  # pylint: disable=line-too-long
+    if (parameters.access_control is not None and
+            parameters.access_control.ip is not None and
+            parameters.access_control.ip.allow):
         ips = list(map(lambda x: create_ip_range(streaming_endpoint_name, x) if isinstance(x, str) else x,
                        parameters.access_control.ip.allow))
         parameters.access_control.ip.allow = ips
