@@ -44,3 +44,11 @@ def get_protocols():
 def get_allowed_languages_for_preset():
     return ['en-US', 'en-GB', 'es-ES', 'es-MX', 'fr-FR', 'it-IT', 'ja-JP',
             'pt-BR', 'zh-CN', 'de-DE', 'ar-EG', 'ru-RU', 'hi-IN']
+
+
+def get_media_namespace():
+    return 'Microsoft.Media'
+
+
+def get_media_type():
+    return 'mediaservices'
