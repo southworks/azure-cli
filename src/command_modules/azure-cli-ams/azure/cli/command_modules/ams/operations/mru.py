@@ -74,7 +74,7 @@ class MediaV2Client(object):
             err_info = 'No error information available'
             if json.loads(media_service_res.text) is not None and json.loads(media_service_res.text).get('error') is not None:
                 err_info = json.loads(media_service_res.text).get('error').get('message')
-            raise CLIError('There was an error while trying to request v2 Media API endpoint from {} Media Services API. '.format(self._old_rp_api_version) + err_info)
+            raise CLIError(err_info)
 
         media_service = media_service_res.json()
         api_endpoints = media_service.get('properties').get('apiEndpoints')
