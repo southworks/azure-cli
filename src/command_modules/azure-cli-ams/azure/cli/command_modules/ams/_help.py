@@ -178,6 +178,10 @@ helps['ams asset show'] = """
 helps['ams asset list'] = """
     type: command
     short-summary: List all the assets of an Azure Media Services account.
+    examples:
+        - name: List all the assets whose names start with the string 'Something'.
+          text: >
+            az ams asset list -a amsAccount -g resourceGroup --query [?starts_with(name,'Something')]
 """
 
 helps['ams asset create'] = """
@@ -310,6 +314,13 @@ helps['ams job update'] = """
 helps['ams job list'] = """
     type: command
     short-summary: List all the jobs of a transform within an Azure Media Services account.
+    examples:
+        - name: List all the jobs of a transform with 'Normal' priority by name.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [?priority=='Normal'].{jobName:name}
+        - name: List all the jobs of a transform by name and input.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [].{jobName:name,jobInput:input}
 """
 
 helps['ams job show'] = """
@@ -460,6 +471,10 @@ helps['ams live-event show'] = """
 helps['ams live-event list'] = """
     type: command
     short-summary: List all the live events of an Azure Media Services account.
+    examples:
+        - name: List all the live events by name and resourceState quickly. 
+          text: >
+            az ams live-event list -a amsAccount -g resourceGroup --query [].{liveEventName:name,state:resourceState}
 """
 
 helps['ams live-event delete'] = """
