@@ -19,9 +19,10 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
     from azure.cli.command_modules.ams._client_factory import (get_mediaservices_client)
 
     allowed_ips = []
-    if ips is not None:
-        for ip in ips:
-            allowed_ips.append(create_ip_range(live_event_name, ip))
+    if ips is None:
+        ips = ['0.0.0.0/0']
+    for ip in ips:
+        allowed_ips.append(create_ip_range(live_event_name, ip))
 
     live_event_input_access_control = LiveEventInputAccessControl(ip=IPAccessControl(allow=allowed_ips))
 
@@ -53,9 +54,10 @@ def create_live_event_preview(preview_locator, streaming_policy_name,
     from azure.mgmt.media.models import (IPAccessControl, LiveEventPreviewAccessControl, LiveEventPreview)
 
     allow_list = []
-    if preview_ips is not None:
-        for ip in preview_ips:
-            allow_list.append(create_ip_range(live_event_name, ip))
+    if preview_ips is None:
+        preview_ips = ['0.0.0.0/0']
+    for ip in preview_ips:
+        allow_list.append(create_ip_range(live_event_name, ip))
 
     live_event_preview_access_control = LiveEventPreviewAccessControl(ip=IPAccessControl(allow=allow_list))
 
