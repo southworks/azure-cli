@@ -18,7 +18,8 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_protocols_completion_list,
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
-                                                       get_token_completion_list)
+                                                       get_token_completion_list,
+                                                       get_encoding_types_list)
 from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
                                                        validate_correlation_data, validate_token_claim,
                                                        validate_output_assets)
@@ -314,8 +315,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
                    arg_group='Input', help='The streaming protocol for the live event. This value is specified at creation time and cannot be updated.')
         c.argument('auto_start', action='store_true', help='The flag indicates if the resource should be automatically started on creation.')
-        c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
-                   arg_group='Encoding', help='The encoding type for live event. This value is specified at creation time and cannot be updated.')
+        c.argument('encoding_type', arg_group='Encoding', help='The encoding type for live event. This value is specified at creation time and cannot be updated. Allowed values: {}.'.format(", ".join(get_encoding_types_list())))
         c.argument('preset_name', arg_group='Encoding', help='The encoding preset name. This value is specified at creation time and cannot be updated.')
         c.argument('tags', arg_type=tags_type)
         c.argument('key_frame_interval_duration', arg_group='Input',
