@@ -24,7 +24,7 @@ def set_mru(cmd, resource_group_name, account_name, count=None, type=None):
     client = MediaV2Client(cmd.cli_ctx, resource_group_name, account_name)
     mru = client.get_mru()
 
-    count = count if count is None else int(mru['CurrentReservedUnits'])
+    count = count if count is not None else int(mru['CurrentReservedUnits'])
 
     if type is None:
         type = int(mru['ReservedUnitType'])
@@ -32,7 +32,7 @@ def set_mru(cmd, resource_group_name, account_name, count=None, type=None):
         try:
             type = int(list(_rut_dict.keys())[list(_rut_dict.values()).index(type)])
         except:
-            raise CLIError('Invalid --type. Allowed values: {}'.format(get_mru_type_completion_list))
+            raise CLIError('Invalid --type. Allowed values: {}'.format(get_mru_type_completion_list()))
 
     client.set_mru(mru['AccountId'], count, type)
     return _map_mru(client.get_mru())
@@ -71,7 +71,10 @@ class MediaV2Client(object):
         media_service_res = requests.get(cli_ctx.cloud.endpoints.resource_manager[:-1] + media_old_rp_url,
                                          headers={'Authorization': 'Bearer {}'.format(access_token)})
         if not media_service_res.ok:
-            raise CLIError('There was an error while trying to request v2 Media API endpoint from {} Media Services API.'.format(self._old_rp_api_version))
+            err_info = 'No error information available'
+            if json.loads(media_service_res.text) is not None and json.loads(media_service_res.text).get('error') is not None:
+                err_info = json.loads(media_service_res.text).get('error').get('message')
+            raise CLIError('There was an error while trying to request v2 Media API endpoint from {} Media Services API. '.format(self._old_rp_api_version) + err_info)
 
         media_service = media_service_res.json()
         api_endpoints = media_service.get('properties').get('apiEndpoints')
@@ -104,11 +107,14 @@ class MediaV2Client(object):
         s = requests.Session()
         req = requests.Request('PUT', "{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19".format(self.api_endpoint.get('endpoint'), account_id),
                                headers=headers,
-                               data="{{\"ReservedUnitType\":{},\"CurrentReservedUnits\":{}}}".format(count, type))
+                               data='{{"ReservedUnitType":{}, "CurrentReservedUnits":{}}}'.format(type, count))
         response = s.send(req.prepare())
 
         if not response.ok:
-            raise CLIError('Request to EncodingReservedUnitTypes v2 API endpoint failed.')
+            err_info = 'No error information available'
+            if json.loads(response.text) is not None and json.loads(response.text).get('error') is not None:
+                err_info = json.loads(response.text).get('error').get('message').get('value')
+            raise CLIError('Request to EncodingReservedUnitTypes v2 API endpoint failed. ' + err_info)
 
 
     def get_mru(self):

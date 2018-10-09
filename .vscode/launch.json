@@ -9,7 +9,7 @@
             "program": "${workspaceRoot}/src/azure-cli/azure/cli/__main__.py",
             "cwd": "${workspaceRoot}",
             "args": [
-                "--help"
+                "ams", "account", "mru", "set", "-n", "fbesteiroA", "-g", "test-fbesteiro", "--count", "3", "--type", "S3" //"--help"
             ],
             "console": "integratedTerminal",
             "debugOptions": [
