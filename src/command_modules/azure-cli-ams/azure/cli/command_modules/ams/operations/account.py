@@ -7,7 +7,8 @@ from knack.util import CLIError
 
 
 def get_mediaservice(client, account_name, resource_group_name=None):
-    return client.get(resource_group_name, account_name) if resource_group_name else client.get_by_subscription(account_name)
+    return client.get(resource_group_name,
+                      account_name) if resource_group_name else client.get_by_subscription(account_name)
 
 
 def list_mediaservices(client, resource_group_name=None):
