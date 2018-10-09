@@ -478,7 +478,7 @@ helps['ams live-event list'] = """
     short-summary: List all the live events of an Azure Media Services account.
     examples:
         - name: List all the live events by name and resourceState quickly.
-        text: >
+          text: >
             az ams live-event list -a amsAccount -g resourceGroup --query [].{liveEventName:name,state:resourceState}
 """
 
