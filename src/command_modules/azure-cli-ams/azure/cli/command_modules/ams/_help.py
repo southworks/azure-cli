@@ -152,7 +152,7 @@ helps['ams transform output remove'] = """
     examples:
         - name: Remove the output element at the index specified with --output-index argument.
           text: >
-            az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1"
+            az ams transform output remove -a myAmsAccount -n transformName -g myResourceGroup --output-index 1
     """
 
 helps['ams asset'] = """
@@ -178,6 +178,15 @@ helps['ams asset show'] = """
 helps['ams asset list'] = """
     type: command
     short-summary: List all the assets of an Azure Media Services account.
+    examples:
+        - name: List all the assets whose names start with the string 'Something'.
+          text: >
+            az ams asset list -a amsAccount -g resourceGroup --query [?starts_with(name,'Something')]
+"""
+
+helps['ams asset get-streaming-locators'] = """
+    type: command
+    short-summary: List streaming locators which are associated with this asset.
 """
 
 helps['ams asset create'] = """
@@ -208,6 +217,10 @@ helps['ams asset get-encryption-key'] = """
 helps['ams asset-filter create'] = """
     type: command
     short-summary: Create an asset filter.
+    examples:
+        - name: Create an asset filter with filter track selections.
+          text: >
+            az ams asset-filter create -a amsAccount -g resourceGroup -n filterName --force-end-timestamp=False --end-timestamp 200000 --start-timestamp 100000 --live-backoff-duration 60 --presentation-window-duration 600000 --timescale 1000 --bitrate 720 --asset-name assetName --tracks @C:\\tracks.json
 """
 
 helps['ams asset-filter update'] = """
@@ -306,6 +319,13 @@ helps['ams job update'] = """
 helps['ams job list'] = """
     type: command
     short-summary: List all the jobs of a transform within an Azure Media Services account.
+    examples:
+        - name: List all the jobs of a transform with 'Normal' priority by name.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [?priority=='Normal'].{jobName:name}
+        - name: List all the jobs of a transform by name and input.
+          text: >
+            az ams job list -a amsAccount -g resourceGroup -t transformName --query [].{jobName:name,jobInput:input}
 """
 
 helps['ams job show'] = """
@@ -456,6 +476,10 @@ helps['ams live-event show'] = """
 helps['ams live-event list'] = """
     type: command
     short-summary: List all the live events of an Azure Media Services account.
+    examples:
+        - name: List all the live events by name and resourceState quickly.
+          text: >
+            az ams live-event list -a amsAccount -g resourceGroup --query [].{liveEventName:name,state:resourceState}
 """
 
 helps['ams live-event delete'] = """
@@ -516,6 +540,10 @@ helps['ams account-filter list'] = """
 helps['ams account-filter create'] = """
     type: command
     short-summary: Create an account filter.
+    examples:
+        - name: Create an asset filter with filter track selections.
+          text: >
+            az ams account-filter create -a amsAccount -g resourceGroup -n filterName --force-end-timestamp=False --end-timestamp 200000 --start-timestamp 100000 --live-backoff-duration 60 --presentation-window-duration 600000 --timescale 1000 --bitrate 720 --tracks @C:\\tracks.json
 """
 
 helps['ams account-filter update'] = """

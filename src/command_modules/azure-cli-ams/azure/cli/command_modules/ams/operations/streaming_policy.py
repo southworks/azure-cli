@@ -120,8 +120,9 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_template,
 
     cbcs_play_ready_config = None
     if cbcs_play_ready_template or cbcs_play_ready_attributes:
-        cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(play_ready_custom_attributes=cbcs_play_ready_attributes,  # pylint: disable=line-too-long
-                                                                       custom_license_acquisition_url_template=cbcs_play_ready_template)  # pylint: disable=line-too-long
+        cbcs_play_ready_config = StreamingPolicyPlayReadyConfiguration(
+            play_ready_custom_attributes=cbcs_play_ready_attributes,
+            custom_license_acquisition_url_template=cbcs_play_ready_template)
 
     cbcs_widevine_config = None
     if cbcs_widevine_template:
@@ -130,18 +131,22 @@ def _cbcs_encryption_factory(cbcs_protocols, cbcs_widevine_template,
 
     cbcs_fair_play_config = None
     if cbcs_fair_play_allow_persistent_license or cbcs_fair_play_template:
-        cbcs_fair_play_config = StreamingPolicyFairPlayConfiguration(allow_persistent_license=cbcs_fair_play_allow_persistent_license,  # pylint: disable=line-too-long
-                                                                     custom_license_acquisition_url_template=cbcs_fair_play_template)  # pylint: disable=line-too-long
+        cbcs_fair_play_config = StreamingPolicyFairPlayConfiguration(
+            allow_persistent_license=cbcs_fair_play_allow_persistent_license,
+            custom_license_acquisition_url_template=cbcs_fair_play_template)
 
-    cbcs_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=cbcs_default_key_label,
-                                                                          policy_name=cbcs_default_key_policy_name),
-                                                   key_to_track_mappings=_parse_key_to_track_mappings_json(cbcs_key_to_track_mappings))  # pylint: disable=line-too-long
+    cbcs_content_keys = StreamingPolicyContentKeys(
+        default_key=DefaultKey(label=cbcs_default_key_label,
+                               policy_name=cbcs_default_key_policy_name),
+        key_to_track_mappings=_parse_key_to_track_mappings_json(cbcs_key_to_track_mappings))
 
-    return CommonEncryptionCbcs(enabled_protocols=cbcs_enabled_protocols,
-                                clear_tracks=_parse_clear_tracks_json(cbcs_clear_tracks),
-                                content_keys=cbcs_content_keys,
-                                drm=CbcsDrmConfiguration(play_ready=cbcs_play_ready_config, widevine=cbcs_widevine_config,  # pylint: disable=line-too-long
-                                                         fair_play=cbcs_fair_play_config))
+    return CommonEncryptionCbcs(
+        enabled_protocols=cbcs_enabled_protocols,
+        clear_tracks=_parse_clear_tracks_json(cbcs_clear_tracks),
+        content_keys=cbcs_content_keys,
+        drm=CbcsDrmConfiguration(play_ready=cbcs_play_ready_config,
+                                 widevine=cbcs_widevine_config,
+                                 fair_play=cbcs_fair_play_config))
 
 
 def _parse_key_to_track_mappings_json(key_to_track_mappings):
@@ -191,9 +196,10 @@ def _envelope_encryption_factory(envelope_protocols, envelope_clear_tracks,
                                  envelope_default_key_label, envelope_default_key_policy_name,
                                  envelope_key_to_track_mappings):
 
-    envelope_content_keys = StreamingPolicyContentKeys(default_key=DefaultKey(label=envelope_default_key_label,
-                                                                              policy_name=envelope_default_key_policy_name),  # pylint: disable=line-too-long
-                                                       key_to_track_mappings=_parse_key_to_track_mappings_json(envelope_key_to_track_mappings))  # pylint: disable=line-too-long
+    envelope_content_keys = StreamingPolicyContentKeys(
+        default_key=DefaultKey(label=envelope_default_key_label,
+                               policy_name=envelope_default_key_policy_name),
+        key_to_track_mappings=_parse_key_to_track_mappings_json(envelope_key_to_track_mappings))
 
     envelope_encryption = EnvelopeEncryption(enabled_protocols=_build_enabled_protocols_object(envelope_protocols),
                                              clear_tracks=_parse_clear_tracks_json(envelope_clear_tracks),

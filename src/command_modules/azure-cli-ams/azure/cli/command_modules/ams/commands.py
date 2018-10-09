@@ -31,7 +31,8 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         )
 
     with self.command_group('ams account', get_sdk('Mediaservices', get_mediaservices_client)) as g:
-        g.show_command('show', 'get')
+        g.custom_command('show', 'get_mediaservice',
+                         custom_command_type=get_custom_sdk('account', get_mediaservices_client))
         g.command('delete', 'delete')
         g.generic_update_command('update',
                                  getter_name='mediaservice_update_getter',
@@ -86,6 +87,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.show_command('show', 'get')
         g.command('list', 'list')
         g.command('delete', 'delete')
+        g.command('get-streaming-locators', 'list_streaming_locators')
         g.custom_command('get-encryption-key', 'get_encryption_key',
                          custom_command_type=get_custom_sdk('asset', get_assets_client))
         g.generic_update_command('update',
@@ -103,6 +105,8 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.custom_command('create', 'create_asset_filter',
                          custom_command_type=get_custom_sdk('asset_filter', get_asset_filters_client))
         g.generic_update_command('update',
+                                 setter_name='update_asset_filter_setter',
+                                 setter_type=get_custom_sdk('asset_filter', get_mediaservices_client),
                                  custom_func_name='update_asset_filter',
                                  custom_func_type=get_custom_sdk('asset_filter', get_mediaservices_client))
 
@@ -221,5 +225,7 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.command('list', 'list')
         g.command('delete', 'delete')
         g.generic_update_command('update',
+                                 setter_name='update_account_filter_setter',
+                                 setter_type=get_custom_sdk('account_filter', get_mediaservices_client),
                                  custom_func_name='update_account_filter',
                                  custom_func_type=get_custom_sdk('account_filter', get_mediaservices_client))

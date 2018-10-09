@@ -20,10 +20,13 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list,
                                                        get_mru_type_completion_list)
-from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
-                                                       validate_correlation_data, validate_token_claim)
+                                                       get_encoding_types_list)
 
-from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
+from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
+                                                       validate_correlation_data, validate_token_claim,
+                                                       validate_output_assets)
+
+from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, StreamOptionsFlag, OnErrorType, InsightsType)
 
 
 def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statements
@@ -36,7 +39,8 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     default_policy_name_arg_type = CLIArgumentType(options_list=['--content-key-policy-name'], help='The default content key policy name used by the streaming locator.', metavar='DEFAULT_CONTENT_KEY_POLICY_NAME')
     correlation_data_type = CLIArgumentType(validator=validate_correlation_data, help="Space-separated correlation data in 'key[=value]' format. This customer provided data will be returned in Job and JobOutput state events.", nargs='*', metavar='CORRELATION_DATA')
     token_claim_type = CLIArgumentType(validator=validate_token_claim, help="Space-separated required token claims in '[key=value]' format.", nargs='*', metavar='ASYMMETRIC TOKEN CLAIMS')
-    ip_range_type = CLIArgumentType(nargs='+', help='Space-separated IP addresses for access control. You can also use CIDR notation to specify the length of the subnet mask prefix (e.g: 192.168.0.0/28). Use "" to clear existing list.')
+    ip_range_type = CLIArgumentType(nargs='+', help='Space-separated IP addresses for access control. Allowed IP addresses can be specified as either a single IP address (e.g. "10.0.0.1") or as an IP range using an IP address and a CIDR subnet mask (e.g. "10.0.0.1/22"). Use "" to clear existing list. If no IP addresses are specified any IP address will be allowed.')
+    output_assets_type = CLIArgumentType(validator=validate_output_assets, nargs='*', help="Space-separated assets in 'assetName=label' format. An asset without label can be sent like this: 'assetName='", metavar='OUTPUT_ASSETS')
 
     with self.argument_context('ams') as c:
         c.argument('account_name', name_arg_type)
@@ -154,8 +158,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('input_asset_name',
                    arg_group='Asset Job Input',
                    help='The name of the input asset.')
-        c.argument('output_asset_names',
-                   nargs='+', help='Space-separated list of output asset names.')
+        c.argument('output_assets', arg_type=output_assets_type)
         c.argument('base_uri',
                    arg_group='Http Job Input',
                    help='Base uri for http job input. It will be concatenated with provided file names. If no base uri is given, then the provided file list is assumed to be fully qualified uris.')
@@ -258,7 +261,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('cbcs_widevine_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cbcs_play_ready_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cbcs_fair_play_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
-        c.argument('cbcs_fair_play_allow_persistent_license', arg_group='Common Encryption CBCS', action='store_true', help='Allows the license to be persistent or not.')
+        c.argument('cbcs_fair_play_allow_persistent_license', arg_group='Common Encryption CBCS', arg_type=get_three_state_flag(), help='Allows the license to be persistent or not.')
 
     with self.argument_context('ams streaming-policy list') as c:
         c.argument('account_name', id_part=None)
@@ -271,7 +274,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams streaming-endpoint create') as c:
         c.argument('tags', arg_type=tags_type)
         c.argument('description', help='The streaming endpoint description.')
-        c.argument('scale_units', help='The number of scale units. Use the Scale operation to adjust this value.')
+        c.argument('scale_units', help='The number of scale units for Premium StreamingEndpoints. For Standard StreamingEndpoints, set this value to 0. Use the Scale operation to adjust this value for Premium StreamingEndpoints.')
         c.argument('availability_set_name', help='The name of the AvailabilitySet used with this StreamingEndpoint for high availability streaming. This value can only be set at creation time.')
         c.argument('max_cache_age', help='Max cache age.')
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
@@ -299,7 +302,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('disable_cdn', arg_group='CDN Support', action='store_true', help='Use this flag to disable CDN for the streaming endpoint.')
 
     with self.argument_context('ams streaming-endpoint scale') as c:
-        c.argument('scale_unit', options_list=['--scale-units'], help='The scale unit number of the StreamingEndpoint.')
+        c.argument('scale_unit', options_list=['--scale-units'], help='The number of scale units for Premium StreamingEndpoints.')
 
     with self.argument_context('ams streaming-endpoint akamai add') as c:
         c.argument('identifier', help='Identifier of the key.')
@@ -318,27 +321,26 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('streaming_protocol', arg_type=get_enum_type(LiveEventInputProtocol),
                    arg_group='Input', help='The streaming protocol for the live event. This value is specified at creation time and cannot be updated.')
         c.argument('auto_start', action='store_true', help='The flag indicates if the resource should be automatically started on creation.')
-        c.argument('encoding_type', arg_type=get_enum_type(LiveEventEncodingType),
-                   arg_group='Encoding', help='The encoding type for live event. This value is specified at creation time and cannot be updated.')
+        c.argument('encoding_type', arg_group='Encoding', help='The encoding type for live event. This value is specified at creation time and cannot be updated. Allowed values: {}.'.format(", ".join(get_encoding_types_list())))
         c.argument('preset_name', arg_group='Encoding', help='The encoding preset name. This value is specified at creation time and cannot be updated.')
         c.argument('tags', arg_type=tags_type)
         c.argument('key_frame_interval_duration', arg_group='Input',
                    help='ISO 8601 timespan duration of the key frame interval duration.')
         c.argument('access_token', arg_group='Input', help='A unique identifier for a stream. This can be specified at creation time but cannot be updated. If omitted, the service will generate a unique value.')
         c.argument('description', help='The live event description.')
-        c.argument('ips', ip_range_type)
+        c.argument('ips', ip_range_type, arg_group='Input')
         c.argument('preview_ips', ip_range_type, arg_group='Preview')
         c.argument('preview_locator', arg_group='Preview', help='The identifier of the preview locator in Guid format. Specifying this at creation time allows the caller to know the preview locator url before the event is created. If omitted, the service will generate a random identifier. This value cannot be updated once the live event is created.')
         c.argument('streaming_policy_name', arg_group='Preview', help='The name of streaming policy used for the live event preview. This can be specified at creation time but cannot be updated.')
         c.argument('alternative_media_id', arg_group='Preview', help='An Alternative Media Identifier associated with the StreamingLocator created for the preview. This value is specified at creation time and cannot be updated. The identifier can be used in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.')
-        c.argument('vanity_url', action='store_true', help='Specifies whether to use a vanity url with the Live Event. This value is specified at creation time and cannot be updated.')
+        c.argument('vanity_url', arg_type=get_three_state_flag(), help='Specifies whether to use a vanity url with the Live Event. This value is specified at creation time and cannot be updated.')
         c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
         c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('stream_options', nargs='+', arg_type=get_enum_type(StreamOptionsFlag), help='The options to use for the LiveEvent. This value is specified at creation time and cannot be updated.')
 
     with self.argument_context('ams live-event update') as c:
         c.argument('description', help='The live event description.')
-        c.argument('ips', ip_range_type)
+        c.argument('ips', ip_range_type, arg_group='Input')
         c.argument('preview_ips', ip_range_type, arg_group='Preview')
         c.argument('tags', arg_type=tags_type)
         c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
