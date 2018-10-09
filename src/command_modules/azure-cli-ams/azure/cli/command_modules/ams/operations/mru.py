@@ -32,7 +32,7 @@ def set_mru(cmd, resource_group_name, account_name, count=None, type=None):
         try:
             type = int(list(_rut_dict.keys())[list(_rut_dict.values()).index(type)])
         except:
-            raise CLIError('Invalid --type. Allowed values: {}'.format(get_mru_type_completion_list()))
+            raise CLIError('Invalid --type argument. Allowed values: {}.'.format(", ".join(get_mru_type_completion_list())))
 
     client.set_mru(mru['AccountId'], count, type)
     return _map_mru(client.get_mru())
@@ -104,11 +104,9 @@ class MediaV2Client(object):
         headers['Content-Type'] = 'application/json;odata=verbose'
         headers['Accept'] = 'application/json;odata=verbose'
 
-        s = requests.Session()
-        req = requests.Request('PUT', "{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19".format(self.api_endpoint.get('endpoint'), account_id),
-                               headers=headers,
-                               data='{{"ReservedUnitType":{}, "CurrentReservedUnits":{}}}'.format(type, count))
-        response = s.send(req.prepare())
+        response = requests.put("{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19".format(self.api_endpoint.get('endpoint'), account_id),
+                           headers=headers,
+                           data='{{"ReservedUnitType":{}, "CurrentReservedUnits":{}}}'.format(type, count))
 
         if not response.ok:
             err_info = 'No error information available'
