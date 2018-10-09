@@ -268,7 +268,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     with self.argument_context('ams streaming-endpoint create') as c:
         c.argument('tags', arg_type=tags_type)
         c.argument('description', help='The streaming endpoint description.')
-        c.argument('scale_units', help='The number of scale units for Premium StreamingEndpoints. For Standard StreamingEndpoints, set this value to 0.  Use the Scale operation to adjust this value for Premium StreamingEndpoints.')
+        c.argument('scale_units', help='The number of scale units for Premium StreamingEndpoints. For Standard StreamingEndpoints, set this value to 0. Use the Scale operation to adjust this value for Premium StreamingEndpoints.')
         c.argument('availability_set_name', help='The name of the AvailabilitySet used with this StreamingEndpoint for high availability streaming. This value can only be set at creation time.')
         c.argument('max_cache_age', help='Max cache age.')
         c.argument('custom_host_names', nargs='+', help='Space-separated list of custom host names for the streaming endpoint. Use "" to clear existing list.')
