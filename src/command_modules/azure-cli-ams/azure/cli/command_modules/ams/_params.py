@@ -57,7 +57,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
 
     with self.argument_context('ams account mru') as c:
         c.argument('type', help='Speed of reserved processing units. The cost of media encoding depends on the pricing tier you choose. See https://azure.microsoft.com/pricing/details/media-services/ for further details. Allowed values: {}.'.format(", ".join(get_mru_type_completion_list())))
-        c.argument('count', help='The number of the encoding reserved units that you want to be provisioned for this account for concurrent tasks (one unit equals one task).')
+        c.argument('count', type=int, help='The number of the encoding reserved units that you want to be provisioned for this account for concurrent tasks (one unit equals one task).')
 
     with self.argument_context('ams account storage') as c:
         c.argument('account_name', account_name_arg_type)

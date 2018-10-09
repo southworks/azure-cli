@@ -4,8 +4,10 @@
 # --------------------------------------------------------------------------------------------
 
 import uuid
+import json
 import requests
 from azure.cli.core.util import CLIError
+from azure.cli.command_modules.ams._completers import get_mru_type_completion_list
 
 
 _rut_dict = {0: 'S1',
@@ -21,8 +23,19 @@ def get_mru(cmd, resource_group_name, account_name):
 def set_mru(cmd, resource_group_name, account_name, count=None, type=None):
     client = MediaV2Client(cmd.cli_ctx, resource_group_name, account_name)
     mru = client.get_mru()
-    set_mru_response = client.set_mru(mru['AccountId'], count, type)
-    return _map_mru(mru)
+
+    count = count if count is None else int(mru['CurrentReservedUnits'])
+
+    if type is None:
+        type = int(mru['ReservedUnitType'])
+    else:
+        try:
+            type = int(list(_rut_dict.keys())[list(_rut_dict.values()).index(type)])
+        except:
+            raise CLIError('Invalid --type. Allowed values: {}'.format(get_mru_type_completion_list))
+
+    client.set_mru(mru['AccountId'], count, type)
+    return _map_mru(client.get_mru())
 
 
 def _map_mru(mru):
@@ -30,7 +43,6 @@ def _map_mru(mru):
     mapped_obj['count'] = mru['CurrentReservedUnits']
     mapped_obj['type'] = _rut_dict[mru['ReservedUnitType']]
     return mapped_obj
-
 
 
 class MediaV2Client(object):
@@ -83,19 +95,20 @@ class MediaV2Client(object):
         return AuthenticationContext(authority).acquire_token_with_refresh_token(refresh_token, client_id, self.v2_media_api_resource).get('accessToken')
 
 
-    def set_mru(self, account_id, count=None, type=None):
+    def set_mru(self, account_id, count, type):
         headers = {}
         headers['Authorization'] = 'Bearer {}'.format(self.access_token)
-        headers['Content-Type'] = 'application/json;odata=minimalmetadata'
-        headers['Accept'] = 'application/json;odata=minimalmetadata'
-        headers['Accept-Charset'] = 'UTF-8'
+        headers['Content-Type'] = 'application/json;odata=verbose'
+        headers['Accept'] = 'application/json;odata=verbose'
 
-        response = requests.put('{}EncodingReservedUnitTypes{}?api-version=2.19'.format(self.api_endpoint.get('endpoint'), uuid.UUID(account_id)),
-                                headers=headers,
-                                data={'CurrentReservedUnits': count, 'ReservedUnitType': type})
+        s = requests.Session()
+        req = requests.Request('PUT', "{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19".format(self.api_endpoint.get('endpoint'), account_id),
+                               headers=headers,
+                               data="{{\"ReservedUnitType\":{},\"CurrentReservedUnits\":{}}}".format(count, type))
+        response = s.send(req.prepare())
+
         if not response.ok:
             raise CLIError('Request to EncodingReservedUnitTypes v2 API endpoint failed.')
-        return response.json().get('value')[0]
 
 
     def get_mru(self):
