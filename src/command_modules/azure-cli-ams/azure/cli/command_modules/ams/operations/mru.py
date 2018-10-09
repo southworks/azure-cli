@@ -33,7 +33,8 @@ def set_mru(cmd, resource_group_name, account_name, count=None, type=None):
         try:
             type = int(list(_rut_dict.keys())[list(_rut_dict.values()).index(type)])
         except:
-            raise CLIError('Invalid --type argument. Allowed values: {}.'.format(", ".join(get_mru_type_completion_list())))
+            raise CLIError(
+                'Invalid --type argument. Allowed values: {}.'.format(", ".join(get_mru_type_completion_list())))
 
     client.set_mru(mru['AccountId'], count, type)
     return _map_mru(client.get_mru())
@@ -86,7 +87,6 @@ class MediaV2Client():
 
         return api_endpoint
 
-
     def _get_v2_access_token(self, cli_ctx):
         from adal import AuthenticationContext
 
@@ -102,7 +102,6 @@ class MediaV2Client():
         return context.acquire_token_with_refresh_token(refresh_token,
                                                         client_id,
                                                         self.v2_media_api_resource).get('accessToken')
-
 
     def set_mru(self, account_id, count, type):
         headers = {}
@@ -120,7 +119,6 @@ class MediaV2Client():
             if json.loads(response.text) is not None and json.loads(response.text).get('error') is not None:
                 err_info = json.loads(response.text).get('error').get('message').get('value')
             raise CLIError('Request to EncodingReservedUnitTypes v2 API endpoint failed. ' + err_info)
-
 
     def get_mru(self):
         headers = {}
