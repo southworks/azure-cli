@@ -24,7 +24,7 @@ from azure.cli.command_modules.ams._validators import (validate_storage_account_
                                                        validate_correlation_data, validate_token_claim,
                                                        validate_output_assets)
 
-from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, LiveEventEncodingType, StreamOptionsFlag, OnErrorType, InsightsType)
+from azure.mgmt.media.models import (Priority, AssetContainerPermission, LiveEventInputProtocol, StreamOptionsFlag, OnErrorType, InsightsType)
 
 
 def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statements
