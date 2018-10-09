@@ -19,7 +19,7 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list,
-                                                       get_mru_type_completion_list)
+                                                       get_mru_type_completion_list,
                                                        get_encoding_types_list)
 
 from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,

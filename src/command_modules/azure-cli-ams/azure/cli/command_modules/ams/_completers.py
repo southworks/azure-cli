@@ -65,7 +65,7 @@ def get_allowed_languages_for_preset_completion_list():
 def get_mru_type_completion_list():
     return ['S1', 'S2', 'S3']
 
-  
+
 def get_encoding_types_list():
     encoding_types = get_encoding_types()
     return encoding_types

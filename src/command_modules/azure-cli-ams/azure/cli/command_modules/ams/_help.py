@@ -563,7 +563,7 @@ helps['ams account mru'] = """
 
 helps['ams account mru set'] = """
     type: command
-    short-summary: Set the type and number of media reserved units.
+    short-summary: Set the type and number of media reserved units for an Azure Media Services account.
 """
 
 helps['ams account mru show'] = """

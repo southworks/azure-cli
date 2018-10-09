@@ -73,7 +73,7 @@ class MediaV2Client():
         media_service_res = requests.get(cli_ctx.cloud.endpoints.resource_manager[:-1] + media_old_rp_url,
                                          headers={'Authorization': 'Bearer {}'.format(access_token)})
         if not media_service_res.ok:
-            err_info = 'No error information available'
+            err_info = 'Request to 2015-10-01 Media API failed.'
             res_text = json.loads(media_service_res.text)
             if res_text is not None and res_text.get('error') is not None:
                 err_info = res_text.get('error').get('message')
