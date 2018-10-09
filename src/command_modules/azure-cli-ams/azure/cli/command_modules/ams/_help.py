@@ -184,6 +184,11 @@ helps['ams asset list'] = """
             az ams asset list -a amsAccount -g resourceGroup --query [?starts_with(name,'Something')]
 """
 
+helps['ams asset get-streaming-locators'] = """
+    type: command
+    short-summary: List streaming locators which are associated with this asset.
+"""
+
 helps['ams asset create'] = """
     type: command
     short-summary: Create an asset.
