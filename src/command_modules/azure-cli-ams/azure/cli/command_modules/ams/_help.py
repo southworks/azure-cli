@@ -555,3 +555,18 @@ helps['ams account-filter delete'] = """
     type: command
     short-summary: Delete an account filter.
 """
+
+helps['ams account mru'] = """
+    type: group
+    short-summary: Manage media reserved units for an Azure Media Services account.
+"""
+
+helps['ams account mru set'] = """
+    type: command
+    short-summary: Set the type and number of media reserved units for an Azure Media Services account.
+"""
+
+helps['ams account mru show'] = """
+    type: command
+    short-summary: Show the details of media reserved units for an Azure Media Services account.
+"""

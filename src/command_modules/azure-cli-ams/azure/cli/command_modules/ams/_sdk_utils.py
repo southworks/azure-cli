@@ -46,5 +46,13 @@ def get_allowed_languages_for_preset():
             'pt-BR', 'zh-CN', 'de-DE', 'ar-EG', 'ru-RU', 'hi-IN']
 
 
+def get_media_namespace():
+    return 'Microsoft.Media'
+
+
+def get_media_type():
+    return 'mediaservices'
+
+
 def get_encoding_types():
     return ['Basic', 'None', 'Standard']

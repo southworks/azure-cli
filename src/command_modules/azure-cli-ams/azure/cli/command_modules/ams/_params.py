@@ -19,7 +19,9 @@ from azure.cli.command_modules.ams._completers import (get_role_definition_name_
                                                        get_token_type_completion_list,
                                                        get_fairplay_rentalandlease_completion_list,
                                                        get_token_completion_list,
+                                                       get_mru_type_completion_list,
                                                        get_encoding_types_list)
+
 from azure.cli.command_modules.ams._validators import (validate_storage_account_id, datetime_format,
                                                        validate_correlation_data, validate_token_claim,
                                                        validate_output_assets)
@@ -56,6 +58,10 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('account_name', options_list=['--name', '-n'], id_part=None,
                    help='The name of the Azure Media Services account')
         c.argument('location', arg_type=get_location_type(self.cli_ctx))
+
+    with self.argument_context('ams account mru') as c:
+        c.argument('type', help='Speed of reserved processing units. The cost of media encoding depends on the pricing tier you choose. See https://azure.microsoft.com/pricing/details/media-services/ for further details. Allowed values: {}.'.format(", ".join(get_mru_type_completion_list())))
+        c.argument('count', type=int, help='The number of the encoding reserved units that you want to be provisioned for this account for concurrent tasks (one unit equals one task).')
 
     with self.argument_context('ams account storage') as c:
         c.argument('account_name', account_name_arg_type)

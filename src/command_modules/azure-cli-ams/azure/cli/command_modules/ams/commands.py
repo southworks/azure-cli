@@ -59,6 +59,12 @@ def load_command_table(self, _):  # pylint: disable=too-many-locals, too-many-st
         g.custom_command('reset-credentials', 'reset_sp_credentials_for_mediaservice',
                          custom_command_type=get_custom_sdk('sp', get_mediaservices_client))
 
+    with self.command_group('ams account mru', get_sdk('Mediaservices', get_mediaservices_client)) as g:
+        g.custom_command('show', 'get_mru',
+                         custom_command_type=get_custom_sdk('mru', None))
+        g.custom_command('set', 'set_mru',
+                         custom_command_type=get_custom_sdk('mru', None))
+
     with self.command_group('ams transform', get_sdk('Transforms', get_transforms_client)) as g:
         g.show_command('show', 'get')
         g.command('list', 'list')
