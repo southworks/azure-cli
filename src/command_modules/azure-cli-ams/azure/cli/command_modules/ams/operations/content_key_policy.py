@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# pylint: disable=line-too-long, too-many-arguments, too-many-locals, too-many-branches, too-many-statements
+# pylint: disable=too-many-arguments, too-many-locals, too-many-branches, too-many-statements
 import base64
 import json
 import codecs
@@ -39,9 +39,10 @@ def create_content_key_policy(client, resource_group_name, account_name, content
 
     policy_option = _generate_content_key_policy_option(policy_option_name, clear_key_configuration, open_restriction,
                                                         issuer, audience, token_key, token_key_type,
-                                                        alt_symmetric_token_keys, alt_rsa_token_keys, alt_x509_token_keys,
-                                                        token_claims, token_type, open_id_connect_discovery_document,
-                                                        widevine_template, ask, fair_play_pfx_password, fair_play_pfx,
+                                                        alt_symmetric_token_keys, alt_rsa_token_keys,
+                                                        alt_x509_token_keys, token_claims, token_type,
+                                                        open_id_connect_discovery_document, widevine_template,
+                                                        ask, fair_play_pfx_password, fair_play_pfx,
                                                         rental_and_lease_key_type, rental_duration, play_ready_template)
 
     return client.create_or_update(resource_group_name, account_name,
@@ -52,8 +53,10 @@ def show_content_key_policy(client, resource_group_name, account_name, content_k
                             with_secrets=False):
 
     if with_secrets:
-        content_key_policy = client.get_policy_properties_with_secrets(resource_group_name=resource_group_name, account_name=account_name,
-                                                                       content_key_policy_name=content_key_policy_name)
+        content_key_policy = client.get_policy_properties_with_secrets(
+            resource_group_name=resource_group_name,
+            account_name=account_name,
+            content_key_policy_name=content_key_policy_name)
         json_object = json.dumps(content_key_policy, cls=JsonBytearrayEncoder, indent=4)
         return json.loads(json_object)
 
@@ -78,9 +81,10 @@ def add_content_key_policy_option(client, resource_group_name, account_name, con
 
     policy_option = _generate_content_key_policy_option(policy_option_name, clear_key_configuration, open_restriction,
                                                         issuer, audience, token_key, token_key_type,
-                                                        alt_symmetric_token_keys, alt_rsa_token_keys, alt_x509_token_keys,
-                                                        token_claims, token_type, open_id_connect_discovery_document,
-                                                        widevine_template, ask, fair_play_pfx_password, fair_play_pfx,
+                                                        alt_symmetric_token_keys, alt_rsa_token_keys,
+                                                        alt_x509_token_keys, token_claims, token_type,
+                                                        open_id_connect_discovery_document, widevine_template,
+                                                        ask, fair_play_pfx_password, fair_play_pfx,
                                                         rental_and_lease_key_type, rental_duration, play_ready_template)
 
     options.append(policy_option)
@@ -107,12 +111,16 @@ def remove_content_key_policy_option(client, resource_group_name, account_name, 
 
 def update_content_key_policy_option(client, resource_group_name, account_name, content_key_policy_name,
                                      policy_option_id, policy_option_name=None, issuer=None, audience=None,
-                                     token_key=None, token_key_type=None, add_alt_token_key=None, add_alt_token_key_type=None,
-                                     token_claims=None, token_type=None, open_id_connect_discovery_document=None,
-                                     widevine_template=None, ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
-                                     rental_and_lease_key_type=None, rental_duration=None, play_ready_template=None):
-    policy = client.get_policy_properties_with_secrets(resource_group_name=resource_group_name, account_name=account_name,
-                                                       content_key_policy_name=content_key_policy_name)
+                                     token_key=None, token_key_type=None, add_alt_token_key=None,
+                                     add_alt_token_key_type=None, token_claims=None, token_type=None,
+                                     open_id_connect_discovery_document=None, widevine_template=None,
+                                     ask=None, fair_play_pfx_password=None, fair_play_pfx=None,
+                                     rental_and_lease_key_type=None, rental_duration=None,
+                                     play_ready_template=None):
+    policy = client.get_policy_properties_with_secrets(
+        resource_group_name=resource_group_name,
+        account_name=account_name,
+        content_key_policy_name=content_key_policy_name)
 
     policy_option = next((option for option in policy.options if option.policy_option_id == policy_option_id), None)
 
@@ -139,11 +147,14 @@ def update_content_key_policy_option(client, resource_group_name, account_name, 
 
         if add_alt_token_key is not None and add_alt_token_key_type is not None:
             if add_alt_token_key_type == 'Symmetric':
-                policy_option.restriction.alternate_verification_keys.append(_symmetric_token_key_factory(add_alt_token_key))
+                policy_option.restriction.alternate_verification_keys.append(
+                    _symmetric_token_key_factory(add_alt_token_key))
             elif add_alt_token_key_type == 'RSA':
-                policy_option.restriction.alternate_verification_keys.append(_rsa_token_key_factory(add_alt_token_key))
+                policy_option.restriction.alternate_verification_keys.append(
+                    _rsa_token_key_factory(add_alt_token_key))
             elif add_alt_token_key_type == 'X509':
-                policy_option.restriction.alternate_verification_keys.append(_x509_token_key_factory(add_alt_token_key))
+                policy_option.restriction.alternate_verification_keys.append(
+                    _x509_token_key_factory(add_alt_token_key))
 
         if token_claims is not None:
             policy_option.restriction.token_claims = []
@@ -375,10 +386,13 @@ def _play_ready_configuration_factory(content):
             first_play_expiration=_coalesce_timedelta(prl.get('firstPlayExpiration')),
             scms_restriction=prl.get('scmsRestriction'),
             agc_and_color_stripe_restriction=prl.get('agcAndColorStripeRestriction'),
-            explicit_analog_television_output_restriction=__get_eator(prl.get('explicitAnalogTelevisionOutputRestriction')),
+            explicit_analog_television_output_restriction=__get_eator(
+                prl.get('explicitAnalogTelevisionOutputRestriction')),
             digital_video_only_content_restriction=prl.get('digitalVideoOnlyContentRestriction'),
-            image_constraint_for_analog_component_video_restriction=prl.get('imageConstraintForAnalogComponentVideoRestriction'),
-            image_constraint_for_analog_computer_monitor_restriction=prl.get('imageConstraintForAnalogComputerMonitorRestriction'),
+            image_constraint_for_analog_component_video_restriction=prl.get(
+                'imageConstraintForAnalogComponentVideoRestriction'),
+            image_constraint_for_analog_computer_monitor_restriction=prl.get(
+                'imageConstraintForAnalogComputerMonitorRestriction'),
             allow_passing_video_content_to_unknown_output=prl.get('allowPassingVideoContentToUnknownOutput'),
             uncompressed_digital_video_opl=prl.get('uncompressedDigitalVideoOpl'),
             compressed_digital_video_opl=prl.get('compressedDigitalVideoOpl'),
@@ -417,7 +431,8 @@ def _valid_token_restriction(token_key, token_key_type, token_type, issuer, audi
     return any([token_type, token_key, token_key_type in get_tokens(), issuer, audience])
 
 
-def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration):
+def _valid_fairplay_configuration(ask, fair_play_pfx_password, fair_play_pfx,
+                                  rental_and_lease_key_type, rental_duration):
     return any([ask, fair_play_pfx_password, fair_play_pfx, rental_and_lease_key_type, rental_duration])
 
 

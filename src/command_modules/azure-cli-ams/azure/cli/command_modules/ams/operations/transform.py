@@ -14,8 +14,6 @@ from azure.cli.command_modules.ams._sdk_utils import (get_sdk_model_class, get_s
 from azure.mgmt.media.models import (StandardEncoderPreset, TransformOutput,
                                      BuiltInStandardEncoderPreset, EncoderNamedPreset)
 
-# pylint: disable=line-too-long
-
 
 def create_transform(client, account_name, resource_group_name, transform_name, preset,
                      insights_to_extract=None, audio_language=None, on_error=None,

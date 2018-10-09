@@ -255,7 +255,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('cbcs_widevine_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cbcs_play_ready_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
         c.argument('cbcs_fair_play_template', arg_group='Common Encryption CBCS', help='The custom license acquisition URL template for a customer service to deliver keys to end users. Not needed when using Azure Media Services for issuing keys.')
-        c.argument('cbcs_fair_play_allow_persistent_license', arg_group='Common Encryption CBCS', action='store_true', help='Allows the license to be persistent or not.')
+        c.argument('cbcs_fair_play_allow_persistent_license', arg_group='Common Encryption CBCS', arg_type=get_three_state_flag(), help='Allows the license to be persistent or not.')
 
     with self.argument_context('ams streaming-policy list') as c:
         c.argument('account_name', id_part=None)
@@ -327,7 +327,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('preview_locator', arg_group='Preview', help='The identifier of the preview locator in Guid format. Specifying this at creation time allows the caller to know the preview locator url before the event is created. If omitted, the service will generate a random identifier. This value cannot be updated once the live event is created.')
         c.argument('streaming_policy_name', arg_group='Preview', help='The name of streaming policy used for the live event preview. This can be specified at creation time but cannot be updated.')
         c.argument('alternative_media_id', arg_group='Preview', help='An Alternative Media Identifier associated with the StreamingLocator created for the preview. This value is specified at creation time and cannot be updated. The identifier can be used in the CustomLicenseAcquisitionUrlTemplate or the CustomKeyAcquisitionUrlTemplate of the StreamingPolicy specified in the StreamingPolicyName field.')
-        c.argument('vanity_url', action='store_true', help='Specifies whether to use a vanity url with the Live Event. This value is specified at creation time and cannot be updated.')
+        c.argument('vanity_url', arg_type=get_three_state_flag(), help='Specifies whether to use a vanity url with the Live Event. This value is specified at creation time and cannot be updated.')
         c.argument('client_access_policy', arg_group='Cross Site Access Policies', help='The local full path to the clientaccesspolicy.xml used by Silverlight.')
         c.argument('cross_domain_policy', arg_group='Cross Site Access Policies', help='The local full path to the crossdomain.xml used by Silverlight.')
         c.argument('stream_options', nargs='+', arg_type=get_enum_type(StreamOptionsFlag), help='The options to use for the LiveEvent. This value is specified at creation time and cannot be updated.')
