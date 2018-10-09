@@ -5,11 +5,14 @@
 
 from knack.util import CLIError
 
-def get_mediaservice(client, account_name, resource_group_name=None): 
+
+def get_mediaservice(client, account_name, resource_group_name=None):
     return client.get(resource_group_name, account_name) if resource_group_name else client.get_by_subscription(account_name)
+
 
 def list_mediaservices(client, resource_group_name=None):
     return client.list(resource_group_name) if resource_group_name else client.list_by_subscription()
+
 
 def create_mediaservice(client, resource_group_name, account_name, storage_account, location=None, tags=None):
     from azure.mgmt.media.models import StorageAccount
