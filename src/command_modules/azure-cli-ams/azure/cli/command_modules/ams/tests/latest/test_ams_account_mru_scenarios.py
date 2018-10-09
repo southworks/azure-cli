@@ -9,7 +9,7 @@ from azure.cli.testsdk import ScenarioTest, ResourceGroupPreparer, StorageAccoun
 class AmsMruTests(ScenarioTest):
     @ResourceGroupPreparer()
     @StorageAccountPreparer(parameter_name='storage_account_for_create')
-    def test_ams_mru_set(self, resource_group, storage_account_for_create):
+    def test_ams_mru(self, storage_account_for_create):
         amsname = self.create_random_name(prefix='ams', length=12)
 
         self.kwargs.update({
@@ -23,6 +23,11 @@ class AmsMruTests(ScenarioTest):
         self.cmd('az ams account create -n {amsname} -g {rg} --storage-account {storageAccount} -l {location}')
 
         self.cmd('az ams account mru set -n {amsname} -g {rg} --count {count} --type {type}', checks=[
+            self.check('count', '{count}'),
+            self.check('type', '{type}')
+        ])
+
+        self.cmd('az ams account mru show -n {amsname} -g {rg}', checks=[
             self.check('count', '{count}'),
             self.check('type', '{type}')
         ])

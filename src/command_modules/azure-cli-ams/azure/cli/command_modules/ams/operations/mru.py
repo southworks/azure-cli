@@ -3,7 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-import uuid
+# pylint: disable=redefined-builtin
+
 import json
 import requests
 from azure.cli.core.util import CLIError
@@ -45,7 +46,7 @@ def _map_mru(mru):
     return mapped_obj
 
 
-class MediaV2Client(object):
+class MediaV2Client():
     """ Media V2 Client """
     def __init__(self, cli_ctx, resource_group_name, account_name):
         from azure.cli.core._profile import Profile
@@ -72,8 +73,9 @@ class MediaV2Client(object):
                                          headers={'Authorization': 'Bearer {}'.format(access_token)})
         if not media_service_res.ok:
             err_info = 'No error information available'
-            if json.loads(media_service_res.text) is not None and json.loads(media_service_res.text).get('error') is not None:
-                err_info = json.loads(media_service_res.text).get('error').get('message')
+            res_text = json.loads(media_service_res.text)
+            if res_text is not None and res_text.get('error') is not None:
+                err_info = res_text.get('error').get('message')
             raise CLIError(err_info)
 
         media_service = media_service_res.json()
@@ -92,10 +94,14 @@ class MediaV2Client(object):
 
         refresh_token = refresh_token_obj[1]
         tenant = refresh_token_obj[3]
+        # pylint: disable=protected-access
         client_id = self.profile.get_login_credentials()[0]._token_retriever()[2]['_clientId']
 
         authority = '{}/{}'.format(cli_ctx.cloud.endpoints.active_directory, tenant)
-        return AuthenticationContext(authority).acquire_token_with_refresh_token(refresh_token, client_id, self.v2_media_api_resource).get('accessToken')
+        context = AuthenticationContext(authority)
+        return context.acquire_token_with_refresh_token(refresh_token,
+                                                        client_id,
+                                                        self.v2_media_api_resource).get('accessToken')
 
 
     def set_mru(self, account_id, count, type):
@@ -104,9 +110,10 @@ class MediaV2Client(object):
         headers['Content-Type'] = 'application/json;odata=verbose'
         headers['Accept'] = 'application/json;odata=verbose'
 
-        response = requests.put("{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19".format(self.api_endpoint.get('endpoint'), account_id),
-                           headers=headers,
-                           data='{{"ReservedUnitType":{}, "CurrentReservedUnits":{}}}'.format(type, count))
+        url_request_template = "{}EncodingReservedUnitTypes(guid'{}')?api-version=2.19"
+        response = requests.put(url_request_template.format(self.api_endpoint.get('endpoint'), account_id),
+                                headers=headers,
+                                data='{{"ReservedUnitType":{}, "CurrentReservedUnits":{}}}'.format(type, count))
 
         if not response.ok:
             err_info = 'No error information available'
@@ -122,7 +129,9 @@ class MediaV2Client(object):
         headers['Accept'] = 'application/json;odata=minimalmetadata'
         headers['Accept-Charset'] = 'UTF-8'
 
-        response = requests.get('{}EncodingReservedUnitTypes?api-version=2.19'.format(self.api_endpoint.get('endpoint')), headers=headers)
+        url_request_template = '{}EncodingReservedUnitTypes?api-version=2.19'
+        response = requests.get(url_request_template.format(self.api_endpoint.get('endpoint')),
+                                headers=headers)
         if not response.ok:
             raise CLIError('Request to EncodingReservedUnitTypes v2 API endpoint failed.')
         return response.json().get('value')[0]
