@@ -36,7 +36,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
     default_policy_name_arg_type = CLIArgumentType(options_list=['--content-key-policy-name'], help='The default content key policy name used by the streaming locator.', metavar='DEFAULT_CONTENT_KEY_POLICY_NAME')
     correlation_data_type = CLIArgumentType(validator=validate_correlation_data, help="Space-separated correlation data in 'key[=value]' format. This customer provided data will be returned in Job and JobOutput state events.", nargs='*', metavar='CORRELATION_DATA')
     token_claim_type = CLIArgumentType(validator=validate_token_claim, help="Space-separated required token claims in '[key=value]' format.", nargs='*', metavar='ASYMMETRIC TOKEN CLAIMS')
-    ip_range_type = CLIArgumentType(nargs='+', help='Space-separated IP addresses for access control. Allowed IP addresses can be specified as either a single IP address (e.g. "10.0.0.1") or as an IP range using an IP address and a CIDR subnet mask (e.g. "10.0.0.1/22"). Use "" to clear existing list. Default is 0.0.0.0/0.')
+    ip_range_type = CLIArgumentType(nargs='+', help='Space-separated IP addresses for access control. Allowed IP addresses can be specified as either a single IP address (e.g. "10.0.0.1") or as an IP range using an IP address and a CIDR subnet mask (e.g. "10.0.0.1/22"). Use "" to clear existing list. If no IP addresses are specified any IP address will be allowed.')
     output_assets_type = CLIArgumentType(validator=validate_output_assets, nargs='*', help="Space-separated assets in 'assetName=label' format. An asset without label can be sent like this: 'assetName='", metavar='OUTPUT_ASSETS')
 
     with self.argument_context('ams') as c:
