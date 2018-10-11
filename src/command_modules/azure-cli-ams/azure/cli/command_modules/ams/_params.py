@@ -295,7 +295,7 @@ def load_arguments(self, _):  # pylint: disable=too-many-locals, too-many-statem
         c.argument('disable_cdn', arg_group='CDN Support', action='store_true', help='Use this flag to disable CDN for the streaming endpoint.')
 
     with self.argument_context('ams streaming-endpoint list') as c:
-         c.argument('account_name', id_part=None)
+        c.argument('account_name', id_part=None)
 
     with self.argument_context('ams streaming-endpoint scale') as c:
         c.argument('scale_unit', options_list=['--scale-units'], help='The number of scale units for Premium StreamingEndpoints.')

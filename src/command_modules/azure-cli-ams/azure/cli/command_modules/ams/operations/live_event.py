@@ -55,8 +55,11 @@ def create_live_event_preview(preview_locator, streaming_policy_name,
     from azure.mgmt.media.models import (IPAccessControl, LiveEventPreviewAccessControl, LiveEventPreview)
 
     allow_list = []
-    if preview_ips is None or preview_ips[0] == 'AllowAll':
+    if preview_ips is None:
+        preview_ips = []
+    if preview_ips[0] == 'AllowAll':
         preview_ips = ['0.0.0.0/0']
+
     for ip in preview_ips:
         allow_list.append(create_ip_range(live_event_name, ip))
 
