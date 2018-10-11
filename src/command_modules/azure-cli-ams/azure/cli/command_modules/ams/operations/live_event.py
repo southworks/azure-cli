@@ -20,7 +20,7 @@ def create(cmd, client, resource_group_name, account_name, live_event_name, stre
 
     encoding_type = 'Basic' if encoding_type == 'Standard' else encoding_type
     allowed_ips = []
-    if ips is not None and ips[0] == 'AllowAll':
+    if ips[0] == 'AllowAll':
         ips = ['0.0.0.0/0']
     for ip in ips:
         allowed_ips.append(create_ip_range(live_event_name, ip))
@@ -57,7 +57,7 @@ def create_live_event_preview(preview_locator, streaming_policy_name,
     allow_list = []
     if preview_ips is None:
         preview_ips = []
-    if preview_ips[0] == 'AllowAll':
+    if preview_ips != [] and preview_ips[0] == 'AllowAll':
         preview_ips = ['0.0.0.0/0']
 
     for ip in preview_ips:
